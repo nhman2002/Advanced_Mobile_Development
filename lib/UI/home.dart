@@ -1,20 +1,5 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-      routes: {
-        '/login': (context) => LoginPage(),
-      },
-    );
-  }
-}
+import 'package:student_hub/routes.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -26,7 +11,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/login');
+              Navigator.pushNamed(context, Routes.login);
             },
             icon: Icon(
               Icons.account_circle,
@@ -62,16 +47,3 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: Center(
-        child: Text('Login Page'),
-      ),
-    );
-  }
-}
