@@ -37,24 +37,25 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RichText(
+            SizedBox(height: 20),
+            Text(
+              'Build your product with high-skilled student \n',
               textAlign: TextAlign.center,
-              text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'Build your product with high-skilled student\n\n',
-                    style: TextStyle(fontSize: 18.0, color: Colors.blue, fontWeight: FontWeight.bold),
-                  ),
-                  TextSpan(
-                    text: 'Find and onboard best-skilled students for your product. Students work to gain experience & skills from real-world projects',
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ),
-                ],
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              '\nFind and onboard best-skilled student for your product. Student works to gain experience & skills from real-world projects \n',
+                textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 16,
               ),
             ),
             SizedBox(height: 20),
@@ -73,24 +74,23 @@ class HomeScreen extends StatelessWidget {
               },
               child: Text('Student'),
             ),
-            RichText(
+            Text(
+              '\n\nStudentHub is a university marketplace to connect high-skilled student and company on a real-world project',
               textAlign: TextAlign.center,
-              text: TextSpan(
-                style: DefaultTextStyle.of(context).style,
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '\nStudentHub is university marketplace to connect high-skilled student and company on a real-world project',
-                    style: TextStyle(fontSize: 18.0, color: Colors.black),
-                  ),
-                ],
+              style: TextStyle(
+                fontSize: 16,
               ),
             ),
-          ],
+            SizedBox(height: 20),
+
+      
+          ], // <-- Đóng square bracket của children
         ),
       ),
     );
   }
 }
+
 
 class LoginPage extends StatelessWidget {
   @override
