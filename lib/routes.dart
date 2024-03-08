@@ -7,6 +7,7 @@ import 'ui/Auth/company.dart';
 import 'UI/ProfileCreation/CompanyCreation/Welcome.dart';
 import 'UI/ProfileCreation/CompanyCreation/Dashboard.dart';
 import 'UI/ProfileCreation/CompanyCreation/CompanyProfileInput.dart';
+import 'UI/ProfileCreation/CompanyCreation/CompanyProfileEdit.dart';
 
 class Routes {
   Routes._();
@@ -23,6 +24,8 @@ class Routes {
   static const String dashBoard = '/dashBoard'; // Corrected the route name
   static const String companyProfileInput =
       '/companyProfileInput'; // Corrected the route name
+  static const String companyProfileEdit = '/companyProfileEdit'; // Corrected the route name
+
 
   static final routes = <String, WidgetBuilder>{
     login: (BuildContext context) => LoginPage(),
@@ -35,5 +38,7 @@ class Routes {
         DashBoard(), // Added the route for LetGetStartedsScreen
     companyProfileInput: (BuildContext context) =>
         CompanyProfileInput(), // Added the route for LetGetStartedsScreen
+    companyProfileEdit: (BuildContext context) => CompanyProfileEdit(),
+
   };
 }
