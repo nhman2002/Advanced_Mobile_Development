@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 // Add your sign-in logic here
-                Navigator.pushNamed(context, Routes.letGetStarted);
+                Navigator.pushNamed(context, Routes.companyProfileInput);
               },
               child: Text('Sign In'),
             ),

@@ -45,6 +45,7 @@ class _DashBoard extends State<DashBoard> {
                 ElevatedButton(
                   onPressed: () {
                     // Add onPressed logic here
+                    // Navigator.pushNamed(context, Routes.companyProfileInput);
                   },
                   child: Text('Post a job'),
                 ),
