@@ -3,18 +3,15 @@ import 'package:student_hub/routes.dart';
 
 //login page
 class LoginPage extends StatefulWidget {
-    @override
-    _LoginPageState createState() => _LoginPageState();
+  @override
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-    @override
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('Student Hub')),
+      appBar: AppBar(backgroundColor: Colors.blue, title: Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -47,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 // Add your sign-in logic here
+                Navigator.pushNamed(context, Routes.letGetStarted);
               },
               child: Text('Sign In'),
             ),
