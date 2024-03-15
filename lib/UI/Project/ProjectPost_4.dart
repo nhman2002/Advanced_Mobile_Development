@@ -36,7 +36,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "4/4 Project details",
+              "4/4    Project details",
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
