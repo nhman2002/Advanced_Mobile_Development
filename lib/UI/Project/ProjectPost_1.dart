@@ -29,7 +29,7 @@ class ProjectPosting1 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "1/4 Let's start with a strong title",
+            "1/4    Let's start with a strong title",
             textAlign: TextAlign.start,
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),

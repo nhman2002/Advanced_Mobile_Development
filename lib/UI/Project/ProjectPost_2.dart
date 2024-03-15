@@ -35,7 +35,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "2/4 Next, estimate the scope of your job",
+            "2/4    Next, estimate the scope of your job",
             textAlign: TextAlign.start,
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),
