@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(Dashboard_ProjectPosts());
+}
 class Dashboard_ProjectPosts extends StatelessWidget {
   const Dashboard_ProjectPosts({Key? key}) : super(key: key);
 
