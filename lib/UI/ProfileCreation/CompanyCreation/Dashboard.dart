@@ -68,7 +68,7 @@ class _DashBoard extends State<DashBoard> {
             Spacer(),
             OverflowBar(children: [
               _buildDashboardItem(
-                  Icons.work, 'Projects', Colors.white, Routes.projectHomePage),
+                  Icons.work, 'Projects', Colors.white, Routes.projectList),
               _buildDashboardItem(
                   Icons.dashboard, 'Dashboard', Colors.black, Routes.dashBoard),
               _buildDashboardItem(
@@ -76,21 +76,6 @@ class _DashBoard extends State<DashBoard> {
               _buildDashboardItem(
                   Icons.notifications, 'Alerts', Colors.white, Routes.login),
             ]),
-
-            // Container(
-            //   color: Colors.blue, // Background color of the row
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     children: [
-            //       _buildDashboardItem(Icons.work, 'Projects', Colors.white),
-            //       _buildDashboardItem(
-            //           Icons.dashboard, 'Dashboard', Colors.black),
-            //       _buildDashboardItem(Icons.message, 'Message', Colors.white),
-            //       _buildDashboardItem(
-            //           Icons.notifications, 'Alerts', Colors.white),
-            //     ],
-            //   ),
-            // )
           ],
         ),
       ),

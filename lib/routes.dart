@@ -8,8 +8,9 @@ import 'UI/ProfileCreation/CompanyCreation/Welcome.dart';
 import 'UI/ProfileCreation/CompanyCreation/Dashboard.dart';
 import 'UI/ProfileCreation/CompanyCreation/CompanyProfileInput.dart';
 import 'UI/ProfileCreation/CompanyCreation/CompanyProfileEdit.dart';
-import 'UI/Project/ProjectPage/ProjectPage.dart';
+import 'UI/Project/ProjectPage/ProjectList.dart';
 import 'UI/Project/ProjectPage/ProjectDetail.dart';
+import 'UI/Project/ProjectPage/ProjectPage.dart';
 
 class Routes {
   Routes._();
@@ -26,9 +27,11 @@ class Routes {
   static const String dashBoard = '/dashBoard'; // Corrected the route name
   static const String companyProfileInput =
       '/companyProfileInput'; // Corrected the route name
-  static const String companyProfileEdit = '/companyProfileEdit'; // Corrected the route name
-  static const String projectHomePage = '/project';
+  static const String companyProfileEdit =
+      '/companyProfileEdit'; // Corrected the route name
+  static const String projectList = '/project';
   static const String projectDetail = '/projectDetail';
+  static const String projectPage = '/projectPage';
 
   static final routes = <String, WidgetBuilder>{
     login: (BuildContext context) => LoginPage(),
@@ -42,7 +45,8 @@ class Routes {
     companyProfileInput: (BuildContext context) =>
         CompanyProfileInput(), // Added the route for LetGetStartedsScreen
     companyProfileEdit: (BuildContext context) => CompanyProfileEdit(),
-    projectHomePage: (BuildContext context) =>  ProjectPage(),
-    projectDetail: (BuildContext context) =>  ProjectDetail(),
+    projectList: (BuildContext context) => ProjectList(),
+    projectDetail: (BuildContext context) => ProjectDetail(),
+    projectPage: (BuildContext context) => ProjectPage(),
   };
 }

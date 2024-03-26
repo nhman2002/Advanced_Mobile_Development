@@ -1,47 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/routes.dart';
 
-class ProjectPage extends StatefulWidget {
+class ProjectList extends StatefulWidget {
   @override
-  _ProjectPageState createState() => _ProjectPageState();
+  _ProjectList createState() => _ProjectList();
 }
 
-class _ProjectPageState extends State<ProjectPage> {
+class _ProjectList extends State<ProjectList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        leadingWidth: 200, // Adjust leading width for the text
-        automaticallyImplyLeading: true, // This will enable the back button
-        titleSpacing: NavigationToolbar.kMiddleSpacing,
-        leading: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                // Implement back button logic
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back, color: Colors.black),
-            ),
-            SizedBox(
-                width: 10), // Add some spacing between the back button and text
-            Text(
-              'Saved Projects',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-              ),
-            ),
-          ],
-        ),
+        title: Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               // Implement route logic here
             },
             icon: Icon(Icons.account_circle, color: Colors.white, size: 40.0),
-          ),
+          )
         ],
       ),
       body: Center(
@@ -52,13 +30,63 @@ class _ProjectPageState extends State<ProjectPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
+              Row(
+                children: [
+                  Expanded(
+                    child: SearchAnchor(
+                      builder:
+                          (BuildContext context, SearchController controller) {
+                        return SearchBar(
+                          controller: controller,
+                          padding: const MaterialStatePropertyAll<EdgeInsets>(
+                              EdgeInsets.symmetric(horizontal: 16.0)),
+                          onTap: () {
+                            // controller.openView();
+                          },
+                          onChanged: (_) {
+                            controller.openView();
+                          },
+                          leading: const Icon(Icons.search),
+                          trailing: <Widget>[
+                            Tooltip(
+                              message: 'Change brightness mode',
+                            ),
+                          ],
+                        );
+                      },
+                      suggestionsBuilder:
+                          (BuildContext context, SearchController controller) {
+                        return List<ListTile>.generate(5, (int index) {
+                          final String item = 'item $index';
+                          return ListTile(
+                            title: Text(item),
+                            onTap: () {
+                              setState(() {
+                                controller.closeView(item);
+                              });
+                            },
+                          );
+                        });
+                      },
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                       Navigator.pushNamed(context, Routes.projectPage);
+                    },
+                    icon: const Icon(Icons.favorite),
+                  ),
+                ],
+              ),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      _buildProjectItem(context, createdDay: 3),
-                      _buildProjectItem(context, createdDay: 5),
+                      _buildProjectItem(context),
+                      _buildProjectItem(context),
+                      _buildProjectItem(context),
+                      _buildProjectItem(context),
+                      _buildProjectItem(context),
                     ],
                   ),
                 ),
@@ -84,8 +112,10 @@ class _ProjectPageState extends State<ProjectPage> {
           ),
         ),
       ),
+      
     );
   }
+
   Widget _buildDashboardItem(
       IconData icon, String label, Color? color, String routePath) {
     return GestureDetector(
@@ -111,10 +141,12 @@ class _ProjectPageState extends State<ProjectPage> {
       ),
     );
   }
-  Widget _buildProjectItem(BuildContext context, {required int createdDay}) {
+
+  Widget _buildProjectItem(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Divider(),
         SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,10 +156,9 @@ class _ProjectPageState extends State<ProjectPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Created $createdDay days ago',
+                    'Created 3 days ago',
                     style: TextStyle(color: Colors.grey),
                   ),
-
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -195,8 +226,6 @@ class _ProjectPageState extends State<ProjectPage> {
             ),
           ],
         ),
-        Divider(),
-
       ],
     );
   }
