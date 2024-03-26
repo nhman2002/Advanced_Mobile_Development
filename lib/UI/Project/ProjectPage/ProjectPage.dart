@@ -72,18 +72,12 @@ class _ProjectPage extends State<ProjectPage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      // Implement favorite logic here
+                      //  Navigator.pushNamed(context, Routes.projectDetail);
                     },
                     icon: const Icon(Icons.favorite),
                   ),
                 ],
               ),
-              // _buildProjectItem(context),
-              // _buildProjectItem(context),
-              // _buildProjectItem(context),
-              // _buildProjectItem(context),
-              // _buildProjectItem(context),
-              // SizedBox(height: 20),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -98,6 +92,7 @@ class _ProjectPage extends State<ProjectPage> {
                 ),
               ),
               // Spacer(),
+
               Align(
                 alignment: Alignment.center,
                 child: OverflowBar(
@@ -117,6 +112,7 @@ class _ProjectPage extends State<ProjectPage> {
           ),
         ),
       ),
+      
     );
   }
 
@@ -152,56 +148,84 @@ class _ProjectPage extends State<ProjectPage> {
       children: [
         Divider(),
         SizedBox(height: 20),
-        Text(
-          'Created 3 days ago',
-          style: TextStyle(color: Colors.grey),
-        ),
-        SizedBox(height: 5),
-        Text(
-          'Senior frontend developer (Fintech)',
-          style: TextStyle(color: Colors.green),
-        ),
-        SizedBox(height: 5),
-        Text(
-          'Time: 1-3 months, 6 students needed',
-          style: TextStyle(color: Colors.grey),
-        ),
-        SizedBox(height: 5),
-        Text(
-          'Students are looking for:',
-          style: TextStyle(color: Colors.black),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 0),
-          child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: 
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Created 3 days ago',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: 5),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
-                        Icons.remove,
-                        size: 10.0,
-                        color: Colors.black,
-                      ),
                       Text(
-                        'Clear expectation about your project or deliverables',
-                        style: TextStyle(color: Colors.black),
+                        'Senior frontend developer (Fintech)',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          // Implement favorite logic here
+                          Navigator.pushNamed(context, Routes.projectDetail);
+                        },
+                        icon: Icon(
+                          Icons.favorite_border,
+                          color: Colors.black,
+                        ),
                       ),
                     ],
-                  )),
-              // Add additional indented text here if needed
-            ],
-          ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Time: 1-3 months, 6 students needed',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Students are looking for:',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.remove,
+                              size: 10.0,
+                              color: Colors.black,
+                            ),
+                            SizedBox(
+                                width:
+                                    5), // Adjust spacing between icon and text
+                            Expanded(
+                              child: Text(
+                                'Clear expectation about your project or deliverables. This text should wrap to the next line if it\'s too long.',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Proposals: Less than 5',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ],
         ),
-        SizedBox(height: 5),
-        Text(
-          'Proposals: Less than 5',
-          style: TextStyle(color: Colors.grey),
-        ),
-        SizedBox(height: 20),
       ],
     );
   }

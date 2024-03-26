@@ -9,6 +9,7 @@ import 'UI/ProfileCreation/CompanyCreation/Dashboard.dart';
 import 'UI/ProfileCreation/CompanyCreation/CompanyProfileInput.dart';
 import 'UI/ProfileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'UI/Project/ProjectPage/ProjectPage.dart';
+import 'UI/Project/ProjectPage/ProjectDetail.dart';
 
 class Routes {
   Routes._();
@@ -27,6 +28,7 @@ class Routes {
       '/companyProfileInput'; // Corrected the route name
   static const String companyProfileEdit = '/companyProfileEdit'; // Corrected the route name
   static const String projectHomePage = '/project';
+  static const String projectDetail = '/projectDetail';
 
   static final routes = <String, WidgetBuilder>{
     login: (BuildContext context) => LoginPage(),
@@ -41,5 +43,6 @@ class Routes {
         CompanyProfileInput(), // Added the route for LetGetStartedsScreen
     companyProfileEdit: (BuildContext context) => CompanyProfileEdit(),
     projectHomePage: (BuildContext context) =>  ProjectPage(),
+    projectDetail: (BuildContext context) =>  ProjectDetail(),
   };
 }
