@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:student_hub/routes.dart';
 import 'package:dio/dio.dart';
+import 'package:student_hub/core/repository/base.dart';
+import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:student_hub/core/config/dependency.dart';
@@ -13,9 +17,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
 
+
   final passwordController = TextEditingController();
   final userController = TextEditingController();
-  final _localStorage = getIt.get<LocalStorage>();
+  //final _localStorage = getIt.get<LocalStorage>();
 
 
   @override
@@ -57,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 // Add your sign-in logic here
                 handleLogin(context, userController.text, passwordController.text);
-                Navigator.pushNamed(context, Routes.companyProfileInput);
               },
               child: Text('Sign In'),
             ),
@@ -82,45 +86,49 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-Future<void> handleLogin(BuildContext context, String username, String password) async {
+  Future<void> handleLogin(BuildContext context, String username, String password) async {
     Dio dio = Dio();
     // Define the endpoint URL
-    String url = 'localhost:4400/api/auth/sign-in';
+    String url = 'http://192.168.1.8:4400/api/auth/sign-in';
 
     // Prepare the data to be sent in the request body
-    Map<String, dynamic> data = {
-      'username': username,
+    String data = jsonEncode({
+      'email': username,
       'password': password,
-    };
-    Response response = await dio.post(url, data: data);
-
-    // Check if the request was successful
-    if (response.statusCode == 200) {
-      String token = response.data['token'];
-      _localStorage
-        ..saveString(key: StorageKey.accessToken, value: token ?? '');
-      // Navigate to the next screen (company profile input in this case)
-      Navigator.pushNamed(context, Routes.companyProfileInput);
+    });
+    print(data);
+    try{
+      await dio.post(url, data: data).then((response) {
+        // Handle the response
+      // Check if the request was successful
+      if (response.statusCode == 201) {
+        String token = response.data['result']['token'];
+        Navigator.pushNamed(context, Routes.dashBoard);
+      } else {
+        // Handle the error
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(response.data['ErrorDetails']),
+          backgroundColor: Colors.red,
+        ));
+      }
+    });
+    } on DioException catch (e) {
+  // The request was made and the server responded with a status code
+  // that falls out of the range of 2xx and is also not 304.
+    if (e.response != null) {
+      // Extract error details from the response body
+      Map<String, dynamic> errorResponse = e.response?.data;
+      String requestId = errorResponse['requestId'];
+      List<String> errorDetails = List<String>.from(errorResponse['errorDetails']);
+      // Snackbar to display the error message
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('$errorDetails'),
+        backgroundColor: const Color.fromARGB(255, 160, 144, 143),
+      ));
     } else {
-      // If request was not successful, show an error popup
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Login Failed'),
-            content: Text(response.data['message']),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Close the dialog
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      // Handle error based on your application logic
+      print('Error message: ${e.message}');
     }
-    }
-
+}
+  }
 }
