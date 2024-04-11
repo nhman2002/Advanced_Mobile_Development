@@ -11,6 +11,11 @@ dependencies:
     sdk: flutter
   mobx: ^2.3.0+1
   flutter_mobx: ^2.2.0+2
+  http_parser: ^4.0.0
+  dio: ^5.3.3
+  logger: ^2.0.2+1
+  shared_preferences: ^2.2.2
+  get_it: ^7.6.4
 
 dev_dependencies:
   flutter_test:
