@@ -13,29 +13,27 @@ import 'package:student_hub/core/repository/base.dart';
 class AuthRepository extends BaseRepository {
   AuthRepository() : super('/auth');
 
-  Future<Auth> login(String email, String password) async {
-    final response = await post<Auth>(
-      path: '/login',
-      parseJsonFunction: Auth.fromJson,
-      data: {
-        'email': email,
-        'password': password,
-      },
+  Future<DataState<AuthOutput>> login(AuthForm input) async {
+    return post<AuthOutput>(
+      path: '/sign-in',
+      parseJsonFunction: AuthOutput.fromJson,
+      data: input.toJson(),
     );
-    return response;
   }
 
-  Future<Auth> register(String email, String password) async {
-    final response = await post<Auth>(
-      path: '/register',
-      parseJsonFunction: Auth.fromJson,
-      data: {
-        'email': email,
-        'password': password,
-        'source': 'https://www.google.com/'
-      },
-    );
-    return response;
-  }
+
+  // Future<DataState<AuthOutput>> register(AuthForm input) async {
+  //   return post<AuthOutput>(
+  //     path: '/sign-up',
+  //     parseJsonFunction: AuthOutput.fromJson,
+  //     data: {
+  //       'email': input.email,
+  //       'password': input.password,
+  //       'fullname': input.name,
+  //       'role': input.role
+  //     },
+  //   );
+  //   return response;
+  // }
 
 }

@@ -15,7 +15,7 @@ class NetworkManager {
   static const int connectTimeout = 60000;
   static const int receiveTimeout = 60000;
 
-  String baseUrl = 'https://sandbox.api.lettutor.com';
+  String baseUrl = 'http://192.168.1.8:4400/api';
   String _accessToken = '';
   String _refreshToken = '';
 

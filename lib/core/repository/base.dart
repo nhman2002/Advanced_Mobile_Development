@@ -6,6 +6,8 @@ import 'package:get_it/get_it.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/error_model.dart';
 import 'package:student_hub/core/network/network.dart';
+import 'package:student_hub/core/models/data_state.dart';
+import 'package:student_hub/core/models/error_model.dart';
 
 typedef ParseJsonFunction<OutputType> = OutputType Function(
     Map<String, dynamic> jsonData);
@@ -20,52 +22,55 @@ class BaseRepository {
     _networkManager = getIt<NetworkManager>();
   }
 
-  Future<T> get<T>(
+  Future<DataState<T>> get<T>(
       {required String path,
         required ParseJsonFunction<T> parseJsonFunction,
         Map<String, dynamic>? queryParameters}) async {
-    final response = await _networkManager.get(serviceName + path,
-        queryParameters: queryParameters);
 
     try {
+      final response = await _networkManager.get(serviceName + path,
+          queryParameters: queryParameters);
       if (response.statusCode == 200) {
         final parser = ResultParser<T>(
             response.data as Map<String, dynamic>? ?? {}, parseJsonFunction);
-        return parser.parseInBackground();
+        final data = await parser.parseInBackground();
+        return DataSuccess<T>(data);
       } else {
         final parser = ResultParser<ErrorModel>(
             response.data as Map<String, dynamic>? ?? {}, ErrorModel.fromJson);
         throw Exception((await parser.parseInBackground()).message);
       }
     } on DioException catch (e) {
-      throw Exception(e.response?.data['message']);
+      return DataError(e);
     }
   }
 
-  Future<T> post<T>(
+  Future<DataState<T>> post<T>(
       {required String path,
         required ParseJsonFunction<T> parseJsonFunction,
         Map<String, dynamic>? queryParameters,
         Map<String, dynamic>? headers,
         Map<String, dynamic>? data}) async {
-    final response = await _networkManager.post(serviceName + path,
-        queryParameters: queryParameters, data: data, headers: headers);
 
     try {
+      final response = await _networkManager.post(serviceName + path,
+          queryParameters: queryParameters, data: data);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final parser = ResultParser<T>(
             response.data as Map<String, dynamic>? ?? {}, parseJsonFunction);
-        return parser.parseInBackground();
+        final data = await parser.parseInBackground();
+        return DataSuccess<T>(data);
       } else {
         final parser = ResultParser<ErrorModel>(
             response.data as Map<String, dynamic>? ?? {}, ErrorModel.fromJson);
         throw Exception((await parser.parseInBackground()).message);
       }
     } on DioException catch (e) {
-      throw Exception(e.response?.data['message']);
+      return DataError(e);
     }
   }
 }
+
 
 class ResultParser<OutputType> {
   ResultParser(this.json, this.parseJsonFunction);
