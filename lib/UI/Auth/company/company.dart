@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
-import 'package:student_hub/UI/Auth/student.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:auto_route/auto_route.dart';
 
-// Company signup page
+@RoutePage()
 class CompanySignup extends StatefulWidget {
   @override
   _CompanySignupState createState() => _CompanySignupState();

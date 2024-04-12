@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/UI/Project/ProjectDetail.dart';
 class ProjectListWidget extends StatefulWidget {
   @override

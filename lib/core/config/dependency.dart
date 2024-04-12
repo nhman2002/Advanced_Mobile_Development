@@ -11,6 +11,7 @@ final getIt = GetIt.instance;
 Future<void> initializeDependency() async {
   getIt
     ..registerSingletonAsync<LocalStorage>(LocalStorage.init)
-    ..registerSingletonAsync<Dio>(NetworkManager().initDio)
-    ..registerLazySingleton<AuthRepository>(AuthRepository.new);
+    ..registerSingleton<NetworkManager>(NetworkManager.initial())
+    ..registerLazySingleton<AuthRepository>(AuthRepository.new)
+    ..registerLazySingleton<UserRepository>(UserRepository.new);
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
-
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
 import 'package:dio/dio.dart';
 import 'package:student_hub/core/repository/base.dart';
 import 'package:student_hub/core/repository/auth.dart';
@@ -9,7 +9,7 @@ import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:student_hub/core/config/dependency.dart';
 
-//login page
+@RoutePage()
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                 Text("Don't have an account?"),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, Routes.signup);
+                    context.router.push(const SignupPageRoute());
                     // Add your sign-up navigation logic here
                   },
                   child: Text('Sign Up'),
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
       // Check if the request was successful
       if (response.statusCode == 201) {
         String token = response.data['result']['token'];
-        Navigator.pushNamed(context, Routes.dashBoard);
+        context.router.push(const DashBoardRoute());
       } else {
         // Handle the error
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

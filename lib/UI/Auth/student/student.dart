@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/UI/Auth/company.dart';
+import 'package:student_hub/UI/Auth/company/company.dart';
 
-//login page
+@RoutePage()
 class StudentSignup extends StatefulWidget {
   @override
   _StudentSignupState createState() => _StudentSignupState();

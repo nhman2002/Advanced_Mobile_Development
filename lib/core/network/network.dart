@@ -1,35 +1,49 @@
 import 'package:dio/dio.dart';
 import 'package:student_hub/core/logger/logger.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
 
 
 class NetworkManager {
-  static late Dio dio;
-  Future<Dio> initDio() async {
-    try {
-      dio = Dio(
-        BaseOptions(
-          baseUrl: '',
-          connectTimeout: const Duration(seconds: 10),
-          receiveTimeout: const Duration(seconds: 10),
-          contentType: 'application/json',
-          headers: {
-            'Accept': 'application/json',
-          },
-          receiveDataWhenStatusError: true,
-        )
-      );
-      return dio;
-    } on DioException catch (e) {
-      rethrow;
-    }
+  NetworkManager.initial() {
+    init();
+  }
+
+  final LocalStorage _localStorage = LocalStorage.instance;
+
+  final Dio _dio = Dio();
+
+  static const int connectTimeout = 60000;
+  static const int receiveTimeout = 60000;
+
+  String baseUrl = 'https://sandbox.api.lettutor.com';
+  String _accessToken = '';
+  String _refreshToken = '';
+
+  Future<void> init() async {
+    print('init network manager');
+    _accessToken = _localStorage.getString(key: StorageKey.accessToken) ?? '';
+    _refreshToken = _localStorage.getString(key: StorageKey.refreshToken) ?? '';
+
+    final dioOption = BaseOptions(
+        baseUrl: baseUrl,
+        connectTimeout: const Duration(milliseconds: connectTimeout),
+        receiveTimeout: const Duration(milliseconds: receiveTimeout),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $_accessToken',
+        });
+
+    _dio.options = dioOption;
+
+    configInterceptors();
   }
 
   void updateHeader({String? accessToken}) {
-    dio.options.headers['Authorization'] = 'Bearer $accessToken';
+    _dio.options.headers['Authorization'] = 'Bearer $accessToken';
   }
 
   void configInterceptors() {
-    dio.interceptors.add(InterceptorsWrapper(
+    _dio.interceptors.add(InterceptorsWrapper(
       onRequest: _onRequest,
       onResponse: _onResponse,
       onError: _onError,
@@ -81,7 +95,7 @@ class NetworkManager {
         Options? options,
         ProgressCallback? onReceiveProgress,
       }) async {
-    return dio.get(path,
+    return _dio.get(path,
         queryParameters: queryParameters,
         options: options,
         onReceiveProgress: onReceiveProgress);
@@ -96,10 +110,10 @@ class NetworkManager {
         ProgressCallback? onSendProgress,
         ProgressCallback? onReceiveProgress,
       }) async {
-    return dio.post(path,
+    return _dio.post(path,
         data: data,
         queryParameters: queryParameters,
-        options: Options(headers: {...dio.options.headers, ...headers ?? {}}),
+        options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
   }

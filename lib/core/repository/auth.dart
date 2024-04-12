@@ -37,4 +37,5 @@ class AuthRepository extends BaseRepository {
     );
     return response;
   }
+
 }

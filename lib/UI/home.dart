@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 void main() {
   runApp(MyApp());
 }
-
+@RoutePage()
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
-      routes: {
-        '/login': (context) => LoginPage(),
-      },
+      home: HomeScreen()
     );
   }
 }
@@ -27,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/login');
+              context.router.push(const LoginPageRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -86,21 +85,6 @@ class HomeScreen extends StatelessWidget {
       
           ], // <-- Đóng square bracket của children
         ),
-      ),
-    );
-  }
-}
-
-
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: Center(
-        child: Text('Login Page'),
       ),
     );
   }
