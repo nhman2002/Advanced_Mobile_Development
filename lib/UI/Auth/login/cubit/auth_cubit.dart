@@ -29,13 +29,14 @@ class AuthCubit extends WidgetCubit<AuthState> {
     final result = await _authRepository.login(form);
     if (result is DataSuccess) {
       final user = result.data?.user;
-      final accessToken = result.data?.tokens?.access?.token;
-      final refreshToken = result.data?.tokens?.refresh?.token;
+      final accessToken = result.data?.token?.toJson()['token'] as String?;
       _localStorage.saveString(key: StorageKey.accessToken, value: accessToken ?? '');
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
       emit(state.copyWith(user: user, isLogin: true));
     } else {
-      emit(state.copyWith(isLogin: false, message: result.error?.response?.data['message'] as String? ?? ''));
+      final errorDetails = result.error?.response?.data['errorDetails'];
+      final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;
+      emit(state.copyWith(isLogin: false, message: errorMessage ?? ''));
     }
   }
 }

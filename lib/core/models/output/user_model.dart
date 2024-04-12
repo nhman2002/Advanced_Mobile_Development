@@ -2,30 +2,30 @@ import 'package:student_hub/core/models/base_model.dart';
 
 class AuthOutput extends BaseModel{
   final User? user;
-  final Tokens? tokens;
+  final Token? token;
 
   AuthOutput({
     this.user,
-    this.tokens,
+    this.token,
   });
 
   AuthOutput copyWith({
     User? user,
-    Tokens? tokens,
+    Token? token,
   }) =>
       AuthOutput(
         user: user ?? this.user,
-        tokens: tokens ?? this.tokens,
+        token: token ?? this.token,
       );
 
   @override
   factory AuthOutput.fromJson(Map<String, dynamic> json) {
     return AuthOutput(
       user: json['user'] != null
-          ? User.fromJson(json['user'] as Map<String, dynamic>)
+          ? User.fromJson(json['email'] as Map<String, dynamic>)
           : null,
-      tokens: json['tokens'] != null
-          ? Tokens.fromJson(json['tokens'] as Map<String, dynamic>)
+      token: json['result'] != null
+          ? Token.fromJson(json['result'] as Map<String, dynamic>)
           : null,
     );
   }
@@ -34,7 +34,7 @@ class AuthOutput extends BaseModel{
   Map<String, dynamic> toJson() {
     return {
       'user': user?.toJson(),
-      'tokens': tokens?.toJson(),
+      'token': token?.toJson(),
     };
   }
 
@@ -42,68 +42,31 @@ class AuthOutput extends BaseModel{
   // TODO: implement props
   List<Object?> get props => [
     user,
-    tokens,
+    token,
   ];
 }
 
 
-class Tokens {
-  final Access? access;
-  final Access? refresh;
-
-  Tokens({
-    this.access,
-    this.refresh,
-  });
-
-  Tokens copyWith({
-    Access? access,
-    Access? refresh,
-  }) =>
-      Tokens(
-        access: access ?? this.access,
-        refresh: refresh ?? this.refresh,
-      );
-
-  factory Tokens.fromJson(Map<String, dynamic> json) {
-    return Tokens(
-      access: json['access'] != null
-          ? Access.fromJson(json['access'] as Map<String, dynamic>)
-          : null,
-      refresh: json['refresh'] != null
-          ? Access.fromJson(json['refresh'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'access': access?.toJson(),
-      'refresh': refresh?.toJson(),
-    };
-  }
-}
-
-class Access {
+class Token {
   final String? token;
   final DateTime? expires;
 
-  Access({
+  Token({
     this.token,
     this.expires,
   });
 
-  Access copyWith({
+  Token copyWith({
     String? token,
     DateTime? expires,
   }) =>
-      Access(
+      Token(
         token: token ?? this.token,
         expires: expires ?? this.expires,
       );
 
-  factory Access.fromJson(Map<String, dynamic> json) {
-    return Access(
+  factory Token.fromJson(Map<String, dynamic> json) {
+    return Token(
       token: json['token'] as String?,
       expires: json['expires'] != null
           ? DateTime.tryParse(json['expires'] as String)
@@ -118,6 +81,78 @@ class Access {
     };
   }
 }
+
+// class token {
+//   final Access? access;
+//   // final Access? refresh;
+
+//   token({
+//     this.access,
+//     // this.refresh,
+//   });
+
+//   token copyWith({
+//     Access? access,
+//     // Access? refresh,
+//   }) =>
+//       token(
+//         access: access ?? this.access,
+//         // refresh: refresh ?? this.refresh,
+//       );
+
+//   factory token.fromJson(Map<String, dynamic> json) {
+//     return token(
+//       access: json['access'] != null
+//           ? Access.fromJson(json['access'] as Map<String, dynamic>)
+//           : null,
+//       // refresh: json['refresh'] != null
+//       //     ? Access.fromJson(json['refresh'] as Map<String, dynamic>)
+//       //     : null,
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'access': access?.toJson(),
+//       // 'refresh': refresh?.toJson(),
+//     };
+//   }
+// }
+
+// class Access {
+//   final String? token;
+//   final DateTime? expires;
+
+//   Access({
+//     this.token,
+//     this.expires,
+//   });
+
+//   Access copyWith({
+//     String? token,
+//     DateTime? expires,
+//   }) =>
+//       Access(
+//         token: token ?? this.token,
+//         expires: expires ?? this.expires,
+//       );
+
+//   factory Access.fromJson(Map<String, dynamic> json) {
+//     return Access(
+//       token: json['token'] as String?,
+//       expires: json['expires'] != null
+//           ? DateTime.tryParse(json['expires'] as String)
+//           : null,
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'token': token,
+//       'expires': expires?.toIso8601String(),
+//     };
+//   }
+// }
 
 class User {
   final String? id;
