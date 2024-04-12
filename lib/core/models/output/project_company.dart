@@ -3,13 +3,16 @@ class ProjectCompany {
   String? createdAt;
   String? updatedAt;
   String? deletedAt;
-  int? companyId;
-  String? title;
+  String? companyId;
   int? projectScopeFlag;
-  int? numberOfStudent;
+  String? title;
   String? description;
+  int? numberOfStudents;
   int? typeFlag;
+  List<dynamic>? proposals;
   int? countProposal;
+  int? countMessages;
+  int? countHired;
 
   ProjectCompany({
     this.id,
@@ -17,12 +20,15 @@ class ProjectCompany {
     this.updatedAt,
     this.deletedAt,
     this.companyId,
-    this.title,
     this.projectScopeFlag,
-    this.numberOfStudent,
+    this.title,
     this.description,
+    this.numberOfStudents,
     this.typeFlag,
+    this.proposals,
     this.countProposal,
+    this.countMessages,
+    this.countHired,
   });
 
   Map<String, dynamic> toMapProjectCompany() {
@@ -32,7 +38,7 @@ class ProjectCompany {
       'title': title,
       'description': description,
       'typeFlag': typeFlag,
-      'numberOfStudents': numberOfStudent,
+      'numberOfStudents': numberOfStudents,
     };
   }
 
@@ -43,12 +49,14 @@ class ProjectCompany {
       updatedAt: map['updatedAt'],
       deletedAt: map['deletedAt'],
       companyId: map['companyId'],
-      projectScopeFlag: map['projectScopeId'],
+      projectScopeFlag: map['projectScopeFlag'],
       title: map['title'],
       description: map['description'],
-      numberOfStudent: map['numberOfStudent'],
+      numberOfStudents: map['numberOfStudents'],
       typeFlag: map['typeFlag'],
-      countProposal: map['countProposal'],
+      proposals: map['proposals'],
+      countProposal: map['countProposals'],
+      countMessages: map['countMessages'],
+      countHired: map['countHired'],
     );
   }
-}
