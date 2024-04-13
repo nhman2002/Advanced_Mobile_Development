@@ -15,14 +15,14 @@ class NetworkManager {
   static const int connectTimeout = 60000;
   static const int receiveTimeout = 60000;
 
-  String baseUrl = 'http://192.168.1.8:4400/api';
+  String baseUrl = 'http://192.168.137.1:4400/api';
   String _accessToken = '';
-  String _refreshToken = '';
+  // String _refreshToken = '';
 
   Future<void> init() async {
     print('init network manager');
     _accessToken = _localStorage.getString(key: StorageKey.accessToken) ?? '';
-    _refreshToken = _localStorage.getString(key: StorageKey.refreshToken) ?? '';
+    // _refreshToken = _localStorage.getString(key: StorageKey.refreshToken) ?? '';
 
     final dioOption = BaseOptions(
         baseUrl: baseUrl,
@@ -90,15 +90,17 @@ class NetworkManager {
   }
 
   Future<Response> get(
-      String path, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        ProgressCallback? onReceiveProgress,
-      }) async {
-    return _dio.get(path,
-        queryParameters: queryParameters,
-        options: options,
-        onReceiveProgress: onReceiveProgress);
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    return _dio.get(
+      path,
+      queryParameters: queryParameters,
+      options: options,
+      onReceiveProgress: onReceiveProgress,
+    );
   }
 
   Future<Response> post(

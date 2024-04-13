@@ -24,6 +24,7 @@ class SplashCubit extends WidgetCubit<SplashState> {
   }
 
   Future<void> _handleInitial() async {
+    // _localStorage.clear();
     final accessToken = _localStorage.getString(
       key: StorageKey.accessToken,
     );
@@ -38,8 +39,8 @@ class SplashCubit extends WidgetCubit<SplashState> {
   
 
 
-  // Future<void> logout() async {
-  //   await _localStorage.clear();
-  //   emit(state.copyWith(isLogin: false));
-  // }
+  Future<void> logout() async {
+    await _localStorage.clear();
+    emit(state.copyWith(isLogin: false));
+  }
 }
