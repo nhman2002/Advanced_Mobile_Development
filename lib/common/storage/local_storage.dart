@@ -10,6 +10,11 @@ class LocalStorage {
     return instance;
   }
 
+  //clear all data
+  Future<bool> clear() async {
+    return _sharedPreferences!.clear();
+  }
+
   SharedPreferences? _sharedPreferences;
 
   static final LocalStorage _instance = LocalStorage._();
@@ -26,7 +31,9 @@ class LocalStorage {
   }
 }
 
+
 enum StorageKey {
   accessToken,
   refreshToken,
+  currentRole
 }

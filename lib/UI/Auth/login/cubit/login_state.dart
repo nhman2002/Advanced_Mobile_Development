@@ -2,13 +2,11 @@ import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class LoginState extends WidgetState {
-  final bool isRegister;
   final bool isLogin;
   final String? message;
   final User? user;
 
   const LoginState({
-    this.isRegister = false,
     this.isLogin = false,
     this.message,
     this.user,

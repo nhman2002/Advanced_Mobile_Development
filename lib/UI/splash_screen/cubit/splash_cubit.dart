@@ -38,8 +38,8 @@ class SplashCubit extends WidgetCubit<SplashState> {
   
 
 
-  // Future<void> logout() async {
-  //   await _localStorage.clear();
-  //   emit(state.copyWith(isLogin: false));
-  // }
+  Future<void> logout() async {
+    await _localStorage.clear();
+    emit(state.copyWith(isLogin: false));
+  }
 }
