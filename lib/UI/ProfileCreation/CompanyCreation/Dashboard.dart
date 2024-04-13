@@ -67,44 +67,42 @@ class _DashBoard extends State<DashBoard> {
               ),
             ),
             Spacer(),
-            OverflowBar(children: [
-              _buildDashboardItem(
-                  Icons.work, 'Projects', Colors.white),
-              _buildDashboardItem(
-                  Icons.dashboard, 'Dashboard', Colors.black),
-              _buildDashboardItem(
-                  Icons.message, 'Message', Colors.white),
-              _buildDashboardItem(
-                  Icons.notifications, 'Alerts', Colors.white ),
-            ]),
+            Container(
+              color: Colors.blue, // Background color of the row
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildDashboardItem(Icons.work, 'Projects', Colors.white),
+                  _buildDashboardItem(
+                      Icons.dashboard, 'Dashboard', Colors.black),
+                  _buildDashboardItem(Icons.message, 'Message', Colors.white),
+                  _buildDashboardItem(
+                      Icons.notifications, 'Alerts', Colors.white),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Widget _buildDashboardItem(
-      IconData icon, String label, Color? color) {
-    return GestureDetector(
-      onTap: () {
-        // Navigator.pushNamed(context, routePath);
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Icon(icon, size: 40, color: color),
-            SizedBox(height: 5),
-            Text(
-              label,
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
+  Widget _buildDashboardItem(IconData icon, String label, Color? color) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Icon(icon, size: 40, color: color),
+          SizedBox(height: 5),
+          Text(
+            label,
+            style: TextStyle(color: Colors.white),
+          ),
+        ],
       ),
     );
   }
