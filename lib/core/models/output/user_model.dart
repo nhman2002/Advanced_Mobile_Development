@@ -1,26 +1,26 @@
 import 'package:student_hub/core/models/base_model.dart';
 
-class AuthOutput extends BaseModel{
+class LoginOutput extends BaseModel{
   final User? user;
   final Token? token;
 
-  AuthOutput({
+  LoginOutput({
     this.user,
     this.token,
   });
 
-  AuthOutput copyWith({
+  LoginOutput copyWith({
     User? user,
     Token? token,
   }) =>
-      AuthOutput(
+      LoginOutput(
         user: user ?? this.user,
         token: token ?? this.token,
       );
 
   @override
-  factory AuthOutput.fromJson(Map<String, dynamic> json) {
-    return AuthOutput(
+  factory LoginOutput.fromJson(Map<String, dynamic> json) {
+    return LoginOutput(
       user: json['user'] != null
           ? User.fromJson(json['email'] as Map<String, dynamic>)
           : null,
@@ -46,6 +46,7 @@ class AuthOutput extends BaseModel{
   ];
 }
 
+// class
 
 class Token {
   final String? token;

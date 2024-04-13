@@ -84,9 +84,9 @@ class _SignupPageState extends State<SignupPage> {
             ElevatedButton(
               onPressed: () {
                 if (_selectedRole == 'student') {
-                  context.router.push(const StudentSignupRoute());
+                  context.router.replace(const StudentSignupRoute());
                 } else if (_selectedRole == 'company') {
-                  context.router.push(const CompanySignupRoute());
+                  context.router.replace(const CompanySignupRoute());
                 }
                 else {
                   // Show an error message

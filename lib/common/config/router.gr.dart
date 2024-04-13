@@ -30,7 +30,7 @@ abstract class _$AppRouter extends RootStackRouter {
     LoginPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: LoginPage(),
+        child: const LoginPage(),
       );
     },
     MyAppRoute.name: (routeData) {
@@ -60,7 +60,7 @@ abstract class _$AppRouter extends RootStackRouter {
     StudentSignupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: StudentSignup(),
+        child: const StudentSignup(),
       );
     },
   };

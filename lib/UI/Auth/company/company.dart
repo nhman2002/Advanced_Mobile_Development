@@ -1,16 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/Auth/company/cubit/company_cubit.dart';
+import 'package:student_hub/UI/Auth/company/cubit/company_state.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 
 @RoutePage()
-class CompanySignup extends StatefulWidget {
+class CompanySignup extends BaseWidget<CompanyRegisterCubit, CompanyRegisterState> {
+  const CompanySignup({super.key});
+
   @override
-  _CompanySignupState createState() => _CompanySignupState();
+  Widget buildWidget(BuildContext context) {
+    return const CompanyRegisterWidget();
+  }
+
+  @override
+  CompanyRegisterCubit? provideCubit(BuildContext context) {
+    return CompanyRegisterCubit();
+  }
+}
+class CompanyRegisterWidget extends StatefulWidget {
+  const CompanyRegisterWidget({super.key});
+
+  @override
+  State<CompanyRegisterWidget> createState() => _CompanySignupState();
 }
 
-class _CompanySignupState extends State<CompanySignup> {
+class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefault {
   bool _agreeToTerms = false;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +56,21 @@ class _CompanySignupState extends State<CompanySignup> {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: _nameController,
               decoration: InputDecoration(
                 labelText: 'Company Name',
               ),
             ),
             SizedBox(height: 10),
             TextField(
+              controller: _emailController,
               decoration: InputDecoration(
                 labelText: 'Company Email',
               ),
             ),
             SizedBox(height: 10),
             TextField(
+              controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Password',
@@ -61,13 +87,13 @@ class _CompanySignupState extends State<CompanySignup> {
                     });
                   },
                 ),
-                Text('I agree to the terms and conditions of students'),
+                Text('I agree to the terms and conditions of Student Hub'),
               ],
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add your sign-up logic for companies here
+                  handleSignup(context);
               },
               child: Text('Sign Up'),
             ),
@@ -75,10 +101,7 @@ class _CompanySignupState extends State<CompanySignup> {
             TextButton(
               onPressed: () {
                 // Navigate to the student sign-up page
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => StudentSignup()),
-                );
+                context.router.push(const StudentSignupRoute());
               },
               child: Text("Looking for projects? Sign up as a student"),
             ),
@@ -87,4 +110,24 @@ class _CompanySignupState extends State<CompanySignup> {
       ),
     );
   }
+
+  Future<void> handleSignup(BuildContext context) async {
+    await context.read<CompanyRegisterCubit>().register(
+        email: _emailController.text,
+        password: _passwordController.text,
+        name: _nameController.text
+    );
+    final isSuccess = context.read<CompanyRegisterCubit>().state.isRegister;
+    final message = context.read<CompanyRegisterCubit>().state.message ?? '';
+    if (isSuccess) {
+      showSnackBar(context, message);
+      await Future.delayed(const Duration(seconds: 2));
+      context.router.maybePop();
+      context.router.maybePop();
+      
+    } else {
+      showSnackBar(context, message);
+    }
+  }
+
 }

@@ -1,18 +1,18 @@
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/input/auth_model.dart';
+import 'package:student_hub/core/models/input/login_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/Auth/login/cubit/auth_state.dart';
+import 'package:student_hub/UI/Auth/login/cubit/login_state.dart';
 
-class AuthCubit extends WidgetCubit<AuthState> {
-  AuthCubit()
+class LoginCubit extends WidgetCubit<LoginState> {
+  LoginCubit()
       : super(
-          initialState: const AuthState(),
-          parseJsonFunction: AuthState.fromJson,
+          initialState: const LoginState(),
+          parseJsonFunction: LoginState.fromJson,
         );
 
   final _authRepository = getIt.get<AuthRepository>();

@@ -1,8 +1,8 @@
 class CallingModel {
   String? imageUrl;
   String? userName;
-  IconData? icon;
-  Color? colorValue;
+  String? icon;
+  String? colorValue;
   String? subTitle;
   String? countNumber;
   String? arriveTime;

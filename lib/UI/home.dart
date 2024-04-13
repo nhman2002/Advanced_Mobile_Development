@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              context.router.push(const LoginPageRoute());
+              gotoLogin(context);
             },
             icon: Icon(
               Icons.account_circle,
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Xử lý sự kiện khi nhấn nút Company
-                print('Company button pressed');
+                gotoCompanySignup(context);
               },
               child: Text('Company'),
             ),
@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Xử lý sự kiện khi nhấn nút Student
-                print('Student button pressed');
+                gotoStudentSignup(context);
               },
               child: Text('Student'),
             ),
@@ -87,5 +87,17 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void gotoLogin(BuildContext context) {
+    context.router.push(const LoginPageRoute());
+  }
+
+  void gotoCompanySignup(BuildContext context) {
+    context.router.push(const CompanySignupRoute());
+  }
+
+  void gotoStudentSignup(BuildContext context) {
+    context.router.push(const StudentSignupRoute());
   }
 }

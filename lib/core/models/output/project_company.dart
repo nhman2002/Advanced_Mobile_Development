@@ -59,4 +59,4 @@ class ProjectCompany {
       countMessages: map['countMessages'],
       countHired: map['countHired'],
     );
-  }
+  }}

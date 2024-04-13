@@ -35,7 +35,7 @@ class SplashCubit extends WidgetCubit<SplashState> {
       emit(state.copyWith(isLogin: true));
     }
   }
-
+  
 
 
   // Future<void> logout() async {

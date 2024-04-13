@@ -1,15 +1,13 @@
 import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
-class AuthState extends WidgetState {
+class StudentRegisterState extends WidgetState {
   final bool isRegister;
-  final bool isLogin;
   final String? message;
   final User? user;
 
-  const AuthState({
+  const StudentRegisterState({
     this.isRegister = false,
-    this.isLogin = false,
     this.message,
     this.user,
   });
@@ -18,7 +16,6 @@ class AuthState extends WidgetState {
   // TODO: implement props
   List<Object?> get props => [
         isRegister,
-        isLogin,
         message,
         user,
       ];
@@ -28,16 +25,14 @@ class AuthState extends WidgetState {
     // TODO: implement toJson
     return {
       'isRegister': isRegister,
-      'isLogin': isLogin,
       'message': message,
       'user': user?.toJson(),
     };
   }
 
-  factory AuthState.fromJson(Map<String, dynamic> json) {
-    return AuthState(
+  factory StudentRegisterState.fromJson(Map<String, dynamic> json) {
+    return StudentRegisterState(
       isRegister: json['isRegister'] as bool,
-      isLogin: json['isLogin'] as bool,
       message: json['message'] as String?,
       user: json['user'] != null
           ? User.fromJson(json['user'] as Map<String, dynamic>)
@@ -45,15 +40,13 @@ class AuthState extends WidgetState {
     );
   }
 
-  AuthState copyWith({
+  StudentRegisterState copyWith({
     bool? isRegister,
-    bool? isLogin,
     String? message,
     User? user,
   }) {
-    return AuthState(
+    return StudentRegisterState(
       isRegister: isRegister ?? this.isRegister,
-      isLogin: isLogin ?? this.isLogin,
       message: message ?? this.message,
       user: user ?? this.user,
     );

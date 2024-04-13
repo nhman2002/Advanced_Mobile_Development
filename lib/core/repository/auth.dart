@@ -5,7 +5,8 @@
 // import 'package:lettutor/core/repository/base_repository.dart';
 
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/input/auth_model.dart';
+import 'package:student_hub/core/models/input/login_model.dart';
+import 'package:student_hub/core/models/input/register_model.dart';
 import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 
@@ -13,27 +14,19 @@ import 'package:student_hub/core/repository/base.dart';
 class AuthRepository extends BaseRepository {
   AuthRepository() : super('/auth');
 
-  Future<DataState<AuthOutput>> login(AuthForm input) async {
-    return post<AuthOutput>(
+  Future<DataState<LoginOutput>> login(AuthForm input) async {
+    return post<LoginOutput>(
       path: '/sign-in',
-      parseJsonFunction: AuthOutput.fromJson,
+      parseJsonFunction: LoginOutput.fromJson,
       data: input.toJson(),
     );
   }
 
-
-  // Future<DataState<AuthOutput>> register(AuthForm input) async {
-  //   return post<AuthOutput>(
-  //     path: '/sign-up',
-  //     parseJsonFunction: AuthOutput.fromJson,
-  //     data: {
-  //       'email': input.email,
-  //       'password': input.password,
-  //       'fullname': input.name,
-  //       'role': input.role
-  //     },
-  //   );
-  //   return response;
-  // }
-
+  Future<DataState<LoginOutput>> register(RegisterForm input) async {
+    return post<LoginOutput>(
+      path: '/sign-up',
+      parseJsonFunction: LoginOutput.fromJson,
+      data: input.toJson(),
+    );
+  }
 }
