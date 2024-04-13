@@ -38,7 +38,7 @@ class AppRouter extends _$AppRouter {
                 page: SplashScreenRoute.page,
                 initial: true,
                 path: ''),
-            AutoRoute(page: MyAppRoute.page, path: 'home'),
+            // AutoRoute(page: MyAppRoute.page, path: 'home'),
             AutoRoute(page: LoginPageRoute.page, path: 'login'),
             AutoRoute(
                 page: SignupPageRoute.page, path: 'signup'),
