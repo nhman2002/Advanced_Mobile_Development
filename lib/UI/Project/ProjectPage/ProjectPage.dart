@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 class ProjectPage extends StatefulWidget {
   @override
@@ -69,14 +71,14 @@ class _ProjectPageState extends State<ProjectPage> {
                 alignment: Alignment.center,
                 child: OverflowBar(
                   children: [
-                    _buildDashboardItem(Icons.work, 'Projects', Colors.black,
-                        Routes.projectList),
+                    _buildDashboardItem(Icons.work, 'Projects', Colors.black
+                    ),
                     _buildDashboardItem(Icons.dashboard, 'Dashboard',
-                        Colors.white, Routes.dashBoard),
+                        Colors.white),
                     _buildDashboardItem(
-                        Icons.message, 'Message', Colors.white, Routes.login),
+                        Icons.message, 'Message', Colors.white),
                     _buildDashboardItem(Icons.notifications, 'Alerts',
-                        Colors.white, Routes.login),
+                        Colors.white),
                   ],
                 ),
               ),
@@ -87,10 +89,10 @@ class _ProjectPageState extends State<ProjectPage> {
     );
   }
   Widget _buildDashboardItem(
-      IconData icon, String label, Color? color, String routePath) {
+      IconData icon, String label, Color? color) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, routePath);
+        // Navigator.pushNamed(context, routePath);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -139,7 +141,6 @@ class _ProjectPageState extends State<ProjectPage> {
                       IconButton(
                         onPressed: () {
                           // Implement favorite logic here
-                          Navigator.pushNamed(context, Routes.projectDetail);
                         },
                         icon: Icon(
                           Icons.favorite_border,

@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
 
 class ProjectDetail extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _ProjectDetail extends State<ProjectDetail> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.login);
+              // Navigator.pushNamed(context, context.router.push(const LoginPageRoute()) as String);
             },
             icon: Icon(Icons.account_circle, color: Colors.white, size: 40.0),
           )

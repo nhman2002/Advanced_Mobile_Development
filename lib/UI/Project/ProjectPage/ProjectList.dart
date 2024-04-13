@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
 
 class ProjectList extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ class _ProjectList extends State<ProjectList> {
                   ),
                   IconButton(
                     onPressed: () {
-                       Navigator.pushNamed(context, Routes.projectPage);
+                       Navigator.pushNamed(context, context.router.push(const LoginPageRoute()) as String);
                     },
                     icon: const Icon(Icons.favorite),
                   ),
@@ -98,13 +99,13 @@ class _ProjectList extends State<ProjectList> {
                 child: OverflowBar(
                   children: [
                     _buildDashboardItem(Icons.work, 'Projects', Colors.black,
-                        Routes.projectList),
+                    ),
                     _buildDashboardItem(Icons.dashboard, 'Dashboard',
-                        Colors.white, Routes.dashBoard),
+                        Colors.white),
                     _buildDashboardItem(
-                        Icons.message, 'Message', Colors.white, Routes.login),
+                        Icons.message, 'Message', Colors.white),
                     _buildDashboardItem(Icons.notifications, 'Alerts',
-                        Colors.white, Routes.login),
+                        Colors.white),
                   ],
                 ),
               ),
@@ -117,10 +118,10 @@ class _ProjectList extends State<ProjectList> {
   }
 
   Widget _buildDashboardItem(
-      IconData icon, String label, Color? color, String routePath) {
+      IconData icon, String label, Color? color) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, routePath);
+        // Navigator.pushNamed(context, routePath);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -170,7 +171,7 @@ class _ProjectList extends State<ProjectList> {
                       IconButton(
                         onPressed: () {
                           // Implement favorite logic here
-                          Navigator.pushNamed(context, Routes.projectDetail);
+                          // Navigator.pushNamed(context, context.router.push(const DashBoardRoute()) as String);
                         },
                         icon: Icon(
                           Icons.favorite_border,
