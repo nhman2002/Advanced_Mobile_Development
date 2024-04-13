@@ -69,13 +69,13 @@ class _DashBoard extends State<DashBoard> {
             Spacer(),
             OverflowBar(children: [
               _buildDashboardItem(
-                  Icons.work, 'Projects', Colors.white, Routes.projectList),
+                  Icons.work, 'Projects', Colors.white),
               _buildDashboardItem(
-                  Icons.dashboard, 'Dashboard', Colors.black, Routes.dashBoard),
+                  Icons.dashboard, 'Dashboard', Colors.black),
               _buildDashboardItem(
-                  Icons.message, 'Message', Colors.white, Routes.login),
+                  Icons.message, 'Message', Colors.white),
               _buildDashboardItem(
-                  Icons.notifications, 'Alerts', Colors.white, Routes.login),
+                  Icons.notifications, 'Alerts', Colors.white),
             ]),
           ],
         ),

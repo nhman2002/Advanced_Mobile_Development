@@ -11,8 +11,8 @@ class LocalStorage {
   }
 
   //clear all data
-  Future<bool> clear() async {
-    return _sharedPreferences!.clear();
+  Future<bool?> clear() async {
+    return _sharedPreferences?.clear();
   }
 
   SharedPreferences? _sharedPreferences;
@@ -29,6 +29,8 @@ class LocalStorage {
   String? getString({required StorageKey key}) {
     return _sharedPreferences?.getString(key.toString());
   }
+
+  
 }
 
 

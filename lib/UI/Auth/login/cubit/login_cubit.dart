@@ -37,7 +37,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
       if (userResult is DataSuccess) {
         final roles = userResult.data?.role as List?;
         if (roles != null && roles.isNotEmpty) {
-        _localStorage.saveString(key: StorageKey.currentRole, value: roles.first);
+        _localStorage.saveString(key: StorageKey.currentRole, value: roles.first.toString());
         }  
       }
       emit(state.copyWith(user: user, isLogin: true));
