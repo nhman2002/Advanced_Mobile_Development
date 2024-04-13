@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
 
-//login page
+@RoutePage()
 class SignupPage extends StatefulWidget {
     @override
     _SignupPageState createState() => _SignupPageState();
@@ -83,9 +84,9 @@ class _SignupPageState extends State<SignupPage> {
             ElevatedButton(
               onPressed: () {
                 if (_selectedRole == 'student') {
-                  Navigator.pushNamed(context, Routes.studentSignup);
+                  context.router.replace(const StudentSignupRoute());
                 } else if (_selectedRole == 'company') {
-                  Navigator.pushNamed(context, Routes.companySignup);
+                  context.router.replace(const CompanySignupRoute());
                 }
                 else {
                   // Show an error message

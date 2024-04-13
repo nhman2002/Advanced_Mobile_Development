@@ -1,5 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
 
 class CompanyProfileEdit extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.login);
+                  context.router.push(const LoginPageRoute());
             },
             icon: Icon(
               Icons.account_circle,

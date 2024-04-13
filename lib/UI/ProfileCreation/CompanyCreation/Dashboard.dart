@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
-
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
+@RoutePage()
 class DashBoard extends StatefulWidget {
   @override
   _DashBoard createState() => _DashBoard();
@@ -16,7 +17,7 @@ class _DashBoard extends State<DashBoard> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.login);
+              context.router.push(const LoginPageRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -45,7 +46,7 @@ class _DashBoard extends State<DashBoard> {
                 ElevatedButton(
                   onPressed: () {
                     // Add onPressed logic here
-                    Navigator.pushNamed(context, Routes.companyProfileEdit);
+                    //context.router.push(const DashBoardRoute());
                   },
                   child: Text('Post a job'),
                 ),

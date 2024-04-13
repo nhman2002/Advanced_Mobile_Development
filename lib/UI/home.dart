@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
+
 
 void main() {
   runApp(MyApp());
 }
-
+@RoutePage()
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
-      routes: {
-        '/login': (context) => LoginPage(),
-      },
+      home: HomeScreen()
     );
   }
 }
@@ -27,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).pushNamed('/login');
+              gotoLogin(context);
             },
             icon: Icon(
               Icons.account_circle,
@@ -62,7 +61,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Xử lý sự kiện khi nhấn nút Company
-                print('Company button pressed');
+                gotoCompanySignup(context);
               },
               child: Text('Company'),
             ),
@@ -70,7 +69,7 @@ class HomeScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Xử lý sự kiện khi nhấn nút Student
-                print('Student button pressed');
+                gotoStudentSignup(context);
               },
               child: Text('Student'),
             ),
@@ -89,19 +88,16 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
 
+  void gotoLogin(BuildContext context) {
+    context.router.push(const LoginPageRoute());
+  }
 
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login'),
-      ),
-      body: Center(
-        child: Text('Login Page'),
-      ),
-    );
+  void gotoCompanySignup(BuildContext context) {
+    context.router.push(const CompanySignupRoute());
+  }
+
+  void gotoStudentSignup(BuildContext context) {
+    context.router.push(const StudentSignupRoute());
   }
 }

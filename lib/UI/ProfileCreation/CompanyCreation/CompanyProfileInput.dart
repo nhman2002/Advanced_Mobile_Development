@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
 
 class CompanyProfileInput extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.login);
+              context.router.push(const DashBoardRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -79,8 +80,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> {
               child: ElevatedButton(
                 onPressed: () {
                   // Add onPressed logic here
-                  Navigator.pushNamed(context, Routes.letGetStarted);
-                },
+                  context.router.push(const DashBoardRoute());                },
                 child: Text('Continue'),
               ),
             ),

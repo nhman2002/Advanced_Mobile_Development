@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:student_hub/UI/Auth/login.dart';
+import 'package:get_it/get_it.dart';
 import 'package:student_hub/UI/home.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+final router = AppRouter(navigatorKey: navigatorKey);
+
 
 class MainApp extends StatelessWidget {
-  // This widget is the root of this application.
+  const MainApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Student hub',
-          routes: Routes.routes,
-          home:  HomeScreen() 
-        );
-      },
+    return MaterialApp.router(
+      routerDelegate: router.delegate(),
+      routeInformationParser: router.defaultRouteParser(),
     );
   }
 }
+
+

@@ -50,3 +50,4 @@ class Routes {
     projectPage: (BuildContext context) => ProjectPage(),
   };
 }
+

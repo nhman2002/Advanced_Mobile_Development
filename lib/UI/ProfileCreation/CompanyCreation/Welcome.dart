@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:student_hub/routes.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:auto_route/auto_route.dart';
 
 class LetGetStartedsScreen extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _LetGetStartedsScreenState extends State<LetGetStartedsScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.login);
+              context.router.push(const LoginPageRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -54,7 +55,7 @@ class _LetGetStartedsScreenState extends State<LetGetStartedsScreen> {
             ElevatedButton(
               onPressed: () {
                 // Add onPressed logic here
-                Navigator.pushNamed(context, Routes.dashBoard);
+                context.router.push(const DashBoardRoute());
               },
               child: Text('Get Started!'),
             ),
