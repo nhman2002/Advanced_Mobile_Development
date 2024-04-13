@@ -19,6 +19,11 @@ dependencies:
   auto_route: ^7.8.4
   flutter_bloc: ^8.1.3
   equatable: ^2.0.0
+  intl: ^0.17.0
+  multi_select_flutter: ^4.0.0
+  file_picker: ^4.0.0
+
+
 
 dev_dependencies:
   flutter_test:

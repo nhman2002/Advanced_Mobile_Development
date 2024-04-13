@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     final isLogin = context.read<SplashCubit>().state.isLogin;
-    if (isLogin ?? false) {
+    if (isLogin == false) {
       context.router.replace(const MyAppRoute());
     } else {
       context.router.replace(const DashBoardRoute());
