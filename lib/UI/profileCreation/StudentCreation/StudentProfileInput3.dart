@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:auto_route/auto_route.dart';
 
-class StudentProfile extends StatefulWidget {
+
+@RoutePage()
+class StudentProfileInputCV extends StatefulWidget {
   @override
-  _StudentProfileState createState() => _StudentProfileState();
+  _StudentProfileInputCVState createState() => _StudentProfileInputCVState();
 }
 
-class _StudentProfileState extends State<StudentProfile> {
+class _StudentProfileInputCVState extends State<StudentProfileInputCV> {
   String cvPath = '';
   String cvFileName = '';
   String transcriptPath = '';
@@ -125,6 +128,6 @@ class _StudentProfileState extends State<StudentProfile> {
 
 void main() {
   runApp(MaterialApp(
-    home: StudentProfile(),
+    home: StudentProfileInputCV(),
   ));
 }

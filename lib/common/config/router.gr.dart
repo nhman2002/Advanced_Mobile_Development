@@ -18,13 +18,19 @@ abstract class _$AppRouter extends RootStackRouter {
     CompanySignupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: CompanySignup(),
+        child: const CompanySignup(),
       );
     },
     DashBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: DashBoard(),
+      );
+    },
+    InputProfileTechStackScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const InputProfileTechStackScreen(),
       );
     },
     LoginPageRoute.name: (routeData) {
@@ -37,6 +43,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: MyApp(),
+      );
+    },
+    ProjectFilterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProjectFilter(),
       );
     },
     SignupPageRoute.name: (routeData) {
@@ -57,10 +69,28 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashWrapper(),
       );
     },
+    StudentInputProfileExperienceRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentInputProfileExperience(),
+      );
+    },
+    StudentProfileInputCVRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: StudentProfileInputCV(),
+      );
+    },
     StudentSignupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const StudentSignup(),
+      );
+    },
+    SwitchAccountPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SwitchAccountPage(),
       );
     },
   };
@@ -95,6 +125,20 @@ class DashBoardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [InputProfileTechStackScreen]
+class InputProfileTechStackScreenRoute extends PageRouteInfo<void> {
+  const InputProfileTechStackScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          InputProfileTechStackScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'InputProfileTechStackScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [LoginPage]
 class LoginPageRoute extends PageRouteInfo<void> {
   const LoginPageRoute({List<PageRouteInfo>? children})
@@ -118,6 +162,20 @@ class MyAppRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MyAppRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectFilter]
+class ProjectFilterRoute extends PageRouteInfo<void> {
+  const ProjectFilterRoute({List<PageRouteInfo>? children})
+      : super(
+          ProjectFilterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectFilterRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -165,6 +223,34 @@ class SplashWrapperRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [StudentInputProfileExperience]
+class StudentInputProfileExperienceRoute extends PageRouteInfo<void> {
+  const StudentInputProfileExperienceRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentInputProfileExperienceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentInputProfileExperienceRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProfileInputCV]
+class StudentProfileInputCVRoute extends PageRouteInfo<void> {
+  const StudentProfileInputCVRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProfileInputCVRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProfileInputCVRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [StudentSignup]
 class StudentSignupRoute extends PageRouteInfo<void> {
   const StudentSignupRoute({List<PageRouteInfo>? children})
@@ -174,6 +260,20 @@ class StudentSignupRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'StudentSignupRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SwitchAccountPage]
+class SwitchAccountPageRoute extends PageRouteInfo<void> {
+  const SwitchAccountPageRoute({List<PageRouteInfo>? children})
+      : super(
+          SwitchAccountPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SwitchAccountPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -1,0 +1,51 @@
+import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_state.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
+import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/network/network.dart';
+import 'package:student_hub/core/repository/auth.dart';
+import 'package:student_hub/core/repository/user.dart';
+import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
+import 'package:student_hub/UI/Shub.dart';
+
+class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
+  AccountSwitchCubit()
+      : super(
+            initialState: const AccountSwitchState(),
+            parseJsonFunction: AccountSwitchState.fromJson);
+
+
+  final _localStorage = getIt.get<LocalStorage>();
+
+  @override
+  Future<void> init() async {
+    await _handleInitial();
+  }
+
+  Future<void> _handleInitial() async {
+    // _localStorage.clear();
+    String username = _localStorage.getString(key: StorageKey.userName)!;
+    String userRoles = _localStorage.getString(key: StorageKey.userRoles)!;
+    String currentRole = _localStorage.getString(key: StorageKey.currentRole)!;
+
+
+    if (currentRole == 1) {
+      emit(state.copyWith(isCompany: true));
+    } else {
+      emit(state.copyWith(isStudent: true));
+    }
+
+    if (userRoles.length > 1) {
+      emit(state.copyWith(hasMultipleRoles: true));
+    } else {
+      emit(state.copyWith(hasMultipleRoles: false));
+    }
+    
+  }
+  
+
+
+  Future<void> logout() async {
+    await _localStorage.clear();
+    emit(state.copyWith(isLogin: false));
+  }
+}

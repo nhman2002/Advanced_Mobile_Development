@@ -25,6 +25,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
   }
 
   Future<void> login({String? email, String? password}) async {
+    showLoading();
     final form = AuthForm().copyWith(email: email, password: password);
     final result = await _authRepository.login(form);
     if (result is DataSuccess) {
@@ -35,16 +36,25 @@ class LoginCubit extends WidgetCubit<LoginState> {
       //send a get to get user details
       final userResult = await _authRepository.getUser();
       if (userResult is DataSuccess) {
+        final fullname = userResult.data?.fullname;
+        _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');
         final roles = userResult.data?.role as List?;
         if (roles != null && roles.isNotEmpty) {
-        _localStorage.saveString(key: StorageKey.currentRole, value: roles.first.toString());
-        }  
+          final roleString = roles.join(",");
+          _localStorage.saveString(key: StorageKey.userRoles, value: roleString);
+          _localStorage.saveString(key: StorageKey.currentRole, value: roles.first.toString());
+        } else {
+          // If there is no role or it's an empty list, handle it accordingly
+          _localStorage.saveString(key: StorageKey.userRoles, value: roles.toString());
+          _localStorage.saveString(key: StorageKey.currentRole, value: roles.toString());
+        }
+        emit(state.copyWith(user: user, isLogin: true));
       }
-      emit(state.copyWith(user: user, isLogin: true));
     } else {
       final errorDetails = result.error?.response?.data['errorDetails'];
       final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;
       emit(state.copyWith(isLogin: false, message: errorMessage ?? ''));
     }
+    hideLoading();
   }
 }

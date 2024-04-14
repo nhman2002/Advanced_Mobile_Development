@@ -2,16 +2,22 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/Project/ProjectFilter.dart';
+import 'package:student_hub/UI/profileCreation/accountSwitchPage/accountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/UI/Auth/login/login.dart';
 import 'package:student_hub/UI/Auth/signup/signup.dart';
 import 'package:student_hub/UI/Auth/company/company.dart';
-import 'package:student_hub/UI/ProfileCreation/CompanyCreation/Welcome.dart';
-import 'package:student_hub/UI/ProfileCreation/CompanyCreation/Dashboard.dart';
-import 'package:student_hub/UI/ProfileCreation/CompanyCreation/CompanyProfileInput.dart';
-import 'package:student_hub/UI/ProfileCreation/CompanyCreation/CompanyProfileEdit.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/Welcome.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/Dashboard.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/InputTechstack/studentProfileInput1.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput2.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput3.dart';
 
 
 part 'router.gr.dart';
@@ -38,7 +44,7 @@ class AppRouter extends _$AppRouter {
                 page: SplashScreenRoute.page,
                 initial: true,
                 path: ''),
-            // AutoRoute(page: MyAppRoute.page, path: 'home'),
+            AutoRoute(page: MyAppRoute.page, path: 'home'),
             AutoRoute(page: LoginPageRoute.page, path: 'login'),
             AutoRoute(
                 page: SignupPageRoute.page, path: 'signup'),
@@ -48,6 +54,19 @@ class AppRouter extends _$AppRouter {
                 page: CompanySignupRoute.page, path: 'companySignup'),
             AutoRoute(
                 page: DashBoardRoute.page, path: 'dashBoard'),
+            AutoRoute(
+                page: InputProfileTechStackScreenRoute.page, path: 'studentProfileInput1'),
+            AutoRoute(
+                page: SwitchAccountPageRoute.page, path: 'switchAccount',
+                children: [
+
+                  AutoRoute(
+                      page: StudentInputProfileExperienceRoute.page, path: 'studentProfileInput2'),
+                  AutoRoute(
+                      page: StudentProfileInputCVRoute.page, path: 'studentProfileInput3'),
+                ]),
+            // AutoRoute(
+            //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
             // AutoRoute(
             //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
             // AutoRoute(

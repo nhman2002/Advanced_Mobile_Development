@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
+import 'package:student_hub/core/config/dependency.dart';
+
+
 @RoutePage()
 class DashBoard extends StatefulWidget {
   @override
   _DashBoard createState() => _DashBoard();
 }
+
+  final _localStorage = getIt.get<LocalStorage>();
+
 
 class _DashBoard extends State<DashBoard> {
   @override
@@ -17,7 +24,7 @@ class _DashBoard extends State<DashBoard> {
         actions: [
           IconButton(
             onPressed: () {
-              context.router.push(const LoginPageRoute());
+              handleLogout(context);
             },
             icon: Icon(
               Icons.account_circle,
@@ -101,5 +108,10 @@ class _DashBoard extends State<DashBoard> {
         ],
       ),
     );
+  }
+
+  void handleLogout(BuildContext context) {
+    _localStorage.clear();
+    context.router.replace(const MyAppRoute());
   }
 }

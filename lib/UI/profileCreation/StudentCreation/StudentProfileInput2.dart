@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:auto_route/auto_route.dart';
 
 class Project {
   final String id;
@@ -15,15 +16,16 @@ class Project {
   });
 }
 
-class InputProfileExperience extends StatefulWidget {
-  const InputProfileExperience({Key? key}) : super(key: key);
+@RoutePage()
+class StudentInputProfileExperience extends StatefulWidget {
+  const StudentInputProfileExperience({Key? key}) : super(key: key);
 
   @override
-  _InputProfileExperienceState createState() =>
-      _InputProfileExperienceState();
+  _StudentInputProfileExperienceState createState() =>
+      _StudentInputProfileExperienceState();
 }
 
-class _InputProfileExperienceState extends State<InputProfileExperience> {
+class _StudentInputProfileExperienceState extends State<StudentInputProfileExperience> {
   // Initialize MultiSelectController
 
   List<Project> projectList = [
@@ -156,6 +158,6 @@ class _InputProfileExperienceState extends State<InputProfileExperience> {
 
 void main() {
   runApp(MaterialApp(
-    home: InputProfileExperience(),
+    home: StudentInputProfileExperience(),
   ));
 }

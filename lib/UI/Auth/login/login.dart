@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:dio/dio.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
@@ -116,7 +117,9 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
     final isSuccess = context.read<LoginCubit>().state.isLogin;
     final message = context.read<LoginCubit>().state.message ?? '';
     if (isSuccess) {
-      context.router.replace(const DashBoardRoute());
+      showSnackBar(context, 'Login successful');
+      context.router.popUntilRoot();
+      context.router.replace(const SwitchAccountPageRoute());
     } else {
       showSnackBar(context, message);
     }

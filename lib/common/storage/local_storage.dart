@@ -37,5 +37,7 @@ class LocalStorage {
 enum StorageKey {
   accessToken,
   refreshToken,
-  currentRole
+  currentRole,
+  userRoles,
+  userName
 }

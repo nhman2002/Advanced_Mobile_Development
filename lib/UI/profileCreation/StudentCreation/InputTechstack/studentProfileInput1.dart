@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:auto_route/auto_route.dart';
 
-class Language {
-  final String id;
-  final String text;
-
-  Language({required this.id, required this.text});
-}
-
-class Education {
-  final String id;
-  final String schoolName;
-  final String period;
-
-  Education({required this.id, required this.schoolName, required this.period});
-}
-
+@RoutePage()
 class InputProfileTechStackScreen extends StatefulWidget {
   const InputProfileTechStackScreen({Key? key}) : super(key: key);
 
   @override
   State<InputProfileTechStackScreen> createState() => _InputProfileTechStackScreenState();
 }
-
 class _InputProfileTechStackScreenState extends State<InputProfileTechStackScreen> {
   final List<String> items = [
     'Front-end Engineer',
@@ -66,7 +52,7 @@ class _InputProfileTechStackScreenState extends State<InputProfileTechStackScree
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Input Profile Tech Stack'),
+        title: Text(''),
       ),
       body: Container(
         padding: EdgeInsets.all(12),
@@ -159,8 +145,23 @@ class _InputProfileTechStackScreenState extends State<InputProfileTechStackScree
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: InputProfileTechStackScreen(),
-  ));
+// void main() {
+//   runApp(MaterialApp(
+//     home: InputProfileTechStackScreen(),
+//   ));
+// }
+
+class Language {
+  final String id;
+  final String text;
+
+  Language({required this.id, required this.text});
+}
+
+class Education {
+  final String id;
+  final String schoolName;
+  final String period;
+
+  Education({required this.id, required this.schoolName, required this.period});
 }
