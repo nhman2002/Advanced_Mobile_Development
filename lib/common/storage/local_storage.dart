@@ -38,6 +38,7 @@ enum StorageKey {
   accessToken,
   refreshToken,
   currentRole,
+  userID,
   userRoles,
   userName
 }

@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 
+@RoutePage()
 class CompanyProfileEdit extends StatefulWidget {
   @override
   _CompanyProfileEditState createState() => _CompanyProfileEditState();

@@ -15,6 +15,18 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CompanyProfileEditRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CompanyProfileEdit(),
+      );
+    },
+    CompanyProfileInputRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CompanyProfileInput(),
+      );
+    },
     CompanySignupRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -31,6 +43,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const InputProfileTechStackScreen(),
+      );
+    },
+    LetGetStartedsScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LetGetStartedsScreen(),
       );
     },
     LoginPageRoute.name: (routeData) {
@@ -97,6 +115,34 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [CompanyProfileEdit]
+class CompanyProfileEditRoute extends PageRouteInfo<void> {
+  const CompanyProfileEditRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProfileEditRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProfileEditRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyProfileInput]
+class CompanyProfileInputRoute extends PageRouteInfo<void> {
+  const CompanyProfileInputRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProfileInputRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProfileInputRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CompanySignup]
 class CompanySignupRoute extends PageRouteInfo<void> {
   const CompanySignupRoute({List<PageRouteInfo>? children})
@@ -134,6 +180,20 @@ class InputProfileTechStackScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'InputProfileTechStackScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LetGetStartedsScreen]
+class LetGetStartedsScreenRoute extends PageRouteInfo<void> {
+  const LetGetStartedsScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          LetGetStartedsScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LetGetStartedsScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

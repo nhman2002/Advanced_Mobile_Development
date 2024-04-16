@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 
+
+@RoutePage()
 class LetGetStartedsScreen extends StatefulWidget {
   @override
   _LetGetStartedsScreenState createState() => _LetGetStartedsScreenState();

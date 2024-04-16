@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/core/models/data_state.dart';
+import 'package:student_hub/core/models/input/company_model.dart';
+import 'package:student_hub/core/repository/base.dart';
+import 'package:student_hub/core/repository/profileCompany.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 
+@RoutePage()
 class CompanyProfileInput extends StatefulWidget {
   @override
   _CompanyProfileInputState createState() => _CompanyProfileInputState();
 }
 
-class _CompanyProfileInputState extends State<CompanyProfileInput> {
+class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBarDefault {
   int? _selectedValue;
+  TextEditingController _companyNameController = TextEditingController();
+  TextEditingController _websiteController = TextEditingController();
+  TextEditingController _descriptionController = TextEditingController();
+  final _companyProfileRepository = getIt.get<CompanyProfileRepository>();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text('Student Hub'),
@@ -61,26 +73,28 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> {
             ),
             Column(
               children: [
-                _buildRadioOption(1, "It's just me"),
-                _buildRadioOption(2, "2-9 employees"),
-                _buildRadioOption(3, "10-99 employees"),
-                _buildRadioOption(4, "100-1000 employees"),
-                _buildRadioOption(5, "More than 1000 employees"),
+                _buildRadioOption(0, "It's just me"),
+                _buildRadioOption(1, "2-9 employees"),
+                _buildRadioOption(2, "10-99 employees"),
+                _buildRadioOption(3, "100-1000 employees"),
+                _buildRadioOption(4, "More than 1000 employees"),
               ],
             ),
             SizedBox(height: 20),
-            _buildInputField('Company Name'),
+            _buildInputField('Company Name', _companyNameController),
+
             SizedBox(height: 10),
-            _buildInputField('Website'),
+            _buildInputField('Website', _websiteController),
             SizedBox(height: 10),
-            _buildInputField('Description'),
+            _buildInputField('Description', _descriptionController),
             Spacer(),
             Align(
               alignment: Alignment.bottomRight,
               child: ElevatedButton(
                 onPressed: () {
                   // Add onPressed logic here
-                  context.router.push(const DashBoardRoute());                },
+                  handleInput(context);                             
+                },
                 child: Text('Continue'),
               ),
             ),
@@ -107,7 +121,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> {
     );
   }
 
-  Widget _buildInputField(String label) {
+  Widget _buildInputField(String label, TextEditingController controller) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
@@ -115,11 +129,30 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> {
         border: Border.all(color: Colors.grey),
       ),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           border: InputBorder.none,
           labelText: label,
         ),
       ),
     );
+  }
+
+  Future<void> handleInput(BuildContext context) async {
+    final form = CompanyProfile().copyWith(
+      companyName: _companyNameController.text,
+      website: _websiteController.text,
+      description: _descriptionController.text,
+      size: _selectedValue
+    );
+
+    final result = await _companyProfileRepository.inputCompanyProfile(form);
+      if (result is DataSuccess) {
+        showSnackBar(context, 'Company profile created successfully');
+        context.router.push(const DashBoardRoute());
+      } else {
+        showSnackBar(context, 'Failed to create company profile');        
+        context.router.maybePop();
+      }
   }
 }

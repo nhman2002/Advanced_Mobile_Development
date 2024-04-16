@@ -119,4 +119,21 @@ class NetworkManager {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
   }
+  
+  Future<Response> put(
+      String path, {
+      dynamic data,
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      Map<String, dynamic>? headers,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceiveProgress,
+      }) async {
+      return _dio.put(path,
+          data: data,
+          queryParameters: queryParameters,
+          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress);
+  }
 }

@@ -125,7 +125,8 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.router.push(const InputProfileTechStackScreenRoute());
+                    // context.router.push(const InputProfileTechStackScreenRoute());
+                    context.router.push(const  CompanyProfileInputRoute());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -142,7 +143,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.router.push(const InputProfileTechStackScreenRoute());
+                    //context.router.push(const InputProfileTechStackScreenRoute());
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,

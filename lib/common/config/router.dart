@@ -10,7 +10,7 @@ import 'package:student_hub/UI/Auth/signup/signup.dart';
 import 'package:student_hub/UI/Auth/company/company.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/Welcome.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/Dashboard.dart';
-import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
@@ -54,6 +54,7 @@ class AppRouter extends _$AppRouter {
                 page: CompanySignupRoute.page, path: 'companySignup'),
             AutoRoute(
                 page: DashBoardRoute.page, path: 'dashBoard'),
+                AutoRoute(page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
             AutoRoute(
                 page: InputProfileTechStackScreenRoute.page, path: 'studentProfileInput1'),
             AutoRoute(

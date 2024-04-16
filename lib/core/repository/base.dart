@@ -69,6 +69,38 @@ class BaseRepository {
       return DataError(e);
     }
   }
+
+  Future<DataState<T>> put<T>({
+    required String path,
+    required ParseJsonFunction<T> parseJsonFunction,
+    Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? data,
+  }) async {
+    try {
+      final response = await _networkManager.put(
+        serviceName + path,
+        queryParameters: queryParameters,
+        data: data,
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final parser = ResultParser<T>(
+          response.data as Map<String, dynamic>? ?? {},
+          parseJsonFunction,
+        );
+        final parsedData = await parser.parseInBackground();
+        return DataSuccess<T>(parsedData);
+      } else {
+        final parser = ResultParser<ErrorModel>(
+          response.data as Map<String, dynamic>? ?? {},
+          ErrorModel.fromJson,
+        );
+        throw Exception((await parser.parseInBackground()).message);
+      }
+    } on DioException catch (e) {
+      return DataError(e);
+    }
+  }
 }
 
 

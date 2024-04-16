@@ -37,6 +37,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
       final userResult = await _authRepository.getUser();
       if (userResult is DataSuccess) {
         final fullname = userResult.data?.fullname;
+        _localStorage.saveString(key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
         _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');
         final roles = userResult.data?.role as List?;
         if (roles != null && roles.isNotEmpty) {
