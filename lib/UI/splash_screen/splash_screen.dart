@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     if (isLogin == false) {
       context.router.replace(const MyAppRoute());
     } else {
-      context.router.replace(const DashBoardRoute());
+      context.router.replace(const CompanyDashboardRoute());
     }
   }
 

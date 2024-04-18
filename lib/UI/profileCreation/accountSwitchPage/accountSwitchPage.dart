@@ -42,7 +42,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
     final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
     final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
     final hasMultipleRoles = context.read<AccountSwitchCubit>().state.hasMultipleRoles;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -50,7 +49,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
         actions: [
           IconButton(
             onPressed: () {
-              // Routing logic here
+              context.router.push(const CompanyDashboardRoute());
             },
             icon: Icon(
               Icons.search,
@@ -125,8 +124,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // context.router.push(const InputProfileTechStackScreenRoute());
-                    context.router.push(const  CompanyProfileInputRoute());
+                    handleProfile(context);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -181,6 +179,19 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
         ),
       ),
     );
+  }
+
+  void handleProfile(BuildContext context) {
+      final hasCompanyProfile = context.read<AccountSwitchCubit>().state.hasCompanyProfile;
+      final hasStudentProfile = context.read<AccountSwitchCubit>().state.hasStudentProfile;
+      if (hasCompanyProfile == true)
+      {
+        context.router.push(const CompanyProfileEditRoute());
+      }
+      else if (hasStudentProfile == true)
+      {
+        context.router.push(const CompanyProfileInputRoute());
+      }
   }
 
   Widget _buildUserRolesUI(List<int> roles) {

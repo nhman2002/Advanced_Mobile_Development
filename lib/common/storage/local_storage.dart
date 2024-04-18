@@ -40,5 +40,7 @@ enum StorageKey {
   currentRole,
   userID,
   userRoles,
-  userName
+  userName,
+  studentProfile,
+  companyProfile
 }

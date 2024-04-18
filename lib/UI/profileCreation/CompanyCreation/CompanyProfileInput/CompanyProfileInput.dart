@@ -31,7 +31,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
         actions: [
           IconButton(
             onPressed: () {
-              context.router.push(const DashBoardRoute());
+              context.router.push(const CompanyDashboardRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -149,7 +149,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
     final result = await _companyProfileRepository.inputCompanyProfile(form);
       if (result is DataSuccess) {
         showSnackBar(context, 'Company profile created successfully');
-        context.router.push(const DashBoardRoute());
+        context.router.push(const CompanyDashboardRoute());
       } else {
         showSnackBar(context, 'Failed to create company profile');        
         context.router.maybePop();

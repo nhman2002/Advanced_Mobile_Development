@@ -4,12 +4,12 @@ import 'package:auto_route/auto_route.dart';
 
 
 @RoutePage()
-class LetGetStartedsScreen extends StatefulWidget {
+class CompanyWelcomeRoute extends StatefulWidget {
   @override
-  _LetGetStartedsScreenState createState() => _LetGetStartedsScreenState();
+  _CompanyWelcomeRouteState createState() => _CompanyWelcomeRouteState();
 }
 
-class _LetGetStartedsScreenState extends State<LetGetStartedsScreen> {
+class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,7 @@ class _LetGetStartedsScreenState extends State<LetGetStartedsScreen> {
             ElevatedButton(
               onPressed: () {
                 // Add onPressed logic here
-                context.router.push(const DashBoardRoute());
+                context.router.push(const CompanyDashboardRoute());
               },
               child: Text('Get Started!'),
             ),

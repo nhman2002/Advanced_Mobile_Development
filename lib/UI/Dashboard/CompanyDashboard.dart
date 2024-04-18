@@ -6,15 +6,15 @@ import 'package:student_hub/core/config/dependency.dart';
 
 
 @RoutePage()
-class DashBoard extends StatefulWidget {
+class CompanyDashboard extends StatefulWidget {
   @override
-  _DashBoard createState() => _DashBoard();
+  _CompanyDashboard createState() => _CompanyDashboard();
 }
 
   final _localStorage = getIt.get<LocalStorage>();
 
 
-class _DashBoard extends State<DashBoard> {
+class _CompanyDashboard extends State<CompanyDashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _DashBoard extends State<DashBoard> {
               handleLogout(context);
             },
             icon: Icon(
-              Icons.account_circle,
+              Icons.logout,
               color: Colors.white,
               size: 40.0,
             ),
@@ -53,7 +53,8 @@ class _DashBoard extends State<DashBoard> {
                 ElevatedButton(
                   onPressed: () {
                     // Add onPressed logic here
-                    //context.router.push(const DashBoardRoute());
+                    print('Post a job');
+                    context.router.push(const ProjectPosting2Route());
                   },
                   child: Text('Post a job'),
                 ),
@@ -75,13 +76,13 @@ class _DashBoard extends State<DashBoard> {
             ),
             Spacer(),
             OverflowBar(children: [
-              _buildDashboardItem(
+              _buildCompanyDashboardItem(
                   Icons.work, 'Projects', Colors.white),
-              _buildDashboardItem(
+              _buildCompanyDashboardItem(
                   Icons.dashboard, 'Dashboard', Colors.black),
-              _buildDashboardItem(
+              _buildCompanyDashboardItem(
                   Icons.message, 'Message', Colors.white),
-              _buildDashboardItem(
+              _buildCompanyDashboardItem(
                   Icons.notifications, 'Alerts', Colors.white),
             ]),
           ],
@@ -90,7 +91,7 @@ class _DashBoard extends State<DashBoard> {
     );
   }
 
-  Widget _buildDashboardItem(IconData icon, String label, Color? color) {
+  Widget _buildCompanyDashboardItem(IconData icon, String label, Color? color) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.blue,

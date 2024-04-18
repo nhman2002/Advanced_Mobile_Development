@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
+import 'package:student_hub/core/models/input/company_model.dart';
 import 'package:student_hub/core/models/input/login_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
@@ -36,6 +39,17 @@ class LoginCubit extends WidgetCubit<LoginState> {
       //send a get to get user details
       final userResult = await _authRepository.getUser();
       if (userResult is DataSuccess) {
+        final companyProfile = userResult.data?.companyProfile;
+        final studentProfile = userResult.data?.studentProfile;
+        if (companyProfile != null) {
+          String companyProfileString = jsonEncode(companyProfile);
+          _localStorage.saveString(key: StorageKey.companyProfile, value: companyProfileString);
+        }
+        if (studentProfile != null) {
+          String studentProfileString = jsonEncode(studentProfile);
+          _localStorage.saveString(key: StorageKey.studentProfile, value: studentProfileString);
+        }
+
         final fullname = userResult.data?.fullname;
         _localStorage.saveString(key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
         _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');

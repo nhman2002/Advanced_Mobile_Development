@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CompanyDashboardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CompanyDashboard(),
+      );
+    },
     CompanyProfileEditRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -33,22 +39,16 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CompanySignup(),
       );
     },
-    DashBoardRoute.name: (routeData) {
+    CompanyWelcomeRouteRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: DashBoard(),
+        child: CompanyWelcomeRoute(),
       );
     },
     InputProfileTechStackScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const InputProfileTechStackScreen(),
-      );
-    },
-    LetGetStartedsScreenRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: LetGetStartedsScreen(),
       );
     },
     LoginPageRoute.name: (routeData) {
@@ -67,6 +67,30 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProjectFilter(),
+      );
+    },
+    ProjectPosting1Route.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProjectPosting1(),
+      );
+    },
+    ProjectPosting2Route.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProjectPosting2(),
+      );
+    },
+    ProjectPosting3Route.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProjectPosting3(),
+      );
+    },
+    ProjectPosting4Route.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProjectPosting4(),
       );
     },
     SignupPageRoute.name: (routeData) {
@@ -115,6 +139,20 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [CompanyDashboard]
+class CompanyDashboardRoute extends PageRouteInfo<void> {
+  const CompanyDashboardRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyDashboardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyDashboardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CompanyProfileEdit]
 class CompanyProfileEditRoute extends PageRouteInfo<void> {
   const CompanyProfileEditRoute({List<PageRouteInfo>? children})
@@ -157,15 +195,15 @@ class CompanySignupRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [DashBoard]
-class DashBoardRoute extends PageRouteInfo<void> {
-  const DashBoardRoute({List<PageRouteInfo>? children})
+/// [CompanyWelcomeRoute]
+class CompanyWelcomeRouteRoute extends PageRouteInfo<void> {
+  const CompanyWelcomeRouteRoute({List<PageRouteInfo>? children})
       : super(
-          DashBoardRoute.name,
+          CompanyWelcomeRouteRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'DashBoardRoute';
+  static const String name = 'CompanyWelcomeRouteRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -180,20 +218,6 @@ class InputProfileTechStackScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'InputProfileTechStackScreenRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [LetGetStartedsScreen]
-class LetGetStartedsScreenRoute extends PageRouteInfo<void> {
-  const LetGetStartedsScreenRoute({List<PageRouteInfo>? children})
-      : super(
-          LetGetStartedsScreenRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LetGetStartedsScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -236,6 +260,62 @@ class ProjectFilterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProjectFilterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectPosting1]
+class ProjectPosting1Route extends PageRouteInfo<void> {
+  const ProjectPosting1Route({List<PageRouteInfo>? children})
+      : super(
+          ProjectPosting1Route.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectPosting1Route';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectPosting2]
+class ProjectPosting2Route extends PageRouteInfo<void> {
+  const ProjectPosting2Route({List<PageRouteInfo>? children})
+      : super(
+          ProjectPosting2Route.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectPosting2Route';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectPosting3]
+class ProjectPosting3Route extends PageRouteInfo<void> {
+  const ProjectPosting3Route({List<PageRouteInfo>? children})
+      : super(
+          ProjectPosting3Route.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectPosting3Route';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectPosting4]
+class ProjectPosting4Route extends PageRouteInfo<void> {
+  const ProjectPosting4Route({List<PageRouteInfo>? children})
+      : super(
+          ProjectPosting4Route.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectPosting4Route';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

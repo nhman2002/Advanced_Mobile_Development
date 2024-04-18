@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
 import 'package:student_hub/UI/Project/ProjectFilter.dart';
+import 'package:student_hub/UI/Project/ProjectPost/ProjectPost1.dart';
+import 'package:student_hub/UI/Project/ProjectPost/ProjectPost2.dart';
+import 'package:student_hub/UI/Project/ProjectPost/ProjectPost3.dart';
+import 'package:student_hub/UI/Project/ProjectPost/ProjectPost4.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/accountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/UI/Auth/login/login.dart';
 import 'package:student_hub/UI/Auth/signup/signup.dart';
 import 'package:student_hub/UI/Auth/company/company.dart';
-import 'package:student_hub/UI/profileCreation/CompanyCreation/Welcome.dart';
-import 'package:student_hub/UI/profileCreation/CompanyCreation/Dashboard.dart';
+import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.dart';
+import 'package:student_hub/UI/Dashboard/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
@@ -53,8 +57,13 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
                 page: CompanySignupRoute.page, path: 'companySignup'),
             AutoRoute(
-                page: DashBoardRoute.page, path: 'dashBoard'),
-                AutoRoute(page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
+                page: CompanyDashboardRoute.page, path: 'dashBoard'),
+            AutoRoute(
+                page: CompanyWelcomeRouteRoute.page, path: 'companyWelcome'),
+            AutoRoute(
+                page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
+            AutoRoute(
+                page: CompanyProfileEditRoute.page, path: 'companyProfileEdit'),
             AutoRoute(
                 page: InputProfileTechStackScreenRoute.page, path: 'studentProfileInput1'),
             AutoRoute(
@@ -66,6 +75,17 @@ class AppRouter extends _$AppRouter {
                   AutoRoute(
                       page: StudentProfileInputCVRoute.page, path: 'studentProfileInput3'),
                 ]),
+            AutoRoute(
+                page: ProjectFilterRoute.page, path: 'projectFilter'),
+            AutoRoute(
+                page: ProjectPosting1Route.page, path: 'projectPost1'),
+            AutoRoute(
+                page: ProjectPosting2Route.page, path: 'projectPost2'),
+            AutoRoute(
+                page: ProjectPosting3Route.page, path: 'projectPost3'),
+            AutoRoute(
+                page: ProjectPosting4Route.page, path: 'projectPost4'),
+
             // AutoRoute(
             //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
             // AutoRoute(
