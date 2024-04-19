@@ -1,136 +1,105 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
-@RoutePage()
 class ProjectPosting1 extends StatefulWidget {
   @override
-  _ProjectPosting1 createState() => _ProjectPosting1();
+  _ProjectPosting1State createState() => _ProjectPosting1State();
 }
 
-class _ProjectPosting1 extends State<ProjectPosting1> {
+class _ProjectPosting1State extends State<ProjectPosting1> {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController _companyNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    int step = 1;
-    String projectTime = '';
-    String errorMessage = '';
-    TextEditingController jobTitle = TextEditingController();
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "1/4    Let's start with a strong title",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Project Post'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.person),
           ),
-          const SizedBox(height: 16.0),
-          const Text(
-            "This helps your post stand out to the right students. It's the first thing they will see, so make it impressive!",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 16.0),
-          ),
-          const SizedBox(height: 16.0),
-          TextField(
-            controller: jobTitle,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: const Color(0xFF008ABD), // Màu xanh khi focus
-                ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '1/4 Let\'s start with a strong title',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
-              hintText: 'Write a title for your job',
-            ),
-            onChanged: (value) {
-              errorMessage = '';
-            },
-          ),
-          SizedBox(height: 16),
-          Container(
-            alignment: Alignment.topLeft,
-            child: errorMessage.isNotEmpty
-                ? Text(
-                    errorMessage,
-                    style: TextStyle(color: Colors.red, fontSize: 16),
-                  )
-                : SizedBox(),
-          ),
-          const SizedBox(height: 10.0),
-          Text(
-            "Example titles: ",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 16.0),
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '\u2022 ',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    "Build responsive WordPress site with booking/payment functionality",
-                    style: TextStyle(fontSize: 16.0),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 30.0, top: 6),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '\u2022 ',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    "Facebook ad specialist need for product launch",
-                    style: TextStyle(
-                        fontSize: 16.0, fontWeight: FontWeight.normal),
-                  ),
-                )
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  if (jobTitle.text.isNotEmpty) {
-                    step++;
-                    errorMessage = '';
-                  } else {
-                    errorMessage = "Please fill this field";
+              SizedBox(height: 25),
+              Text(
+                'This helps your post stand out to the right students. It\'s the first thing they\'ll see, so make it impressive!',
+              ),
+              SizedBox(height: 15),
+              TextFormField(
+                controller: _companyNameController,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter your post title';
                   }
+                  return null;
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF008ABD),
-                  foregroundColor: Colors.white,
-                  textStyle: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                decoration: InputDecoration(
+                  hintText: 'Write a title for your post',
+                  border: OutlineInputBorder(),
                 ),
-                child: const Text('Next: Scope'),
               ),
-            ),
+              SizedBox(height: 20),
+              Text(
+                'Example titles',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              ExampleTitle(title: 'Build responsive WordPress site with booking/payment functionality'),
+              ExampleTitle(title: 'Facebook ad specialist need for product launch'),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  }
+                ,
+                child: Text('Next Scope'),
+              ),
+            ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class ExampleTitle extends StatelessWidget {
+  final String title;
+
+  const ExampleTitle({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 5),
+      child: Row(
+        children: [
+          Text('-'),
+          SizedBox(width: 10),
+          Expanded(child: Text(title)),
         ],
       ),
     );
   }
 }
+
+void main() {
+  runApp(MaterialApp(
+    home: ProjectPosting1(),
+  ));
+}
+
+class $AppRouter {}
+
