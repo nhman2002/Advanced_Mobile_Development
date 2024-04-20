@@ -45,6 +45,26 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
             ),
             const SizedBox(height: 16.0),
             RadioListTile(
+              title: Text('Less than 1 month'),
+              value: 'Less than 1 month',
+              groupValue: projectTime,
+              onChanged: (value) {
+                setState(() {
+                  errorMessage = '';
+                  projectTime = value as String;
+                });
+              },
+              selected: projectTime == 'Less than 1 month',
+              controlAffinity: ListTileControlAffinity.leading,
+              tileColor: projectTime == 'Less than 1 month'
+                  ? const Color(0xFF008ABD).withOpacity(0.1)
+                  : null,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              activeColor: const Color(0xFF008ABD),
+            ),
+             RadioListTile(
               title: Text('1 to 3 months'),
               value: '1-3',
               groupValue: projectTime,
@@ -77,6 +97,27 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
               selected: projectTime == '3-6',
               controlAffinity: ListTileControlAffinity.leading,
               tileColor: projectTime == '3-6'
+                  ? const Color(0xFF008ABD).withOpacity(0.1)
+                  : null,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              activeColor: const Color(0xFF008ABD),
+            ),
+            
+             RadioListTile(
+              title: Text('More than 6 months'),
+              value: 'More than 6 months',
+              groupValue: projectTime,
+              onChanged: (value) {
+                setState(() {
+                  errorMessage = '';
+                  projectTime = value as String;
+                });
+              },
+              selected: projectTime == 'More than 6 months',
+              controlAffinity: ListTileControlAffinity.leading,
+              tileColor: projectTime == '1-3'
                   ? const Color(0xFF008ABD).withOpacity(0.1)
                   : null,
               shape: RoundedRectangleBorder(
