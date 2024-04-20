@@ -42,6 +42,7 @@ class ProjectPostCubit extends WidgetCubit<ProjectPostState> {
     } else {
       emit(state.copyWith(postSuccess: false));
     }
+    hideLoading();
 
    }
   void updateTitle(String newTitle) {

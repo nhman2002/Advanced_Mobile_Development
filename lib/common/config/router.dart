@@ -7,6 +7,7 @@ import 'package:student_hub/UI/Project/ProjectPost/ProjectPost1.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost2.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost3.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost4.dart';
+import 'package:student_hub/UI/Project/ProjectPost/ProjectPostWrapper.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/accountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/UI/Auth/login/login.dart';
@@ -78,13 +79,19 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
                 page: ProjectFilterRoute.page, path: 'projectFilter'),
             AutoRoute(
-                page: ProjectPost1PageRoute.page, path: 'projectPost1'),
-            AutoRoute(
-                page: ProjectPost2PageRoute.page, path: 'projectPost2'),
-            AutoRoute(
-                page: ProjectPost3PageRoute.page, path: 'projectPost3'),
-            AutoRoute(
-                page: ProjectPost4PageRoute.page, path: 'projectPost4'),
+                page: ProjectPostWrapperRoute.page,
+                path: 'projectPost',
+                children: [
+                  AutoRoute(
+                      page: ProjectPosting1Route.page, initial: true, path: 'projectPost1'),
+                  AutoRoute(
+                      page: ProjectPosting2Route.page, path: 'projectPost2'),
+                  AutoRoute(
+                      page: ProjectPosting3Route.page, path: 'projectPost3'),
+                  AutoRoute(
+                      page: ProjectPosting4Route.page, path: 'projectPost4'),
+                ]),
+                
 
             // AutoRoute(
             //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),

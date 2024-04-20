@@ -7,19 +7,6 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 
 @RoutePage()
-class ProjectPost3Page extends BaseWidget<ProjectPostCubit, ProjectPostState>{
-  const ProjectPost3Page({super.key});
-
-  @override
-  Widget buildWidget(BuildContext context) {
-    return const ProjectPosting3();
-  }
-
-  @override
-  ProjectPostCubit? provideCubit(BuildContext context) {
-    return ProjectPostCubit();
-  }
-}
 class ProjectPosting3 extends StatefulWidget  {
   const ProjectPosting3({Key? key}) : super(key: key);
 
@@ -180,7 +167,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
 
   void next(BuildContext context, String projectDescribe) {
     context.read<ProjectPostCubit>().updateDescription(projectDescribe);
-    context.router.push(const ProjectPost4PageRoute());
+    context.router.push(const ProjectPosting4Route());
   }
 }
 

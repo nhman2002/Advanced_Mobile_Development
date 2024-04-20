@@ -7,19 +7,6 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 
 @RoutePage()
-class ProjectPost1Page extends BaseWidget<ProjectPostCubit, ProjectPostState>{
-  const ProjectPost1Page({super.key});
-
-  @override
-  Widget buildWidget(BuildContext context) {
-    return const ProjectPosting1();
-  }
-
-  @override
-  ProjectPostCubit? provideCubit(BuildContext context) {
-    return ProjectPostCubit();
-  }
-}
 class ProjectPosting1 extends StatefulWidget  {
   const ProjectPosting1({super.key});
 
@@ -98,7 +85,7 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
   Future<void> next(BuildContext context, String title) async {
       //put _projectNameController in to project title state
       context.read<ProjectPostCubit>().updateTitle(title);
-      context.router.push(const ProjectPost2PageRoute());
+      context.router.push(const ProjectPosting2Route());
     }
 
 }

@@ -54,7 +54,7 @@ class _CompanyDashboard extends State<CompanyDashboard> {
                   onPressed: () {
                     // Add onPressed logic here
                     print('Post a job');
-                    context.router.push(const ProjectPost1PageRoute());
+                    context.router.push(const ProjectPostWrapperRoute());
                   },
                   child: Text('Post a job'),
                 ),

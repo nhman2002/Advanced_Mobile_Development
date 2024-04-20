@@ -69,28 +69,34 @@ abstract class _$AppRouter extends RootStackRouter {
         child: ProjectFilter(),
       );
     },
-    ProjectPost1PageRoute.name: (routeData) {
+    ProjectPostWrapperRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProjectPost1Page(),
+        child: const ProjectPostWrapper(),
       );
     },
-    ProjectPost2PageRoute.name: (routeData) {
+    ProjectPosting1Route.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProjectPost2Page(),
+        child: const ProjectPosting1(),
       );
     },
-    ProjectPost3PageRoute.name: (routeData) {
+    ProjectPosting2Route.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProjectPost3Page(),
+        child: const ProjectPosting2(),
       );
     },
-    ProjectPost4PageRoute.name: (routeData) {
+    ProjectPosting3Route.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProjectPost4Page(),
+        child: const ProjectPosting3(),
+      );
+    },
+    ProjectPosting4Route.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProjectPosting4(),
       );
     },
     SignupPageRoute.name: (routeData) {
@@ -265,57 +271,71 @@ class ProjectFilterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [ProjectPost1Page]
-class ProjectPost1PageRoute extends PageRouteInfo<void> {
-  const ProjectPost1PageRoute({List<PageRouteInfo>? children})
+/// [ProjectPostWrapper]
+class ProjectPostWrapperRoute extends PageRouteInfo<void> {
+  const ProjectPostWrapperRoute({List<PageRouteInfo>? children})
       : super(
-          ProjectPost1PageRoute.name,
+          ProjectPostWrapperRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProjectPost1PageRoute';
+  static const String name = 'ProjectPostWrapperRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [ProjectPost2Page]
-class ProjectPost2PageRoute extends PageRouteInfo<void> {
-  const ProjectPost2PageRoute({List<PageRouteInfo>? children})
+/// [ProjectPosting1]
+class ProjectPosting1Route extends PageRouteInfo<void> {
+  const ProjectPosting1Route({List<PageRouteInfo>? children})
       : super(
-          ProjectPost2PageRoute.name,
+          ProjectPosting1Route.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProjectPost2PageRoute';
+  static const String name = 'ProjectPosting1Route';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [ProjectPost3Page]
-class ProjectPost3PageRoute extends PageRouteInfo<void> {
-  const ProjectPost3PageRoute({List<PageRouteInfo>? children})
+/// [ProjectPosting2]
+class ProjectPosting2Route extends PageRouteInfo<void> {
+  const ProjectPosting2Route({List<PageRouteInfo>? children})
       : super(
-          ProjectPost3PageRoute.name,
+          ProjectPosting2Route.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProjectPost3PageRoute';
+  static const String name = 'ProjectPosting2Route';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [ProjectPost4Page]
-class ProjectPost4PageRoute extends PageRouteInfo<void> {
-  const ProjectPost4PageRoute({List<PageRouteInfo>? children})
+/// [ProjectPosting3]
+class ProjectPosting3Route extends PageRouteInfo<void> {
+  const ProjectPosting3Route({List<PageRouteInfo>? children})
       : super(
-          ProjectPost4PageRoute.name,
+          ProjectPosting3Route.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProjectPost4PageRoute';
+  static const String name = 'ProjectPosting3Route';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectPosting4]
+class ProjectPosting4Route extends PageRouteInfo<void> {
+  const ProjectPosting4Route({List<PageRouteInfo>? children})
+      : super(
+          ProjectPosting4Route.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectPosting4Route';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
