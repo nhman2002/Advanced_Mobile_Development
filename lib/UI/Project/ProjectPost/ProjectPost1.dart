@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart';
+import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/core/base_widget/base_widget.dart';
 
-class ProjectPosting1 extends StatefulWidget {
+@RoutePage()
+class ProjectPost1Page extends BaseWidget<ProjectPostCubit, ProjectPostState>{
+  const ProjectPost1Page({super.key});
+
   @override
-  _ProjectPosting1State createState() => _ProjectPosting1State();
+  Widget buildWidget(BuildContext context) {
+    return const ProjectPosting1();
+  }
+
+  @override
+  ProjectPostCubit? provideCubit(BuildContext context) {
+    return ProjectPostCubit();
+  }
+}
+class ProjectPosting1 extends StatefulWidget  {
+  const ProjectPosting1({Key? key}) : super(key: key);
+
+  @override
+  State<ProjectPosting1> createState() => _ProjectPosting1State();
 }
 
 class _ProjectPosting1State extends State<ProjectPosting1> {
   final _formKey = GlobalKey<FormState>();
-  TextEditingController _companyNameController = TextEditingController();
+  TextEditingController _projectNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +61,7 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
               ),
               SizedBox(height: 15),
               TextFormField(
-                controller: _companyNameController,
+                controller: _projectNameController,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return 'Please enter your post title';
@@ -63,9 +84,10 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
+                  next(context, _projectNameController.text);
                   }
                 ,
-                child: Text('Next Scope'),
+                child: Text('Next: Scope'),
               ),
             ],
           ),
@@ -73,6 +95,13 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
       ),
     );
   }
+
+  Future<void> next(BuildContext context, String title) async {
+      //put _projectNameController in to project title state
+      context.read<ProjectPostCubit>().updateTitle(title);
+      context.router.push(const ProjectPosting2Route());
+    }
+
 }
 
 class ExampleTitle extends StatelessWidget {
@@ -93,13 +122,9 @@ class ExampleTitle extends StatelessWidget {
       ),
     );
   }
+
+
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: ProjectPosting1(),
-  ));
-}
 
-class $AppRouter {}
 

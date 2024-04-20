@@ -54,7 +54,7 @@ class _CompanyDashboard extends State<CompanyDashboard> {
                   onPressed: () {
                     // Add onPressed logic here
                     print('Post a job');
-                    context.router.push(const ProjectPosting2Route());
+                    context.router.push(const ProjectPosting1Route());
                   },
                   child: Text('Post a job'),
                 ),
@@ -62,7 +62,7 @@ class _CompanyDashboard extends State<CompanyDashboard> {
             ),
             SizedBox(height: 20),
             Text(
-              'Welcome Hai',
+              'Welcome ' + _localStorage.getString(key: StorageKey.userName)!,
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

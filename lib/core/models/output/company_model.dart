@@ -1,20 +1,25 @@
 class CompanyProfile {
+  final int? id;
   final String? companyName;
   final String? website;
   final String? description;
   final int? size;
 
+
   CompanyProfile({
+    this.id,
     this.companyName,
     this.website,
     this.description,
     this.size,
+
   });
 
 
 
   factory CompanyProfile.fromJson(Map<String, dynamic> json) {
     return CompanyProfile(
+
       companyName: json['companyName'] as String?,
       website: json['website'] as String?,
       description: json['description'] as String?,
@@ -33,6 +38,7 @@ class CompanyProfile {
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'companyName': companyName,
       'website': website,
       'description': description,
@@ -42,6 +48,7 @@ class CompanyProfile {
 
   factory CompanyProfile.fromMap(Map<String, dynamic> map) {
     return CompanyProfile(
+      id: map['id'],
       companyName: map['companyName'],
       website: map['website'],
       description: map['description'],
@@ -50,12 +57,14 @@ class CompanyProfile {
   }
 
   CompanyProfile copyWith({
+    int? id,
     String? companyName,
     String? website,
     String? description,
     int? size,
   }) =>
       CompanyProfile(
+        id: id ?? this.id,
         companyName: companyName ?? this.companyName,
         website: website ?? this.website,
         description: description ?? this.description,

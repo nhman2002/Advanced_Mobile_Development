@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/input/company_model.dart';
+import 'package:student_hub/core/models/output/company_model.dart';
 import 'package:student_hub/core/models/input/login_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
@@ -44,6 +44,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
         if (companyProfile != null) {
           String companyProfileString = jsonEncode(companyProfile);
           _localStorage.saveString(key: StorageKey.companyProfile, value: companyProfileString);
+          _localStorage.saveString(key: StorageKey.companyID, value: companyProfile.id.toString());
         }
         if (studentProfile != null) {
           String studentProfileString = jsonEncode(studentProfile);

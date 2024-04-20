@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/common/config/router.dart';
 
+@RoutePage()
 class ProjectPosting2 extends StatefulWidget {
   @override
   _ProjectPosting2State createState() => _ProjectPosting2State();
@@ -131,11 +133,8 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (projectTime.isNotEmpty && studentNum.text.isNotEmpty) {
-                      setState(() {
-                        errorMessage = '';
-                        errorMessage2 = '';
-                        // Navigate to the next step
-                      });
+                      context.router.push(const ProjectPosting3Route());
+                    
                     } else {
                       setState(() {
                         errorMessage = projectTime.isEmpty
@@ -154,6 +153,8 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
                     ),
+
+
                   ),
                   child: const Text('Next: Description'),
                 ),

@@ -1,9 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart';
+import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
+import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/core/base_widget/base_widget.dart';
 
-class ProjectPosting3 extends StatefulWidget {
+@RoutePage()
+class ProjectPost2Page extends BaseWidget<ProjectPostCubit, ProjectPostState>{
+  const ProjectPost2Page({super.key});
+
   @override
-  _ProjectPosting3State createState() => _ProjectPosting3State();
+  Widget buildWidget(BuildContext context) {
+    return const ProjectPosting3();
+  }
+
+  @override
+  ProjectPostCubit? provideCubit(BuildContext context) {
+    return ProjectPostCubit();
+  }
+}
+class ProjectPosting3 extends StatefulWidget  {
+  const ProjectPosting3({Key? key}) : super(key: key);
+
+  @override
+  State<ProjectPosting3> createState() => _ProjectPosting3State();
 }
 
 class _ProjectPosting3State extends State<ProjectPosting3> {
@@ -137,18 +158,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (projectDescribe.text.isNotEmpty) {
-                      setState(() {
-                        step++;
-                      });
-                      setState(() {
-                        errorMessage = '';
-                      });
-                    } else {
-                      setState(() {
-                        errorMessage = "Please fill this field";
-                      });
-                    }
+                    next(context, projectDescribe.text);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF008ABD),
@@ -167,10 +177,10 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
       ),
     );
   }
+
+  void next(BuildContext context, String projectDescribe) {
+    context.read<ProjectPostCubit>().updateDescription(projectDescribe);
+    context.router.push(const ProjectPosting4Route());
+  }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: ProjectPosting3(),
-  ));
-}
