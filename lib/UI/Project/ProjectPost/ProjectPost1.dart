@@ -21,7 +21,7 @@ class ProjectPost1Page extends BaseWidget<ProjectPostCubit, ProjectPostState>{
   }
 }
 class ProjectPosting1 extends StatefulWidget  {
-  const ProjectPosting1({Key? key}) : super(key: key);
+  const ProjectPosting1({super.key});
 
   @override
   State<ProjectPosting1> createState() => _ProjectPosting1State();
@@ -46,7 +46,6 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Form(
-          key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,7 +98,7 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
   Future<void> next(BuildContext context, String title) async {
       //put _projectNameController in to project title state
       context.read<ProjectPostCubit>().updateTitle(title);
-      context.router.push(const ProjectPosting2Route());
+      context.router.push(const ProjectPost2PageRoute());
     }
 
 }

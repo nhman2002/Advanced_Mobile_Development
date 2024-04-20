@@ -78,13 +78,13 @@ class AppRouter extends _$AppRouter {
             AutoRoute(
                 page: ProjectFilterRoute.page, path: 'projectFilter'),
             AutoRoute(
-                page: ProjectPosting1Route.page, path: 'projectPost1'),
+                page: ProjectPost1PageRoute.page, path: 'projectPost1'),
             AutoRoute(
-                page: ProjectPosting2Route.page, path: 'projectPost2'),
+                page: ProjectPost2PageRoute.page, path: 'projectPost2'),
             AutoRoute(
-                page: ProjectPosting3Route.page, path: 'projectPost3'),
+                page: ProjectPost3PageRoute.page, path: 'projectPost3'),
             AutoRoute(
-                page: ProjectPosting4Route.page, path: 'projectPost4'),
+                page: ProjectPost4PageRoute.page, path: 'projectPost4'),
 
             // AutoRoute(
             //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),

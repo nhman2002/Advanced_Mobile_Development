@@ -6,6 +6,7 @@ import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/base.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/repository/profileCompany.dart';
+import 'package:student_hub/core/repository/project.dart';
 
 final getIt = GetIt.instance;
 
@@ -15,5 +16,6 @@ Future<void> initializeDependency() async {
     ..registerSingleton<NetworkManager>(NetworkManager.initial())
     ..registerLazySingleton<AuthRepository>(AuthRepository.new)
     ..registerLazySingleton<UserRepository>(UserRepository.new)
-    ..registerLazySingleton<CompanyProfileRepository>(CompanyProfileRepository.new);
+    ..registerLazySingleton<CompanyProfileRepository>(CompanyProfileRepository.new)
+    ..registerLazySingleton<ProjectRepository>(ProjectRepository.new);
 }
