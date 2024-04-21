@@ -140,21 +140,30 @@ class _ProjectList extends State<ProjectList> {
   Widget _buildCompanyDashboardItem(
       IconData icon, String label, Color color, Color bgColor) {
     return Container(
-        decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-        child: AnimatedButton(
-          icon: icon,
-          label: label,
-          color: color,
-          bgColor: bgColor,
-          onPressed: () {
-            // Add onPressed logic here
-            // print('$label pressed');
-          },
-        ));
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      child: AnimatedButton(
+        icon: icon,
+        label: label,
+        color: color,
+        bgColor: bgColor,
+        onPressed: () {
+          // Add onPressed logic here
+          if (label == 'Projects') {
+            context.router.push(const StudentSignupRoute());
+          } else if (label == 'Dashboard') {
+            context.router.push(const StudentSignupRoute());
+          } else if (label == 'Message') {
+            context.router.push(const StudentSignupRoute());
+          } else if (label == 'Alerts') {
+            context.router.push(const StudentSignupRoute());
+          }
+        },
+      ),
+    );
   }
 
   Widget _buildProjectItem(BuildContext context) {

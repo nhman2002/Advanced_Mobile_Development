@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
@@ -24,13 +23,11 @@ import 'package:student_hub/UI/profileCreation/StudentCreation/InputTechstack/st
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput2.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput3.dart';
 
-
 part 'router.gr.dart';
 
 @AutoRouterConfig(
   replaceInRouteName: 'Page,Route,Screen',
 )
-
 class AppRouter extends _$AppRouter {
   AppRouter({required GlobalKey<NavigatorState> navigatorKey})
       : super(navigatorKey: navigatorKey);
@@ -40,65 +37,63 @@ class AppRouter extends _$AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-      AutoRoute(
-          page: SplashWrapperRoute.page,
-          initial: true,
-          path: '/',
-          children: [
-            AutoRoute(
-                page: SplashScreenRoute.page,
-                initial: true,
-                path: ''),
-            AutoRoute(page: MyAppRoute.page, path: 'home'),
-            AutoRoute(page: LoginPageRoute.page, path: 'login'),
-            AutoRoute(
-                page: SignupPageRoute.page, path: 'signup'),
-            AutoRoute(
-                page: StudentSignupRoute.page, path: 'studentSignup'),
-            AutoRoute(
-                page: CompanySignupRoute.page, path: 'companySignup'),
-            AutoRoute(
-                page: CompanyDashboardRoute.page, path: 'dashBoard'),
-            AutoRoute(
-                page: CompanyWelcomeRouteRoute.page, path: 'companyWelcome'),
-            AutoRoute(
-                page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
-            AutoRoute(
-                page: CompanyProfileEditRoute.page, path: 'companyProfileEdit'),
-            AutoRoute(
-                page: InputProfileTechStackScreenRoute.page, path: 'studentProfileInput1'),
-            AutoRoute(
-                page: SwitchAccountPageRoute.page, path: 'switchAccount',
-                children: [
+        AutoRoute(
+            page: SplashWrapperRoute.page,
+            initial: true,
+            path: '/',
+            children: [
+              AutoRoute(page: SplashScreenRoute.page, initial: true, path: ''),
+              AutoRoute(page: MyAppRoute.page, path: 'home'),
+              AutoRoute(page: LoginPageRoute.page, path: 'login'),
+              AutoRoute(page: SignupPageRoute.page, path: 'signup'),
+              AutoRoute(page: StudentSignupRoute.page, path: 'studentSignup'),
+              AutoRoute(page: CompanySignupRoute.page, path: 'companySignup'),
+              AutoRoute(page: CompanyDashboardRoute.page, path: 'dashBoard'),
+              AutoRoute(
+                  page: CompanyWelcomeRouteRoute.page, path: 'companyWelcome'),
+              AutoRoute(
+                  page: CompanyProfileInputRoute.page,
+                  path: 'companyProfileInput'),
+              AutoRoute(
+                  page: CompanyProfileEditRoute.page,
+                  path: 'companyProfileEdit'),
+              AutoRoute(
+                  page: InputProfileTechStackScreenRoute.page,
+                  path: 'studentProfileInput1'),
+              AutoRoute(
+                  page: SwitchAccountPageRoute.page,
+                  path: 'switchAccount',
+                  children: [
+                    AutoRoute(
+                        page: StudentInputProfileExperienceRoute.page,
+                        path: 'studentProfileInput2'),
+                    AutoRoute(
+                        page: StudentProfileInputCVRoute.page,
+                        path: 'studentProfileInput3'),
+                  ]),
+              AutoRoute(page: ProjectFilterRoute.page, path: 'projectFilter'),
+              AutoRoute(
+                  page: ProjectPostWrapperRoute.page,
+                  path: 'projectPost',
+                  children: [
+                    AutoRoute(
+                        page: ProjectPosting1Route.page,
+                        initial: true,
+                        path: 'projectPost1'),
+                    AutoRoute(
+                        page: ProjectPosting2Route.page, path: 'projectPost2'),
+                    AutoRoute(
+                        page: ProjectPosting3Route.page, path: 'projectPost3'),
+                    AutoRoute(
+                        page: ProjectPosting4Route.page, path: 'projectPost4'),
+                  ]),
 
-                  AutoRoute(
-                      page: StudentInputProfileExperienceRoute.page, path: 'studentProfileInput2'),
-                  AutoRoute(
-                      page: StudentProfileInputCVRoute.page, path: 'studentProfileInput3'),
-                ]),
-            AutoRoute(
-                page: ProjectFilterRoute.page, path: 'projectFilter'),
-            AutoRoute(
-                page: ProjectPostWrapperRoute.page,
-                path: 'projectPost',
-                children: [
-                  AutoRoute(
-                      page: ProjectPosting1Route.page, initial: true, path: 'projectPost1'),
-                  AutoRoute(
-                      page: ProjectPosting2Route.page, path: 'projectPost2'),
-                  AutoRoute(
-                      page: ProjectPosting3Route.page, path: 'projectPost3'),
-                  AutoRoute(
-                      page: ProjectPosting4Route.page, path: 'projectPost4'),
-                ]),
-                
-
-            // AutoRoute(
-            //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
-            // AutoRoute(
-            //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
-            // AutoRoute(
-            //     page: CompanyProfileEditRoute.page, path: 'companyProfileEdit'),
-          ]),
-    ];
+              // AutoRoute(
+              //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
+              // AutoRoute(
+              //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
+              // AutoRoute(
+              //     page: CompanyProfileEditRoute.page, path: 'companyProfileEdit'),
+            ]),
+      ];
 }

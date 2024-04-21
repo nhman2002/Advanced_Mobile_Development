@@ -4,7 +4,7 @@ class AnimatedButton extends StatefulWidget {
   final IconData icon;
   final String label;
   final Color color;
-  final Color bgColor; 
+  final Color bgColor;
   final VoidCallback onPressed;
 
   const AnimatedButton({
@@ -35,7 +35,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
         setState(() {
           isPressed = false;
         });
-        widget.onPressed();
+        widget.onPressed(); // Call the onPressed callback
       },
       onTapCancel: () {
         setState(() {
@@ -56,7 +56,8 @@ class _AnimatedButtonState extends State<AnimatedButton> {
             SizedBox(height: 5),
             Text(
               widget.label,
-              style: TextStyle(color: widget.color), // Use the provided text color
+              style:
+                  TextStyle(color: widget.color), // Use the provided text color
             ),
           ],
         ),
