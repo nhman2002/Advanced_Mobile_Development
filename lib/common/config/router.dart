@@ -36,63 +36,102 @@ class AppRouter extends _$AppRouter {
   RouteType get defaultRouteType => const RouteType.cupertino();
 
   @override
-  List<AutoRoute> get routes => [
-        AutoRoute(
+  List<CustomRoute> get routes => [
+        CustomRoute(
             page: SplashWrapperRoute.page,
             initial: true,
             path: '/',
+            transitionsBuilder: null,
             children: [
-              AutoRoute(page: SplashScreenRoute.page, initial: true, path: ''),
-              AutoRoute(page: MyAppRoute.page, path: 'home'),
-              AutoRoute(page: LoginPageRoute.page, path: 'login'),
-              AutoRoute(page: SignupPageRoute.page, path: 'signup'),
-              AutoRoute(page: StudentSignupRoute.page, path: 'studentSignup'),
-              AutoRoute(page: CompanySignupRoute.page, path: 'companySignup'),
-              AutoRoute(page: CompanyDashboardRoute.page, path: 'dashBoard'),
-              AutoRoute(
-                  page: CompanyWelcomeRouteRoute.page, path: 'companyWelcome'),
-              AutoRoute(
+              CustomRoute(
+                  page: SplashScreenRoute.page, initial: true, path: ''),
+              CustomRoute(page: MyAppRoute.page, path: 'home',
+              transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: LoginPageRoute.page,
+                  path: 'login',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: SignupPageRoute.page,
+                  path: 'signup',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: StudentSignupRoute.page,
+                  path: 'studentSignup',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: CompanySignupRoute.page,
+                  path: 'companySignup',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: CompanyDashboardRoute.page,
+                  path: 'dashBoard',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: CompanyWelcomeRouteRoute.page,
+                  path: 'companyWelcome',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
                   page: CompanyProfileInputRoute.page,
-                  path: 'companyProfileInput'),
-              AutoRoute(
+                  path: 'companyProfileInput',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
                   page: CompanyProfileEditRoute.page,
-                  path: 'companyProfileEdit'),
-              AutoRoute(
+                  path: 'companyProfileEdit',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
                   page: InputProfileTechStackScreenRoute.page,
-                  path: 'studentProfileInput1'),
-              AutoRoute(
+                  path: 'studentProfileInput1',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
                   page: SwitchAccountPageRoute.page,
                   path: 'switchAccount',
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
                   children: [
-                    AutoRoute(
+                    CustomRoute(
                         page: StudentInputProfileExperienceRoute.page,
-                        path: 'studentProfileInput2'),
-                    AutoRoute(
+                        path: 'studentProfileInput2',
+                        transitionsBuilder: TransitionsBuilders.fadeIn),
+                    CustomRoute(
                         page: StudentProfileInputCVRoute.page,
-                        path: 'studentProfileInput3'),
+                        path: 'studentProfileInput3',
+                        transitionsBuilder: TransitionsBuilders.fadeIn),
                   ]),
-              AutoRoute(page: ProjectFilterRoute.page, path: 'projectFilter'),
-              AutoRoute(
+              CustomRoute(
+                  page: ProjectFilterRoute.page,
+                  path: 'projectFilter',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
                   page: ProjectPostWrapperRoute.page,
                   path: 'projectPost',
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
                   children: [
-                    AutoRoute(
+                    CustomRoute(
                         page: ProjectPosting1Route.page,
                         initial: true,
                         path: 'projectPost1'),
-                    AutoRoute(
-                        page: ProjectPosting2Route.page, path: 'projectPost2'),
-                    AutoRoute(
-                        page: ProjectPosting3Route.page, path: 'projectPost3'),
-                    AutoRoute(
-                        page: ProjectPosting4Route.page, path: 'projectPost4'),
+                    CustomRoute(
+                      page: ProjectPosting2Route.page,
+                      path: 'projectPost2',
+                      transitionsBuilder: TransitionsBuilders.fadeIn,
+                    ),
+                    CustomRoute(
+                      page: ProjectPosting3Route.page,
+                      path: 'projectPost3',
+                      transitionsBuilder: TransitionsBuilders.fadeIn,
+                    ),
+                    CustomRoute(
+                      page: ProjectPosting4Route.page,
+                      path: 'projectPost4',
+                      transitionsBuilder: TransitionsBuilders.fadeIn,
+                    ),
                   ]),
 
-              // AutoRoute(
+              // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
-              // AutoRoute(
+              // CustomRoute(
               //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),
-              // AutoRoute(
+              // CustomRoute(
               //     page: CompanyProfileEditRoute.page, path: 'companyProfileEdit'),
             ]),
       ];
