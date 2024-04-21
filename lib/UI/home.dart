@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
-
+// import "package:student_hub/UI/Auth/login/login.dart";
+// import "package:student_hub/UI/Auth/company/company.dart";
+// import "package:student_hub/UI/Auth/student/student.dart";
 
 void main() {
   runApp(MyApp());
 }
+
 @RoutePage()
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen()
+      home: HomeScreen(),
     );
   }
 }
@@ -43,7 +47,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             SizedBox(height: 20),
             Text(
-              'Build your product with high-skilled student \n',
+              'Build your product with high-skilled student\n',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -52,7 +56,7 @@ class HomeScreen extends StatelessWidget {
             ),
             Text(
               '\nFind and onboard best-skilled student for your product. Student works to gain experience & skills from real-world projects \n',
-                textAlign: TextAlign.center,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -81,14 +85,53 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-
-      
-          ], // <-- Đóng square bracket của children
+          ],
         ),
       ),
     );
   }
 
+  // void gotoLogin(BuildContext context) {
+  //   Navigator.of(context).push(
+  //     PageRouteBuilder(
+  //       pageBuilder: (_, __, ___) => const LoginPage(),
+  //       transitionsBuilder: (_, animation, __, child) {
+  //         return FadeTransition(
+  //           opacity: animation,
+  //           child: child,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+
+  // void gotoCompanySignup(BuildContext context) {
+  //   Navigator.of(context).push(
+  //     PageRouteBuilder(
+  //       pageBuilder: (_, __, ___) => CompanySignup(),
+  //       transitionsBuilder: (_, animation, __, child) {
+  //         return FadeTransition(
+  //           opacity: animation,
+  //           child: child,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
+
+  // void gotoStudentSignup(BuildContext context) {
+  //   Navigator.of(context).push(
+  //     PageRouteBuilder(
+  //       pageBuilder: (_, __, ___) => StudentSignup(),
+  //       transitionsBuilder: (_, animation, __, child) {
+  //         return FadeTransition(
+  //           opacity: animation,
+  //           child: child,
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
   void gotoLogin(BuildContext context) {
     context.router.push(const LoginPageRoute());
   }

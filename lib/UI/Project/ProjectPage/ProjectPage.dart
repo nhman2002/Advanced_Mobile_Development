@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
 
 class ProjectPage extends StatefulWidget {
@@ -67,51 +68,65 @@ class _ProjectPageState extends State<ProjectPage> {
               ),
               // Spacer(),
 
-              Align(
-                alignment: Alignment.center,
-                child: OverflowBar(
-                  children: [
-                    _buildDashboardItem(Icons.work, 'Projects', Colors.black
-                    ),
-                    _buildDashboardItem(Icons.dashboard, 'Dashboard',
-                        Colors.white),
-                    _buildDashboardItem(
-                        Icons.message, 'Message', Colors.white),
-                    _buildDashboardItem(Icons.notifications, 'Alerts',
-                        Colors.white),
-                  ],
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: OverflowBar(
+              //     children: [
+              //       _buildDashboardItem(Icons.work, 'Projects', Colors.black
+              //       ),
+              //       _buildDashboardItem(Icons.dashboard, 'Dashboard',
+              //           Colors.white),
+              //       _buildDashboardItem(
+              //           Icons.message, 'Message', Colors.white),
+              //       _buildDashboardItem(Icons.notifications, 'Alerts',
+              //           Colors.white),
+              //     ],
+              //   ),
+              // ),
             ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: Row(
+              children: [
+                _buildCompanyDashboardItem(
+                    Icons.work, 'Projects', Colors.white, Colors.blue.shade300),
+                _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
+                    Colors.black, Colors.grey.shade300),
+                _buildCompanyDashboardItem(Icons.message, 'Message',
+                    Colors.white, Colors.blue.shade300),
+                _buildCompanyDashboardItem(Icons.notifications, 'Alerts',
+                    Colors.white, Colors.blue.shade300),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-  Widget _buildDashboardItem(
-      IconData icon, String label, Color? color) {
-    return GestureDetector(
-      onTap: () {
-        // Navigator.pushNamed(context, routePath);
-      },
-      child: Container(
+  Widget _buildCompanyDashboardItem(
+      IconData icon, String label, Color color, Color bgColor) {
+    return Container(
         decoration: BoxDecoration(
           color: Colors.blue,
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Icon(icon, size: 40, color: color),
-            SizedBox(height: 5),
-            Text(
-              label,
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
-      ),
-    );
+        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+        child: AnimatedButton(
+          icon: icon,
+          label: label,
+          color: color,
+          bgColor: bgColor,
+          onPressed: () {
+            // Add onPressed logic here
+            // print('$label pressed');
+          },
+        ));
   }
   Widget _buildProjectItem(BuildContext context, {required int createdDay}) {
     return Column(

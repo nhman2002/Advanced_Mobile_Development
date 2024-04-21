@@ -3,7 +3,7 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
-
+import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
 @RoutePage()
 class CompanyDashboard extends StatefulWidget {
@@ -11,8 +11,7 @@ class CompanyDashboard extends StatefulWidget {
   _CompanyDashboard createState() => _CompanyDashboard();
 }
 
-  final _localStorage = getIt.get<LocalStorage>();
-
+final _localStorage = getIt.get<LocalStorage>();
 
 class _CompanyDashboard extends State<CompanyDashboard> {
   @override
@@ -75,40 +74,50 @@ class _CompanyDashboard extends State<CompanyDashboard> {
               ),
             ),
             Spacer(),
-            OverflowBar(children: [
-              _buildCompanyDashboardItem(
-                  Icons.work, 'Projects', Colors.white),
-              _buildCompanyDashboardItem(
-                  Icons.dashboard, 'Dashboard', Colors.black),
-              _buildCompanyDashboardItem(
-                  Icons.message, 'Message', Colors.white),
-              _buildCompanyDashboardItem(
-                  Icons.notifications, 'Alerts', Colors.white),
-            ]),
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(0),
+            child: Row(
+              children: [
+                _buildCompanyDashboardItem(
+                    Icons.work, 'Projects', Colors.white, Colors.blue.shade300),
+                _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
+                    Colors.black, Colors.grey.shade300),
+                _buildCompanyDashboardItem(Icons.message, 'Message',
+                    Colors.white, Colors.blue.shade300),
+                _buildCompanyDashboardItem(Icons.notifications, 'Alerts',
+                    Colors.white, Colors.blue.shade300),
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget _buildCompanyDashboardItem(IconData icon, String label, Color? color) {
+  Widget _buildCompanyDashboardItem(
+      IconData icon, String label, Color color, Color bgColor) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Icon(icon, size: 40, color: color),
-          SizedBox(height: 5),
-          Text(
-            label,
-            style: TextStyle(color: Colors.white),
-          ),
-        ],
-      ),
-    );
+        decoration: BoxDecoration(
+          color: Colors.blue,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+        child: AnimatedButton(
+          icon: icon,
+          label: label,
+          color: color,
+          bgColor: bgColor,
+          onPressed: () {
+            // Add onPressed logic here
+            // print('$label pressed');
+          },
+        ));
   }
 
   void handleLogout(BuildContext context) {
