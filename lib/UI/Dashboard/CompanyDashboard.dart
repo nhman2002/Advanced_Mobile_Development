@@ -125,3 +125,4 @@ class _CompanyDashboard extends State<CompanyDashboard> {
     context.router.replace(const MyAppRoute());
   }
 }
+

@@ -14,7 +14,7 @@ import 'package:student_hub/UI/Auth/login/login.dart';
 import 'package:student_hub/UI/Auth/signup/signup.dart';
 import 'package:student_hub/UI/Auth/company/company.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.dart';
-import 'package:student_hub/UI/Dashboard/CompanyDashboard.dart';
+import 'package:student_hub/UI/Dashboard/company/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
