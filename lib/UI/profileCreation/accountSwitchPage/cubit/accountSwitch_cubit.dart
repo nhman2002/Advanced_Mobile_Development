@@ -45,10 +45,12 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
 
 
-    if (currentRole == 1) {
+    if (currentRole == "1") {
       emit(state.copyWith(isCompany: true));
+      emit(state.copyWith(isStudent: false));
     } else {
       emit(state.copyWith(isStudent: true));
+      emit(state.copyWith(isCompany: false));
     }
 
     if (userRoles.length > 1) {

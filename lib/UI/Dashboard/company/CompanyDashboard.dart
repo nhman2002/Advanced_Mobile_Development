@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Dashboard/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/Dashboard/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_cubit.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
@@ -52,7 +53,7 @@ class _CompanyDashboard extends State<CompanyDashboardWidget>
             actions: [
               IconButton(
                 onPressed: () {
-                  handleLogout(context);
+                  context.router.push(const SwitchAccountPageRoute());
                 },
                 icon: Icon(
                   Icons.logout,

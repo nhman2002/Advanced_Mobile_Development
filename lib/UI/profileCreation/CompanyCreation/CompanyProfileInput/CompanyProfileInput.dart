@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/company_model.dart';
 import 'package:student_hub/core/repository/base.dart';
@@ -139,15 +140,17 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
   }
 
   Future<void> handleInput(BuildContext context) async {
-    final form = CompanyProfile().copyWith(
+    final form = InputCompanyProfile().copyWith(
       companyName: _companyNameController.text,
       website: _websiteController.text,
       description: _descriptionController.text,
       size: _selectedValue
     );
+    final _localStorage = getIt.get<LocalStorage>();
 
     final result = await _companyProfileRepository.inputCompanyProfile(form);
       if (result is DataSuccess) {
+        _localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
         showSnackBar(context, 'Company profile created successfully');
         context.router.push(const CompanyDashboardRoute());
       } else {

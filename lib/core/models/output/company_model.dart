@@ -1,4 +1,4 @@
-class CompanyProfile {
+class OutputCompanyProfile {
   final int? id;
   final String? companyName;
   final String? website;
@@ -6,7 +6,7 @@ class CompanyProfile {
   final int? size;
 
 
-  CompanyProfile({
+  OutputCompanyProfile({
     this.id,
     this.companyName,
     this.website,
@@ -17,18 +17,21 @@ class CompanyProfile {
 
 
 
-  factory CompanyProfile.fromJson(Map<String, dynamic> json) {
-    return CompanyProfile(
+  factory OutputCompanyProfile.fromJson(Map<String, dynamic> json) {
+    return OutputCompanyProfile(
+      id: json['result']['id'] as int?,
 
-      companyName: json['companyName'] as String?,
-      website: json['website'] as String?,
-      description: json['description'] as String?,
-      size: json['size'] as int?,
+      companyName: json['result']['companyName'] as String?,
+      website: json['result']['website'] as String?,
+      description: json['result']['description'] as String?,
+      size: json['result']['size'] as int?,
+
     );
   }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['id'] = id;
     map['companyName'] = companyName;
     map['website'] = website;
     map['description'] = description;
@@ -46,8 +49,8 @@ class CompanyProfile {
     };
   }
 
-  factory CompanyProfile.fromMap(Map<String, dynamic> map) {
-    return CompanyProfile(
+  factory OutputCompanyProfile.fromMap(Map<String, dynamic> map) {
+    return OutputCompanyProfile(
       id: map['id'],
       companyName: map['companyName'],
       website: map['website'],
@@ -56,14 +59,14 @@ class CompanyProfile {
     );
   }
 
-  CompanyProfile copyWith({
+  OutputCompanyProfile copyWith({
     int? id,
     String? companyName,
     String? website,
     String? description,
     int? size,
   }) =>
-      CompanyProfile(
+      OutputCompanyProfile(
         id: id ?? this.id,
         companyName: companyName ?? this.companyName,
         website: website ?? this.website,

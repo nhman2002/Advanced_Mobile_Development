@@ -124,9 +124,7 @@ Future<void> handleSignup(BuildContext context) async {
   if (isSuccess) {
     showSnackBar(context, message);
     await Future.delayed(const Duration(seconds: 2));
-    context.router.maybePop();
-    context.router.maybePop();
-
+    context.router.popUntilRoot();
   } else {
     showSnackBar(context, message);
   }

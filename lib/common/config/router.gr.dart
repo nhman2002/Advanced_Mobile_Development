@@ -18,7 +18,7 @@ abstract class _$AppRouter extends RootStackRouter {
     CompanyDashboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: CompanyDashboard(),
+        child: const CompanyDashboard(),
       );
     },
     CompanyProfileEditRoute.name: (routeData) {
@@ -45,10 +45,10 @@ abstract class _$AppRouter extends RootStackRouter {
         child: CompanyWelcomeRoute(),
       );
     },
-    InputProfileTechStackScreenRoute.name: (routeData) {
+    FavoriteProjectPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const InputProfileTechStackScreen(),
+        child: FavoriteProjectPage(),
       );
     },
     LoginPageRoute.name: (routeData) {
@@ -67,6 +67,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: ProjectFilter(),
+      );
+    },
+    ProjectListWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProjectListWrapper(),
       );
     },
     ProjectPostWrapperRoute.name: (routeData) {
@@ -117,16 +123,40 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SplashWrapper(),
       );
     },
-    StudentInputProfileExperienceRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const StudentInputProfileExperience(),
-      );
-    },
     StudentProfileInputCVRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: StudentProfileInputCV(),
+      );
+    },
+    StudentProfileInputExperienceRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentProfileInputExperience(),
+      );
+    },
+    StudentProfileInputTechStackRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentProfileInputTechStack(),
+      );
+    },
+    StudentProfileInputWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentProfileInputWrapper(),
+      );
+    },
+    StudentProjectDetailRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentProjectDetail(),
+      );
+    },
+    StudentProjectListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentProjectList(),
       );
     },
     StudentSignupRoute.name: (routeData) {
@@ -215,15 +245,15 @@ class CompanyWelcomeRouteRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [InputProfileTechStackScreen]
-class InputProfileTechStackScreenRoute extends PageRouteInfo<void> {
-  const InputProfileTechStackScreenRoute({List<PageRouteInfo>? children})
+/// [FavoriteProjectPage]
+class FavoriteProjectPageRoute extends PageRouteInfo<void> {
+  const FavoriteProjectPageRoute({List<PageRouteInfo>? children})
       : super(
-          InputProfileTechStackScreenRoute.name,
+          FavoriteProjectPageRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'InputProfileTechStackScreenRoute';
+  static const String name = 'FavoriteProjectPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -266,6 +296,20 @@ class ProjectFilterRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProjectFilterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectListWrapper]
+class ProjectListWrapperRoute extends PageRouteInfo<void> {
+  const ProjectListWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          ProjectListWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectListWrapperRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -383,20 +427,6 @@ class SplashWrapperRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [StudentInputProfileExperience]
-class StudentInputProfileExperienceRoute extends PageRouteInfo<void> {
-  const StudentInputProfileExperienceRoute({List<PageRouteInfo>? children})
-      : super(
-          StudentInputProfileExperienceRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'StudentInputProfileExperienceRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [StudentProfileInputCV]
 class StudentProfileInputCVRoute extends PageRouteInfo<void> {
   const StudentProfileInputCVRoute({List<PageRouteInfo>? children})
@@ -406,6 +436,76 @@ class StudentProfileInputCVRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'StudentProfileInputCVRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProfileInputExperience]
+class StudentProfileInputExperienceRoute extends PageRouteInfo<void> {
+  const StudentProfileInputExperienceRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProfileInputExperienceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProfileInputExperienceRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProfileInputTechStack]
+class StudentProfileInputTechStackRoute extends PageRouteInfo<void> {
+  const StudentProfileInputTechStackRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProfileInputTechStackRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProfileInputTechStackRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProfileInputWrapper]
+class StudentProfileInputWrapperRoute extends PageRouteInfo<void> {
+  const StudentProfileInputWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProfileInputWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProfileInputWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProjectDetail]
+class StudentProjectDetailRoute extends PageRouteInfo<void> {
+  const StudentProjectDetailRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProjectDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProjectDetailRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentProjectList]
+class StudentProjectListRoute extends PageRouteInfo<void> {
+  const StudentProjectListRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentProjectListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentProjectListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

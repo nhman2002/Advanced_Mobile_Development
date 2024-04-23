@@ -121,10 +121,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
     final message = context.read<CompanyRegisterCubit>().state.message ?? '';
     if (isSuccess) {
       showSnackBar(context, message);
-      await Future.delayed(const Duration(seconds: 2));
-      context.router.maybePop();
-      context.router.maybePop();
-      
+      context.router.popUntilRoot();      
     } else {
       showSnackBar(context, message);
     }

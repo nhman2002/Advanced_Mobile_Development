@@ -44,4 +44,5 @@ enum StorageKey {
   studentProfile,
   companyProfile,
   companyID,
+  studentID,
 }

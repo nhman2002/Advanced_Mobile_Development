@@ -17,15 +17,15 @@ class Project {
 }
 
 @RoutePage()
-class StudentInputProfileExperience extends StatefulWidget {
-  const StudentInputProfileExperience({Key? key}) : super(key: key);
+class StudentProfileInputExperience extends StatefulWidget {
+  const StudentProfileInputExperience({Key? key}) : super(key: key);
 
   @override
-  _StudentInputProfileExperienceState createState() =>
-      _StudentInputProfileExperienceState();
+  _StudentProfileInputExperienceState createState() =>
+      _StudentProfileInputExperienceState();
 }
 
-class _StudentInputProfileExperienceState extends State<StudentInputProfileExperience> {
+class _StudentProfileInputExperienceState extends State<StudentProfileInputExperience> {
   // Initialize MultiSelectController
 
   List<Project> projectList = [
@@ -158,6 +158,6 @@ class _StudentInputProfileExperienceState extends State<StudentInputProfileExper
 
 void main() {
   runApp(MaterialApp(
-    home: StudentInputProfileExperience(),
+    home: StudentProfileInputExperience(),
   ));
 }

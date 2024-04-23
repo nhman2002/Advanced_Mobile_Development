@@ -1,33 +1,34 @@
 
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/company_model.dart';
+import 'package:student_hub/core/models/output/company_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 
 
 class CompanyProfileRepository extends BaseRepository {
   CompanyProfileRepository() : super('/profile/company');
 
-  Future<DataState<CompanyProfile>> inputCompanyProfile(CompanyProfile input) async {
-    return post<CompanyProfile>(
+  Future<DataState<OutputCompanyProfile>> inputCompanyProfile(InputCompanyProfile input) async {
+    return post<OutputCompanyProfile>(
       path: '',
-      parseJsonFunction: CompanyProfile.fromJson,
+      parseJsonFunction: OutputCompanyProfile.fromJson,
       data: input.toJson(),
     );
   }
 
-  Future<DataState<CompanyProfile>> editCompanyProlfile(CompanyProfile input, int id) async {
-    return put<CompanyProfile>(
+  Future<DataState<InputCompanyProfile>> editCompanyProlfile(InputCompanyProfile input, int id) async {
+    return put<InputCompanyProfile>(
       path: '/$id',
-      parseJsonFunction: CompanyProfile.fromJson,
+      parseJsonFunction: InputCompanyProfile.fromJson,
       data: input.toJson(),
     );
   }
 
 
-  Future<DataState<CompanyProfile>> getProfile(int id) async {
-    return get<CompanyProfile>(
+  Future<DataState<OutputCompanyProfile>> getProfile(int id) async {
+    return get<OutputCompanyProfile>(
       path: '/$id',
-      parseJsonFunction: CompanyProfile.fromJson,
+      parseJsonFunction: OutputCompanyProfile.fromJson,
     );
   }
 }

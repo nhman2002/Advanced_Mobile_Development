@@ -29,10 +29,16 @@ class SplashCubit extends WidgetCubit<SplashState> {
       key: StorageKey.accessToken,
     );
 
+    final currentRole = _localStorage.getString(key: StorageKey.currentRole);
+
     if (accessToken == null) {
       emit(state.copyWith(isLogin: false));
     } else {
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
+      if (currentRole == "0")
+        emit(state.copyWith(isCompany: false));
+      else if (currentRole == "1")
+        emit(state.copyWith(isCompany: true));
       emit(state.copyWith(isLogin: true));
     }
   }

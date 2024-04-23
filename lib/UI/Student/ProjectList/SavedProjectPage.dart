@@ -4,12 +4,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
 
-class ProjectPage extends StatefulWidget {
+@RoutePage()
+class FavoriteProjectPage extends StatefulWidget {
   @override
-  _ProjectPageState createState() => _ProjectPageState();
+  _FavoriteProjectPageState createState() => _FavoriteProjectPageState();
 }
 
-class _ProjectPageState extends State<ProjectPage> {
+class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

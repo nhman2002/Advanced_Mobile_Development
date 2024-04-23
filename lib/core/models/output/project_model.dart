@@ -1,10 +1,10 @@
 class ProjectOutput {
-  int? id;
+  int? projectId;
   String? createdAt;
   String? updatedAt;
   String? deletedAt;
-  String? companyId;
-  int? ProjectOutputScopeFlag;
+  String? companyprojectId;
+  int? projectScopeFlag;
   String? title;
   String? description;
   int? numberOfStudents;
@@ -15,12 +15,12 @@ class ProjectOutput {
   int? countHired;
 
   ProjectOutput({
-    this.id,
+    this.projectId,
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
-    this.companyId,
-    this.ProjectOutputScopeFlag,
+    this.companyprojectId,
+    this.projectScopeFlag,
     this.title,
     this.description,
     this.numberOfStudents,
@@ -33,8 +33,8 @@ class ProjectOutput {
 
   Map<String, dynamic> toMapProjectOutput() {
     return {
-      'companyId': companyId,
-      'ProjectOutputScopeFlag': ProjectOutputScopeFlag,
+      'companyprojectId': companyprojectId,
+      'projectScopeFlag': projectScopeFlag,
       'title': title,
       'description': description,
       'typeFlag': typeFlag,
@@ -44,12 +44,12 @@ class ProjectOutput {
 
   factory ProjectOutput.fromMapProjectOutput(Map<String, dynamic> map) {
     return ProjectOutput(
-      id: map['id'],
+      projectId: map['projectId'],
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
       deletedAt: map['deletedAt'],
-      companyId: map['companyId'],
-      ProjectOutputScopeFlag: map['ProjectOutputScopeFlag'],
+      companyprojectId: map['companyprojectId'],
+      projectScopeFlag: map['projectScopeFlag'],
       title: map['title'],
       description: map['description'],
       numberOfStudents: map['numberOfStudents'],
@@ -62,12 +62,12 @@ class ProjectOutput {
   }
   
   ProjectOutput copyWith({
-    int? id,
+    int? projectId,
     String? createdAt,
     String? updatedAt,
     String? deletedAt,
-    String? companyId,
-    int? ProjectOutputScopeFlag,
+    String? companyprojectId,
+    int? projectScopeFlag,
     String? title,
     String? description,
     int? numberOfStudents,
@@ -78,12 +78,12 @@ class ProjectOutput {
     int? countHired,
   }) =>
     ProjectOutput(
-      id: id ?? this.id,
+      projectId: projectId ?? this.projectId,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       deletedAt: deletedAt ?? this.deletedAt,
-      companyId: companyId ?? this.companyId,
-      ProjectOutputScopeFlag: ProjectOutputScopeFlag ?? this.ProjectOutputScopeFlag,
+      companyprojectId: companyprojectId ?? this.companyprojectId,
+      projectScopeFlag: projectScopeFlag ?? this.projectScopeFlag,
       title: title ?? this.title,
       description: description ?? this.description,
       numberOfStudents: numberOfStudents ?? this.numberOfStudents,
@@ -93,16 +93,53 @@ class ProjectOutput {
       countMessages: countMessages ?? this.countMessages,
       countHired: countHired ?? this.countHired,
     );
+  // "data": {
+  //   "result": {
+  //     "id": 1,
+  //     "createdAt": "2024-04-20T09:26:29.403Z",
+  //     "updatedAt": "2024-04-20T09:26:29.403Z",
+  //     "deletedAt": null,
+  //     "companyId": "2",
+  //     "projectScopeFlag": 2,
+  //     "title": "wiw",
+  //     "description": "thaty  la vui qua di\n",
+  //     "numberOfStudents": 12,
+  //     "typeFlag": 0,
+  //     "proposals": [],
+  //     "countProposals": 0,
+  //     "countMessages": 0,
+  //     "countHired": 0
+  //   }
+  // }
+  @override
+  factory ProjectOutput.fromJson2(Map<String, dynamic> json) {
+    return ProjectOutput(
+      projectId: json['result']['id'] as int?,
+      createdAt: json['result']['createdAt'] as String?,
+      updatedAt: json['result']['updatedAt'] as String?,
+      deletedAt: json['result']['deletedAt'] as String?,
+      companyprojectId: json['result']['companyId'] as String,
+      projectScopeFlag: json['result']['projectScopeFlag'] as int?,
+      title: json['result']['title'] as String?,
+      description: json['result']['description'] as String?,
+      numberOfStudents: json['result']['numberOfStudents'] as int?,
+      typeFlag: json['result']['typeFlag'] as int?,
+      proposals: json['result']['proposals'] as List<dynamic>?,
+      countProposal: json['result']['countProposals'] as int?,
+      countMessages: json['result']['countMessages'] as int?,
+      countHired: json['result']['countHired'] as int?,
+    );
+  }
 
   @override
   factory ProjectOutput.fromJson(Map<String, dynamic> json) {
     return ProjectOutput(
-      id: json['id'] as int?,
+      projectId: json['projectId'] as int?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
       deletedAt: json['deletedAt'] as String?,
-      companyId: json['companyId'] as String?,
-      ProjectOutputScopeFlag: json['ProjectOutputScopeFlag'] as int?,
+      companyprojectId: json['companyprojectId'] as String?,
+      projectScopeFlag: json['projectScopeFlag'] as int?,
       title: json['title'] as String?,
       description: json['description'] as String?,
       numberOfStudents: json['numberOfStudents'] as int?,
@@ -116,12 +153,12 @@ class ProjectOutput {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
+      'projectId': projectId,
       'createdAt': createdAt,
       'updatedAt': updatedAt,
       'deletedAt': deletedAt,
-      'companyId': companyId,
-      'ProjectOutputScopeFlag': ProjectOutputScopeFlag,
+      'companyprojectId': companyprojectId,
+      'projectScopeFlag': projectScopeFlag,
       'title': title,
       'description': description,
       'numberOfStudents': numberOfStudents,

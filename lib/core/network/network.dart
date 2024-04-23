@@ -136,4 +136,60 @@ class NetworkManager {
           onSendProgress: onSendProgress,
           onReceiveProgress: onReceiveProgress);
   }
+
+  Future<Response> putFile(
+  String path, {
+  dynamic data,
+  Map<String, dynamic>? queryParameters,
+  Options? options,
+  Map<String, dynamic>? headers,
+  ProgressCallback? onSendProgress,
+  ProgressCallback? onReceiveProgress,
+}) async {
+  FormData formData = FormData.fromMap({
+    'file': await MultipartFile.fromFile(data)
+  });
+
+  return _dio.put(
+    path,
+    data: formData,
+    queryParameters: queryParameters,
+    options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+    onSendProgress: onSendProgress,
+    onReceiveProgress: onReceiveProgress,
+  );
+}
+
+  Future<Response> delete(
+      String path, {
+      dynamic data,
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      Map<String, dynamic>? headers,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceiveProgress,
+      }) async {
+      return _dio.delete(path,
+          data: data,
+          queryParameters: queryParameters,
+          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+        );
+  }
+
+  Future<Response> patch(
+      String path, {
+      dynamic data,
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      Map<String, dynamic>? headers,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceiveProgress,
+      }) async {
+      return _dio.patch(path,
+          data: data,
+          queryParameters: queryParameters,
+          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+          onSendProgress: onSendProgress,
+          onReceiveProgress: onReceiveProgress);
+  }
 }

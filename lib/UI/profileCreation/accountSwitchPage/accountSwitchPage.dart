@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_cubit.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_state.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
@@ -29,169 +30,182 @@ class SwitchAccountWidget extends StatefulWidget {
   State<SwitchAccountWidget> createState() => _SwitchAccountPage();
 }
 
-class _SwitchAccountPage extends State<SwitchAccountWidget> {
+class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault {
 
   final _localStorage = getIt.get<LocalStorage>();
 
 
-
-  @override
+@override
   Widget build(BuildContext context) {
-    final username = _localStorage.getString(key: StorageKey.userName)!;
-    final userRoles = _localStorage.getString(key: StorageKey.userRoles)!;
-    final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
-    final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
-    final hasMultipleRoles = context.read<AccountSwitchCubit>().state.hasMultipleRoles;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: Text('Student Hub'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              context.router.push(const CompanyDashboardRoute());
-            },
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 40.0,
-            ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (hasMultipleRoles == false)(
-              _buildUserRolesUI(userRoles.split(',').map((e) => int.parse(e)).toList())
-            )
-            else
-            ExpansionTile(
-              tilePadding: const EdgeInsets.only(right: 16.0),
-              title: ListTile(
-                leading: Icon(
-                  Icons.account_circle,
-                  color: Colors.black,
+    final _localStorage = getIt.get<LocalStorage>();
+
+    return BlocBuilder<AccountSwitchCubit, AccountSwitchState>(
+      builder: (context, state) {
+        final username = _localStorage.getString(key: StorageKey.userName)!;
+        final userRoles = _localStorage.getString(key: StorageKey.userRoles)!;
+        final hasCompanyProfile = state.hasCompanyProfile;
+        final hasStudentProfile = state.hasStudentProfile;
+        final isStudent = state.isStudent;
+        final isCompany = state.isCompany;
+        final hasMultipleRoles = state.hasMultipleRoles;
+
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.blue,
+            title: Text('Student Hub'),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  if (isStudent == true && hasStudentProfile == true) {
+                    context.router.push(const StudentProjectListRoute());
+                  } else if (isCompany == true && hasCompanyProfile == true) {
+                    context.router.push(const CompanyDashboardRoute());
+                  }
+                  else
+                    showSnackBar(context, 'Please complete your profile first!');     
+                },
+                icon: Icon(
+                  Icons.home,
+                  color: Colors.white,
                   size: 40.0,
                 ),
-                title: Text(username),
-                subtitle: isCompany == true ? Text(
-                  'Company',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.grey,
-                  ),
-                ): Text(
-                  'Student',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                    color: Colors.grey,
-                  ),
-                )
               ),
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Column(
-                    children: [
-                      Divider(
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                if (hasMultipleRoles == false)(
+                  _buildUserRolesUI(userRoles.split(',').map((e) => int.parse(e)).toList())
+                )
+                else
+                ExpansionTile(
+                  tilePadding: const EdgeInsets.only(right: 16.0),
+                  title: ListTile(
+                    leading: Icon(
+                      Icons.account_circle,
+                      color: Colors.black,
+                      size: 40.0,
+                    ),
+                    title: Text(username),
+                    subtitle: isCompany == true ? Text(
+                      'Company',
+                      style: TextStyle(
+                        fontSize: 14.0,
                         color: Colors.grey,
-                        thickness: 1.0,
                       ),
-                      ListTile(
-                        leading: Icon(
-                          Icons.account_circle,
-                          color: Colors.black,
-                          size: 40.0,
-                        ),
-                        title: isCompany == true ? Text(username+' Student'): Text(username+' Company'),
-                        // subtitle: Text(
-                        //   'Student',
-                        //   style: TextStyle(
-                        //     fontSize: 14.0,
-                        //     color: Colors.grey,
-                        //   ),
-                        // ),
+                    ): Text(
+                      'Student',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        color: Colors.grey,
                       ),
-                    ],
+                    )
                   ),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0),
+                      child: Column(
+                        children: [
+                          Divider(
+                            color: Colors.grey,
+                            thickness: 1.0,
+                          ),
+                          ListTile(
+                            leading: Icon(
+                              Icons.account_circle,
+                              color: Colors.black,
+                              size: 40.0,
+                            ),
+                            title: isCompany == true ? Text(username+' Student'): Text(username+' Company'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            Column(
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    handleProfile(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  child: ListTile(
-                    leading: Icon(Icons.person, color: Colors.black),
-                    title: Text('Profiles'),
-                  ),
+                Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        handleProfile(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.person, color: Colors.black),
+                        title: Text('Profiles'),
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add functionality for Settings button                        
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.settings, color: Colors.black),
+                        title: Text('Settings'),
+                      ),
+                    ),
+                    Divider(
+                      color: Colors.grey,
+                      thickness: 1.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add functionality for Log out button
+                        handleLogout(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                      child: ListTile(
+                        leading: Icon(Icons.logout, color: Colors.black),
+                        title: Text('Log out'),
+                      ),
+                    ),
+                  ],
                 ),
                 Divider(
                   color: Colors.grey,
                   thickness: 1.0,
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    //context.router.push(const InputProfileTechStackScreenRoute());
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  child: ListTile(
-                    leading: Icon(Icons.settings, color: Colors.black),
-                    title: Text('Settings'),
-                  ),
-                ),
-                Divider(
-                  color: Colors.grey,
-                  thickness: 1.0,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Add functionality for Log out button
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0,
-                  ),
-                  child: ListTile(
-                    leading: Icon(Icons.logout, color: Colors.black),
-                    title: Text('Log out'),
-                  ),
-                ),
               ],
             ),
-            Divider(
-              color: Colors.grey,
-              thickness: 1.0,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
+
 
   void handleProfile(BuildContext context) {
       final hasCompanyProfile = context.read<AccountSwitchCubit>().state.hasCompanyProfile;
       final hasStudentProfile = context.read<AccountSwitchCubit>().state.hasStudentProfile;
-      if (hasCompanyProfile == true)
-      {
-        context.router.push(const CompanyProfileEditRoute());
-      }
-      else if (hasStudentProfile == true)
-      {
-        context.router.push(const CompanyProfileInputRoute());
-      }
+      final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
+      final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
+      if (isCompany == true)
+        if (hasCompanyProfile == true)
+          context.router.push(const CompanyProfileEditRoute());
+        else
+          context.router.push(const CompanyProfileInputRoute());
+      else if (isStudent == true)
+        if (hasStudentProfile == true)
+          context.router.push(const StudentProfileInputWrapperRoute());
+        else
+          context.router.push(const StudentProfileInputWrapperRoute());
   }
 
   Widget _buildUserRolesUI(List<int> roles) {
@@ -268,6 +282,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> {
     }
   }
   void handleLogout(BuildContext context) {
-    // Add your logout logic here
+    _localStorage.clear();
+    context.router.replace(const MyAppRoute());
   }
 }

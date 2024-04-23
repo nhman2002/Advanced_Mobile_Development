@@ -48,6 +48,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
         }
         if (studentProfile != null) {
           String studentProfileString = jsonEncode(studentProfile);
+          _localStorage.saveString(key: StorageKey.studentID, value: studentProfile.id.toString());
           _localStorage.saveString(key: StorageKey.studentProfile, value: studentProfileString);
         }
 
@@ -55,14 +56,14 @@ class LoginCubit extends WidgetCubit<LoginState> {
         _localStorage.saveString(key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
         _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');
         final roles = userResult.data?.role as List?;
-        if (roles != null && roles.isNotEmpty) {
+        if (roles != null && roles.length > 1) {
           final roleString = roles.join(",");
           _localStorage.saveString(key: StorageKey.userRoles, value: roleString);
           _localStorage.saveString(key: StorageKey.currentRole, value: roles.first.toString());
         } else {
           // If there is no role or it's an empty list, handle it accordingly
           _localStorage.saveString(key: StorageKey.userRoles, value: roles.toString());
-          _localStorage.saveString(key: StorageKey.currentRole, value: roles.toString());
+          _localStorage.saveString(key: StorageKey.currentRole, value: roles!.first.toString());
         }
         emit(state.copyWith(user: user, isLogin: true));
       }

@@ -25,4 +25,19 @@ class ProjectRepository extends BaseRepository {
       parseJsonFunction: ProjectOutputList.fromJson,
     );
   }
+
+  Future<DataState<ProjectOutputList>> getAllProjects() async {
+    return get<ProjectOutputList>(
+      path: '',
+      parseJsonFunction: ProjectOutputList.fromJson,
+    );
+  }
+
+  Future<DataState<ProjectOutput>> getProject(int id) async {
+    return get<ProjectOutput>(
+      path: '/$id',
+      parseJsonFunction: ProjectOutput.fromJson2,
+    );
+  }
+
 }

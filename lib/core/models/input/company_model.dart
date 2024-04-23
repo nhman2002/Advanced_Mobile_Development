@@ -1,18 +1,18 @@
-class CompanyProfile {
+class InputCompanyProfile {
   final String? companyName;
   final String? website;
   final String? description;
   final int? size;
 
-  CompanyProfile({
+  InputCompanyProfile({
     this.companyName,
     this.website,
     this.description,
     this.size,
   });
 
-  factory CompanyProfile.fromJson(Map<String, dynamic> json) {
-    return CompanyProfile(
+  factory InputCompanyProfile.fromJson(Map<String, dynamic> json) {
+    return InputCompanyProfile(
       companyName: json['companyName'] as String?,
       website: json['website'] as String?,
       description: json['description'] as String?,
@@ -29,13 +29,13 @@ class CompanyProfile {
     return map;
   }
 
-  CompanyProfile copyWith({
+  InputCompanyProfile copyWith({
     String? companyName,
     String? website,
     String? description,
     int? size,
   }) =>
-      CompanyProfile(
+      InputCompanyProfile(
         companyName: companyName ?? this.companyName,
         website: website ?? this.website,
         description: description ?? this.description,

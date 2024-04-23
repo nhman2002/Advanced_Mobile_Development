@@ -21,10 +21,14 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     final isLogin = context.read<SplashCubit>().state.isLogin;
+    final isCompany = context.read<SplashCubit>().state.isCompany;
     if (isLogin == false) {
       context.router.replace(const MyAppRoute());
     } else {
-      context.router.replace(const CompanyDashboardRoute());
+      if (isCompany == true)
+        context.router.replace(const CompanyDashboardRoute());
+      else
+        context.router.replace(const ProjectListWrapperRoute());
     }
   }
 

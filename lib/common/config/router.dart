@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/Student/ProjectList/ProjectDetail.dart';
+import 'package:student_hub/UI/Student/ProjectList/ProjectList.dart';
 import 'package:student_hub/UI/Project/ProjectFilter.dart';
+import 'package:student_hub/UI/Student/ProjectList/ProjectListWrapper.dart';
+import 'package:student_hub/UI/Student/ProjectList/SavedProjectPage.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost1.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost2.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost3.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost4.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPostWrapper.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/StudentProfileInput2.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInputWrapper.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/accountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/UI/Auth/login/login.dart';
@@ -18,9 +24,7 @@ import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInp
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/InputTechstack/studentProfileInput1.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput2.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput1.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput3.dart';
 
 part 'router.gr.dart';
@@ -79,24 +83,32 @@ class AppRouter extends _$AppRouter {
                   page: CompanyProfileEditRoute.page,
                   path: 'companyProfileEdit',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
-              CustomRoute(
-                  page: InputProfileTechStackScreenRoute.page,
-                  path: 'studentProfileInput1',
-                  transitionsBuilder: TransitionsBuilders.fadeIn),
+
               CustomRoute(
                   page: SwitchAccountPageRoute.page,
                   path: 'switchAccount',
                   transitionsBuilder: TransitionsBuilders.fadeIn,
+              ),
+              CustomRoute(
+                  page: StudentProfileInputWrapperRoute.page,
+                  path: 'studentProfileInput',
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
                   children: [
                     CustomRoute(
-                        page: StudentInputProfileExperienceRoute.page,
+                        page: StudentProfileInputTechStackRoute.page,
+                        initial: true,
+                        path: 'studentProfileInput1'),
+                    CustomRoute(
+                        page: StudentProfileInputExperienceRoute.page,
                         path: 'studentProfileInput2',
                         transitionsBuilder: TransitionsBuilders.fadeIn),
                     CustomRoute(
                         page: StudentProfileInputCVRoute.page,
                         path: 'studentProfileInput3',
                         transitionsBuilder: TransitionsBuilders.fadeIn),
-                  ]),
+                  ]
+              ),
+
               CustomRoute(
                   page: ProjectFilterRoute.page,
                   path: 'projectFilter',
@@ -126,6 +138,20 @@ class AppRouter extends _$AppRouter {
                       transitionsBuilder: TransitionsBuilders.fadeIn,
                     ),
                   ]),
+            AutoRoute(
+                page: ProjectListWrapperRoute.page,
+                path: 'projectListWrapper',
+                children: [
+                    AutoRoute(
+                        page: StudentProjectListRoute.page,
+                        initial: true,
+                        path: 'projectList'),
+                    AutoRoute(
+                        page: StudentProjectDetailRoute.page, path: 'projectDetail'),
+                    AutoRoute(
+                        page: FavoriteProjectPageRoute.page, path: 'projectPage'),
+                  ]),
+                                         
 
               // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
