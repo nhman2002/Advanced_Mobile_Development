@@ -45,6 +45,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: CompanyWelcomeRoute(),
       );
     },
+    CoverLetterPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CoverLetterPage(),
+      );
+    },
     FavoriteProjectPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -240,6 +246,20 @@ class CompanyWelcomeRouteRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CompanyWelcomeRouteRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CoverLetterPage]
+class CoverLetterPageRoute extends PageRouteInfo<void> {
+  const CoverLetterPageRoute({List<PageRouteInfo>? children})
+      : super(
+          CoverLetterPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CoverLetterPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

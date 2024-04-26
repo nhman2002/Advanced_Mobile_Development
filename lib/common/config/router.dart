@@ -4,6 +4,7 @@ import 'package:student_hub/UI/Auth/student/student.dart';
 import 'package:student_hub/UI/Student/ProjectList/ProjectDetail.dart';
 import 'package:student_hub/UI/Student/ProjectList/ProjectList.dart';
 import 'package:student_hub/UI/Project/ProjectFilter.dart';
+import 'package:student_hub/UI/Student/ProjectList/ProjectListCover.dart';
 import 'package:student_hub/UI/Student/ProjectList/ProjectListWrapper.dart';
 import 'package:student_hub/UI/Student/ProjectList/SavedProjectPage.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost1.dart';
@@ -150,10 +151,10 @@ class AppRouter extends _$AppRouter {
                         page: StudentProjectDetailRoute.page, path: 'projectDetail'),
                     AutoRoute(
                         page: FavoriteProjectPageRoute.page, path: 'projectPage'),
-                  ]),
-                                         
-
-              // CustomRoute(
+                    AutoRoute(
+                        page: CoverLetterPageRoute.page, path: 'projectCover'),
+                  ]),                                         
+             // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
               // CustomRoute(
               //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),

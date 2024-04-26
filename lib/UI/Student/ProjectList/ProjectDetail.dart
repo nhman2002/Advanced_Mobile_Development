@@ -181,7 +181,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    // Implement Apply Now button logic
+                    context.router.push(const CoverLetterPageRoute());
                   },
                   child: Text('Apply Now'),
                 ),
