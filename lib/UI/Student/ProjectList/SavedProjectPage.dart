@@ -3,7 +3,6 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
-
 @RoutePage()
 class FavoriteProjectPage extends StatefulWidget {
   @override
@@ -56,7 +55,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -68,7 +66,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                 ),
               ),
               const Spacer(),
-
             ],
           ),
         ),
@@ -79,6 +76,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           child: Padding(
             padding: const EdgeInsets.all(0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildCompanyDashboardItem(
                     Icons.work, 'Projects', Colors.white, Colors.blue.shade300),
@@ -95,6 +93,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
       ),
     );
   }
+
   Widget _buildCompanyDashboardItem(
       IconData icon, String label, Color color, Color bgColor) {
     return Container(
@@ -102,7 +101,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
         color: Colors.blue,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
       child: AnimatedButton(
         icon: icon,
         label: label,
@@ -123,6 +122,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
       ),
     );
   }
+
   Widget _buildProjectItem(BuildContext context, {required int createdDay}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,7 +139,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                     'Created $createdDay days ago',
                     style: TextStyle(color: Colors.grey),
                   ),
-
                   SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,7 +206,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           ],
         ),
         Divider(),
-
       ],
     );
   }

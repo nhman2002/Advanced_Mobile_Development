@@ -111,6 +111,7 @@ class _AllProjects extends State<AllProjects> {
             child: Padding(
               padding: const EdgeInsets.all(0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildCompanyDashboardItem(Icons.work, 'Projects',
                       Colors.white, Colors.blue.shade300),
@@ -195,7 +196,7 @@ class _AllProjects extends State<AllProjects> {
         color: Colors.blue,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
       child: AnimatedButton(
         icon: icon,
         label: label,

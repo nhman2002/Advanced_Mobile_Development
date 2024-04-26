@@ -48,7 +48,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
           color: isPressed ? Colors.grey.shade300 : widget.bgColor,
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+        padding: const EdgeInsets.only(  left: 10, right: 10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
