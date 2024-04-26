@@ -37,4 +37,6 @@ dev_dependencies:
   mobx_codegen: ^2.6.0+1
   auto_route_generator: ^7.3.2
 flutter:
+  assets:
+    - lib/common/ui/Assets/
   uses-material-design: true
