@@ -3,7 +3,7 @@ class ProjectOutput {
   String? createdAt;
   String? updatedAt;
   String? deletedAt;
-  String? companyprojectId;
+  String? companyId;
   int? projectScopeFlag;
   String? title;
   String? description;
@@ -19,7 +19,7 @@ class ProjectOutput {
     this.createdAt,
     this.updatedAt,
     this.deletedAt,
-    this.companyprojectId,
+    this.companyId,
     this.projectScopeFlag,
     this.title,
     this.description,
@@ -33,7 +33,7 @@ class ProjectOutput {
 
   Map<String, dynamic> toMapProjectOutput() {
     return {
-      'companyprojectId': companyprojectId,
+      'companyId': companyId,
       'projectScopeFlag': projectScopeFlag,
       'title': title,
       'description': description,
@@ -48,7 +48,7 @@ class ProjectOutput {
       createdAt: map['createdAt'],
       updatedAt: map['updatedAt'],
       deletedAt: map['deletedAt'],
-      companyprojectId: map['companyprojectId'],
+      companyId: map['companyId'],
       projectScopeFlag: map['projectScopeFlag'],
       title: map['title'],
       description: map['description'],
@@ -66,7 +66,7 @@ class ProjectOutput {
     String? createdAt,
     String? updatedAt,
     String? deletedAt,
-    String? companyprojectId,
+    String? companyId,
     int? projectScopeFlag,
     String? title,
     String? description,
@@ -82,7 +82,7 @@ class ProjectOutput {
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       deletedAt: deletedAt ?? this.deletedAt,
-      companyprojectId: companyprojectId ?? this.companyprojectId,
+      companyId: companyId ?? this.companyId,
       projectScopeFlag: projectScopeFlag ?? this.projectScopeFlag,
       title: title ?? this.title,
       description: description ?? this.description,
@@ -118,7 +118,7 @@ class ProjectOutput {
       createdAt: json['result']['createdAt'] as String?,
       updatedAt: json['result']['updatedAt'] as String?,
       deletedAt: json['result']['deletedAt'] as String?,
-      companyprojectId: json['result']['companyId'] as String,
+      companyId: json['result']['companyId'] as String,
       projectScopeFlag: json['result']['projectScopeFlag'] as int?,
       title: json['result']['title'] as String?,
       description: json['result']['description'] as String?,
@@ -134,11 +134,11 @@ class ProjectOutput {
   @override
   factory ProjectOutput.fromJson(Map<String, dynamic> json) {
     return ProjectOutput(
-      projectId: json['projectId'] as int?,
+      projectId: json['id'] as int?,
       createdAt: json['createdAt'] as String?,
       updatedAt: json['updatedAt'] as String?,
       deletedAt: json['deletedAt'] as String?,
-      companyprojectId: json['companyprojectId'] as String?,
+      companyId: json['companyId'] as String?,
       projectScopeFlag: json['projectScopeFlag'] as int?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -157,7 +157,7 @@ class ProjectOutput {
       'createdAt': createdAt,
       'updatedAt': updatedAt,
       'deletedAt': deletedAt,
-      'companyprojectId': companyprojectId,
+      'companyId': companyId,
       'projectScopeFlag': projectScopeFlag,
       'title': title,
       'description': description,
