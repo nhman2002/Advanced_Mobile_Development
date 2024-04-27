@@ -1,3 +1,5 @@
+import 'package:student_hub/core/models/output/project_model.dart';
+
 class StudentProfile {
   int id;
   String createdAt;
@@ -402,7 +404,6 @@ class Proposal {
   String coverLetter;
   int statusFlag;
   int disableFlag;
-  Student student;
 
   Proposal({
     required this.id,
@@ -414,7 +415,6 @@ class Proposal {
     required this.coverLetter,
     required this.statusFlag,
     required this.disableFlag,
-    required this.student,
   });
 
   Map<String, dynamic> toMap() {
@@ -428,7 +428,6 @@ class Proposal {
       'coverLetter': this.coverLetter,
       'statusFlag': this.statusFlag,
       'disableFlag': this.disableFlag,
-      'student': this.student,
     };
   }
 
@@ -443,7 +442,6 @@ class Proposal {
       coverLetter: map['coverLetter'] as String,
       statusFlag: map['statusFlag'] as int,
       disableFlag: map['disableFlag'] as int,
-      student: map['student'] as Student,
     );
   }
 
@@ -458,8 +456,125 @@ class Proposal {
       coverLetter: json['result']['coverLetter'] as String,
       statusFlag: json['result']['statusFlag'] as int,
       disableFlag: json['result']['disableFlag'] as int,
-      student: Student.fromMap(json['result']['student']),
     );
+  }
+
+    //reutnr List<Proposal> from json
+  static List<Proposal> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return [];
+    } else
+      return (json['result'] as List).map((e) => Proposal.fromJson(e)).toList();
+  }
+
+
+  factory Proposal.fromJson2(Map<String, dynamic> json) {
+    return Proposal(
+      id: json['id'] as int,
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] == null ? null : json['deletedAt'] as String,
+      projectId: json['projectId'] as int,
+      studentId: json['studentId'] as int,
+      coverLetter: json['coverLetter'] as String,
+      statusFlag: json['statusFlag'] as int,
+      disableFlag: json['disableFlag'] as int,
+    );
+  }
+}
+
+class ProposalWithProject extends Proposal {
+  ProjectOutput project;
+
+  ProposalWithProject({
+    required this.project,
+    required int id,
+    required String createdAt,
+    required String updatedAt,
+    required String? deletedAt,
+    required int projectId,
+    required int studentId,
+    required String coverLetter,
+    required int statusFlag,
+    required int disableFlag,
+  }) : super(
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+          deletedAt: deletedAt,
+          projectId: projectId,
+          studentId: studentId,
+          coverLetter: coverLetter,
+          statusFlag: statusFlag,
+          disableFlag: disableFlag,
+        );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'project': project,
+      'id': this.id,
+      'createdAt': this.createdAt,
+      'updatedAt': this.updatedAt,
+      'deletedAt': this.deletedAt,
+      'projectId': this.projectId,
+      'studentId': this.studentId,
+      'coverLetter': this.coverLetter,
+      'statusFlag': this.statusFlag,
+      'disableFlag': this.disableFlag,
+    };
+  }
+
+  factory ProposalWithProject.fromMap(Map<String, dynamic> map) {
+    return ProposalWithProject(
+      project: map['project'] as ProjectOutput,
+      id: map['id'] as int,
+      createdAt: map['createdAt'] as String,
+      updatedAt: map['updatedAt'] as String,
+      deletedAt: map['deletedAt'] == null ? null : map['deletedAt'] as String,
+      projectId: map['projectId'] as int,
+      studentId: map['studentId'] as int,
+      coverLetter: map['coverLetter'] as String,
+      statusFlag: map['statusFlag'] as int,
+      disableFlag: map['disableFlag'] as int,
+    );
+  }
+
+  factory ProposalWithProject.fromJson(Map<String, dynamic> json) {
+    return ProposalWithProject(
+      project: ProjectOutput.fromJson(json['result']['project']),
+      id: json['result']['id'] as int,
+      createdAt: json['result']['createdAt'] as String,
+      updatedAt: json['result']['updatedAt'] as String,
+      deletedAt: json['result']['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
+      projectId: json['result']['projectId'] as int,
+      studentId: json['result']['studentId'] as int,
+      coverLetter: json['result']['coverLetter'] as String,
+      statusFlag: json['result']['statusFlag'] as int,
+      disableFlag: json['result']['disableFlag'] as int,
+    );
+  }
+
+  factory ProposalWithProject.fromJson2(Map<String, dynamic> json) {
+    return ProposalWithProject(
+      project: ProjectOutput.fromJson(json['project']),
+      id: json['id'] as int,
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] == null ? null : json['deletedAt'] as String,
+      projectId: json['projectId'] as int,
+      studentId: json['studentId'] as int,
+      coverLetter: json['coverLetter'] as String,
+      statusFlag: json['statusFlag'] as int,
+      disableFlag: json['disableFlag'] as int,
+    );
+  }
+
+  static List<ProposalWithProject> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return [];
+    } else {
+      return (json['result'] as List).map((e) => ProposalWithProject.fromJson2(e)).toList();
+    }
   }
 }
 

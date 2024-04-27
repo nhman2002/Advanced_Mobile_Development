@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/Student/DashBoard/StudentDashBoard.dart';
+import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardWorking.dart';
+import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardWrapper.dart';
 import 'package:student_hub/UI/Student/ProjectList/ProjectDetail.dart';
 import 'package:student_hub/UI/Student/ProjectList/ProjectList.dart';
 import 'package:student_hub/UI/Project/ProjectFilter.dart';
@@ -139,9 +142,10 @@ class AppRouter extends _$AppRouter {
                       transitionsBuilder: TransitionsBuilders.fadeIn,
                     ),
                   ]),
-            AutoRoute(
+            CustomRoute(
                 page: ProjectListWrapperRoute.page,
                 path: 'projectListWrapper',
+                transitionsBuilder: TransitionsBuilders.fadeIn,
                 children: [
                     AutoRoute(
                         page: StudentProjectListRoute.page,
@@ -153,7 +157,22 @@ class AppRouter extends _$AppRouter {
                         page: FavoriteProjectPageRoute.page, path: 'projectPage'),
                     AutoRoute(
                         page: CoverLetterPageRoute.page, path: 'projectCover'),
-                  ]),                                         
+                  ]),
+              CustomRoute(
+                page: StudentDashBoardWrapperRoute.page,
+                path: 'studentDashBoardWrapper',
+                transitionsBuilder: TransitionsBuilders.fadeIn,
+                children: [
+                    CustomRoute(
+                        page: StudentDashBoardRoute.page,
+                        initial: true,
+                        path: 'studentDashBoard',
+                        transitionsBuilder: TransitionsBuilders.fadeIn),
+                    CustomRoute(
+                        page: StudentWorkingProjectsRoute.page,
+                        path: 'studentDashBoardWorking',
+                        transitionsBuilder: TransitionsBuilders.fadeIn),   
+                ]),                                   
              // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
               // CustomRoute(

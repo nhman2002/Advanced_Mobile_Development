@@ -31,6 +31,11 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
 
   @override
   Future<void> init() async {
+    final studentIDString = _localStorage.getString(key: StorageKey.studentID);
+    final studentID = int.tryParse(studentIDString ?? '');
+
+
+
     final result = await _project.getAllProjects();
     if (result is DataSuccess) {
       final project = result.data?.projectOutputList;
@@ -39,7 +44,17 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     else {
       emit(state.copyWith(projectList: null));
     }
-  }
+    
+    final result1 = await _proposal.getAllStudentProposals(studentID ?? 0);
+    if (result1 is DataSuccess) {
+      //remove all project have projectid in proposal from project list
+      final proposal = result1.data;
+      final projectList = state.projectList;
+      final proposalProjectIds = proposal!.map((p) => p.projectId).toList();
+      final filteredProjectList = projectList.where((project) => !proposalProjectIds.contains(project.projectId)).toList();
+      emit(state.copyWith(projectList: filteredProjectList));
+      }
+    }
 
   Future<void> projectClicked(int index) async {
     emit(state.copyWith(clickedProjectId: index));

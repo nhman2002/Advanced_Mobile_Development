@@ -57,7 +57,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
               IconButton(
                 onPressed: () {
                   if (isStudent == true && hasStudentProfile == true) {
-                    context.router.push(const StudentProjectListRoute());
+                    context.router.push(const ProjectListWrapperRoute());
                   } else if (isCompany == true && hasCompanyProfile == true) {
                     context.router.push(const CompanyDashboardRoute());
                   }

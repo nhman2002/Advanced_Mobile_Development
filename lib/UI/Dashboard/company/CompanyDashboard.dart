@@ -56,7 +56,7 @@ class _CompanyDashboard extends State<CompanyDashboardWidget>
                   context.router.push(const SwitchAccountPageRoute());
                 },
                 icon: Icon(
-                  Icons.logout,
+                  Icons.account_circle,
                   color: Colors.white,
                   size: 40.0,
                 ),
@@ -66,44 +66,64 @@ class _CompanyDashboard extends State<CompanyDashboardWidget>
           body: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      projectList.isNotEmpty
-                          ? 'Your projects'
-                          : 'Let\'s get started',
+                      projectList.isNotEmpty ? 'Your projects' : 'Let\'s get started',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    if (projectList.isNotEmpty)
-                      Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            _buildProjectSectionButton('All', Colors.white),
-                            _buildProjectSectionButton('Working', Colors.white),
-                            _buildProjectSectionButton(
-                                'Archived', Colors.white),
-                          ],
-                        ),
-                      ),
-                    if (projectList.isEmpty)
-                      ElevatedButton(
-                        onPressed: () {
-                          // Add onPressed logic here
-                          print('Post a job');
-                          context.router.push(const ProjectPostWrapperRoute());
-                        },
-                        child: Text('Post a job'),
-                      ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add onPressed logic here
+                        print('Post a job');
+                        context.router.push(const ProjectPostWrapperRoute());
+                      },
+                      child: Text('Post a job'),
+                    ),
                   ],
                 ),
+                SizedBox(height: 20),
+                if (projectList.isNotEmpty)
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 2.0, color: Colors.black), // << here
+                      // boxShadow: [api.of(context).userChatHistoryEnd],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                                padding: EdgeInsets.all(0.0), // Adjust padding as needed
+                                color: Colors.blue,
+                                child: Text(
+                                  'All Projects',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                        //a verticle to give the box section
+                        Container(
+                          height: 20,
+                          width: 2,
+                          color: Colors.black,
+                        ),
+                        Text('Active '),
+                        Container(
+                          height: 20,
+                          width: 2,
+                          color: Colors.black,
+                        ),
+                        Text('Archived '),
+                      ],
+                    ),
+                  ),  
                 SizedBox(height: 20),
                 if (projectList.isEmpty)
                   Column(
@@ -190,19 +210,41 @@ class _CompanyDashboard extends State<CompanyDashboardWidget>
     );
   }
 
-  Widget _buildProjectSectionButton(String label, Color color) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.all(10),
-      child: Text(
-        label,
-        style: TextStyle(color: color),
+  Widget _buildProjectSection(String title, bool isActive) {
+    return Expanded(
+      child: InkWell(
+        onTap: () {
+          print('${title} pressed');
+          // Logic corresponding to each section can be placed here
+        },
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: isActive ? Colors.blue : null, // Highlight active section
+            borderRadius: isActive ? BorderRadius.circular(5) : null,
+          ),
+          padding: EdgeInsets.symmetric(vertical: 5),
+          child: Text(
+            title,
+            style: TextStyle(color: isActive ? Colors.white : Colors.black),
+          ),
+        ),
       ),
     );
   }
+  // Widget _buildProjectSectionButton(String label, Color color) {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       color: Colors.blue,
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     padding: EdgeInsets.all(10),
+  //     child: Text(
+  //       label,
+  //       style: TextStyle(color: color),
+  //     ),
+  //   );
+  // }
 
   Widget _buildCompanyDashboardItem(
       IconData icon, String label, Color color, Color bgColor) {

@@ -4,14 +4,15 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
-class AllProjects extends StatefulWidget {
-  const AllProjects({super.key});
+@RoutePage()
+class StudentWorkingProjects extends StatefulWidget {
+  const StudentWorkingProjects({super.key});
 
   @override
-  State<AllProjects> createState() => _AllProjects();
+  State<StudentWorkingProjects> createState() => _StudentWorkingProjects();
 }
 
-class _AllProjects extends State<AllProjects> {
+class _StudentWorkingProjects extends State<StudentWorkingProjects> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,29 +49,13 @@ class _AllProjects extends State<AllProjects> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildProjectSectionButton('All', Colors.white, true),
-                  _buildProjectSectionButton('Working', Colors.black, false),
+                  _buildProjectSectionButton('All', Colors.black, false),
+                  _buildProjectSectionButton('Working', Colors.white, true),
                   _buildProjectSectionButton('Archived', Colors.black, false),
                 ],
               ),
               SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                padding: EdgeInsets.all(10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Active proposal (0)',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              
               SizedBox(height: 20),
               Container(
                 height: 450,
@@ -196,7 +181,7 @@ class _AllProjects extends State<AllProjects> {
         color: Colors.blue,
         borderRadius: BorderRadius.circular(10),
       ),
-      padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+      padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
       child: AnimatedButton(
         icon: icon,
         label: label,
@@ -207,7 +192,7 @@ class _AllProjects extends State<AllProjects> {
           if (label == 'Projects') {
             context.router.push(const StudentSignupRoute());
           } else if (label == 'Dashboard') {
-            context.router.push(const StudentSignupRoute());
+            // context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
             context.router.push(const StudentSignupRoute());
           } else if (label == 'Alerts') {

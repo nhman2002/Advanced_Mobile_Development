@@ -161,9 +161,9 @@ class _StudentProjectList extends State<StudentProjectList> {
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildCompanyDashboardItem(
-                      Icons.work, 'Projects', Colors.white, Colors.blue.shade300),
+                      Icons.work, 'Projects', Colors.black, Colors.grey.shade300),
                     _buildCompanyDashboardItem(
-                      Icons.dashboard, 'Dashboard', Colors.black, Colors.grey.shade300),
+                      Icons.dashboard, 'Dashboard', Colors.white, Colors.blue.shade300),
                     _buildCompanyDashboardItem(
                       Icons.message, 'Message', Colors.white, Colors.blue.shade300),
                     _buildCompanyDashboardItem(
@@ -194,13 +194,13 @@ class _StudentProjectList extends State<StudentProjectList> {
         onPressed: () {
           // Add onPressed logic here
           if (label == 'Projects') {
-            context.router.push(const StudentSignupRoute());
+            // context.router.push(const StudentSignupRoute());
           } else if (label == 'Dashboard') {
-            context.router.push(const StudentSignupRoute());
+            context.router.replace(const StudentDashBoardWrapperRoute());
           } else if (label == 'Message') {
-            context.router.push(const StudentSignupRoute());
+            context.router.replace(const StudentSignupRoute());
           } else if (label == 'Alerts') {
-            context.router.push(const StudentSignupRoute());
+            context.router.replace(const StudentSignupRoute());
           }
         },
       ),
