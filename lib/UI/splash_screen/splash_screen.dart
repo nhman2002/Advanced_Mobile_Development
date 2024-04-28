@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       context.router.replace(const MyAppRoute());
     } else {
       if (isCompany == true)
-        context.router.replace(const CompanyDashboardRoute());
+        context.router.replace(const CompanyDashboardWrapperRoute());
       else
         context.router.replace(const ProjectListWrapperRoute());
     }

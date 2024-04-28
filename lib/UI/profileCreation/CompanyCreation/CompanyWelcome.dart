@@ -57,7 +57,7 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
             ElevatedButton(
               onPressed: () {
                 // Add onPressed logic here
-                context.router.push(const CompanyDashboardRoute());
+                context.router.push(const CompanyDashboardWrapperRoute());
               },
               child: Text('Get Started!'),
             ),

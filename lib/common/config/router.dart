@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/company/CompanyDashboardWrapper.dart';
+import 'package:student_hub/UI/company/CompanyProjectDetail.dart';
+import 'package:student_hub/UI/company/CompanyProjectHired.dart';
+import 'package:student_hub/UI/company/CompanyProjectMessage.dart';
+import 'package:student_hub/UI/company/CompanyProjectProposals.dart';
 import 'package:student_hub/UI/Student/DashBoard/StudentDashBoard.dart';
 import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardWorking.dart';
 import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardWrapper.dart';
@@ -23,7 +28,7 @@ import 'package:student_hub/UI/Auth/login/login.dart';
 import 'package:student_hub/UI/Auth/signup/signup.dart';
 import 'package:student_hub/UI/Auth/company/company.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.dart';
-import 'package:student_hub/UI/Dashboard/company/CompanyDashboard.dart';
+import 'package:student_hub/UI/company/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
@@ -72,9 +77,31 @@ class AppRouter extends _$AppRouter {
                   path: 'companySignup',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
-                  page: CompanyDashboardRoute.page,
-                  path: 'dashBoard',
-                  transitionsBuilder: TransitionsBuilders.fadeIn),
+                  page: CompanyDashboardWrapperRoute.page,
+                  path: 'CompanyDashBoardWrapper',
+                  children: [
+                    CustomRoute(
+                        page: CompanyDashboardRoute.page,
+                        initial: true,
+                        path: 'companyDashBoard',),
+                    CustomRoute(
+                        page: CompanyProjectProposalsRoute.page,
+                        path: 'companyProjectDetail',),
+                    CustomRoute(
+                        page: CompanyProjectDetailRoute.page,
+                        path: 'companyProjectDetail',),
+                    CustomRoute(
+
+                        page: CompanyProjectHiredRoute.page,
+                        path: 'companyProjectHired',),
+                    CustomRoute(
+
+                        page: CompanyProjectMessageRoute.page,
+                        path: 'companyProjectMessage',),
+                  ]),
+                    
+                        // transitionsBuilder: TransitionsBuilders.fadeIn),
+    
               CustomRoute(
                   page: CompanyWelcomeRouteRoute.page,
                   path: 'companyWelcome',

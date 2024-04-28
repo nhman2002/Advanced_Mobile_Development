@@ -26,7 +26,7 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
         actions: [
           IconButton(
             onPressed: () {
-              context.router.push(const CompanyDashboardRoute());
+              context.router.push(const CompanyDashboardWrapperRoute());
             },
             icon: Icon(Icons.person),
           ),

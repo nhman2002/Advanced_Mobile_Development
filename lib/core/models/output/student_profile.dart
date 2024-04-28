@@ -7,8 +7,10 @@ class StudentProfile {
   String? deletedAt;
   int userId;
   int techStackId;
+  String? fullname;
   String? resume;
   String? transcript;
+  String? techStackName;
   List<Proposal> proposals;
   List<Education> educations;
   List<Language> languages;
@@ -22,6 +24,8 @@ class StudentProfile {
     required this.deletedAt,
     required this.userId,
     required this.techStackId,
+    this.fullname,
+    this.techStackName,
     required this.resume,
     required this.transcript,
     required this.proposals,
@@ -39,6 +43,8 @@ class StudentProfile {
       'deletedAt': this.deletedAt,
       'userId': this.userId,
       'techStackId': this.techStackId,
+      'techStackName': this.techStackName,
+      'fullname': this.fullname,
       'resume': this.resume,
       'transcript': this.transcript,
       'proposals': this.proposals,
@@ -57,6 +63,8 @@ class StudentProfile {
       deletedAt: map['deletedAt'] == null ? null : map['deletedAt'] as String,
       userId: map['userId'] as int,
       techStackId: map['techStackId'] as int,
+      techStackName: map['techStackName'] as String,
+      fullname: map['fullname'] as String,
       resume: map['resume'] as String,
       transcript: map['transcript'] as String,
       proposals: map['proposals'] as List<Proposal>,
@@ -66,23 +74,58 @@ class StudentProfile {
       skillSets: map['skillSets'] as List<SkillSet>,
     );
   }
-factory StudentProfile.fromJson(Map<String, dynamic> json) {
-  return StudentProfile(
-    id: json['result']['id'] as int? ?? 0,
-    createdAt: json['result']['createdAt'] as String,
-    updatedAt: json['result']['updatedAt'] as String,
-    deletedAt: json['result']['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
-    userId: json['result']['userId'] as int,
-    techStackId: json['result']['techStackId'] as int,
-    resume: json['result']['resume'] == null ? null : json['result']['resume'] as String,
-    transcript: json['result']['transcript'] == null ? null : json['result']['transcript'] as String,
-    proposals: (json['result']['proposals'] as List<dynamic>?)?.map((e) => Proposal.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-    educations: (json['result']['educations'] as List<dynamic>?)?.map((e) => Education.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-    languages: (json['result']['languages'] as List<dynamic>?)?.map((e) => Language.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-    experiences: (json['result']['experiences'] as List<dynamic>?)?.map((e) => Experience.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-    skillSets: (json['result']['skillSets'] as List<dynamic>?)?.map((e) => SkillSet.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-  );
-}
+
+  factory StudentProfile.fromJson(Map<String, dynamic> json) {
+    return StudentProfile(
+      id: json['result']['id'] as int? ?? 0,
+      createdAt: json['result']['createdAt'] as String,
+      updatedAt: json['result']['updatedAt'] as String,
+      deletedAt: json['result']['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
+      userId: json['result']['userId'] as int,
+      techStackId: json['result']['techStackId'] as int,
+      techStackName: json['result']['techStack'] == null ? null : json['result']['techStack']['name'] as String,
+      fullname: json['result']['user'] == null ? null : json['result']['user']['fullname'] as String,
+      resume: json['result']['resume'] == null ? null : json['result']['resume'] as String,
+      transcript: json['result']['transcript'] == null ? null : json['result']['transcript'] as String,
+      proposals: (json['result']['proposals'] as List<dynamic>?)?.map((e) => Proposal.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      educations: (json['result']['educations'] as List<dynamic>?)?.map((e) => Education.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      languages: (json['result']['languages'] as List<dynamic>?)?.map((e) => Language.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      experiences: (json['result']['experiences'] as List<dynamic>?)?.map((e) => Experience.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      skillSets: (json['result']['skillSets'] as List<dynamic>?)?.map((e) => SkillSet.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+    );
+  }
+
+  factory StudentProfile.fromJson2(Map<String, dynamic> json) {
+    return StudentProfile(
+      id: json['id'] as int,
+      createdAt: json['createdAt'] as String,
+      updatedAt: json['updatedAt'] as String,
+      deletedAt: json['deletedAt'] == null ? null : json['deletedAt'] as String,
+      userId: json['userId'] as int,
+      techStackId: json['techStackId'] as int,
+      techStackName: json['techStack'] == null ? null : json['techStack']['name'] as String,
+      fullname: json['user'] == null ? null : json['user']['fullname'] as String,
+      resume: json['resume'] == null ? null : json['resume'] as String,
+      transcript: json['transcript'] == null ? null : json['transcript'] as String,
+      proposals: (json['proposals'] as List<dynamic>?)?.map((e) => Proposal.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      educations: (json['educations'] as List<dynamic>?)?.map((e) => Education.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      languages: (json['languages'] as List<dynamic>?)?.map((e) => Language.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      experiences: (json['experiences'] as List<dynamic>?)?.map((e) => Experience.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      skillSets: (json['skillSets'] as List<dynamic>?)?.map((e) => SkillSet.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+    );
+  }
+
+  // fromJsonList
+  static List<StudentProfile> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return (json as List).map((e) => StudentProfile.fromJson(e)).toList();
+    } else
+      return (json['result'] as List).map((e) => StudentProfile.fromJson2(e)).toList();
+  }
+
+  //get student from ProjectProsalOutput
+
+
 
   Map<String, dynamic> toJson() {
     return {
@@ -115,6 +158,7 @@ factory StudentProfile.fromJson(Map<String, dynamic> json) {
     String? resume,
     String? transcript,
     TechStackList? techStack,
+    String? fullname,
     List<Proposal>? proposals,
     List<Education>? educations,
     List<Language>? languages,
@@ -128,6 +172,7 @@ factory StudentProfile.fromJson(Map<String, dynamic> json) {
       deletedAt: deletedAt ?? this.deletedAt,
       userId: userId ?? this.userId,
       techStackId: techStackId ?? this.techStackId,
+      fullname: fullname ?? this.fullname,
       resume: resume ?? this.resume,
       transcript: transcript ?? this.transcript,
       proposals: proposals ?? this.proposals,
@@ -578,65 +623,7 @@ class ProposalWithProject extends Proposal {
   }
 }
 
-class Student {
-  int id;
-  String createdAt;
-  String updatedAt;
-  String? deletedAt;
-  int userId;
-  String fullname;
-  int techStackId;
-  dynamic resume;
-  dynamic transcript;
-  TechStack techStack;
-  List<dynamic> educations;
 
-  Student({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.deletedAt,
-    required this.userId,
-    required this.fullname,
-    required this.techStackId,
-    required this.resume,
-    required this.transcript,
-    required this.techStack,
-    required this.educations,
-  });
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'userId': this.userId,
-      'fullname': this.fullname,
-      'techStackId': this.techStackId,
-      'resume': this.resume,
-      'transcript': this.transcript,
-      'techStack': this.techStack,
-      'educations': this.educations,
-    };
-  }
-
-  factory Student.fromMap(Map<String, dynamic> map) {
-    return Student(
-      id: map['id'] as int,
-      createdAt: map['createdAt'] as String,
-      updatedAt: map['updatedAt'] as String,
-      deletedAt: map['deletedAt'] == null ? null : map['deletedAt'] as String,
-      userId: map['userId'] as int,
-      fullname: map['fullname'] as String,
-      techStackId: map['techStackId'] as int,
-      resume: map['resume'] as dynamic,
-      transcript: map['transcript'] as dynamic,
-      techStack: map['techStack'] as TechStack,
-      educations: map['educations'] as List<dynamic>,
-    );
-  }
-}
 
 class SkillSet {
   int id;
@@ -698,3 +685,53 @@ class SkillSetList {
       );
   }
 }
+
+class ProjectProposalOutput {
+  int? id;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
+  int? projectId;
+  int? studentId;
+  String? coverLetter;
+  int? statusFlag;
+  int? disableFlag;
+  StudentProfile? student;
+
+  ProjectProposalOutput({
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
+    this.projectId,
+    this.studentId,
+    this.coverLetter,
+    this.statusFlag,
+    this.disableFlag,
+    this.student,
+  });
+
+  factory ProjectProposalOutput.fromJson(Map<String, dynamic> json) {
+    return ProjectProposalOutput(
+      id: json['id'],
+      createdAt: json['createdAt'],
+      updatedAt: json['updatedAt'],
+      deletedAt: json['deletedAt'],
+      projectId: json['projectId'],
+      studentId: json['studentId'],
+      coverLetter: json['coverLetter'],
+      statusFlag: json['statusFlag'],
+      disableFlag: json['disableFlag'],
+      student: json['student'] == null ? null : StudentProfile.fromJson2(json['student']),
+    );
+  }
+
+  //from list
+  static List<ProjectProposalOutput> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return [];
+    } else
+      return (json['result']['items'] as List).map((e) => ProjectProposalOutput.fromJson(e)).toList();
+  }
+}
+

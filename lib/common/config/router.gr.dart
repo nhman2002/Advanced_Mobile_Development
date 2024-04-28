@@ -21,6 +21,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const CompanyDashboard(),
       );
     },
+    CompanyDashboardWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyDashboardWrapper(),
+      );
+    },
     CompanyProfileEditRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -31,6 +37,30 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: CompanyProfileInput(),
+      );
+    },
+    CompanyProjectDetailRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyProjectDetail(),
+      );
+    },
+    CompanyProjectHiredRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyProjectHired(),
+      );
+    },
+    CompanyProjectMessageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyProjectMessage(),
+      );
+    },
+    CompanyProjectProposalsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyProjectProposals(),
       );
     },
     CompanySignupRoute.name: (routeData) {
@@ -213,6 +243,20 @@ class CompanyDashboardRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CompanyDashboardWrapper]
+class CompanyDashboardWrapperRoute extends PageRouteInfo<void> {
+  const CompanyDashboardWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyDashboardWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyDashboardWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [CompanyProfileEdit]
 class CompanyProfileEditRoute extends PageRouteInfo<void> {
   const CompanyProfileEditRoute({List<PageRouteInfo>? children})
@@ -236,6 +280,62 @@ class CompanyProfileInputRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CompanyProfileInputRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyProjectDetail]
+class CompanyProjectDetailRoute extends PageRouteInfo<void> {
+  const CompanyProjectDetailRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProjectDetailRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProjectDetailRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyProjectHired]
+class CompanyProjectHiredRoute extends PageRouteInfo<void> {
+  const CompanyProjectHiredRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProjectHiredRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProjectHiredRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyProjectMessage]
+class CompanyProjectMessageRoute extends PageRouteInfo<void> {
+  const CompanyProjectMessageRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProjectMessageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProjectMessageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyProjectProposals]
+class CompanyProjectProposalsRoute extends PageRouteInfo<void> {
+  const CompanyProjectProposalsRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyProjectProposalsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyProjectProposalsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

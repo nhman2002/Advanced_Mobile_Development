@@ -40,4 +40,19 @@ class ProjectRepository extends BaseRepository {
     );
   }
 
+  Future<DataState<ProjectPostForm>> updateProject(int id, ProjectPostForm input) async {
+    return patch<ProjectPostForm>(
+      path: '/$id',
+      parseJsonFunction: ProjectPostForm.fromJson,
+      data: input.toJson(),
+    );
+  }
+
+  Future<DataState<ProjectPostForm>> deleteProject(int id) async {
+    return delete<ProjectPostForm>(
+      path: '/$id',
+      parseJsonFunction: ProjectPostForm.fromJson,
+    );
+  }
+
 }

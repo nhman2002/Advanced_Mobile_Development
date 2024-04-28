@@ -1,4 +1,4 @@
-import 'package:student_hub/core/models/output/user_model.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 
@@ -6,11 +6,19 @@ class CompanyDashboardState extends WidgetState {
   final bool hasProject;
   final List<ProjectOutput> projectList;
   final String? username;
+  final int clickedProjectID;
+  final ProjectOutput? clickedProject;
+  final List<ProjectProposalOutput> currentProposals;
+  final String? message;
 
   const CompanyDashboardState({
     this.hasProject = false,
     this.projectList = const [],
     this.username,
+    this.clickedProjectID = -1,
+    this.clickedProject,
+    this.currentProposals = const [],
+    this.message,
   });
 
   @override
@@ -18,6 +26,10 @@ class CompanyDashboardState extends WidgetState {
         hasProject,
         projectList,
         username,
+        clickedProject,
+        clickedProjectID,
+        currentProposals,
+        message,
       ];
   
   @override
@@ -41,11 +53,19 @@ class CompanyDashboardState extends WidgetState {
     bool? hasProject,
     List<ProjectOutput>? projectList,
     String? username,
+    int? clickedProjectID,
+    ProjectOutput? clickedProject,
+    List<ProjectProposalOutput>? currentProposals,
+    String? message,
   }) {
     return CompanyDashboardState(
       hasProject: hasProject ?? this.hasProject,
       projectList: projectList ?? this.projectList,
       username: username ?? this.username,
+      clickedProjectID: clickedProjectID ?? this.clickedProjectID,
+      clickedProject: clickedProject ?? this.clickedProject,
+      currentProposals: currentProposals ?? this.currentProposals,
+      message: message ?? this.message,
     );
   }
 

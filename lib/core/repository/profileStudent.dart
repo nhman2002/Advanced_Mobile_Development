@@ -25,6 +25,13 @@ class StudentProfileRepository extends BaseRepository {
     );
   }
 
+  Future<DataState<StudentProfile>> getStudentProfile(int id) async {
+    return get<StudentProfile>(
+      path: '/$id',
+      parseJsonFunction: StudentProfile.fromJson,
+    );
+  }
+
   Future<DataState<StudentProfile>> inputStudentCV(File cv, int id) async {
     return putFile<StudentProfile>(
       path: '/$id/resume',

@@ -59,7 +59,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                   if (isStudent == true && hasStudentProfile == true) {
                     context.router.push(const ProjectListWrapperRoute());
                   } else if (isCompany == true && hasCompanyProfile == true) {
-                    context.router.push(const CompanyDashboardRoute());
+                    context.router.push(const CompanyDashboardWrapperRoute());
                   }
                   else
                     showSnackBar(context, 'Please complete your profile first!');     

@@ -62,18 +62,18 @@ class ProposalPatchForm{
   // "statusFlag": 1,
   // "disableFlag": 1
 
-  final int projectId;
-  final int studentId;
-  final String coverLetter;
-  final int statusFlag;
-  final int disableFlag;
+  final int? projectId;
+  final int? studentId;
+  final String? coverLetter;
+  final int? statusFlag;
+  final int? disableFlag;
 
   ProposalPatchForm({
-    required this.projectId,
-    required this.studentId,
-    required this.coverLetter,
-    required this.statusFlag,
-    required this.disableFlag,
+    this.projectId,
+     this.studentId,
+     this.coverLetter,
+     this.statusFlag,
+     this.disableFlag,
   });
 
   Map<String, dynamic> toMap() {
@@ -85,6 +85,15 @@ class ProposalPatchForm{
       'disableFlag': disableFlag,
     };
   }
+
+  //tojson
+  Map<String, dynamic> toJson() => {
+        'projectId': projectId,
+        'studentId': studentId,
+        'coverLetter': coverLetter,
+        'statusFlag': statusFlag,
+        'disableFlag': disableFlag,
+      };
 
   factory ProposalPatchForm.fromMap(Map<String, dynamic> map) {
     return ProposalPatchForm(

@@ -175,7 +175,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
     if (isSuccess) {
       showSnackBar(context, 'Project posted successfully!');
       context.router.popUntilRoot();
-      context.router.replace(const CompanyDashboardRoute());
+      context.router.replace(const CompanyDashboardWrapperRoute());
     } else {
       showSnackBar(context, message);
     }
