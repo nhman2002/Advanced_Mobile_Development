@@ -272,7 +272,7 @@ Widget _buildProjectSectionButton(String label, Color color, bool isBlue, VoidCa
           } else if (label == 'Dashboard') {
             // context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
-            context.router.replace(const StudentSignupRoute());
+            context.router.replace(const MessageListScreenRoute());
           } else if (label == 'Alerts') {
             context.router.replace(const StudentSignupRoute());
           }

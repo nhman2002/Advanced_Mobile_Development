@@ -30,6 +30,9 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
   @override
   Future<void> init() async {
     showLoading();
+    String? userId = _localStorage.getString(key: StorageKey.userID);
+    emit(state.copyWith(userId: int.parse(userId!)));
+
     String? id = _localStorage.getString(key: StorageKey.companyID);
     final result = await _project.getCompanyProjects(int.parse(id!));
     if (result  is DataSuccess) {

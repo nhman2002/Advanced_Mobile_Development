@@ -1,13 +1,9 @@
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
-import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
-import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/core/repository/auth.dart';
-import 'package:student_hub/UI/Shub.dart';
+
 
 class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
   AccountSwitchCubit()
@@ -21,7 +17,9 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
   @override
   Future<void> init() async {
+    showLoading();
     await _handleInitial();
+    hideLoading();
   }
 
   Future<void> _handleInitial() async {

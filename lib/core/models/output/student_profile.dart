@@ -509,7 +509,7 @@ class Proposal {
     if (json['result'] == null) {
       return [];
     } else
-      return (json['result'] as List).map((e) => Proposal.fromJson(e)).toList();
+      return (json['result'] as List).map((e) => Proposal.fromJson2(e)).toList();
   }
 
 

@@ -404,7 +404,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
           } else if (label == 'Dashboard') {
             context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
-            context.router.push(const StudentSignupRoute());
+            context.router.push(const MessageListScreenRoute());
           } else if (label == 'Alerts') {
             context.router.push(const StudentSignupRoute());
           }

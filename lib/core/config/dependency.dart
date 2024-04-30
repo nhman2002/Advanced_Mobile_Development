@@ -3,6 +3,7 @@ import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/favoriteProject.dart';
+import 'package:student_hub/core/repository/message.dart';
 import 'package:student_hub/core/repository/profileStudent.dart';
 import 'package:student_hub/core/repository/proposal.dart';
 import 'package:student_hub/core/repository/skillSet.dart';
@@ -25,5 +26,6 @@ Future<void> initializeDependency() async {
     ..registerLazySingleton<TechStackRepository>(TechStackRepository.new)
     ..registerLazySingleton<SkillSetRepository>(SkillSetRepository.new)
     ..registerLazySingleton<StudentProfileRepository>(StudentProfileRepository.new)
-    ..registerLazySingleton<ProposalRepository>(ProposalRepository.new);
+    ..registerLazySingleton<ProposalRepository>(ProposalRepository.new)
+    ..registerLazySingleton<MessageRepository>(MessageRepository.new);
 }

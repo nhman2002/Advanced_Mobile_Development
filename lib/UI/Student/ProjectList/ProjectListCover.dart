@@ -99,7 +99,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
       return;
     }
 
-    context.read<ProjectListCubit>().postProposal(projectID, coverLetter);
+    await context.read<ProjectListCubit>().postProposal(projectID, coverLetter);
     context.router.maybePop();
     context.router.replace(const StudentDashBoardWrapperRoute());
     showSnackBar(context, 'Proposal submitted successfully');

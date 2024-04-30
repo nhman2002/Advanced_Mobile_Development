@@ -22,6 +22,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
   Widget build(BuildContext context) {
     return BlocBuilder<CompanyDashboardCubit, CompanyDashboardState>(
       builder: (context, state) {
+        final userId = state.userId;
         // Retrieve project detail from state if needed
         final projectDetail = state.clickedProject;
         final proposals = projectDetail?.proposals;
@@ -85,6 +86,9 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                               proposal.student!.techStackName!,
                               proposal.coverLetter!,
                               proposal.statusFlag!,
+                              state.userId!,
+                              proposal.student!.userId!,
+                              projectDetail!.projectId!,
                             ),
                       ],
                     ),
@@ -98,7 +102,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
     );
   }
 
-  Widget _buildContent(int proposalId, String name, String pos, String des, int statusFlag) {
+  Widget _buildContent(int proposalId, String name, String pos, String des, int statusFlag, int userID, int receiverID, int projectId) {
     return Padding(
       padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: Column(
@@ -152,7 +156,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Add onPressed logic for Message button
+                    context.router.push(MessageDetailScreenRoute(userId: userID, receiverId: receiverID, projectId: projectId, receiverName: name));
                   },
                   child: Text('Message'),
                 ),

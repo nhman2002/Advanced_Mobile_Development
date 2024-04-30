@@ -10,6 +10,7 @@ class CompanyDashboardState extends WidgetState {
   final ProjectOutput? clickedProject;
   final List<ProjectProposalOutput> currentProposals;
   final String? message;
+  final int? userId;
 
   const CompanyDashboardState({
     this.hasProject = false,
@@ -19,6 +20,7 @@ class CompanyDashboardState extends WidgetState {
     this.clickedProject,
     this.currentProposals = const [],
     this.message,
+    this.userId,
   });
 
   @override
@@ -30,6 +32,7 @@ class CompanyDashboardState extends WidgetState {
         clickedProjectID,
         currentProposals,
         message,
+        userId,
       ];
   
   @override
@@ -57,6 +60,7 @@ class CompanyDashboardState extends WidgetState {
     ProjectOutput? clickedProject,
     List<ProjectProposalOutput>? currentProposals,
     String? message,
+    int? userId,
   }) {
     return CompanyDashboardState(
       hasProject: hasProject ?? this.hasProject,
@@ -66,6 +70,7 @@ class CompanyDashboardState extends WidgetState {
       clickedProject: clickedProject ?? this.clickedProject,
       currentProposals: currentProposals ?? this.currentProposals,
       message: message ?? this.message,
+      userId: userId ?? this.userId,
     );
   }
 

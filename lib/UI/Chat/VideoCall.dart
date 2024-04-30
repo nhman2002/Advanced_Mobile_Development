@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(VideoCallScreen());
-}
 
 class VideoCallScreen extends StatelessWidget {
   @override

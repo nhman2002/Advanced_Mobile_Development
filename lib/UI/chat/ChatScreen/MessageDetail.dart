@@ -1,50 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Import package intl
+import 'package:flutter_bloc/flutter_bloc.dart'; // Import BlocBuilder
+import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_cubit.dart';
+import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
+import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:student_hub/core/models/output/message_output.dart';
 
-class MessageDetailScreen extends StatefulWidget {
-  const MessageDetailScreen({Key? key}) : super(key: key);
+@RoutePage()
+class MessageDetailScreen extends BaseWidget<ChatCubit, ChatState> {
+  final int userId;
+  final int receiverId;
+  final int projectId;
+  final String receiverName;
+
+
+  const MessageDetailScreen({
+    Key? key,
+    required this.userId,
+    required this.receiverId,
+    required this.projectId,
+    required this.receiverName,
+  }) : super(key: key);
 
   @override
-  State<MessageDetailScreen> createState() => _MessageDetailScreenState();
+  Widget buildWidget(BuildContext context) {
+    return const ChatWidget();
+  }
+
+  @override
+  ChatCubit? provideCubit(BuildContext context) {
+    return ChatCubit(userId: userId, receiverId: receiverId, projectId: projectId, receiverName: receiverName);
+  }
 }
 
-class _MessageDetailScreenState extends State<MessageDetailScreen> {
+class ChatWidget extends StatefulWidget {
+  const ChatWidget({super.key});
+
+  @override
+  State<ChatWidget> createState() => _MessageDetailScreenState();
+}
+
+class _MessageDetailScreenState extends State<ChatWidget> {
   final TextEditingController _messageController = TextEditingController();
-  final List<Map<String, dynamic>> _messages = [
-    {
-      'name': 'Luis Pham',
-      'isSender': false,
-      'text': 'Em co thai roi',
-      'time': DateTime.now(),
-    },
-    {
-      'name': 'Me',
-      'isSender': true,
-      'text': 'Minh chia tay di',
-      'time': DateTime.now().subtract(Duration(hours: 1)),
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                reverse: true,
-                itemCount: _messages.length,
-                itemBuilder: (context, index) {
-                  return _buildMessageItem(_messages[index]);
-                },
-              ),
+      appBar: _buildAppBar(context.read<ChatCubit>().receiverName),
+      body: BlocConsumer<ChatCubit, ChatState>(
+        listener: (context, state) {
+          // Add listener when state.messages is updated, update UI
+          if (state.messageSent == true) {
+            context.read<ChatCubit>().init();
+          }
+        },
+        builder: (context, state) {
+          final List<MessageOutput> _messages = state.messages; // Get messages from state
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _messages.length,
+                    itemBuilder: (context, index) {
+                      final message = _messages[index];
+                      return _buildMessageItem({
+                        'isSender': message.senderId == context.read<ChatCubit>().userId,
+                        'name': message.senderName,
+                        'text': message.content,
+                        'time': message.createdAt,
+                      });
+                    },
+                  ),
+                ),
+                _buildMessageInput(),
+              ],
             ),
-            _buildMessageInput(),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
@@ -52,18 +87,17 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   Widget _buildMessageItem(Map<String, dynamic> message) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      alignment:
-          message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment:
-            message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message['isSender']) ...[
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/images/avatar.png'),
-              radius: 20,
-            ),
+            // CircleAvatar(
+            //   backgroundImage: Icons.verified_user_rounded.toi,
+            //   radius: 20,
+            // ),
+            Icon(Icons.verified_user_rounded),
             SizedBox(width: 8),
           ],
           Container(
@@ -90,22 +124,19 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
                   ),
                 ),
                 SizedBox(height: 4),
-                Text(
-                  _formatTime(message['time']),
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: message['isSender'] ? Colors.white70 : Colors.grey,
-                  ),
-                ),
+                // Text(
+                //   _formatTime(message['time']),
+                //   style: TextStyle(
+                //     fontSize: 12,
+                //     color: message['isSender'] ? Colors.white70 : Colors.grey,
+                //   ),
+                // ),
               ],
             ),
           ),
           if (message['isSender']) ...[
             SizedBox(width: 8),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/images/avatar.png'),
-              radius: 20,
-            ),
+            Icon(Icons.verified_user_rounded),
           ],
         ],
       ),
@@ -152,17 +183,9 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
   void _sendMessage(String message) {
     print('Sending message: $message');
     if (message.isNotEmpty) {
-      _messages.insert(
-        0,
-        {
-          'name': 'Me',
-          'isSender': true,
-          'text': message,
-          'time': DateTime.now(),
-        },
-      );
+      // Add logic to send message via ChatCubit
+      context.read<ChatCubit>().sendMessage(message);
       _messageController.clear();
-      setState(() {});
     }
   }
 
@@ -180,21 +203,16 @@ class _MessageDetailScreenState extends State<MessageDetailScreen> {
     }
   }
 
-  AppBar _buildAppBar() {
+  AppBar _buildAppBar(String name) {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("Luis Pham"),
+          Text(name),
           Icon(Icons.more_vert),
         ],
       ),
       backgroundColor: Colors.white,
     );
   }
-}
-
-
-void main() {
-  runApp(MaterialApp(home: MessageDetailScreen()));
 }

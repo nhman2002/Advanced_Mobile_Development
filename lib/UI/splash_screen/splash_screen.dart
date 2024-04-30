@@ -22,13 +22,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
     final isLogin = context.read<SplashCubit>().state.isLogin;
     final isCompany = context.read<SplashCubit>().state.isCompany;
+    final hasProfile = context.read<SplashCubit>().state.hasProfile;
     if (isLogin == false) {
       context.router.replace(const MyAppRoute());
     } else {
-      if (isCompany == true)
+      if (isCompany == true && hasProfile == true)
         context.router.replace(const CompanyDashboardWrapperRoute());
-      else
+      else if (isCompany == false && hasProfile == true)
         context.router.replace(const ProjectListWrapperRoute());
+      else
+        context.router.replace(const SwitchAccountPageRoute());
     }
   }
 

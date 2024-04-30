@@ -198,7 +198,7 @@ class _StudentProjectList extends State<StudentProjectList> {
           } else if (label == 'Dashboard') {
             context.router.replace(const StudentDashBoardWrapperRoute());
           } else if (label == 'Message') {
-            context.router.replace(const StudentSignupRoute());
+            context.router.replace(const MessageListScreenRoute());
           } else if (label == 'Alerts') {
             context.router.replace(const StudentSignupRoute());
           }

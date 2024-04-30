@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
+import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
 import 'package:student_hub/UI/company/CompanyDashboardWrapper.dart';
 import 'package:student_hub/UI/company/CompanyProjectDetail.dart';
 import 'package:student_hub/UI/company/CompanyProjectHired.dart';
@@ -41,9 +43,17 @@ part 'router.gr.dart';
 @AutoRouterConfig(
   replaceInRouteName: 'Page,Route,Screen',
 )
-class AppRouter extends _$AppRouter {
+
+class MessageDetailScreenArguments {
+  final int userId;
+  final int receiverId;
+
+  MessageDetailScreenArguments({required this.userId, required this.receiverId});
+}
+class AppRouter extends _$MessageDetailScreenArguments {
   AppRouter({required GlobalKey<NavigatorState> navigatorKey})
       : super(navigatorKey: navigatorKey);
+  
 
   @override
   RouteType get defaultRouteType => const RouteType.cupertino();
@@ -199,7 +209,15 @@ class AppRouter extends _$AppRouter {
                         page: StudentWorkingProjectsRoute.page,
                         path: 'studentDashBoardWorking',
                         transitionsBuilder: TransitionsBuilders.fadeIn),   
-                ]),                                   
+                ]),        
+              CustomRoute(
+                  page: MessageDetailScreenRoute.page,
+                  path: 'messageScreen',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),   
+              CustomRoute(
+                  page: MessageListScreenRoute.page,
+                  path: 'messageList',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),                        
              // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
               // CustomRoute(

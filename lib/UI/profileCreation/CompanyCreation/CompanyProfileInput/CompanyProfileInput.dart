@@ -21,7 +21,6 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
   TextEditingController _descriptionController = TextEditingController();
   final _companyProfileRepository = getIt.get<CompanyProfileRepository>();
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,65 +41,65 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20),
-            Text(
-              'Welcome to Student Hub',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              'Tell us about your company and you will be on your way connect with high-skilled students',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(height: 20),
-            Row(
+      body: ListView(
+        reverse: true,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height: 20),
                 Text(
-                  'How many people are in your company?',
+                  'Welcome to Student Hub',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'Tell us about your company and you will be on your way connect with high-skilled students',
                   style: TextStyle(
                     fontSize: 16,
                   ),
                 ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    Text(
+                      'How many people are in your company?',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    _buildRadioOption(0, "It's just me"),
+                    _buildRadioOption(1, "2-9 employees"),
+                    _buildRadioOption(2, "10-99 employees"),
+                    _buildRadioOption(3, "100-1000 employees"),
+                    _buildRadioOption(4, "More than 1000 employees"),
+                  ],
+                ),
+                SizedBox(height: 20),
+                _buildInputField('Company Name', _companyNameController),
+                SizedBox(height: 10),
+                _buildInputField('Website', _websiteController),
+                SizedBox(height: 10),
+                _buildInputField('Description', _descriptionController),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    handleInput(context);
+                  },
+                  child: Text('Continue'),
+                ),
               ],
             ),
-            Column(
-              children: [
-                _buildRadioOption(0, "It's just me"),
-                _buildRadioOption(1, "2-9 employees"),
-                _buildRadioOption(2, "10-99 employees"),
-                _buildRadioOption(3, "100-1000 employees"),
-                _buildRadioOption(4, "More than 1000 employees"),
-              ],
-            ),
-            SizedBox(height: 20),
-            _buildInputField('Company Name', _companyNameController),
-
-            SizedBox(height: 10),
-            _buildInputField('Website', _websiteController),
-            SizedBox(height: 10),
-            _buildInputField('Description', _descriptionController),
-            Spacer(),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Add onPressed logic here
-                  handleInput(context);                             
-                },
-                child: Text('Continue'),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -144,18 +143,18 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
       companyName: _companyNameController.text,
       website: _websiteController.text,
       description: _descriptionController.text,
-      size: _selectedValue
+      size: _selectedValue,
     );
     final _localStorage = getIt.get<LocalStorage>();
 
     final result = await _companyProfileRepository.inputCompanyProfile(form);
-      if (result is DataSuccess) {
-        _localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
-        showSnackBar(context, 'Company profile created successfully');
-        context.router.push(const CompanyDashboardWrapperRoute());
-      } else {
-        showSnackBar(context, 'Failed to create company profile');        
-        context.router.maybePop();
-      }
+    if (result is DataSuccess) {
+      _localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
+      showSnackBar(context, 'Company profile created successfully');
+      context.router.push(const CompanyDashboardWrapperRoute());
+    } else {
+      showSnackBar(context, 'Failed to create company profile');
+      context.router.maybePop();
+    }
   }
 }

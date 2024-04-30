@@ -30,15 +30,30 @@ class SplashCubit extends WidgetCubit<SplashState> {
     );
 
     final currentRole = _localStorage.getString(key: StorageKey.currentRole);
-
+    final hasStudentProfile = _localStorage.getString(
+      key: StorageKey.studentProfile,
+    );
+    final hasCompanyProfile = _localStorage.getString(
+      key: StorageKey.companyProfile,
+    );
     if (accessToken == null) {
       emit(state.copyWith(isLogin: false));
     } else {
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
-      if (currentRole == "0")
+      if (currentRole == "0"){
         emit(state.copyWith(isCompany: false));
-      else if (currentRole == "1")
+        if (hasStudentProfile != null) 
+          emit(state.copyWith(hasProfile: true));
+        else
+          emit(state.copyWith(hasProfile: false));
+      }
+      else if (currentRole == "1"){
         emit(state.copyWith(isCompany: true));
+        if (hasCompanyProfile != null)
+          emit(state.copyWith(hasProfile: true));
+        else
+          emit(state.copyWith(hasProfile: false));
+      }
       emit(state.copyWith(isLogin: true));
     }
   }

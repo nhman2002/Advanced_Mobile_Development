@@ -68,7 +68,7 @@ class _StudentProfileInputTechStackState extends State<StudentProfileInputTechSt
                   ),
                   SizedBox(height: 20),
                   MultiSelectChipField(
-                    items: skillSetList.map((skill) => MultiSelectItem<String>(skill!.name, skill.name)).toList(),
+                    items: skillSetList.map((skill) => MultiSelectItem<String>(skill!.id.toString(), skill!.name)).toList(),
                     initialValue: [],
                     onTap: (values) {
             

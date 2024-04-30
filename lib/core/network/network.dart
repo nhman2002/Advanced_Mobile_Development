@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:student_hub/core/logger/logger.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class NetworkManager {
   NetworkManager.initial() {
     init();
+    // connectSocket();
   }
 
   final LocalStorage _localStorage = LocalStorage.instance;
@@ -18,6 +19,44 @@ class NetworkManager {
   String baseUrl = 'http://192.168.1.18:4400/api';
   String _accessToken = '';
   // String _refreshToken = '';
+
+//   late IO.Socket socket;
+
+
+//   // Method to initialize socket.io connection
+//   void connectSocket() {
+//     // Initialize socket with server URL
+//     socket = IO.io(
+//       'http://192.168.1.18:4400',
+//       IO.OptionBuilder()
+//           .setTransports(['websocket'])
+//           .disableAutoConnect()
+//           .build(),
+//     );
+
+//     print("Connecting to socket.io server");
+
+//     // Add authorization to header
+//     socket.io.options?['extraHeaders'] = {
+//       'Authorization': 'Bearer $_accessToken',
+//     };
+// // Connect to the socket.io server
+//     socket.connect();
+
+//     // Listen to socket events
+//     socket.onConnect((data) => print('Socket Connected'));
+//     socket.onDisconnect((data) => print('Socket Disconnected'));
+//     socket.onConnectError((data) => print('Connect Error: $data'));
+//     socket.onError((data) => print('Error: $data'));
+
+//     // Listen to channel to receive messages
+//     socket.on('RECEIVE_MESSAGE', (data) {
+//       return data;
+//     });
+
+//     // Listen for error from socket
+//     socket.on('ERROR', (data) => print('Socket Error: $data'));
+//   }
 
   Future<void> init() async {
     print('init network manager');
@@ -40,6 +79,7 @@ class NetworkManager {
 
   void updateHeader({String? accessToken}) {
     _dio.options.headers['Authorization'] = 'Bearer $accessToken';
+
   }
 
   void configInterceptors() {
@@ -58,8 +98,8 @@ class NetworkManager {
     logger.v('REQUEST[${options.method}] => PATH: ${options.path}');
     logger.v('REQUEST[${options.method}] => HEADER: ${options.headers}');
     logger.v('REQUEST[${options.method}] => DATA: ${options.data}');
-    logger
-        .v('REQUEST[${options.method}] => QUERY PARAMS: ${options.queryParameters}');
+    logger.v(
+        'REQUEST[${options.method}] => QUERY PARAMS: ${options.queryParameters}');
     //full url
     logger.v('REQUEST[${options.method}] => FULL URL: ${options.uri}');
     return handler.next(options); //continue
@@ -70,7 +110,8 @@ class NetworkManager {
     ResponseInterceptorHandler handler,
   ) async {
     // Do something with response data
-    logger.v('RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
+    logger.v(
+        'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     logger.v('RESPONSE[${response.statusCode}] => HEADER: ${response.headers}');
     logger.v('RESPONSE[${response.statusCode}] => DATA: ${response.data}');
     return handler.next(response); // continue
@@ -85,7 +126,8 @@ class NetworkManager {
         'ERROR[${error.response?.statusCode}] => PATH: ${error.requestOptions.path}');
     logger.e(
         'ERROR[${error.response?.statusCode}] => HEADER: ${error.response?.headers}');
-    logger.e('ERROR[${error.response?.statusCode}] => DATA: ${error.response?.data}');
+    logger.e(
+        'ERROR[${error.response?.statusCode}] => DATA: ${error.response?.data}');
     return handler.reject(error); //continue
   }
 
@@ -104,14 +146,14 @@ class NetworkManager {
   }
 
   Future<Response> post(
-      String path, {
-        dynamic data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        Map<String, dynamic>? headers,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    Map<String, dynamic>? headers,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
     return _dio.post(path,
         data: data,
         queryParameters: queryParameters,
@@ -119,77 +161,77 @@ class NetworkManager {
         onSendProgress: onSendProgress,
         onReceiveProgress: onReceiveProgress);
   }
-  
+
   Future<Response> put(
-      String path, {
-      dynamic data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      Map<String, dynamic>? headers,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-      }) async {
-      return _dio.put(path,
-          data: data,
-          queryParameters: queryParameters,
-          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
-          onSendProgress: onSendProgress,
-          onReceiveProgress: onReceiveProgress);
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    Map<String, dynamic>? headers,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    return _dio.put(path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress);
   }
 
   Future<Response> putFile(
-  String path, {
-  dynamic data,
-  Map<String, dynamic>? queryParameters,
-  Options? options,
-  Map<String, dynamic>? headers,
-  ProgressCallback? onSendProgress,
-  ProgressCallback? onReceiveProgress,
-}) async {
-  FormData formData = FormData.fromMap({
-    'file': await MultipartFile.fromFile(data)
-  });
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    Map<String, dynamic>? headers,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    FormData formData =
+        FormData.fromMap({'file': await MultipartFile.fromFile(data)});
 
-  return _dio.put(
-    path,
-    data: formData,
-    queryParameters: queryParameters,
-    options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
-    onSendProgress: onSendProgress,
-    onReceiveProgress: onReceiveProgress,
-  );
-}
+    return _dio.put(
+      path,
+      data: formData,
+      queryParameters: queryParameters,
+      options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+  }
 
   Future<Response> delete(
-      String path, {
-      dynamic data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      Map<String, dynamic>? headers,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-      }) async {
-      return _dio.delete(path,
-          data: data,
-          queryParameters: queryParameters,
-          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
-        );
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    Map<String, dynamic>? headers,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    return _dio.delete(
+      path,
+      data: data,
+      queryParameters: queryParameters,
+      options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+    );
   }
 
   Future<Response> patch(
-      String path, {
-      dynamic data,
-      Map<String, dynamic>? queryParameters,
-      Options? options,
-      Map<String, dynamic>? headers,
-      ProgressCallback? onSendProgress,
-      ProgressCallback? onReceiveProgress,
-      }) async {
-      return _dio.patch(path,
-          data: data,
-          queryParameters: queryParameters,
-          options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
-          onSendProgress: onSendProgress,
-          onReceiveProgress: onReceiveProgress);
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    Map<String, dynamic>? headers,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    return _dio.patch(path,
+        data: data,
+        queryParameters: queryParameters,
+        options: Options(headers: {..._dio.options.headers, ...headers ?? {}}),
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress);
   }
 }

@@ -9,9 +9,9 @@
 
 part of 'router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
+abstract class _$MessageDetailScreenArguments extends RootStackRouter {
   // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
+  _$MessageDetailScreenArguments({super.navigatorKey});
 
   @override
   final Map<String, PageFactory> pagesMap = {
@@ -91,6 +91,25 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const LoginPage(),
+      );
+    },
+    MessageDetailScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<MessageDetailScreenRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MessageDetailScreen(
+          key: args.key,
+          userId: args.userId,
+          receiverId: args.receiverId,
+          projectId: args.projectId,
+          receiverName: args.receiverName,
+        ),
+      );
+    },
+    MessageListScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MessageListScreen(),
       );
     },
     MyAppRoute.name: (routeData) {
@@ -406,6 +425,74 @@ class LoginPageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'LoginPageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MessageDetailScreen]
+class MessageDetailScreenRoute
+    extends PageRouteInfo<MessageDetailScreenRouteArgs> {
+  MessageDetailScreenRoute({
+    Key? key,
+    required int userId,
+    required int receiverId,
+    required int projectId,
+    required String receiverName,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MessageDetailScreenRoute.name,
+          args: MessageDetailScreenRouteArgs(
+            key: key,
+            userId: userId,
+            receiverId: receiverId,
+            projectId: projectId,
+            receiverName: receiverName,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'MessageDetailScreenRoute';
+
+  static const PageInfo<MessageDetailScreenRouteArgs> page =
+      PageInfo<MessageDetailScreenRouteArgs>(name);
+}
+
+class MessageDetailScreenRouteArgs {
+  const MessageDetailScreenRouteArgs({
+    this.key,
+    required this.userId,
+    required this.receiverId,
+    required this.projectId,
+    required this.receiverName,
+  });
+
+  final Key? key;
+
+  final int userId;
+
+  final int receiverId;
+
+  final int projectId;
+
+  final String receiverName;
+
+  @override
+  String toString() {
+    return 'MessageDetailScreenRouteArgs{key: $key, userId: $userId, receiverId: $receiverId, projectId: $projectId, receiverName: $receiverName}';
+  }
+}
+
+/// generated route for
+/// [MessageListScreen]
+class MessageListScreenRoute extends PageRouteInfo<void> {
+  const MessageListScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          MessageListScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MessageListScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
