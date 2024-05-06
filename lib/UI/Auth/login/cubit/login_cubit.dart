@@ -8,6 +8,7 @@ import 'package:student_hub/core/models/input/login_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/user.dart';
+import 'package:student_hub/core/socket/socket.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 import 'package:student_hub/UI/Auth/login/cubit/login_state.dart';
 
@@ -21,7 +22,7 @@ class LoginCubit extends WidgetCubit<LoginState> {
   final _authRepository = getIt.get<AuthRepository>();
   final _userRepository = getIt.get<UserRepository>();
   final _localStorage = getIt.get<LocalStorage>();
-
+  final _notiSocket = getIt.get<NotificationSocket>();
   @override
   Future<void> init() async {
 
@@ -66,6 +67,8 @@ class LoginCubit extends WidgetCubit<LoginState> {
           _localStorage.saveString(key: StorageKey.currentRole, value: roles!.first.toString());
         }
         emit(state.copyWith(user: user, isLogin: true));
+        _notiSocket.listenInBackground();
+
       }
     } else {
       final errorDetails = result.error?.response?.data['errorDetails'];

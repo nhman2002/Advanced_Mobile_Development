@@ -173,11 +173,11 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
     final isSuccess = await context.read<ProjectPostCubit>().state.postSuccess;
     final message = await context.read<ProjectPostCubit>().state.message ?? '';
     if (isSuccess) {
-      showSnackBar(context, 'Project posted successfully!');
+      showSnackBarSuccess(context, 'Project posted successfully!');
       context.router.popUntilRoot();
       context.router.replace(const CompanyDashboardWrapperRoute());
     } else {
-      showSnackBar(context, message);
+      showSnackBarError(context, message);
     }
   }
 }

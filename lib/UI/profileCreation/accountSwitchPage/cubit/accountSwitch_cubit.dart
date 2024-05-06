@@ -1,7 +1,10 @@
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/local_notifications/notification_service.dart';
+import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
+import 'package:student_hub/core/socket/socket.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 
 
@@ -13,7 +16,8 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
 
   final _localStorage = getIt.get<LocalStorage>();
-  final _authRepository = getIt.get<AuthRepository>();
+  final _notificationService = getIt.get<NotificationService>();
+  final _notiSocket = getIt.get<NotificationSocket>();
 
   @override
   Future<void> init() async {
@@ -62,7 +66,13 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
 
   Future<void> logout() async {
-    await _localStorage.clear();
     emit(state.copyWith(isLogin: false));
+    await _notiSocket.closeConnection();
+    await _localStorage.clear();
+  }
+
+  Future<void> testNotification() async {
+    await _notificationService.showNotification(0,
+         "Test Notification",  "This is a test notification", "nothing to see here");
   }
 }

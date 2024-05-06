@@ -95,14 +95,14 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
 
   Future<void> postProposal(BuildContext context, String coverLetter, int projectID) async {
     if (coverLetter.isEmpty) {
-      showSnackBar(context, 'Cover letter cannot be empty');
+      showSnackBarWarning(context, 'Cover letter cannot be empty');
       return;
     }
 
     await context.read<ProjectListCubit>().postProposal(projectID, coverLetter);
     context.router.maybePop();
     context.router.replace(const StudentDashBoardWrapperRoute());
-    showSnackBar(context, 'Proposal submitted successfully');
+    showSnackBarSuccess(context, 'Proposal submitted successfully');
   }
 
   @override

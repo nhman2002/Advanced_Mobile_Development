@@ -14,7 +14,6 @@ class MessageDetailScreen extends BaseWidget<ChatCubit, ChatState> {
   final int projectId;
   final String receiverName;
 
-
   const MessageDetailScreen({
     Key? key,
     required this.userId,
@@ -30,7 +29,11 @@ class MessageDetailScreen extends BaseWidget<ChatCubit, ChatState> {
 
   @override
   ChatCubit? provideCubit(BuildContext context) {
-    return ChatCubit(userId: userId, receiverId: receiverId, projectId: projectId, receiverName: receiverName);
+    return ChatCubit(
+        userId: userId,
+        receiverId: receiverId,
+        projectId: projectId,
+        receiverName: receiverName);
   }
 }
 
@@ -43,31 +46,56 @@ class ChatWidget extends StatefulWidget {
 
 class _MessageDetailScreenState extends State<ChatWidget> {
   final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Use a PostFrameCallback to call scrollToBottom after everything is initialized
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //2 seconds delay
+      Future.delayed(Duration(seconds: 2), () {
+        if (mounted) {
+          scrollToBottom();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context.read<ChatCubit>().receiverName),
       body: BlocConsumer<ChatCubit, ChatState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           // Add listener when state.messages is updated, update UI
-          if (state.messageSent == true) {
-            context.read<ChatCubit>().init();
+          if (state.messageReceived == true) {
+            await context.read<ChatCubit>().init();
+            if (_scrollController.position.pixels !=
+                _scrollController.position.maxScrollExtent) {
+              // Scroll to the bottom
+              scrollToBottom();
+            }
           }
         },
         builder: (context, state) {
-          final List<MessageOutput> _messages = state.messages; // Get messages from state
+          final List<MessageOutput> _messages =
+              state.messages; // Get messages from state
           return Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 Expanded(
                   child: ListView.builder(
+                    controller: _scrollController, // Attach scroll controller
+                    reverse:
+                        false, // Reverse the list to show newer messages at the bottom
                     itemCount: _messages.length,
                     itemBuilder: (context, index) {
                       final message = _messages[index];
                       return _buildMessageItem({
-                        'isSender': message.senderId == context.read<ChatCubit>().userId,
+                        'isSender': message.senderId ==
+                            context.read<ChatCubit>().userId,
                         'name': message.senderName,
                         'text': message.content,
                         'time': message.createdAt,
@@ -84,13 +112,25 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     );
   }
 
+  void scrollToBottom() {
+    final bottomOffset = _scrollController.position.maxScrollExtent;
+    _scrollController.animateTo(
+      bottomOffset,
+      duration: Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    );
+  }
+
   Widget _buildMessageItem(Map<String, dynamic> message) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+      alignment:
+          message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: message['isSender']
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         children: [
           if (!message['isSender']) ...[
             // CircleAvatar(
@@ -180,11 +220,11 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     );
   }
 
-  void _sendMessage(String message) {
+  Future<void> _sendMessage(String message) async {
     print('Sending message: $message');
     if (message.isNotEmpty) {
       // Add logic to send message via ChatCubit
-      context.read<ChatCubit>().sendMessage(message);
+      await context.read<ChatCubit>().sendMessage(message);
       _messageController.clear();
     }
   }

@@ -91,10 +91,29 @@ class ShowToastEvent extends NavigationEvent {
   ShowToastEvent(this.message);
 }
 
-class ShowSnackBarEvent extends NavigationEvent {
+class ShowSnackBarErrorEvent extends NavigationEvent {
   String message;
   SnackBarType type;
-  ShowSnackBarEvent(this.message, {this.type = SnackBarType.error});
+  ShowSnackBarErrorEvent(this.message, {this.type = SnackBarType.error});
 }
+
+class ShowSnackBarSuccessEvent extends NavigationEvent {
+  String message;
+  SnackBarType type;
+  ShowSnackBarSuccessEvent(this.message, {this.type = SnackBarType.success});
+}
+
+class ShowSnackBarWarningEvent extends NavigationEvent {
+  String message;
+  SnackBarType type;
+  ShowSnackBarWarningEvent(this.message, {this.type = SnackBarType.warning});
+}
+
+class ShowNotificationEvent extends NavigationEvent {
+  String message;
+  String title;
+  ShowNotificationEvent(this.message, this.title);
+}
+
 
 enum SnackBarType { error, success, warning, info }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/message_model.dart';
@@ -35,7 +37,8 @@ class ChatCubit extends WidgetCubit<ChatState> {
   @override
   Future<void> init() async {
     showLoading();
-    emit(state.copyWith(messageSent: false));
+    // emit(state.copyWith(messageSent: false));
+    emit(state.copyWith(messageReceived: false));
     final result =
         await _messages.getMessagesBetweenUser(receiverId, projectId);
     if (result is DataSuccess) {
@@ -54,8 +57,9 @@ class ChatCubit extends WidgetCubit<ChatState> {
   Future<void> connectSocket() async {
     // Initialize socket with server URL
     socket = IO.io(
-        'http://192.168.1.18:4400',
+        'http://192.168.1.10:4400',
         IO.OptionBuilder()
+            .enableForceNew()
             .setTransports(['websocket'])
             .disableAutoConnect()
             .build());
@@ -68,10 +72,20 @@ class ChatCubit extends WidgetCubit<ChatState> {
       'Authorization': 'Bearer $_accessToken',
     };
 // Connect to the socket.io server
+    print("Connecting to socket of project " + projectId.toString());
     await socket.connect();
     socket.on('RECEIVE_MESSAGE', (data) {
-      print(data);
-      // Update the state with the received message
+  
+  // Extract senderId and receiverId from the received message
+  int senderId = data['notification']['sender']['id'];
+  int reiId = data['notification']['receiver']['id'];
+  List<int> check = <int>[senderId, reiId];
+  List<int> local = <int>[userId, receiverId];
+  // Check ifcheck and local has the same elenments
+  if (check.toSet().difference(local.toSet()).isEmpty) {
+
+    emit(state.copyWith(messageReceived: true));
+  }
     });
     // Listen to socket events
     socket.onAny((String event, data) {
@@ -79,7 +93,7 @@ class ChatCubit extends WidgetCubit<ChatState> {
     });
   }
 
-  void sendMessage(String message) {
+  Future<void> sendMessage(String message) async {
     final form = MessageInput(
       senderId: userId,
       receiverId: receiverId,
@@ -88,6 +102,13 @@ class ChatCubit extends WidgetCubit<ChatState> {
       messageFlag: 0,
     );
     socket.emit('SEND_MESSAGE', form.toJson());
-    emit(state.copyWith(messageSent: true));
+    // emit(state.copyWith(messageSent: true));
   }
-}
+
+  @override
+  Future<void> close() async {
+    print("Closing socket on " + projectId.toString());
+    socket.close();
+    super.close();
+  }
+} 

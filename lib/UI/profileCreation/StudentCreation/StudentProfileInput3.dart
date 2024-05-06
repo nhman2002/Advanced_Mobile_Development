@@ -145,7 +145,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
 
   Future<void> next(BuildContext context) async {
     if (cvPath.isEmpty) {
-      showSnackBar(context, 'Please upload your CV');
+      showSnackBarWarning(context, 'Please upload your CV');
       return;
     }
     context.read<StudentProfileInputCubit>().setCV(cvPath);
@@ -155,7 +155,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
       context.read<StudentProfileInputCubit>().setTranscript(transcriptFile);
     }
     await context.read<StudentProfileInputCubit>().uploadProfile(context);
-      showSnackBar(context, context.read<StudentProfileInputCubit>().state.message!);
+      showSnackBarSuccess(context, context.read<StudentProfileInputCubit>().state.message!);
       //context.router.popUntilRoot();
       context.router.replace(const SwitchAccountPageRoute());
   }

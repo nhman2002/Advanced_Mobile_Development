@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:student_hub/common/config/navigation_event.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/network/network.dart';
@@ -22,6 +26,7 @@ class SplashCubit extends WidgetCubit<SplashState> {
   Future<void> init() async {
     await _handleInitial();
   }
+
 
   Future<void> _handleInitial() async {
     // _localStorage.clear();
@@ -64,4 +69,50 @@ class SplashCubit extends WidgetCubit<SplashState> {
     await _localStorage.clear();
     emit(state.copyWith(isLogin: false));
   }
+
+  late IO.Socket notiSocket;
+
+
+  Future<void> connectSocket(int id) async {
+
+    final accessToken = _localStorage.getString(key: StorageKey.accessToken);
+    // Initialize socket with server URL
+    notiSocket = IO.io(
+      'http://192.168.1.18:4400',
+      IO.OptionBuilder()
+          .setTransports(['websocket'])
+          .disableAutoConnect()
+          .build(),
+    );
+    // notiSocket.io.options?['query'] = {
+          
+    //     };
+
+    print("Opening noti socket connection");
+
+    // Add authorization to header
+    notiSocket.io.options?['extraHeaders'] = {
+      'Authorization': 'Bearer $accessToken',
+    };
+// Connect to the socket.io server
+    notiSocket.connect();
+
+    // Listen to socket events
+    notiSocket.onAny((String event, data) {
+      print('got sth on noti socket ' + event + ' ' + data.toString());
+    });
+
+    // Listen to channel to receive messages
+    notiSocket.on('NOTI_$id', (data) {
+      // ShowSnackBarEvent(data);
+    });
+
+    // Listen for error from socket
+    notiSocket.on('ERROR', (data) => print('Socket Error: $data'));
+  }
+
+  Future<void> closeSocket() async {
+    notiSocket.close();
+  }
+
 }

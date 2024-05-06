@@ -6,7 +6,7 @@ import 'package:student_hub/core/models/output/project_model.dart';
 
 class ChatState extends WidgetState {
   final String? message;
-  final String? messageReceived;
+  final bool? messageReceived;
   final List<MessageOutput> messages;
   final bool? messageSent;
 
@@ -36,13 +36,13 @@ class ChatState extends WidgetState {
   factory ChatState.fromJson(Map<String, dynamic> json) {
     return ChatState(
       message: json['message'] as String?,
-      messageReceived: json['messageReceived'] as String?,
+      messageReceived: json['messageReceived'] as bool?,
     );
   }
 
   ChatState copyWith({
     String? message,
-    String? messageReceived,
+    bool? messageReceived,
     List<MessageOutput>? messages,
     bool? messageSent,
   }) {

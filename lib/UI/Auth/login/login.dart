@@ -117,11 +117,11 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
     final isSuccess = context.read<LoginCubit>().state.isLogin;
     final message = context.read<LoginCubit>().state.message ?? '';
     if (isSuccess) {
-      showSnackBar(context, 'Login successful');
+      showSnackBarSuccess(context, 'Login successful');
       context.router.popUntilRoot();
       context.router.replace(const SwitchAccountPageRoute());
     } else {
-      showSnackBar(context, message);
+      showSnackBarError(context, message);
     }
   }
 }

@@ -150,10 +150,10 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
     final result = await _companyProfileRepository.inputCompanyProfile(form);
     if (result is DataSuccess) {
       _localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
-      showSnackBar(context, 'Company profile created successfully');
+      showSnackBarSuccess(context, 'Company profile created successfully');
       context.router.push(const CompanyDashboardWrapperRoute());
     } else {
-      showSnackBar(context, 'Failed to create company profile');
+      showSnackBarError(context, 'Failed to create company profile');
       context.router.maybePop();
     }
   }

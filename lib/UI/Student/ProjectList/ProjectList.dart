@@ -322,10 +322,10 @@ class _FavoriteIconButtonState extends State<FavoriteIconButton> with SnackBarDe
       onPressed: () {
         if (_isFavorite == false){
           context.read<ProjectListCubit>().addFavoriteProject(widget.projectId);
-          showSnackBar(context, 'Project added to favorites');}
+          showSnackBarSuccess(context, 'Project added to favorites');}
         else{
           context.read<ProjectListCubit>().removeFavoriteProject(widget.projectId);
-          showSnackBar(context, 'Project removed from favorites');}
+          showSnackBarWarning(context, 'Project removed from favorites');}
 
         setState(() {
           _isFavorite = !_isFavorite; // Toggle the favorite state

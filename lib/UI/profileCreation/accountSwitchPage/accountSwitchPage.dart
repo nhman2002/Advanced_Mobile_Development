@@ -8,6 +8,7 @@ import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
+import 'package:student_hub/core/network/network.dart';
 
 @RoutePage()
 class SwitchAccountPage extends BaseWidget<AccountSwitchCubit, AccountSwitchState> {
@@ -33,6 +34,7 @@ class SwitchAccountWidget extends StatefulWidget {
 class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault {
 
   final _localStorage = getIt.get<LocalStorage>();
+  final _networkManager = getIt.get<NetworkManager>();
 
 
 @override
@@ -62,7 +64,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     context.router.push(const CompanyDashboardWrapperRoute());
                   }
                   else
-                    showSnackBar(context, 'Please complete your profile first!');     
+                    showSnackBarWarning(context, 'Please complete your profile first!');     
                 },
                 icon: Icon(
                   Icons.home,
@@ -147,7 +149,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // Add functionality for Settings button                        
+                        testNotification(context);                 
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
@@ -282,7 +284,13 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
     }
   }
   void handleLogout(BuildContext context) {
-    _localStorage.clear();
+    context.read<AccountSwitchCubit>().logout();
     context.router.replace(const MyAppRoute());
+    
+    // _networkManager.closeSocket();
+  }
+
+  void testNotification(BuildContext context) {
+    context.read<AccountSwitchCubit>().testNotification();
   }
 }

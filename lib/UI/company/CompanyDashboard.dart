@@ -431,6 +431,6 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
 
   Future<void> startWorkingOnProject(ProjectOutput project) async {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
-    showSnackBar(context, 'Project started, check active tab for details!');
+    showSnackBarSuccess(context, 'Project started, check active tab for details!');
   }
 }

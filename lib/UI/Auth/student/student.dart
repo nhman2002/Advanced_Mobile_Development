@@ -122,11 +122,11 @@ Future<void> handleSignup(BuildContext context) async {
   final isSuccess = context.read<StudentRegisterCubit>().state.isRegister;
   final message = context.read<StudentRegisterCubit>().state.message ?? '';
   if (isSuccess) {
-    showSnackBar(context, message);
+    showSnackBarSuccess(context, message);
     await Future.delayed(const Duration(seconds: 2));
     context.router.popUntilRoot();
   } else {
-    showSnackBar(context, message);
+    showSnackBarError(context, message);
   }
   }
 

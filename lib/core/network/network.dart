@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:student_hub/common/config/navigation_event.dart';
+import 'package:student_hub/core/local_notifications/notification_service.dart';
 import 'package:student_hub/core/logger/logger.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -6,57 +10,20 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 class NetworkManager {
   NetworkManager.initial() {
     init();
-    // connectSocket();
   }
 
   final LocalStorage _localStorage = LocalStorage.instance;
-
+  final _notificationService = NotificationService();
   final Dio _dio = Dio();
 
   static const int connectTimeout = 60000;
   static const int receiveTimeout = 60000;
 
-  String baseUrl = 'http://192.168.1.18:4400/api';
+  String baseUrl = 'http://192.168.1.10:4400/api';
   String _accessToken = '';
   // String _refreshToken = '';
 
-//   late IO.Socket socket;
 
-
-//   // Method to initialize socket.io connection
-//   void connectSocket() {
-//     // Initialize socket with server URL
-//     socket = IO.io(
-//       'http://192.168.1.18:4400',
-//       IO.OptionBuilder()
-//           .setTransports(['websocket'])
-//           .disableAutoConnect()
-//           .build(),
-//     );
-
-//     print("Connecting to socket.io server");
-
-//     // Add authorization to header
-//     socket.io.options?['extraHeaders'] = {
-//       'Authorization': 'Bearer $_accessToken',
-//     };
-// // Connect to the socket.io server
-//     socket.connect();
-
-//     // Listen to socket events
-//     socket.onConnect((data) => print('Socket Connected'));
-//     socket.onDisconnect((data) => print('Socket Disconnected'));
-//     socket.onConnectError((data) => print('Connect Error: $data'));
-//     socket.onError((data) => print('Error: $data'));
-
-//     // Listen to channel to receive messages
-//     socket.on('RECEIVE_MESSAGE', (data) {
-//       return data;
-//     });
-
-//     // Listen for error from socket
-//     socket.on('ERROR', (data) => print('Socket Error: $data'));
-//   }
 
   Future<void> init() async {
     print('init network manager');
@@ -79,7 +46,6 @@ class NetworkManager {
 
   void updateHeader({String? accessToken}) {
     _dio.options.headers['Authorization'] = 'Bearer $accessToken';
-
   }
 
   void configInterceptors() {

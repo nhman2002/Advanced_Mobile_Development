@@ -1,4 +1,6 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
+import 'package:student_hub/core/local_notifications/notification_service.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/repository/auth.dart';
@@ -11,6 +13,7 @@ import 'package:student_hub/core/repository/techStack.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/repository/profileCompany.dart';
 import 'package:student_hub/core/repository/project.dart';
+import 'package:student_hub/core/socket/socket.dart';
 
 final getIt = GetIt.instance;
 
@@ -27,5 +30,7 @@ Future<void> initializeDependency() async {
     ..registerLazySingleton<SkillSetRepository>(SkillSetRepository.new)
     ..registerLazySingleton<StudentProfileRepository>(StudentProfileRepository.new)
     ..registerLazySingleton<ProposalRepository>(ProposalRepository.new)
-    ..registerLazySingleton<MessageRepository>(MessageRepository.new);
+    ..registerLazySingleton<MessageRepository>(MessageRepository.new)
+    ..registerSingleton<NotificationService>(NotificationService.initial())
+    ..registerLazySingleton<NotificationSocket>(NotificationSocket.new);
 }
