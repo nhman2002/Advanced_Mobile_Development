@@ -104,7 +104,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
                       Colors.black, Colors.grey.shade300),
                   _buildCompanyDashboardItem(Icons.message, 'Message',
                       Colors.white, Colors.blue.shade300),
-                  _buildCompanyDashboardItem(Icons.notifications, 'Alerts',
+                  _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
                       Colors.white, Colors.blue.shade300),
                 ],
               ),
@@ -195,7 +195,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
             // context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
             context.router.push(const StudentSignupRoute());
-          } else if (label == 'Alerts') {
+          } else if (label == 'Notifications') {
             context.router.push(const StudentSignupRoute());
           }
         },

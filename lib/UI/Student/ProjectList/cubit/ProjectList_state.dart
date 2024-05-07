@@ -6,6 +6,7 @@ class ProjectListState extends WidgetState {
   final int clickedProjectId;
   final ProjectOutput? clickedProject;
   final List<ProjectOutput> projectList;
+  final List<ProjectOutput> favoriteProjectList;
   final String? username;
   final String? message;
 
@@ -13,6 +14,7 @@ class ProjectListState extends WidgetState {
     this.clickedProject,
     this.clickedProjectId = -1,
     this.projectList = const [],
+    this.favoriteProjectList = const [],
     this.username,
     this.message,
   });
@@ -22,6 +24,7 @@ class ProjectListState extends WidgetState {
         clickedProject,
         clickedProjectId,
         projectList,
+        favoriteProjectList,
         username,
         message,
       ];
@@ -51,6 +54,7 @@ class ProjectListState extends WidgetState {
     ProjectOutput? clickedProject,
     int? clickedProjectId,
     List<ProjectOutput>? projectList,
+    List<ProjectOutput>? favoriteProjectList,
     String? username,
     String? message,
   }) {
@@ -58,6 +62,7 @@ class ProjectListState extends WidgetState {
       clickedProject: clickedProject ?? this.clickedProject,
       clickedProjectId: clickedProjectId ?? this.clickedProjectId,
       projectList: projectList ?? this.projectList,
+      favoriteProjectList: favoriteProjectList ?? this.favoriteProjectList,
       username: username ?? this.username,
       message: message ?? this.message,
     );

@@ -67,8 +67,9 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
   Future<void> logout() async {
     emit(state.copyWith(isLogin: false));
-    await _notiSocket.closeConnection();
     await _localStorage.clear();
+    await getIt.get<NotificationSocket>().updateToken();
+    await getIt.get<NotificationSocket>().closeIsolate();
   }
 
   Future<void> testNotification() async {

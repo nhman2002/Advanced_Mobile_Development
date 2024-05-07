@@ -104,6 +104,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                       ),
                       IconButton(
                         onPressed: () {
+                          context.read<ProjectListCubit>().initFavoriteProject();
                           context.router.push(const FavoriteProjectPageRoute());
                         },
                         icon: const Icon(Icons.favorite),
@@ -139,7 +140,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                                     Center(
                                       child: isLoading
                                           ? CircularProgressIndicator()
-                                          : Text('No projects found'),
+                                          : Text('No projects found or you have submitted proposals to every existing projects.'),
                                     ),
                                   ],
                                 ),
@@ -167,7 +168,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                     _buildCompanyDashboardItem(
                       Icons.message, 'Message', Colors.white, Colors.blue.shade300),
                     _buildCompanyDashboardItem(
-                      Icons.notifications, 'Alerts', Colors.white, Colors.blue.shade300),
+                      Icons.notifications, 'Notifications', Colors.white, Colors.blue.shade300),
                   ],
                 ),
               ),
@@ -199,7 +200,7 @@ class _StudentProjectList extends State<StudentProjectList> {
             context.router.replace(const StudentDashBoardWrapperRoute());
           } else if (label == 'Message') {
             context.router.replace(const MessageListScreenRoute());
-          } else if (label == 'Alerts') {
+          } else if (label == 'Notifications') {
             context.router.replace(const StudentSignupRoute());
           }
         },
@@ -315,27 +316,36 @@ class _FavoriteIconButtonState extends State<FavoriteIconButton> with SnackBarDe
   bool _isFavorite = false;
 
   @override
+  void initState() {
+    super.initState();
+    // Check if the project is in the list of favorite projects
+    _isFavorite = context.read<ProjectListCubit>().isProjectFavorite(widget.projectId);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProjectListCubit, ProjectListState>(
       builder: (context, state) {
-    return IconButton(
-      onPressed: () {
-        if (_isFavorite == false){
-          context.read<ProjectListCubit>().addFavoriteProject(widget.projectId);
-          showSnackBarSuccess(context, 'Project added to favorites');}
-        else{
-          context.read<ProjectListCubit>().removeFavoriteProject(widget.projectId);
-          showSnackBarWarning(context, 'Project removed from favorites');}
+        return IconButton(
+          onPressed: () {
+            if (_isFavorite == false) {
+              context.read<ProjectListCubit>().addFavoriteProject(widget.projectId);
+              showSnackBarSuccess(context, 'Project added to favorites');
+            } else {
+              context.read<ProjectListCubit>().removeFavoriteProject(widget.projectId);
+              showSnackBarWarning(context, 'Project removed from favorites');
+            }
 
-        setState(() {
-          _isFavorite = !_isFavorite; // Toggle the favorite state
-        });
+            setState(() {
+              _isFavorite = !_isFavorite; // Toggle the favorite state
+            });
+          },
+          icon: Icon(
+            _isFavorite ? Icons.favorite : Icons.favorite_border,
+            color: Colors.black,
+          ),
+        );
       },
-      icon: Icon(
-        _isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.black, 
-      ),
     );
-  });
   }
 }

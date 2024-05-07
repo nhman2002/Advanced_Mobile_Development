@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:student_hub/UI/home.dart';
@@ -17,6 +18,9 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerDelegate: router.delegate(),
       routeInformationParser: router.defaultRouteParser(),
+      localizationsDelegates: context.localizationDelegates,
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
     );
   }
 }

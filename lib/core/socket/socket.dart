@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:isolate';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:student_hub/common/storage/local_storage.dart';
@@ -16,15 +17,15 @@ class NotificationSocket {
         .disableAutoConnect()
         .build(),
   );
+
+
   final _notificationService = getIt.get<NotificationService>();
   final _localStorage = getIt.get<LocalStorage>();
-  final _accessToken = 
+  var _accessToken =
       getIt<LocalStorage>().getString(key: StorageKey.accessToken);
-  final _userId = getIt<LocalStorage>().getString(key: StorageKey.userID);
-    
-    
-  Future<void> _connectAndListen(SendPort sendport) async {
+  var _userId = getIt<LocalStorage>().getString(key: StorageKey.userID);
 
+  Future<void> _connectAndListen(SendPort sendPort) async {
     print("Connecting to notification socket server");
 
     socket.io.options?['extraHeaders'] = {
@@ -34,11 +35,12 @@ class NotificationSocket {
     await socket.connect();
 
     socket.onConnect((data) {
-      print('Connected to notification socket');
+      print('Connected to notification socket of user $_userId');
     });
 
     socket.onDisconnect((data) {
-      print('Disconnected from notification socket');
+      print('disconnect from socket');
+      sendPort.send(null);
     });
 
     socket.on('NOTI_$_userId', (data) async {
@@ -52,29 +54,43 @@ class NotificationSocket {
         body: content,
         id: id,
       );
-      sendport.send(message);
+      sendPort.send(message);
+    });
 
-     });
   }
 
+  Future<void> updateToken() async {
+    _accessToken = await _localStorage.getString(key: StorageKey.accessToken);
+    _userId = await _localStorage.getString(key: StorageKey.userID);
+    }
+
   Future<void> listenInBackground() async {
+
+    //check if isolate already running
+        final receivePort = ReceivePort();
     // final completer = Completer<OutputType>();
-    final receivePort = ReceivePort();
     final errorPort = ReceivePort()
       ..listen((message) {
         throw Exception(message);
       });
-    await Isolate.spawn(_connectAndListen, receivePort.sendPort
-        );
-    receivePort.listen((message) { 
-      _notificationService.showNotification(message.id, message.title, message.body, '');
-      });
+      //spawn named isolate
 
+    IsolateNameServer.registerPortWithName(receivePort.sendPort, 'notificationIsolate');
+    await Isolate.spawn(_connectAndListen, receivePort.sendPort, errorsAreFatal: true, onError: errorPort.sendPort);
+    receivePort.listen((message) {
+      if (message != null) {
+        _notificationService.showNotification(
+            message.id, message.title, message.body, '');
+      } else {
+        print('message is null');
+        receivePort.close();
+      }
+    });
   }
 
-  Future<void> closeConnection() async {
-    socket.close();
-    Isolate.current.kill();
+  Future<void> closeIsolate() async{
+    bool res = IsolateNameServer.removePortNameMapping('notificationIsolate');
+    print('Isolate removed: $res');
   }
 
 }

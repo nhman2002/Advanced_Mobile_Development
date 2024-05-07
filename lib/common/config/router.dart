@@ -24,7 +24,7 @@ import 'package:student_hub/UI/Project/ProjectPost/ProjectPost4.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPostWrapper.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/StudentProfileInput2.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInputWrapper.dart';
-import 'package:student_hub/UI/profileCreation/accountSwitchPage/accountSwitchPage.dart';
+import 'package:student_hub/UI/profileCreation/accountSwitchPage/AccountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/UI/Auth/login/login.dart';
 import 'package:student_hub/UI/Auth/signup/signup.dart';
@@ -33,6 +33,7 @@ import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.da
 import 'package:student_hub/UI/company/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
+import 'package:student_hub/UI/profileCreation/settingScreen/SettingScreen.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput1.dart';
@@ -43,17 +44,17 @@ part 'router.gr.dart';
 @AutoRouterConfig(
   replaceInRouteName: 'Page,Route,Screen',
 )
-
 class MessageDetailScreenArguments {
   final int userId;
   final int receiverId;
 
-  MessageDetailScreenArguments({required this.userId, required this.receiverId});
+  MessageDetailScreenArguments(
+      {required this.userId, required this.receiverId});
 }
+
 class AppRouter extends _$MessageDetailScreenArguments {
   AppRouter({required GlobalKey<NavigatorState> navigatorKey})
       : super(navigatorKey: navigatorKey);
-  
 
   @override
   RouteType get defaultRouteType => const RouteType.cupertino();
@@ -68,8 +69,10 @@ class AppRouter extends _$MessageDetailScreenArguments {
             children: [
               CustomRoute(
                   page: SplashScreenRoute.page, initial: true, path: ''),
-              CustomRoute(page: MyAppRoute.page, path: 'home',
-              transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: MyAppRoute.page,
+                  path: 'home',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
                   page: LoginPageRoute.page,
                   path: 'login',
@@ -91,27 +94,30 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   path: 'CompanyDashBoardWrapper',
                   children: [
                     CustomRoute(
-                        page: CompanyDashboardRoute.page,
-                        initial: true,
-                        path: 'companyDashBoard',),
+                      page: CompanyDashboardRoute.page,
+                      initial: true,
+                      path: 'companyDashBoard',
+                    ),
                     CustomRoute(
-                        page: CompanyProjectProposalsRoute.page,
-                        path: 'companyProjectDetail',),
+                      page: CompanyProjectProposalsRoute.page,
+                      path: 'companyProjectDetail',
+                    ),
                     CustomRoute(
-                        page: CompanyProjectDetailRoute.page,
-                        path: 'companyProjectDetail',),
+                      page: CompanyProjectDetailRoute.page,
+                      path: 'companyProjectDetail',
+                    ),
                     CustomRoute(
-
-                        page: CompanyProjectHiredRoute.page,
-                        path: 'companyProjectHired',),
+                      page: CompanyProjectHiredRoute.page,
+                      path: 'companyProjectHired',
+                    ),
                     CustomRoute(
-
-                        page: CompanyProjectMessageRoute.page,
-                        path: 'companyProjectMessage',),
+                      page: CompanyProjectMessageRoute.page,
+                      path: 'companyProjectMessage',
+                    ),
                   ]),
-                    
-                        // transitionsBuilder: TransitionsBuilders.fadeIn),
-    
+
+              // transitionsBuilder: TransitionsBuilders.fadeIn),
+
               CustomRoute(
                   page: CompanyWelcomeRouteRoute.page,
                   path: 'companyWelcome',
@@ -124,12 +130,15 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   page: CompanyProfileEditRoute.page,
                   path: 'companyProfileEdit',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
-
               CustomRoute(
-                  page: SwitchAccountPageRoute.page,
-                  path: 'switchAccount',
-                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                page: SwitchAccountPageRoute.page,
+                path: 'switchAccount',
+                transitionsBuilder: TransitionsBuilders.fadeIn,
               ),
+              AutoRoute(
+                  page: SettingsScreenRoute.page,
+                  path: 'settingScreen',
+                  ),
               CustomRoute(
                   page: StudentProfileInputWrapperRoute.page,
                   path: 'studentProfileInput',
@@ -147,8 +156,7 @@ class AppRouter extends _$MessageDetailScreenArguments {
                         page: StudentProfileInputCVRoute.page,
                         path: 'studentProfileInput3',
                         transitionsBuilder: TransitionsBuilders.fadeIn),
-                  ]
-              ),
+                  ]),
 
               CustomRoute(
                   page: ProjectFilterRoute.page,
@@ -179,27 +187,29 @@ class AppRouter extends _$MessageDetailScreenArguments {
                       transitionsBuilder: TransitionsBuilders.fadeIn,
                     ),
                   ]),
-            CustomRoute(
-                page: ProjectListWrapperRoute.page,
-                path: 'projectListWrapper',
-                transitionsBuilder: TransitionsBuilders.fadeIn,
-                children: [
+              CustomRoute(
+                  page: ProjectListWrapperRoute.page,
+                  path: 'projectListWrapper',
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  children: [
                     AutoRoute(
                         page: StudentProjectListRoute.page,
                         initial: true,
                         path: 'projectList'),
                     AutoRoute(
-                        page: StudentProjectDetailRoute.page, path: 'projectDetail'),
+                        page: StudentProjectDetailRoute.page,
+                        path: 'projectDetail'),
                     AutoRoute(
-                        page: FavoriteProjectPageRoute.page, path: 'projectPage'),
+                        page: FavoriteProjectPageRoute.page,
+                        path: 'projectPage'),
                     AutoRoute(
                         page: CoverLetterPageRoute.page, path: 'projectCover'),
                   ]),
               CustomRoute(
-                page: StudentDashBoardWrapperRoute.page,
-                path: 'studentDashBoardWrapper',
-                transitionsBuilder: TransitionsBuilders.fadeIn,
-                children: [
+                  page: StudentDashBoardWrapperRoute.page,
+                  path: 'studentDashBoardWrapper',
+                  transitionsBuilder: TransitionsBuilders.fadeIn,
+                  children: [
                     CustomRoute(
                         page: StudentDashBoardRoute.page,
                         initial: true,
@@ -208,17 +218,17 @@ class AppRouter extends _$MessageDetailScreenArguments {
                     CustomRoute(
                         page: StudentWorkingProjectsRoute.page,
                         path: 'studentDashBoardWorking',
-                        transitionsBuilder: TransitionsBuilders.fadeIn),   
-                ]),        
+                        transitionsBuilder: TransitionsBuilders.fadeIn),
+                  ]),
               CustomRoute(
                   page: MessageDetailScreenRoute.page,
                   path: 'messageScreen',
-                  transitionsBuilder: TransitionsBuilders.fadeIn),   
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
                   page: MessageListScreenRoute.page,
                   path: 'messageList',
-                  transitionsBuilder: TransitionsBuilders.fadeIn),                        
-             // CustomRoute(
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              // CustomRoute(
               //     page: StudentProfileCreationRoute.page, path: 'studentProfileCreation'),
               // CustomRoute(
               //     page: CompanyProfileInputRoute.page, path: 'companyProfileInput'),

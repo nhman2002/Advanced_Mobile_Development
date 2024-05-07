@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:student_hub/common/config/router.dart';
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SizedBox(height: 20),
                 Text(
-                  'Build your product with high-skilled student\n',
+                  "home_title1".tr(),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 20,
@@ -65,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '\nFind and onboard best-skilled student for your product. Student works to gain experience & skills from real-world projects \n',
+                  "home_title2".tr(),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
@@ -86,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text('Student'),
                 ),
                 Text(
-                  '\n\nStudentHub is a university marketplace to connect high-skilled student and company on a real-world project',
+                  "home_title3".tr(),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.white),
                 ),

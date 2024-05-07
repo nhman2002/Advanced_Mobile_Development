@@ -95,7 +95,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
                       Colors.white, Colors.blue.shade300),
                   _buildCompanyDashboardItem(Icons.message, 'Message',
                       Colors.black, Colors.grey.shade300),
-                  _buildCompanyDashboardItem(Icons.notifications, 'Alerts',
+                  _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
                       Colors.white, Colors.blue.shade300),
                 ],
               ),
@@ -190,7 +190,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
             context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
             // context.router.push(const MessageListScreenRoute());
-          } else if (label == 'Alerts') {
+          } else if (label == 'Notifications') {
             context.router.push(const StudentSignupRoute());
           }
         },

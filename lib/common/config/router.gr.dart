@@ -160,6 +160,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const ProjectPosting4(),
       );
     },
+    SettingsScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: SettingsScreen(),
+      );
+    },
     SignupPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -605,6 +611,20 @@ class ProjectPosting4Route extends PageRouteInfo<void> {
         );
 
   static const String name = 'ProjectPosting4Route';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [SettingsScreen]
+class SettingsScreenRoute extends PageRouteInfo<void> {
+  const SettingsScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

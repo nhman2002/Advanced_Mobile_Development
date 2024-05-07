@@ -35,24 +35,24 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
 
-
+    await initFavoriteProject();
 
     final result = await _project.getAllProjects();
-    if (result is DataSuccess) {
-      final project = result.data?.projectOutputList;
-      emit(state.copyWith(projectList: project));
-    }
-    else {
-      emit(state.copyWith(projectList: null));
-    }
+    // if (result is DataSuccess) {
+    final project = result.data?.projectOutputList;
+      // emit(state.copyWith(projectList: project));
+    // }
+    // else {
+    //   emit(state.copyWith(projectList: null));
+    // }
     
     final result1 = await _proposal.getAllStudentProposals(studentID ?? 0);
     if (result1 is DataSuccess) {
       //remove all project have projectid in proposal from project list
       final proposal = result1.data;
-      final projectList = state.projectList;
+      final projectList = project;
       final proposalProjectIds = proposal!.map((p) => p.projectId).toList();
-      final filteredProjectList = projectList.where((project) => !proposalProjectIds.contains(project.projectId)).toList();
+      final filteredProjectList = projectList!.where((project) => !proposalProjectIds.contains(project.projectId)).toList();
       emit(state.copyWith(projectList: filteredProjectList));
       }
     hideLoading();
@@ -82,7 +82,7 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     final result = await _favorite.favoriteProject(int.parse(studentID!), form);
     if (result is DataSuccess) {
       final project = result.data;
-      emit(state.copyWith(clickedProject: project, message: 'Project added to favorites'));
+      emit(state.copyWith(message: 'Project added to favorites'));
     }
     else {
       emit(state.copyWith(clickedProject: null));
@@ -92,6 +92,18 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     }
   }
 
+  bool isProjectFavorite(int id)  {
+    //check if project is in favorite list
+    final favorite = state.favoriteProjectList;
+    if (favorite != null) {
+      final isFavorite = favorite.any((element) => element.projectId == id);
+      return isFavorite;
+    }
+    return false;
+
+    
+  }
+
   Future<void> removeFavoriteProject(int id) async {
     final studentID = _localStorage.getString(key: StorageKey.studentID);
     final form = FavoriteProjectForm().copyWith(projectId: id, disableFlag: 1);
@@ -99,13 +111,25 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     final result = await _favorite.favoriteProject(int.parse(studentID!), form);
     if (result is DataSuccess) {
       final project = result.data;
-      emit(state.copyWith(clickedProject: project, message: 'Project removed from favorites'));
+      emit(state.copyWith(message: 'Project removed from favorites'));
     }
     else {
       emit(state.copyWith(clickedProject: null));
       final error = result.error?.response?.data['errorDetails'];
       final errorMessage = error is List ? error.join(", ") : error as String?;
       emit(state.copyWith(message: errorMessage));    
+    }
+  }
+
+  Future<void> initFavoriteProject() async{
+    final studentID = _localStorage.getString(key: StorageKey.studentID);
+    final result = await _favorite.getFavoriteProjects(int.parse(studentID!));
+    if (result is DataSuccess) {
+      final favoriteProjects = result.data?.projectOutputList;
+      emit(state.copyWith(favoriteProjectList: favoriteProjects));
+    }
+    else {
+      emit(state.copyWith(favoriteProjectList: null));
     }
   }
 

@@ -43,8 +43,8 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
 
     return BlocBuilder<AccountSwitchCubit, AccountSwitchState>(
       builder: (context, state) {
-        final username = _localStorage.getString(key: StorageKey.userName)!;
-        final userRoles = _localStorage.getString(key: StorageKey.userRoles)!;
+        final username = _localStorage.getString(key: StorageKey.userName) ?? '';
+        final userRoles = _localStorage.getString(key: StorageKey.userRoles) ?? '';
         final hasCompanyProfile = state.hasCompanyProfile;
         final hasStudentProfile = state.hasStudentProfile;
         final isStudent = state.isStudent;
@@ -149,7 +149,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        testNotification(context);                 
+                        gotoSetting(context);            
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
@@ -283,11 +283,15 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
       );
     }
   }
-  void handleLogout(BuildContext context) {
-    context.read<AccountSwitchCubit>().logout();
+  void handleLogout(BuildContext context) async {
+    await context.read<AccountSwitchCubit>().logout();
     context.router.replace(const MyAppRoute());
     
     // _networkManager.closeSocket();
+  }
+
+  void gotoSetting(BuildContext context) {
+    context.router.push(const SettingsScreenRoute());
   }
 
   void testNotification(BuildContext context) {

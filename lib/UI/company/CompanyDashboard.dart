@@ -38,7 +38,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
             actions: [
               IconButton(
                 onPressed: () {
-                  context.router.push(const SwitchAccountPageRoute());
+                  context.router.replace(const SwitchAccountPageRoute());
                 },
                 icon: Icon(
                   Icons.account_circle,
@@ -182,7 +182,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                         Colors.black, Colors.grey.shade300),
                     _buildCompanyDashboardItem(Icons.message, 'Message',
                         Colors.white, Colors.blue.shade300),
-                    _buildCompanyDashboardItem(Icons.notifications, 'Alerts',
+                    _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
                         Colors.white, Colors.blue.shade300),
                   ],
                 ),
@@ -405,7 +405,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
             context.router.push(const StudentSignupRoute());
           } else if (label == 'Message') {
             context.router.push(const MessageListScreenRoute());
-          } else if (label == 'Alerts') {
+          } else if (label == 'Notifications') {
             context.router.push(const StudentSignupRoute());
           }
         },

@@ -92,7 +92,7 @@ abstract class WidgetCubit<State extends WidgetState> extends Cubit<State> {
   //   }
   // }
 
-  void showSnackBar(String message,
+  void showSnackBarError(String message,
       {SnackBarType snackBarType = SnackBarType.error}) {
     navigationController?.add(ShowSnackBarErrorEvent(message, type: snackBarType));
   }

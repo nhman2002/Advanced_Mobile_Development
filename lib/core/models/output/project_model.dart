@@ -187,7 +187,19 @@ class ProjectOutputList{
         projectOutputList: (json['result'] as List).map((e) => ProjectOutput.fromJson(e)).toList(),
     );
   }
+  factory ProjectOutputList.fromJson2(Map<String, dynamic> json) {
+    final List<dynamic>? resultList = json['result'];
 
+    if (resultList == null) {
+      return ProjectOutputList(projectOutputList: []);
+    }
+
+    final List<ProjectOutput> projectList = resultList
+        .map((result) => ProjectOutput.fromJson(result['project']))
+        .toList();
+
+    return ProjectOutputList(projectOutputList: projectList);
+  }
   //to a list of projects
   List<ProjectOutput> toListProjectOutput() {
     return projectOutputList;

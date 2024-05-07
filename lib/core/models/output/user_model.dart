@@ -472,3 +472,32 @@ class CompanyProfile {
         size: size ?? this.size,
       );
 }
+
+class Message extends BaseModel {
+  final String? message;
+
+  Message({
+    this.message,
+  });
+
+  Message copyWith({
+    String? message,
+  }) =>
+      Message(
+        message: message ?? this.message,
+      );
+
+  @override
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      message: json['message'] as String?,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'message': message,
+    };
+  }
+  }
