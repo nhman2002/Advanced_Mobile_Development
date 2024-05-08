@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -57,10 +58,10 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton('Proposals', Colors.white, true),
-                    _buildProjectSectionButton('Detail', Colors.black, false),
-                    _buildProjectSectionButton('Message', Colors.black, false),
-                    _buildProjectSectionButton('Hired', Colors.black, false),
+                    _buildProjectSectionButton("companyprojecthired_company1".tr(), Colors.white, true),
+                    _buildProjectSectionButton("companyprojecthired_company2".tr(), Colors.black, false),
+                    _buildProjectSectionButton("companyprojecthired_company3".tr(), Colors.black, false),
+                    _buildProjectSectionButton("companyprojecthired_company4".tr(), Colors.black, false),
                   ],
                 ),
                 SizedBox(height: 20),

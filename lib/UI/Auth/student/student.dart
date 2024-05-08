@@ -60,14 +60,14 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
-                labelText: 'Full Name',
+                labelText: "student_auth5".tr(),
               ),
             ),
             SizedBox(height: 10),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'Email/Username',
+                labelText: "student_auth6".tr(),
               ),
             ),
             SizedBox(height: 10),
@@ -75,7 +75,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: "student_auth7".tr(),
               //TODO: Add a confirm password field
               ),
             ),

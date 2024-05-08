@@ -72,7 +72,7 @@ class _SignupPageState extends State<SignupPage> {
                     : Colors.grey.shade300,
                 child: Center(
                   child: Text(
-                    'I am a company, find engineers for projects',
+                    "signup_auth6".tr(),
                     style: TextStyle(
                       color: _selectedRole == 'company'
                           ? Colors.white

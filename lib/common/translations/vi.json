@@ -27,11 +27,16 @@
     "signup_auth3": "Hãy lựa chọn vai trò",
     "signup_auth4": "Bạn cần lựa chọn vai trò để tiếp tục",
     "signup_auth5": "Tạo tài khoản",
+    "signup_auth6": "Tôi là công ty, tìm kỹ sư cho dự án",
+
 
     "student_auth1": "Đăng kí cho Sinh viên",
     "student_auth2": "Tôi đồng ý với các điều khoản và điều kiện của Student Hub",
     "student_auth3": "Đăng kí",
     "student_auth4": "Bạn đang tìm kiếm kĩ sư? Đăng ký cho Công ty",
+    "student_auth5": "Tên đầy đủ",
+    "student_auth6": "Email/Tên đăng nhập",
+    "student_auth7": "Mật khẩu",
 
     "videocall_chat1": "Gọi video",
     "videocall_chat2": "Video sẽ được hiển thị ở đây",
@@ -40,8 +45,8 @@
     "companydashboard_company2": "Hãy bắt đầu",
     "companydashboard_company3": "Đăng tuyển",
     "companydashboard_company4": "Tất cả dự án",
-    "companydashboard_company5": "Active ",
-    "companydashboard_company6": "Archived ",
+    "companydashboard_company5": "Đang hoạt động ",
+    "companydashboard_company6": "Đã lưu ",
     "companydashboard_company7": "Chào mừng ",
     "companydashboard_company8": "Hãy bắt đầu với bài đăng dự án đầu tiên của bạn",
     "companydashboard_company9": "Đề xuất: ",
@@ -54,6 +59,11 @@
     "companydashboard_company16": "Chỉnh sửa bài đăng",
     "companydashboard_company17": "Xóa bài đăng",
     "companydashboard_company18": "Bắt đầu tham gia dự án",
+
+    "companyprojecthired_company1": "Đề xuất",
+    "companyprojecthired_company2": "Mô tả",
+    "companyprojecthired_company3": "Tin nhắn",
+    "companyprojecthired_company4": "Đã thuê",
 
     "companyprojectdetail_company1": "Không có mô tả",
     "companyprojectdetail_company2": "Phạm vi dự án:",

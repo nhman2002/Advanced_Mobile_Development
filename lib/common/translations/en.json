@@ -27,11 +27,15 @@
     "signup_auth3": "Please select a role",
     "signup_auth4": "You need to select a role to continue",
     "signup_auth5": "Create Account",
+    "signup_auth6": "I am a company, find engineers for projects",
 
     "student_auth1": "Sign up as Student",
     "student_auth2": "I agree to the terms and conditions of Student Hub",
     "student_auth3": "Sign Up",
     "student_auth4": "Looking for engineers? Sign up as a company",
+    "student_auth5": "Full Name",
+    "student_auth6": "Email/Username",
+    "student_auth7": "Password",
 
     "videocall_chat1": "Video call",
     "videocall_chat2": "Video will be displayed here",
@@ -54,6 +58,11 @@
     "companydashboard_company16": "Edit Posting",
     "companydashboard_company17": "Delete Posting",
     "companydashboard_company18": "Start Working this Project",
+
+    "companyprojecthired_company1": "Proposals",
+    "companyprojecthired_company2": "Detail",
+    "companyprojecthired_company3": "Message",
+    "companyprojecthired_company4": "Hired",
 
     "companyprojectdetail_company1": "No Description",
     "companyprojectdetail_company2": "Project scope:",
