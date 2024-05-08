@@ -72,11 +72,11 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
             Spacer(),
             Column(
               children: [
-                _buildRadioOption(1, "It's just me"),
-                _buildRadioOption(2, "2-9 employees"),
-                _buildRadioOption(3, "10-99 employees"),
-                _buildRadioOption(4, "100-1000 employees"),
-                _buildRadioOption(5, "More than 1000 employees"),
+                _buildRadioOption(1, "companyprofileinput_ProfileCreation4".tr()),
+                _buildRadioOption(2, "companyprofileinput_ProfileCreation5".tr()),
+                _buildRadioOption(3, "companyprofileinput_ProfileCreation6".tr()),
+                _buildRadioOption(4, "companyprofileinput_ProfileCreation7".tr()),
+                _buildRadioOption(5, "companyprofileinput_ProfileCreation8".tr()),
               ],
             ),
             SizedBox(height: 20),
