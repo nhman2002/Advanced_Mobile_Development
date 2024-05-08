@@ -13,6 +13,8 @@ import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class CompanyDashboard extends StatefulWidget {
@@ -58,8 +60,8 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   children: [
                     Text(
                       projectList.isNotEmpty
-                          ? 'Your projects'
-                          : 'Let\'s get started',
+                          ? "companydashboard_company1".tr()
+                          : "companydashboard_company2".tr(),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -71,7 +73,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                         print('Post a job');
                         context.router.push(const ProjectPostWrapperRoute());
                       },
-                      child: Text('Post a job'),
+                      child: Text("companydashboard_company3".tr()),
                     ),
                   ],
                 ),
@@ -93,7 +95,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                             padding: EdgeInsets.all(0.0),
                             color: Colors.blue,
                             child: Text(
-                              'All Projects',
+                              "companydashboard_company4".tr(),
                               style: TextStyle(
                                 color: Colors.black,
                               ),
@@ -110,7 +112,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                             // Add onPressed logic here
                             print('Active pressed');
                           },
-                          child: Text('Active '),
+                          child: Text("companydashboard_company5".tr()),
                         ),
                         Container(
                           height: 20,
@@ -122,7 +124,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                             // Add onPressed logic here
                             print('Archived pressed');
                           },
-                          child: Text('Archived '),
+                          child: Text("companydashboard_company6".tr()),
                         ),
                       ],
                     ),
@@ -132,7 +134,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   Column(
                     children: [
                       Text(
-                        'Welcome ' +
+                        "companydashboard_company7".tr() +
                             _localStorage.getString(key: StorageKey.userName)!,
                         style: TextStyle(
                           fontSize: 20,
@@ -140,7 +142,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                         ),
                       ),
                       Text(
-                        "Let's get start with your first project post",
+                        "companydashboard_company8".tr(),
                         style: TextStyle(
                           fontSize: 16,
                         ),
@@ -272,9 +274,9 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Proposals: ${project.countProposal}'),
-                Text('Messages: ${project.countMessages}'),
-                Text('Hired: ${project.countHired}'),
+                Text("companydashboard_company9".tr() + '${project.countProposal}'),
+                Text("companydashboard_company10".tr() + '${project.countMessages}'),
+                Text("companydashboard_company11".tr() + '${project.countHired}'),
               ],
             ),
           ),
@@ -295,7 +297,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.list),
                 title: Text(
-                  'View Proposals',
+                  "companydashboard_company12".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -307,7 +309,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.message),
                 title: Text(
-                  'View Messages',
+                  "companydashboard_company13".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -319,7 +321,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.work),
                 title: Text(
-                  'View Hired',
+                  "companydashboard_company14".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -332,7 +334,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.remove_red_eye),
                 title: Text(
-                  'View job posting',
+                  "companydashboard_company15".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -344,7 +346,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.edit),
                 title: Text(
-                  'Edit Posting',
+                  "companydashboard_company16".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -356,7 +358,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.delete),
                 title: Text(
-                  'Delete Posting',
+                  "companydashboard_company17".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
@@ -369,7 +371,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ListTile(
                 leading: Icon(Icons.play_arrow),
                 title: Text(
-                  'Start Working This Project',
+                  "companydashboard_company18".tr(),
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {

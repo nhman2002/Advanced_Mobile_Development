@@ -5,6 +5,8 @@ import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart'
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class ProjectPosting2 extends StatefulWidget  {
@@ -25,7 +27,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Post - Step 2'),
+        title: Text("projectpost2_project1".tr()),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -33,19 +35,19 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "2/4    Next, estimate the scope of your job",
+              "projectpost2_project2".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
-            const Text(
-              "Consider the size of your project and the timeline",
+            Text(
+              "projectpost2_project3".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 16.0),
             ),
             const SizedBox(height: 16.0),
             Text(
-              "How long will your project take ?",
+              "projectpost2_project4".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
@@ -53,7 +55,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
             Column(
               children: [
                 CheckboxListTile(
-                  title: Text('Less than 1 month'),
+                  title: Text("projectpost2_project5".tr()),
                   value: selectedOptions[0],
                   onChanged: (value) {
                     setState(() {
@@ -72,7 +74,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
                 CheckboxListTile(
-                  title: Text('1 to 3 months'),
+                  title: Text("projectpost2_project6".tr()),
                   value: selectedOptions[1],
                   onChanged: (value) {
                     setState(() {
@@ -91,7 +93,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
                 CheckboxListTile(
-                  title: Text('3 to 6 months'),
+                  title: Text("projectpost2_project7".tr()),
                   value: selectedOptions[2],
                   onChanged: (value) {
                     setState(() {
@@ -110,7 +112,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
                 CheckboxListTile(
-                  title: Text('More than 6 months'),
+                  title: Text("projectpost2_project8".tr()),
                   value: selectedOptions[3],
                   onChanged: (value) {
                     setState(() {
@@ -140,7 +142,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                   : SizedBox(),
             ),
             Text(
-              "How many students do you want for this project ?",
+              "projectpost2_project9".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
@@ -154,7 +156,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                     color: const Color(0xFF008ABD),
                   ),
                 ),
-                hintText: 'Number of students',
+                hintText: "projectpost2_project11".tr(),
               ),
               onChanged: (value) {
                 setState(() {
@@ -184,10 +186,10 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                     } else {
                       setState(() {
                         errorMessage = selectedOptions.contains(true)
-                            ? "Please choose a project time"
+                            ? "projectpost2_project12".tr()
                             : '';
                         errorMessage2 = studentNum == 0
-                            ? "Please fill this field!"
+                            ? "projectpost2_project13".tr()
                             : '';
                       });
                     }
@@ -200,7 +202,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Next: Description'),
+                  child: Text("projectpost2_project10".tr()),
                 ),
               ),
             ),

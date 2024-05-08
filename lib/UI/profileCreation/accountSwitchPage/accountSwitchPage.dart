@@ -9,6 +9,8 @@ import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/network/network.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class SwitchAccountPage extends BaseWidget<AccountSwitchCubit, AccountSwitchState> {
@@ -93,13 +95,13 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     ),
                     title: Text(username),
                     subtitle: isCompany == true ? Text(
-                      'Company',
+                      "accountSwitchPage_ProfileCreation1".tr(),
                       style: TextStyle(
                         fontSize: 14.0,
                         color: Colors.grey,
                       ),
                     ): Text(
-                      'Student',
+                      "accountSwitchPage_ProfileCreation2".tr(),
                       style: TextStyle(
                         fontSize: 14.0,
                         color: Colors.grey,
@@ -121,7 +123,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                               color: Colors.black,
                               size: 40.0,
                             ),
-                            title: isCompany == true ? Text(username+' Student'): Text(username+' Company'),
+                            title: isCompany == true ? Text(username+' '+"accountSwitchPage_ProfileCreation2".tr()): Text(username+' '+"accountSwitchPage_ProfileCreation1".tr()),
                           ),
                         ],
                       ),
@@ -140,7 +142,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                       ),
                       child: ListTile(
                         leading: Icon(Icons.person, color: Colors.black),
-                        title: Text('Profiles'),
+                        title: Text("accountSwitchPage_ProfileCreation3".tr()),
                       ),
                     ),
                     Divider(
@@ -157,7 +159,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                       ),
                       child: ListTile(
                         leading: Icon(Icons.settings, color: Colors.black),
-                        title: Text('Settings'),
+                        title: Text("accountSwitchPage_ProfileCreation4".tr()),
                       ),
                     ),
                     Divider(
@@ -175,7 +177,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                       ),
                       child: ListTile(
                         leading: Icon(Icons.logout, color: Colors.black),
-                        title: Text('Log out'),
+                        title: Text("accountSwitchPage_ProfileCreation5".tr()),
                       ),
                     ),
                   ],
@@ -228,7 +230,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
             color: Colors.black,
             size: 40.0,
           ),
-          title: Text(roles.first == 0 ? 'Student' : 'Company'),
+          title: Text(roles.first == 0 ? "accountSwitchPage_ProfileCreation2".tr() : "accountSwitchPage_ProfileCreation1".tr()),
         ),
       );
     } else {
@@ -243,9 +245,9 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
           ),
           title: Text('Hai Pham'),
           subtitle: Text(
-            roles.contains(0) && roles.contains(1) ? 'Student, Company' : 
-            roles.contains(0) ? 'Student' : 
-            'Company',
+            roles.contains(0) && roles.contains(1) ? "accountSwitchPage_ProfileCreation6".tr() : 
+            roles.contains(0) ? "accountSwitchPage_ProfileCreation2".tr() : 
+            "accountSwitchPage_ProfileCreation1".tr(),
             style: TextStyle(
               fontSize: 14.0,
               color: Colors.grey,
@@ -267,9 +269,9 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     color: Colors.black,
                     size: 40.0,
                   ),
-                  title: Text('Hai Pham Student'),
+                  title: Text("accountSwitchPage_ProfileCreation7".tr()),
                   subtitle: Text(
-                    'Student',
+                    "accountSwitchPage_ProfileCreation2".tr(),
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.grey,

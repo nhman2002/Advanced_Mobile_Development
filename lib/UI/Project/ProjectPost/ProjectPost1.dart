@@ -5,6 +5,8 @@ import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart'
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class ProjectPosting1 extends StatefulWidget  {
@@ -22,7 +24,7 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Post'),
+        title: Text("projectpost1_project1".tr()),
         actions: [
           IconButton(
             onPressed: () {
@@ -40,42 +42,42 @@ class _ProjectPosting1State extends State<ProjectPosting1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '1/4 Let\'s start with a strong title',
+                "projectpost1_project2".tr(),
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(height: 25),
               Text(
-                'This helps your post stand out to the right students. It\'s the first thing they\'ll see, so make it impressive!',
+                "projectpost1_project3".tr(),
               ),
               SizedBox(height: 15),
               TextFormField(
                 controller: _projectNameController,
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your post title';
+                    return "projectpost1_project4".tr();
                   }
                   return null;
                 },
                 decoration: InputDecoration(
-                  hintText: 'Write a title for your post',
+                  hintText: "projectpost1_project5".tr(),
                   border: OutlineInputBorder(),
                 ),
               ),
               SizedBox(height: 20),
               Text(
-                'Example titles',
+                "projectpost1_project6".tr(),
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              ExampleTitle(title: 'Build responsive WordPress site with booking/payment functionality'),
-              ExampleTitle(title: 'Facebook ad specialist need for product launch'),
+              ExampleTitle(title: "projectpost1_project7".tr()),
+              ExampleTitle(title: "projectpost1_project8".tr()),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   next(context, _projectNameController.text);
                   }
                 ,
-                child: Text('Next: Scope'),
+                child: Text( "projectpost1_project9".tr()),
               ),
             ],
           ),

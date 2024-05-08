@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +16,7 @@ class VideoCallScreen extends StatelessWidget {
             onPressed: () {},
           ),
           title: Text(
-            "Video call",
+           "videocall_chat1".tr(),
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: const Color(0xFF008ABD),
@@ -43,7 +44,7 @@ class VideoCallScreen extends StatelessWidget {
                     // Increased the height of the container
                     child: Center(
                       child: Text(
-                        'Video will be displayed here',
+                        "videocall_chat2".tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
@@ -63,7 +64,7 @@ class VideoCallScreen extends StatelessWidget {
                     // Increased the height of the container
                     child: Center(
                       child: Text(
-                        'Video will be displayed here',
+                        "videocall_chat2".tr(),
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,

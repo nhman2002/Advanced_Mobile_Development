@@ -5,6 +5,8 @@ import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart'
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class ProjectPosting3 extends StatefulWidget  {
@@ -23,7 +25,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Post - Step 3'),
+        title: Text("projectpost3_project1".tr()),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -31,13 +33,13 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "3/4    Next, provide project description",
+              "projectpost3_project2".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
             Text(
-              "Student are looking for: ",
+               "projectpost3_project3".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 16.0),
             ),
@@ -56,7 +58,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                       SizedBox(width: 5),
                       Expanded(
                         child: Text(
-                          "Clear expectation about your project or deliverables",
+                          "projectpost3_project4".tr(),
                           style: TextStyle(fontSize: 16.0),
                         ),
                       ),
@@ -75,7 +77,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                       SizedBox(width: 5),
                       Expanded(
                         child: Text(
-                          "The skills required for your project",
+                          "projectpost3_project5".tr(),
                           style: TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.normal),
                         ),
@@ -95,7 +97,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                       SizedBox(width: 5),
                       Expanded(
                         child: Text(
-                          "Details about your project ",
+                          "projectpost3_project6".tr(),
                           style: TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.normal),
                         ),
@@ -107,7 +109,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
             ),
             const SizedBox(height: 16.0),
             Text(
-              "Describe your project: ",
+              "projectpost3_project7".tr(),
               textAlign: TextAlign.start,
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
@@ -120,7 +122,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: const Color(0xFF008ABD)),
                   ),
-                  hintText: "Description..."),
+                  hintText: "projectpost3_project8".tr()),
               onChanged: (value) {
                 setState(() {
                   errorMessage = '';
@@ -155,7 +157,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  child: const Text('Review your post'),
+                  child: Text("projectpost3_project9".tr()),
                 ),
               ),
             ),

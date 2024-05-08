@@ -9,6 +9,8 @@ import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProf
 import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProfileInput_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentProfileInputCV extends StatefulWidget {
@@ -58,7 +60,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Profile'),
+            title: Text("studentprofileinput3_ProfileCreation1".tr()),
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -67,21 +69,21 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
               children: [
                 Center(
                   child: Text(
-                    'CV & Transcript',
+                    "studentprofileinput3_ProfileCreation2".tr(),
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  'Tell us about yourself, and you will be on your way to connect with a real-world project',
+                  "studentprofileinput1_ProfileCreation1".tr(),
                 ),
                 SizedBox(height: 16.0),
-                Text('Resume/CV (*)'),
+                Text("studentprofileinput3_ProfileCreation3".tr()),
                 _buildFilePickerContainer('CV', cvPath, cvFileName),
                 SizedBox(height: 16.0),
-                Text('Transcript'),
+                Text("studentprofileinput3_ProfileCreation4".tr()),
                 _buildFilePickerContainer(
-                    'Transcript', transcriptPath, transcriptFileName),
+                    "studentprofileinput3_ProfileCreation4".tr(), transcriptPath, transcriptFileName),
                 SizedBox(height: 32.0),
                 ElevatedButton(
                   onPressed: () {
@@ -97,7 +99,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                     ),
                   ),
                   child: Text(
-                    'Continue',
+                    "studentprofileinput3_ProfileCreation5".tr(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
@@ -130,8 +132,8 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                 ElevatedButton(
                   onPressed: () => _pickFile(fileType),
                   child: Text(filePath.isEmpty
-                      ? 'Choose File or Drag File In'
-                      : 'Change File'),
+                      ? "studentprofileinput3_ProfileCreation6".tr()
+                      : "studentprofileinput3_ProfileCreation7".tr()),
                 ),
                 SizedBox(height: 8.0),
                 if (filePath.isNotEmpty) Text(fileName), // Display filename

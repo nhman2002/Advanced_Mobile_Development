@@ -7,6 +7,8 @@ import 'package:student_hub/core/models/input/company_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 import 'package:student_hub/core/repository/profileCompany.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class CompanyProfileInput extends StatefulWidget {
@@ -51,14 +53,14 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
               children: [
                 SizedBox(height: 20),
                 Text(
-                  'Welcome to Student Hub',
+                  "companyprofileinput_ProfileCreation1".tr(),
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'Tell us about your company and you will be on your way connect with high-skilled students',
+                  "companyprofileinput_ProfileCreation2".tr(),
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -67,7 +69,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
                 Row(
                   children: [
                     Text(
-                      'How many people are in your company?',
+                      "companyprofileinput_ProfileCreation3".tr(),
                       style: TextStyle(
                         fontSize: 16,
                       ),
@@ -76,25 +78,25 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
                 ),
                 Column(
                   children: [
-                    _buildRadioOption(0, "It's just me"),
-                    _buildRadioOption(1, "2-9 employees"),
-                    _buildRadioOption(2, "10-99 employees"),
-                    _buildRadioOption(3, "100-1000 employees"),
-                    _buildRadioOption(4, "More than 1000 employees"),
+                    _buildRadioOption(0, "companyprofileinput_ProfileCreation4".tr()),
+                    _buildRadioOption(1, "companyprofileinput_ProfileCreation5".tr()),
+                    _buildRadioOption(2, "companyprofileinput_ProfileCreation6".tr()),
+                    _buildRadioOption(3, "companyprofileinput_ProfileCreation7".tr()),
+                    _buildRadioOption(4, "companyprofileinput_ProfileCreation8".tr()),
                   ],
                 ),
                 SizedBox(height: 20),
-                _buildInputField('Company Name', _companyNameController),
+                _buildInputField("companyprofileinput_ProfileCreation9".tr(), _companyNameController),
                 SizedBox(height: 10),
-                _buildInputField('Website', _websiteController),
+                _buildInputField("companyprofileinput_ProfileCreation10".tr(), _websiteController),
                 SizedBox(height: 10),
-                _buildInputField('Description', _descriptionController),
+                _buildInputField("companyprofileinput_ProfileCreation11".tr(), _descriptionController),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     handleInput(context);
                   },
-                  child: Text('Continue'),
+                  child: Text("companyprofileinput_ProfileCreation12".tr()),
                 ),
               ],
             ),

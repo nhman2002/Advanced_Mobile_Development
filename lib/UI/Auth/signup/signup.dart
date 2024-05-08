@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class SignupPage extends StatefulWidget {
@@ -24,7 +26,7 @@ class _SignupPageState extends State<SignupPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Would you like to join as a student or a company?',
+              "signup_auth1".tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -45,7 +47,7 @@ class _SignupPageState extends State<SignupPage> {
                     : Colors.grey.shade300,
                 child: Center(
                   child: Text(
-                    'I am a student, looking for projects to work on',
+                    "signup_auth2".tr(),
                     style: TextStyle(
                       color: _selectedRole == 'student'
                           ? Colors.white
@@ -94,8 +96,8 @@ class _SignupPageState extends State<SignupPage> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Please select a role'),
-                        content: Text('You need to select a role to continue'),
+                        title: Text("signup_auth3".tr()),
+                        content: Text("signup_auth4".tr()),
                         actions: [
                           TextButton(
                             onPressed: () {
@@ -110,7 +112,7 @@ class _SignupPageState extends State<SignupPage> {
                 }
                 // Add your create account logic here
               },
-              child: Text('Create Account'),
+              child: Text("signup_auth5".tr()),
             ),
           ],
         ),

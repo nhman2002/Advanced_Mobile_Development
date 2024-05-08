@@ -8,6 +8,8 @@ import 'package:student_hub/UI/Auth/student/cubit/student_state.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 
 
@@ -48,7 +50,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Sign Up as Student',
+              "student_auth1".tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -88,7 +90,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
                     });
                   },
                 ),
-                Text('I agree to the terms and conditions of students'),
+                Text( "student_auth2".tr()),
               ],
             ),
             SizedBox(height: 20),
@@ -97,7 +99,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
                 // Add your sign-up logic for students here
                 handleSignup(context);
               },
-              child: Text('Sign Up'),
+              child: Text("student_auth3".tr()),
             ),
             SizedBox(height: 20),
             TextButton(
@@ -105,7 +107,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
                 // Navigate to the company sign-up page
                 context.router.push(const CompanySignupRoute());
               },
-              child: Text("Looking for engineers? Sign up as a company"),
+              child: Text("student_auth4".tr()),
             ),
           ],
         ),

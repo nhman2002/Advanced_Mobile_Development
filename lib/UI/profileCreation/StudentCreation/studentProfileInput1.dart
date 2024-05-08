@@ -6,6 +6,8 @@ import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProf
 import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProfileInput_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentProfileInputTechStack extends StatefulWidget {
@@ -44,14 +46,14 @@ class _StudentProfileInputTechStackState extends State<StudentProfileInputTechSt
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Welcome to Student Hub", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text("companyprofileinput_ProfileCreation1".tr(), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 20),
-                  Text("Tell us about yourself and you will be on your way connect with real-world project", style: TextStyle(fontSize: 14)),
+                  Text("studentprofileinput1_ProfileCreation1".tr(), style: TextStyle(fontSize: 14)),
                   SizedBox(height: 20),
-                  Text("Techstack", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                  Text("studentprofileinput1_ProfileCreation2".tr(), style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                   DropdownButton<String>(
                     isExpanded: true,
-                    hint: Text("Select your main techstack"),
+                    hint: Text("studentprofileinput1_ProfileCreation3".tr()),
                     value: selectedTechStackID,
                     onChanged: (value) {
                       setState(() {
@@ -85,7 +87,7 @@ class _StudentProfileInputTechStackState extends State<StudentProfileInputTechSt
                     onPressed: () {
                       next(context);
                     },
-                    child: Text('Next'),
+                    child: Text("studentprofileinput1_ProfileCreation4".tr()),
                   ),
                 ],
               ),

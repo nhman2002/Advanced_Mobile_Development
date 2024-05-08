@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/common/config/router.dart';
@@ -56,7 +57,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
-              'Login with StudentHub',
+              "login_auth1".tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -85,19 +86,19 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
                 // Add your sign-in logic here
                 handleLogin(context);
               },
-              child: Text('Sign In'),
+              child: Text("login_auth2".tr()),
             ),
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
+                Text("login_auth3".tr()),
                 TextButton(
                   onPressed: () {
                     context.router.replace(const SignupPageRoute());
                     // Add your sign-up navigation logic here
                   },
-                  child: Text('Sign Up'),
+                  child: Text("login_auth4".tr()),
                 ),
               ],
             ),

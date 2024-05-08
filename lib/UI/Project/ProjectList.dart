@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/UI/Project/ProjectDetail.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 class ProjectListWidget extends StatefulWidget {
   @override
   _ProjectListWidgetState createState() => _ProjectListWidgetState();
@@ -21,7 +23,7 @@ class _ProjectListWidgetState extends State<ProjectListWidget> {
             });
           },
           decoration: InputDecoration(
-            labelText: 'Search Projects',
+            labelText: "projectlist_project1".tr(),
             prefixIcon: Icon(Icons.search),
           ),
         ),

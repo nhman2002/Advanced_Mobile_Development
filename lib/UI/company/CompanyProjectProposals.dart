@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -158,7 +159,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                   onPressed: () {
                     context.router.push(MessageDetailScreenRoute(userId: userID, receiverId: receiverID, projectId: projectId, receiverName: name));
                   },
-                  child: Text('Message'),
+                  child: Text("companyprojectproposals_company1".tr()),
                 ),
               ),
               SizedBox(width: 10), // Adjust spacing between buttons
@@ -171,16 +172,16 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text('Confirmation'),
+                                title: Text("companyprojectproposals_company2".tr()),
                                 content: Text(
-                                    'Are you sure you want to send a hired offer to $name?'),
+                                    "companyprojectproposals_company3".tr() + '$name?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
                                       Navigator.of(context)
                                           .pop();
                                     },
-                                    child: Text('No'),
+                                    child: Text("companyprojectproposals_company4".tr()),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -190,7 +191,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                                       Navigator.of(context)
                                           .pop(); // Close dialog
                                     },
-                                    child: Text('Yes'),
+                                    child: Text("companyprojectproposals_company5".tr()),
                                   ),
                                 ],
                               );
@@ -207,7 +208,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                     ),
                   ),
                   child: Text(
-                    statusFlag != 2 ? 'Hire' : 'Hired offer sent',
+                    statusFlag != 2 ? "companyprojectproposals_company6".tr() : "companyprojectproposals_company7".tr(),
                     style: TextStyle(
                       color: statusFlag != 2
                           ? Colors.white

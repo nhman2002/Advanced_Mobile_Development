@@ -6,6 +6,8 @@ import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart'
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class ProjectPosting4 extends StatefulWidget  {
@@ -24,7 +26,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Project Details'),
+        title: Text("projectpost4_project1".tr()),
       ),
       body: BlocBuilder<ProjectPostCubit, ProjectPostState>(
         builder: (context, state) {
@@ -36,13 +38,13 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "4/4    Project details",
+                    "projectpost4_project2".tr(),
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    state.title ?? 'not found',
+                    state.title ?? "projectpost4_project3".tr(),
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
@@ -77,7 +79,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Project scope",
+                            "projectpost4_project4".tr(),
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
@@ -85,12 +87,12 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                           ),
                           Text(
                             state.projectScopeFlag == 0
-                                ? "Less than 1 month"
+                                ? "projectpost2_project5".tr()
                                 : state.projectScopeFlag == 1
-                                    ? "1-3 months"
+                                    ? "projectpost2_project6".tr()
                                     : state.projectScopeFlag == 2
-                                        ? "3-6 months"
-                                        : "More than 6 months"
+                                        ? "projectpost2_project7".tr()
+                                        : "projectpost2_project8".tr()
                             ,
                             style: TextStyle(
                               fontSize: 14,
@@ -114,14 +116,14 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Students required",
+                            "projectpost4_project5".tr(),
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           Text(
-                            "\u2022 ${state.numberOfStudents} students",
+                            '\u2022 ${state.numberOfStudents}' + "projectpost4_project6".tr(),
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w300,
@@ -137,8 +139,8 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                       padding: const EdgeInsets.only(bottom: 16.0, right: 16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          print("Project time: ${state.projectScopeFlag}");
-                          print("Describe: ${projectDescribe.text}");
+                          print("projectpost4_project7".tr() + '${state.projectScopeFlag}');
+                          print("projectpost4_project8".tr() + '${projectDescribe.text}');
                           handleProjectPost();
                         },
                         style: ElevatedButton.styleFrom(
@@ -149,7 +151,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        child: const Text('Post job'),
+                        child: Text("projectpost4_project9".tr()),
                       ),
                     ),
                   ),
@@ -173,7 +175,7 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
     final isSuccess = await context.read<ProjectPostCubit>().state.postSuccess;
     final message = await context.read<ProjectPostCubit>().state.message ?? '';
     if (isSuccess) {
-      showSnackBarSuccess(context, 'Project posted successfully!');
+      showSnackBarSuccess(context, "projectpost4_project10".tr());
       context.router.popUntilRoot();
       context.router.replace(const CompanyDashboardWrapperRoute());
     } else {

@@ -24,7 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
     return Scaffold(
         appBar: AppBar(
-          title: Text('Settings'),
+          title: Text("settingscreen_ProfileCreation1".tr()),
           backgroundColor: Colors.purple,
         ),
         body: Padding(
@@ -33,11 +33,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Theme:',
+                "settingscreen_ProfileCreation2".tr(),
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               SwitchListTile(
-                title: Text(_isDarkMode ? 'Dark Mode' : 'Light Mode'),
+                title: Text(_isDarkMode ? "settingscreen_ProfileCreation3".tr() : "settingscreen_ProfileCreation4".tr()),
                 value: _isDarkMode,
                 onChanged: (value) {
                   setState(() {
@@ -47,7 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               SizedBox(height: 20.0),
               Text(
-                'Language:',
+                "settingscreen_ProfileCreation5".tr(),
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
               DropdownButton<String>(

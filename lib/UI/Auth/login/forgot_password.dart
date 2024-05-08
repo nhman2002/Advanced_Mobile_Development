@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -52,8 +54,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 20.0),
-              const Text(
-                'Forgot password',
+              Text(
+                "forgotpassword_auth1".tr(),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -61,8 +63,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 20.0),
-              const Text(
-                "Please enter your email and we'll send you a link to get back into your account.",
+              Text(
+                "forgotpassword_auth2".tr(),
                 style: TextStyle(
                   fontSize: 16,
                 ),
@@ -80,12 +82,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
-                    'Please enter a valid email address.',
+                    "forgotpassword_auth3".tr(),
                     style: TextStyle(color: Colors.red),
                   ),
                 ),
               const SizedBox(height: 20.0),
-              _buildElevatedButton('Send login link', () {
+              _buildElevatedButton("forgotpassword_auth4".tr(), () {
                 if (_emailController.text.isNotEmpty) {
                   _handleForgotPassword(_emailController.text);
                 } else {
@@ -97,7 +99,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 }
               }),
               const SizedBox(height: 20.0),
-              _buildElevatedButton('Back to login', () {
+              _buildElevatedButton("forgotpassword_auth5".tr(), () {
                 Navigator.pop(context);
               }),
             ],

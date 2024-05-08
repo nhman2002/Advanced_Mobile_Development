@@ -1,5 +1,209 @@
 {
     "home_title1": "Build your product with high-skilled student",
     "home_title2": "Find and onboard best-skilled student for your product. Student works to gain experience & skills from real-world projects",
-    "home_title3": "StudentHub is a university marketplace to connect high-skilled student and company on a real-world project"
+    "home_title3": "StudentHub is a university marketplace to connect high-skilled student and company on a real-world project",
+
+    "company_auth1": "Sign up as Company",
+    "company_auth2": "Company Name",
+    "company_auth3": "Company Email",
+    "company_auth4": "Password",
+    "company_auth5": "I agree to the terms and conditions of Student Hub",
+    "company_auth6": "Sign Up",
+    "company_auth7": "Looking for projects? Sign up as a student",
+
+    "login_auth1": "Login with StudentHub",
+    "login_auth2": "Sign In",
+    "login_auth3": "Don't have an account?",
+    "login_auth4": "Sign Up",
+
+    "forgotpassword_auth1": "Forgot password",
+    "forgotpassword_auth2": "Please enter your email and we'll send you a link to get back into your account.",
+    "forgotpassword_auth3": "Please enter a valid email address.",
+    "forgotpassword_auth4": "Send login link",
+    "forgotpassword_auth5": "Back to login",
+
+    "signup_auth1": "Would you like to join as a student or a company?",
+    "signup_auth2": "I am a student, looking for projects to work on",
+    "signup_auth3": "Please select a role",
+    "signup_auth4": "You need to select a role to continue",
+    "signup_auth5": "Create Account",
+
+    "student_auth1": "Sign up as Student",
+    "student_auth2": "I agree to the terms and conditions of Student Hub",
+    "student_auth3": "Sign Up",
+    "student_auth4": "Looking for engineers? Sign up as a company",
+
+    "videocall_chat1": "Video call",
+    "videocall_chat2": "Video will be displayed here",
+
+    "companydashboard_company1": "Your projects",
+    "companydashboard_company2": "Let's get started",
+    "companydashboard_company3": "Post a job",
+    "companydashboard_company4": "All Projects",
+    "companydashboard_company5": "Active ",
+    "companydashboard_company6": "Archived ",
+    "companydashboard_company7": "Welcome ",
+    "companydashboard_company8": "Let's get start with your first project post",
+    "companydashboard_company9": "Proposals: ",
+    "companydashboard_company10": "Messages: ",
+    "companydashboard_company11": "Hired: ",
+    "companydashboard_company12": "View Proposals",
+    "companydashboard_company13": "View Messages",
+    "companydashboard_company14": "View Hired",
+    "companydashboard_company15": "View job posting",
+    "companydashboard_company16": "Edit Posting",
+    "companydashboard_company17": "Delete Posting",
+    "companydashboard_company18": "Start Working this Project",
+
+    "companyprojectdetail_company1": "No Description",
+    "companyprojectdetail_company2": "Project scope:",
+    "companyprojectdetail_company3": "Less than 1 month",
+    "companyprojectdetail_company4": "More than 1 month",
+    "companyprojectdetail_company5": "Student required:",
+    "companyprojectdetail_company6": " students",
+
+    "companyprojectproposals_company1": "Message",
+    "companyprojectproposals_company2": "Confirmation",
+    "companyprojectproposals_company3": "Are you sure you want to send a hired offer to ",
+    "companyprojectproposals_company4": "No",
+    "companyprojectproposals_company5": "Yes",
+    "companyprojectproposals_company6": "Hire",
+    "companyprojectproposals_company7": "Hired offer sent",
+
+    "accountSwitchPage_ProfileCreation1": "Company",
+    "accountSwitchPage_ProfileCreation2": "Student",
+    "accountSwitchPage_ProfileCreation3": "Profiles",
+    "accountSwitchPage_ProfileCreation4": "Settings",
+    "accountSwitchPage_ProfileCreation5": "Log out",
+    "accountSwitchPage_ProfileCreation6": "Student, Company",
+    "accountSwitchPage_ProfileCreation7": "Hai Pham Student",
+
+    "companyprofileinput_ProfileCreation1": "Welcome to Student Hub",
+    "companyprofileinput_ProfileCreation2": "Tell us about your company and you will be on your way connect with high-skilled students",
+    "companyprofileinput_ProfileCreation3": "How many people are in your company?",
+    "companyprofileinput_ProfileCreation4": "It's just me",
+    "companyprofileinput_ProfileCreation5": "2-9 employees",
+    "companyprofileinput_ProfileCreation6": "10-99 employees",
+    "companyprofileinput_ProfileCreation7": "100-1000 employees",
+    "companyprofileinput_ProfileCreation8": "More than 1000 employees",
+    "companyprofileinput_ProfileCreation9": "Company Name",
+    "companyprofileinput_ProfileCreation10": "Website",
+    "companyprofileinput_ProfileCreation11": "Description",
+    "companyprofileinput_ProfileCreation12": "Continue",
+
+    "companyprofileedit_ProfileCreation1": "Edit",
+    "companyprofileedit_ProfileCreation2": "Cancel",
+
+    "companywelcome_ProfileCreation1": "Welcome Hai",
+    "companywelcome_ProfileCreation2": "Let's get start with your first project post",
+    "companywelcome_ProfileCreation3": "Get Started!",
+
+    "settingscreen_ProfileCreation1": "Settings",
+    "settingscreen_ProfileCreation2": "Theme:",
+    "settingscreen_ProfileCreation3": "Dark Mode",
+    "settingscreen_ProfileCreation4": "Light Mode",
+    "settingscreen_ProfileCreation5": "Language:",
+
+    "studentprofileinput1_ProfileCreation1": "Tell us about yourself and you will be on your way connect with real-world project",
+    "studentprofileinput1_ProfileCreation2": "Techstack",
+    "studentprofileinput1_ProfileCreation3": "Select your main techstack",
+    "studentprofileinput1_ProfileCreation4": "Next",
+
+    "studentprofileinput2_ProfileCreation1": "Intelligent Taxi Dispatching system",
+    "studentprofileinput2_ProfileCreation2": "09/2020 - 12/2020, 4 months",
+    "studentprofileinput2_ProfileCreation3": "It is the developer of a super-app for ride-hailing, food delivery, and digital payments services on mobile devices that operates in Singapore, Malaysia, ..",
+    "studentprofileinput2_ProfileCreation4": "Experience",
+    
+    "studentprofileinput3_ProfileCreation1": "Student Profile",
+    "studentprofileinput3_ProfileCreation2": "CV & Transcript",
+    "studentprofileinput3_ProfileCreation3": "Resume/CV (*)",
+    "studentprofileinput3_ProfileCreation4": "Transcript",
+    "studentprofileinput3_ProfileCreation5": "Continue",
+    "studentprofileinput3_ProfileCreation6": "Choose File or Drag File In",
+    "studentprofileinput3_ProfileCreation7": "Change File",
+
+    "projectpost1_project1": "Project Post",
+    "projectpost1_project2": "1/4 Let's start with a strong title",
+    "projectpost1_project3": "This helps your post stand out to the right students. It's the first thing they'll see, so make it impressive!",
+    "projectpost1_project4": "Please enter your post title",
+    "projectpost1_project5": "Write a title for your post",
+    "projectpost1_project6": "Example titles",
+    "projectpost1_project7": "Build responsive WordPress site with booking/payment functionality",
+    "projectpost1_project8": "Facebook ad specialist need for product launch",
+    "projectpost1_project9": "Next: Scope",
+
+    "projectpost2_project1": "Project Post - Step 2",
+    "projectpost2_project2": "2/4    Next, estimate the scope of your job",
+    "projectpost2_project3": "Consider the size of your project and the timeline",
+    "projectpost2_project4": "How long will your project take ?",
+    "projectpost2_project5": "Less than 1 month",
+    "projectpost2_project6": "1 to 3 months",
+    "projectpost2_project7": "3 to 6 months",
+    "projectpost2_project8": "More than 6 months",
+    "projectpost2_project9": "How many students do you want for this project ?",
+    "projectpost2_project10": "Next: Description",
+    "projectpost2_project11": "Number of students",
+    "projectpost2_project12": "Please choose a project time",
+    "projectpost2_project13": "Please fill this field!",
+
+
+    "projectpost3_project1": "Project Post - Step 3",
+    "projectpost3_project2": "3/4    Next, provide project description",
+    "projectpost3_project3": "Student are looking for: ",
+    "projectpost3_project4": "Clear expectation about your project or deliverables",
+    "projectpost3_project5": "The skills required for your project",
+    "projectpost3_project6": "Details about your project ",
+    "projectpost3_project7": "Describe your project: ",
+    "projectpost3_project8": "Description...",
+    "projectpost3_project9": "Review your post",
+
+    "projectpost4_project1": "Project Details",
+    "projectpost4_project2": "4/4    Project details",
+    "projectpost4_project3": "not found",
+    "projectpost4_project4": "Project scope",
+    "projectpost4_project5": "Students required",
+    "projectpost4_project6": "students",
+    "projectpost4_project7": "Project time: ",
+    "projectpost4_project8": "Describe: ",
+    "projectpost4_project9": "Post job",
+    "projectpost4_project10": "Project posted successfully!",
+
+    "projectdetail_project1": "Project List",
+
+    "projectfilter_project1": "Filter by",
+    "projectfilter_project2": "Student needed",
+    "projectfilter_project3": "Proposals less than",
+    "projectfilter_project4": "Clear filters",
+    "projectfilter_project5": "Apply filters with selected value: ",
+    "projectfilter_project6": "Student needed: ",
+    "projectfilter_project7": "Proposals less than: ",
+    "projectfilter_project8": "Apply",
+
+    "projectlist_project1": "Search Projects",
+    "projectlist_project2": ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

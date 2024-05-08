@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class ProjectFilter extends StatefulWidget {
@@ -142,8 +143,8 @@ class FilterSection extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 5),
-              const Text(
-                'Filter by',
+              Text(
+                "projectfilter_project1".tr(),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -163,16 +164,16 @@ class FilterSection extends StatelessWidget {
           ),
           Column(
             children: [
-              _buildRadioOption(1, "Less than one month"),
-              _buildRadioOption(2, "1-3 months"),
-              _buildRadioOption(3, "3-6 months"),
-              _buildRadioOption(5, "More than 6 months"),
+              _buildRadioOption(1, "projectpost2_project5".tr()),
+              _buildRadioOption(2, "projectpost2_project6".tr()),
+              _buildRadioOption(3, "projectpost2_project7".tr()),
+              _buildRadioOption(5, "projectpost2_project8".tr()),
             ],
           ),
           const SizedBox(height: 20),
-          _buildInputField('Student needed', studentNeededController),
+          _buildInputField("projectfilter_project2".tr(), studentNeededController),
           const SizedBox(height: 20),
-          _buildInputField('Proposals less than', proposalsLessController),
+          _buildInputField("projectfilter_project3".tr(), proposalsLessController),
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +186,7 @@ class FilterSection extends StatelessWidget {
                   proposalsLessController.clear();
                   onValueChanged(null);
                 },
-                child: const Text('Clear filters'),
+                child: Text("projectfilter_project4".tr()),
               ),
               ElevatedButton(
                 onPressed: () {
@@ -194,11 +195,11 @@ class FilterSection extends StatelessWidget {
                   int? selected = selectedValue;
                   String studentNeeded = studentNeededController.text;
                   String proposalsLess = proposalsLessController.text;
-                  print('Apply filters with selected value: $selected');
-                  print('Student needed: $studentNeeded');
-                  print('Proposals less than: $proposalsLess');
+                  print("projectfilter_project5".tr() + '$selected');
+                  print("projectfilter_project6".tr() + '$studentNeeded');
+                  print("projectfilter_project7".tr() + '$proposalsLess');
                 },
-                child: const Text('Apply'),
+                child: Text("projectfilter_project8".tr()),
               ),
             ],
           ),

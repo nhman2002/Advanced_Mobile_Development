@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -41,14 +42,14 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
             ),
             SizedBox(height: 20),
             Text(
-              'Welcome Hai',
+              "companywelcome_ProfileCreation1".tr(),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              "Let's get start with your first project post",
+              "companywelcome_ProfileCreation2".tr(),
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -59,7 +60,7 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
                 // Add onPressed logic here
                 context.router.push(const CompanyDashboardWrapperRoute());
               },
-              child: Text('Get Started!'),
+              child: Text("companywelcome_ProfileCreation3".tr()),
             ),
           ],
         ),

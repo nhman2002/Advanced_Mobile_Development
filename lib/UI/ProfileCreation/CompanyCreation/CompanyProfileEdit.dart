@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:easy_localization/easy_localization.dart';
+
+
 
 @RoutePage()
 class CompanyProfileEdit extends StatefulWidget {
@@ -37,14 +40,14 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
           children: [
             SizedBox(height: 20),
             Text(
-              'Welcome to Student Hub',
+              "companyprofileinput_ProfileCreation1".tr(),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Tell us about your company and you will be on your way connect with high-skilled students',
+              "companyprofileinput_ProfileCreation2".tr(),
               style: TextStyle(
                 fontSize: 16,
               ),
@@ -53,7 +56,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
             Row(
               children: [
                 Text(
-                  'How many people are in your company?',
+                  "companyprofileinput_ProfileCreation3".tr(),
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -87,7 +90,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
                       // Add onPressed logic here
                       // Navigator.pushNamed(context, Routes.letGetStarted);
                     },
-                    child: Text('Edit'),
+                    child: Text("companyprofileedit_ProfileCreation1".tr()),
                   ),
                   SizedBox(width: 10), // Add spacing between buttons
                   ElevatedButton(
@@ -95,7 +98,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
                       // Add onPressed logic here
                       // Navigator.pushNamed(context, Routes.letGetStarted);
                     },
-                    child: Text('Cancel'),
+                    child: Text("companyprofileedit_ProfileCreation2".tr()),
                   ),
                 ],
               ),

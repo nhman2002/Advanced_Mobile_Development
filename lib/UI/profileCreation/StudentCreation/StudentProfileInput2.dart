@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class Project {
   final String id;
@@ -31,17 +33,17 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
   List<Project> projectList = [
     Project(
       id: '1',
-      projectName: 'Intelligent Taxi Dispatching system',
-      period: '9/2020 - 12/2020, 4 months',
+      projectName: "studentprofileinput2_ProfileCreation1".tr(),
+      period: "studentprofileinput2_ProfileCreation2".tr(),
       description:
-          'It is the developer of a super-app for ride-hailing, food delivery, and digital payments services on mobile devices that operates in Singapore, Malaysia, ..',
+          "studentprofileinput2_ProfileCreation3".tr(),
     ),
     Project(
       id: '2',
-      projectName: 'Intelligent Taxi Dispatching system',
-      period: '9/2020 - 12/2020, 4 months',
+      projectName: "studentprofileinput2_ProfileCreation1".tr(),
+      period: "studentprofileinput2_ProfileCreation2".tr(),
       description:
-          'It is the developer of a super-app for ride-hailing, food delivery, and digital payments services on mobile devices that operates in Singapore, Malaysia, ..',
+          "studentprofileinput2_ProfileCreation3".tr(),
     ),
   ];
 
@@ -66,7 +68,7 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Experience'),
+        title: Text("studentprofileinput2_ProfileCreation4".tr()),
       ),
       body: Container(
         padding: EdgeInsets.all(12),
@@ -76,7 +78,7 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
             children: [
               SizedBox(height: 20),
               Text(
-                "Tell us about yourself and you will be on your way to connect with real-world projects",
+                "studentprofileinput1_ProfileCreation1".tr(),
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),
@@ -145,7 +147,7 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(35),
                   ),
-                  child: Text('Next', style: TextStyle(color: Colors.white)),
+                  child: Text("studentprofileinput1_ProfileCreation4".tr(), style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],

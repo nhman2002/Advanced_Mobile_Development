@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class CompanyProjectDetail extends StatefulWidget {
@@ -73,7 +75,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                         children: [
                           SizedBox(height: 25),
                           Text(
-                            project?.description ?? 'No Description',
+                            project?.description ?? "companyprojectdetail_company1".tr(),
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold, // Make the text bold
@@ -95,7 +97,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Project scope:',
+                                      "companyprojectdetail_company2".tr(),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -115,7 +117,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              project?.projectScopeFlag == 0 ? 'Less than 1 month' : 'More than 1 month',
+                                              project?.projectScopeFlag == 0 ? "companyprojectdetail_company3".tr() : "companyprojectdetail_company3".tr(),
                                               style: TextStyle(color: Colors.black),
                                             ),
                                           ),
@@ -141,7 +143,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Student required:',
+                                      "companyprojectdetail_company5".tr(),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -161,7 +163,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              '${project?.numberOfStudents} students',
+                                              '${project?.numberOfStudents}' + "companyprojectdetail_company6".tr(),
                                               style: TextStyle(color: Colors.black),
                                             ),
                                           ),
