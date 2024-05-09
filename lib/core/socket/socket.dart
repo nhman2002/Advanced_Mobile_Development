@@ -79,12 +79,11 @@ class NotificationSocket {
     IsolateNameServer.registerPortWithName(receivePort.sendPort, 'notificationIsolate');
     await Isolate.spawn(_connectAndListen, receivePort.sendPort, errorsAreFatal: true, onError: errorPort.sendPort);
     receivePort.listen((message) {
-      if (_userId == message.userid) {
+      if (_userId == message.userid.toString()) {
         _notificationService.showNotification(
             message.id, message.title, message.body, '');
       } else {
         print('message is null');
-        receivePort.close();
       }
     });
   }

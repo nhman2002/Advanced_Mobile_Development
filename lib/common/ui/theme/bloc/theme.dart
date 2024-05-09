@@ -14,6 +14,7 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: Color.fromARGB(255, 108, 32, 146),
   ),
+  iconTheme: IconThemeData(color: Colors.white),
 );
 
 const lightScheme = ColorScheme(

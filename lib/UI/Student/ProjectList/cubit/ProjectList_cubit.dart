@@ -22,44 +22,60 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
           parseJsonFunction: ProjectListState.fromJson,
         );
 
-
   final _project = getIt.get<ProjectRepository>();
   final _localStorage = getIt.get<LocalStorage>();
   final _favorite = getIt.get<FavoriteProjectRepository>();
   final _proposal = getIt.get<ProposalRepository>();
-
 
   @override
   Future<void> init() async {
     showLoading();
     final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
-
+    var project = null;
     await initFavoriteProject();
+    if (state.projectList != null) {
+      final result = await _project.getAllProjects();
+      if (result is DataSuccess) {
+        project = result.data?.projectOutputList;
+        emit(state.copyWith(projectList: project));
+      }
+    } else {
+      emit(state.copyWith(projectList: null));
+    }
 
-    final result = await _project.getAllProjects();
-    // if (result is DataSuccess) {
-    final project = result.data?.projectOutputList;
-      // emit(state.copyWith(projectList: project));
-    // }
-    // else {
-    //   emit(state.copyWith(projectList: null));
-    // }
-    
     final result1 = await _proposal.getAllStudentProposals(studentID ?? 0);
     if (result1 is DataSuccess) {
       //remove all project have projectid in proposal from project list
       final proposal = result1.data;
       final projectList = project;
       final proposalProjectIds = proposal!.map((p) => p.projectId).toList();
-      final filteredProjectList = projectList!.where((project) => !proposalProjectIds.contains(project.projectId)).toList();
+      final filteredProjectList = projectList!
+          .where((project) => !proposalProjectIds.contains(project.projectId))
+          .toList();
       emit(state.copyWith(projectList: filteredProjectList));
-      }
-    hideLoading();
     }
+    hideLoading();
+  }
 
   Future<void> projectClicked(int index) async {
     emit(state.copyWith(clickedProjectId: index));
+  }
+
+  Future<void> filterProject(String? title, int? projectScope,
+      int? numberOfStudents, int? projectType) async {
+    showLoading();
+    final result = await _project.filterProject(
+        title, projectScope, numberOfStudents, projectType, null, null);
+    if (result is DataSuccess) {
+      final project = result.data?.projectOutputList;
+      emit(state.copyWith(projectList: project));
+      hideLoading();
+    } else {
+      emit(state.copyWith(projectList: null));
+      hideLoading();
+      init();
+    }
   }
 
   Future<void> getProject(int id) async {
@@ -67,8 +83,7 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     if (result is DataSuccess) {
       final project = result.data;
       emit(state.copyWith(clickedProject: project));
-    }
-    else {
+    } else {
       emit(state.copyWith(clickedProject: null));
       final error = result.error?.response?.data['errorDetails'];
       emit(state.copyWith(message: error));
@@ -78,13 +93,12 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
   Future<void> addFavoriteProject(int id) async {
     final studentID = _localStorage.getString(key: StorageKey.studentID);
     final form = FavoriteProjectForm().copyWith(projectId: id, disableFlag: 0);
-  
+
     final result = await _favorite.favoriteProject(int.parse(studentID!), form);
     if (result is DataSuccess) {
       final project = result.data;
       emit(state.copyWith(message: 'Project added to favorites'));
-    }
-    else {
+    } else {
       emit(state.copyWith(clickedProject: null));
       final error = result.error?.response?.data['errorDetails'];
       final errorMessage = error is List ? error.join(", ") : error as String?;
@@ -92,7 +106,7 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     }
   }
 
-  bool isProjectFavorite(int id)  {
+  bool isProjectFavorite(int id) {
     //check if project is in favorite list
     final favorite = state.favoriteProjectList;
     if (favorite != null) {
@@ -100,35 +114,31 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
       return isFavorite;
     }
     return false;
-
-    
   }
 
   Future<void> removeFavoriteProject(int id) async {
     final studentID = _localStorage.getString(key: StorageKey.studentID);
     final form = FavoriteProjectForm().copyWith(projectId: id, disableFlag: 1);
-  
+
     final result = await _favorite.favoriteProject(int.parse(studentID!), form);
     if (result is DataSuccess) {
       final project = result.data;
       emit(state.copyWith(message: 'Project removed from favorites'));
-    }
-    else {
+    } else {
       emit(state.copyWith(clickedProject: null));
       final error = result.error?.response?.data['errorDetails'];
       final errorMessage = error is List ? error.join(", ") : error as String?;
-      emit(state.copyWith(message: errorMessage));    
+      emit(state.copyWith(message: errorMessage));
     }
   }
 
-  Future<void> initFavoriteProject() async{
+  Future<void> initFavoriteProject() async {
     final studentID = _localStorage.getString(key: StorageKey.studentID);
     final result = await _favorite.getFavoriteProjects(int.parse(studentID!));
     if (result is DataSuccess) {
       final favoriteProjects = result.data?.projectOutputList;
       emit(state.copyWith(favoriteProjectList: favoriteProjects));
-    }
-    else {
+    } else {
       emit(state.copyWith(favoriteProjectList: null));
     }
   }
@@ -141,20 +151,18 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
   Future<void> postProposal(int projectId, String coverLetter) async {
     final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
-    final form = ProposalPostForm().copyWith(projectId: projectId, studentId: studentID, coverLetter: coverLetter);
+    final form = ProposalPostForm().copyWith(
+        projectId: projectId, studentId: studentID, coverLetter: coverLetter);
 
     final result = await _proposal.proposalPost(form);
     if (result is DataSuccess) {
       final proposal = result.data;
       emit(state.copyWith(clickedProject: null, message: 'Proposal sent'));
-    }
-    else {
+    } else {
       emit(state.copyWith(clickedProject: null));
       final error = result.error?.response?.data['errorDetails'];
       final errorMessage = error is List ? error.join(", ") : error as String?;
       emit(state.copyWith(message: errorMessage));
     }
   }
-
-  
 }
