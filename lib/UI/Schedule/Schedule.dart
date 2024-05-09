@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -107,7 +109,7 @@ class _MyScheduleState extends State<MySchedule> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Schedule Interview"),
+        title: Text("schedule_schedule1".tr()),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -116,7 +118,7 @@ class _MyScheduleState extends State<MySchedule> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Title",
+                "schedule_schedule2".tr(),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -126,12 +128,12 @@ class _MyScheduleState extends State<MySchedule> {
                 controller: jobTitleController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Write a title for interview',
+                  hintText: "schedule_schedule3".tr(),
                 ),
               ),
               SizedBox(height: 20),
               Text(
-                "Start Time",
+                "schedule_schedule4".tr(),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -142,19 +144,19 @@ class _MyScheduleState extends State<MySchedule> {
                   ElevatedButton.icon(
                     onPressed: () => _selectDate(context),
                     icon: Icon(Icons.calendar_today),
-                    label: Text("Select Date"),
+                    label: Text("schedule_schedule5".tr()),
                   ),
                   SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () => _selectTime(context),
                     icon: Icon(Icons.access_time),
-                    label: Text("Select Time"),
+                    label: Text("schedule_schedule6".tr()),
                   ),
                 ],
               ),
               SizedBox(height: 20),
               Text(
-                "End Time",
+                "schedule_schedule7".tr(),
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -165,19 +167,19 @@ class _MyScheduleState extends State<MySchedule> {
                   ElevatedButton.icon(
                     onPressed: () => _selectEndDate(context),
                     icon: Icon(Icons.calendar_today),
-                    label: Text("Select End Date"),
+                    label: Text("schedule_schedule8".tr()),
                   ),
                   SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () => _selectEndTime(context),
                     icon: Icon(Icons.access_time),
-                    label: Text("Select End Time"),
+                    label: Text("schedule_schedule9".tr()),
                   ),
                 ],
               ),
               SizedBox(height: 20),
               Text(
-                "Duration: $durationTime",
+                "schedule_schedule10".tr() + '${durationTime}',
                 style: TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
@@ -191,18 +193,18 @@ class _MyScheduleState extends State<MySchedule> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("Cancel"),
+                    child: Text("schedule_schedule11".tr()),
                   ),
                   SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
                       // Handle Send Invite action
-                      print('Title: ${jobTitleController.text}');
-                      print('Start Time: $selectedDate ${selectedTime.format(context)}');
-                      print('End Time: $selectedEndDate ${selectedEndTime.format(context)}');
-                      print('Duration: $durationTime');
+                      print("schedule_schedule12".tr() + '${jobTitleController.text}');
+                      print("schedule_schedule13".tr() + '$selectedDate ${selectedTime.format(context)}');
+                      print("schedule_schedule14".tr() + '$selectedEndDate ${selectedEndTime.format(context)}');
+                      print("schedule_schedule15".tr() + '$durationTime');
                     },
-                    child: Text("Send Invite"),
+                    child: Text("schedule_schedule16".tr()),
                   ),
                 ],
               ),

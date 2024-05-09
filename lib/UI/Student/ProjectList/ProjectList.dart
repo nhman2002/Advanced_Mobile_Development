@@ -9,6 +9,8 @@ import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentProjectList extends StatefulWidget {
@@ -81,7 +83,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                               leading: const Icon(Icons.search),
                               trailing: <Widget>[
                                 Tooltip(
-                                  message: 'Change brightness mode',
+                                  message: "projectlist_student1".tr(),
                                 ),
                               ],
                             );
@@ -140,7 +142,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                                     Center(
                                       child: isLoading
                                           ? CircularProgressIndicator()
-                                          : Text('No projects found or you have submitted proposals to every existing projects.'),
+                                          : Text("projectlist_student2".tr()),
                                     ),
                                   ],
                                 ),
@@ -162,13 +164,13 @@ class _StudentProjectList extends State<StudentProjectList> {
                 mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _buildCompanyDashboardItem(
-                      Icons.work, 'Projects', Colors.black, Colors.grey.shade300),
+                      Icons.work, "studentdashboard_student7".tr(), Colors.black, Colors.grey.shade300),
                     _buildCompanyDashboardItem(
-                      Icons.dashboard, 'Dashboard', Colors.white, Colors.blue.shade300),
+                      Icons.dashboard, "studentdashboard_student8".tr(), Colors.white, Colors.blue.shade300),
                     _buildCompanyDashboardItem(
-                      Icons.message, 'Message', Colors.white, Colors.blue.shade300),
+                      Icons.message, "studentdashboard_student9".tr(), Colors.white, Colors.blue.shade300),
                     _buildCompanyDashboardItem(
-                      Icons.notifications, 'Notifications', Colors.white, Colors.blue.shade300),
+                      Icons.notifications, "studentdashboard_student10".tr(), Colors.white, Colors.blue.shade300),
                   ],
                 ),
               ),
@@ -194,13 +196,13 @@ class _StudentProjectList extends State<StudentProjectList> {
         bgColor: bgColor,
         onPressed: () {
           // Add onPressed logic here
-          if (label == 'Projects') {
+          if (label == "studentdashboard_student7".tr()) {
             // context.router.push(const StudentSignupRoute());
-          } else if (label == 'Dashboard') {
+          } else if (label == "studentdashboard_student8".tr()) {
             context.router.replace(const StudentDashBoardWrapperRoute());
-          } else if (label == 'Message') {
+          } else if (label == "studentdashboard_student9".tr()) {
             context.router.replace(const MessageListScreenRoute());
-          } else if (label == 'Notifications') {
+          } else if (label == "studentdashboard_student10".tr()) {
             context.router.replace(const StudentSignupRoute());
           }
         },
@@ -244,7 +246,7 @@ class _StudentProjectList extends State<StudentProjectList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Posted $daysAgo days ago',
+              "projectlist_student3".tr() + '$daysAgo' "projectlist_student4".tr(),
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 5),
@@ -253,7 +255,7 @@ class _StudentProjectList extends State<StudentProjectList> {
               children: [
                 Flexible(
                   child: Text(
-                    project.title ?? 'No title',
+                    project.title ?? "projectlist_student5".tr(),
                     style: TextStyle(color: Colors.green, fontSize: 20),
                     overflow: TextOverflow.ellipsis, // Add this line to handle long titles
                     maxLines: 1, // Add this line to limit the title to one line
@@ -264,7 +266,7 @@ class _StudentProjectList extends State<StudentProjectList> {
             ),
             SizedBox(height: 5),
             Text(
-              'Duration: $projectScope, ${project.numberOfStudents} students needed',
+              "projectlist_student6".tr() + '$projectScope, ${project.numberOfStudents}' + "projectlist_student7".tr(),
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 5),
@@ -279,7 +281,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                 SizedBox(width: 5),
                 Expanded(
                   child: Text(
-                    project.description ?? 'No description',
+                    project.description ?? "projectlist_student8".tr(),
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
@@ -287,7 +289,7 @@ class _StudentProjectList extends State<StudentProjectList> {
             ),
             SizedBox(height: 5),
             Text(
-              'Proposals: $proposal',
+              "projectlist_student9".tr() + '$proposal',
               style: TextStyle(color: Colors.grey),
             ),
           ],
@@ -330,10 +332,10 @@ class _FavoriteIconButtonState extends State<FavoriteIconButton> with SnackBarDe
           onPressed: () {
             if (_isFavorite == false) {
               context.read<ProjectListCubit>().addFavoriteProject(widget.projectId);
-              showSnackBarSuccess(context, 'Project added to favorites');
+              showSnackBarSuccess(context, "projectlist_student10".tr());
             } else {
               context.read<ProjectListCubit>().removeFavoriteProject(widget.projectId);
-              showSnackBarWarning(context, 'Project removed from favorites');
+              showSnackBarWarning(context, "projectlist_student11".tr());
             }
 
             setState(() {

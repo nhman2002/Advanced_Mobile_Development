@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -121,7 +123,7 @@ class ScheduleItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Start time",
+                        "schedule_scheduledetail1".tr(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -143,7 +145,7 @@ class ScheduleItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "End time",
+                        "schedule_scheduledetail2".tr(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -184,8 +186,8 @@ class ScheduleItem extends StatelessWidget {
                         onPressed: () {
                           // Handle Join Button Pressed
                         },
-                        child: const Text(
-                          "Join",
+                        child: Text(
+                          "schedule_scheduledetail3".tr(),
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
@@ -252,8 +254,8 @@ class OptionsDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      title: const Text(
-        'Options',
+      title: Text(
+        "schedule_scheduledetail4".tr(),
         style: TextStyle(
           color: Color(0xFF008ABD),
           fontSize: 18,
@@ -264,8 +266,8 @@ class OptionsDialog extends StatelessWidget {
         child: ListBody(
           children: <Widget>[
             GestureDetector(
-              child: const Text(
-                'Re-schedule the meeting',
+              child: Text(
+                "schedule_scheduledetail5".tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {
@@ -283,8 +285,8 @@ class OptionsDialog extends StatelessWidget {
               height: 10,
             ),
             GestureDetector(
-              child: const Text(
-                'Cancel the meeting',
+              child: Text(
+                "schedule_scheduledetail6".tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {

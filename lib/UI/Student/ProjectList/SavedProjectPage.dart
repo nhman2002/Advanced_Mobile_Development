@@ -6,6 +6,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/core/models/output/project_model.dart'; // Import BlocBuilder
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class FavoriteProjectPage extends StatefulWidget {
@@ -103,7 +105,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                                   Center(
                                     child: isLoading
                                         ? CircularProgressIndicator()
-                                        : Text('No favorite projects found.'),
+                                        : Text("savedprojectpage_student1".tr()),
                                   ),
                                 ],
                               ),
@@ -158,7 +160,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Posted $daysAgo days ago',
+            "projectlist_student3".tr() + '$daysAgo' + "projectlist_student4".tr(),
             style: TextStyle(color: Colors.grey),
           ),
           SizedBox(height: 5),
@@ -167,7 +169,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
             children: [
               Flexible(
                 child: Text(
-                  project.title ?? 'No title',
+                  project.title ?? "projectlist_student5".tr(),
                   style: TextStyle(color: Colors.green, fontSize: 20),
                   overflow: TextOverflow
                       .ellipsis, // Add this line to handle long titles
@@ -178,7 +180,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           ),
           SizedBox(height: 5),
           Text(
-            'Duration: $projectScope, ${project.numberOfStudents} students needed',
+            "projectlist_student6".tr() + '$projectScope, ${project.numberOfStudents}' +"projectlist_student7".tr(),
             style: TextStyle(color: Colors.grey),
           ),
           SizedBox(height: 5),
@@ -193,7 +195,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
               SizedBox(width: 5),
               Expanded(
                 child: Text(
-                  project.description ?? 'No description',
+                  project.description ?? "projectlist_student8".tr(),
                   style: TextStyle(color: Colors.black),
                 ),
               ),
@@ -201,7 +203,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           ),
           SizedBox(height: 5),
           Text(
-            'Proposals: $proposal',
+            "projectlist_student9".tr() + '$proposal',
             style: TextStyle(color: Colors.grey),
           ),
         ],

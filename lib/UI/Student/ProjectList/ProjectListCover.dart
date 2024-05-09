@@ -5,6 +5,8 @@ import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_cubit.dart'
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class CoverLetterPage extends StatefulWidget {
@@ -28,7 +30,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.blue,
-            title: Text('Cover Letter'),
+            title: Text("projectlistcover_student1".tr()),
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -37,7 +39,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Describe why you are a good fit for this project:',
+                    "projectlistcover_student2".tr(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
@@ -67,7 +69,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                             onPressed: () {
                               context.router.maybePop();
                             },
-                            child: Text('Cancel'),
+                            child: Text("projectlistcover_student3".tr()),
                           ),
                         ),
                       ),
@@ -78,7 +80,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                             onPressed: () {
                               postProposal(context, coverLetter.text, project!.projectId ?? 0);
                             },
-                            child: Text('Submit'),
+                            child: Text("projectlistcover_student4".tr()),
                           ),
                         ),
                       ),
@@ -95,14 +97,14 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
 
   Future<void> postProposal(BuildContext context, String coverLetter, int projectID) async {
     if (coverLetter.isEmpty) {
-      showSnackBarWarning(context, 'Cover letter cannot be empty');
+      showSnackBarWarning(context, "projectlistcover_student5".tr());
       return;
     }
 
     await context.read<ProjectListCubit>().postProposal(projectID, coverLetter);
     context.router.maybePop();
     context.router.replace(const StudentDashBoardWrapperRoute());
-    showSnackBarSuccess(context, 'Proposal submitted successfully');
+    showSnackBarSuccess(context, "projectlistcover_student6".tr());
   }
 
   @override

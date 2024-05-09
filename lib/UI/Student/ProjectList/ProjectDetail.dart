@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_cubit.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_state.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentProjectDetail extends StatefulWidget {
@@ -45,7 +47,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Project detail',
+                            "projectdetail_student1".tr(),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -53,7 +55,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                           ),
                           SizedBox(height: 15),
                           Text(
-                            project?.title ?? 'No Title',
+                            project?.title ?? "projectdetail_student2".tr(),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -63,7 +65,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                           Divider(),
                           SizedBox(height: 25),
                           Text(
-                            project?.description ?? 'No Description',
+                            project?.description ?? "projectdetail_student3".tr(),
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold, // Make the text bold
@@ -85,7 +87,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Project scope:',
+                                      "projectdetail_student4".tr(),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -105,7 +107,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              project?.projectScopeFlag == 0 ? 'Less than 1 month' : 'More than 1 month',
+                                              project?.projectScopeFlag == 0 ? "projectdetail_student5".tr() : "projectdetail_student6".tr(),
                                               style: TextStyle(color: Colors.black),
                                             ),
                                           ),
@@ -131,7 +133,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Student required:',
+                                      "projectdetail_student7".tr(),
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -151,7 +153,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              '${project?.numberOfStudents} students',
+                                              '${project?.numberOfStudents}' + "projectdetail_student8".tr(),
                                               style: TextStyle(color: Colors.black),
                                             ),
                                           ),
@@ -183,7 +185,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                   onPressed: () {
                     context.router.push(const CoverLetterPageRoute());
                   },
-                  child: Text('Apply Now'),
+                  child: Text("projectdetail_student9".tr()),
                 ),
               ),
             ),
@@ -194,7 +196,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                   onPressed: () {
                     // Implement Saved button logic
                   },
-                  child: Text('Save'),
+                  child: Text("projectdetail_student10".tr()),
                 ),
               ),
             ),

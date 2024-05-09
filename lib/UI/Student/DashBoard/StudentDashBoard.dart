@@ -6,6 +6,8 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentDashBoard extends StatefulWidget {
@@ -46,7 +48,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Your projects',
+                  "studentdashboard_student1".tr(),
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -56,9 +58,9 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton('All', Colors.white, true, (){}),
-                    _buildProjectSectionButton('Working', Colors.black, false, (){context.router.replace(const StudentWorkingProjectsRoute());}),
-                    _buildProjectSectionButton('Archived', Colors.black, false, (){}),
+                    _buildProjectSectionButton("studentdashboard_student2".tr(), Colors.white, true, (){}),
+                    _buildProjectSectionButton("studentdashboard_student3".tr(), Colors.black, false, (){context.router.replace(const StudentWorkingProjectsRoute());}),
+                    _buildProjectSectionButton("studentdashboard_student4".tr(), Colors.black, false, (){}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -69,7 +71,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                         _buildProposalSection(
                           isWaiting: false,
                           state: state,
-                          title: "Active Proposal (${state.activeProposalList.length})",
+                          title: "studentdashboard_student5".tr() + '${state.activeProposalList.length}',
                           isExpanded: isContentExpandedActive,
                           onPressed: () {
                             setState(() {
@@ -81,7 +83,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                         _buildProposalSection(
                           isWaiting: true,
                           state: state,
-                          title: "Submitted Proposal (${state.waitingProposalList.length})",
+                          title: "studentdashboard_student6".tr() + '(${state.waitingProposalList.length})',
                           isExpanded: isContentExpandedSubmitted,
                           onPressed: () {
                             setState(() {
@@ -104,13 +106,13 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildCompanyDashboardItem(Icons.work, 'Projects',
+                    _buildCompanyDashboardItem(Icons.work, "studentdashboard_student7".tr(),
                         Colors.white, Colors.blue.shade300),
-                    _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
+                    _buildCompanyDashboardItem(Icons.dashboard, "studentdashboard_student8".tr(),
                         Colors.black, Colors.grey.shade300),
-                    _buildCompanyDashboardItem(Icons.message, 'Message',
+                    _buildCompanyDashboardItem(Icons.message, "studentdashboard_student9".tr(),
                         Colors.white, Colors.blue.shade300),
-                    _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
+                    _buildCompanyDashboardItem(Icons.notifications, "studentdashboard_student10".tr(),
                         Colors.white, Colors.blue.shade300),
                   ],
                 ),
@@ -156,7 +158,7 @@ Widget _buildProposalSection({
         if (isExpanded) ...[
           if ((isWaiting && state.waitingProposalList.isEmpty) || (!isWaiting && state.activeProposalList.isEmpty))
             Center(
-              child: Text("No proposals found."),
+              child: Text("studentdashboard_student11".tr()),
             )
           else
             Container(
@@ -190,18 +192,18 @@ Widget _buildProposalSection({
     int daysAgo = difference.inDays;
     String daysValue = '';
     if (daysAgo == 0)
-      daysValue = 'Submitted today';
+      daysValue = "studentdashboard_student12".tr();
     else if (daysAgo == 1)
-      daysValue = 'Submitted yesterday';
+      daysValue = "studentdashboard_student13".tr();
     else
-      daysValue = '$daysAgo days ago';
+      daysValue = '$daysAgo' + "studentdashboard_student14".tr();
     return Padding(
       padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            proposal.project.title ?? 'Project title not found',
+            proposal.project.title ?? "studentdashboard_student15".tr(),
             style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 18.0),
           ),
           Text(
@@ -216,7 +218,7 @@ Widget _buildProposalSection({
               children: [
                 Expanded(
                   child: Text(
-                    proposal.project.description ?? "No project description found",
+                    proposal.project.description ?? "studentdashboard_student16".tr(),
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
@@ -267,13 +269,13 @@ Widget _buildProjectSectionButton(String label, Color color, bool isBlue, VoidCa
         bgColor: bgColor,
         onPressed: () {
           // Add onPressed logic here
-          if (label == 'Projects') {
+          if (label == "studentdashboard_student7".tr()) {
             context.router.replace(const ProjectListWrapperRoute());
-          } else if (label == 'Dashboard') {
+          } else if (label == "studentdashboard_student8".tr()) {
             // context.router.push(const StudentSignupRoute());
-          } else if (label == 'Message') {
+          } else if (label == "studentdashboard_student9".tr()) {
             context.router.replace(const MessageListScreenRoute());
-          } else if (label == 'Notifications') {
+          } else if (label == "studentdashboard_student10".tr()) {
             context.router.replace(const StudentSignupRoute());
           }
         },

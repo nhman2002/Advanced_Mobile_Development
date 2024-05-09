@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class StudentWorkingProjects extends StatefulWidget {
@@ -39,7 +41,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Your projects',
+                "studentdashboardworking_student1".tr(),
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -49,9 +51,9 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildProjectSectionButton('All', Colors.black, false),
-                  _buildProjectSectionButton('Working', Colors.white, true),
-                  _buildProjectSectionButton('Archived', Colors.black, false),
+                  _buildProjectSectionButton("studentdashboard_student2".tr(), Colors.black, false),
+                  _buildProjectSectionButton("studentdashboard_student3".tr(), Colors.white, true),
+                  _buildProjectSectionButton("studentdashboard_student4".tr(), Colors.black, false),
                 ],
               ),
               SizedBox(height: 20),
@@ -72,7 +74,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Submitted Proposal (0)",
+                            "studentdashboardworking_student2".tr(),
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -98,13 +100,13 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildCompanyDashboardItem(Icons.work, 'Projects',
+                  _buildCompanyDashboardItem(Icons.work, "studentdashboard_student7".tr(),
                       Colors.white, Colors.blue.shade300),
-                  _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
+                  _buildCompanyDashboardItem(Icons.dashboard, "studentdashboard_student8".tr(),
                       Colors.black, Colors.grey.shade300),
-                  _buildCompanyDashboardItem(Icons.message, 'Message',
+                  _buildCompanyDashboardItem(Icons.message, "studentdashboard_student9".tr(),
                       Colors.white, Colors.blue.shade300),
-                  _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
+                  _buildCompanyDashboardItem(Icons.notifications, "studentdashboard_student10".tr(),
                       Colors.white, Colors.blue.shade300),
                 ],
               ),
@@ -122,11 +124,11 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Senior frontend developer (Fintech)',
+            "studentdashboardworking_student3".tr(),
             style: TextStyle(color: Colors.green),
           ),
           Text(
-            'submitted 3 days ago',
+            "studentdashboardworking_student4".tr(),
             style: TextStyle(color: Colors.grey),
           ),
           Padding(
@@ -141,7 +143,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
                 SizedBox(width: 5),
                 Expanded(
                   child: Text(
-                    "Clear expectation about your project or deliverables",
+                    "studentdashboardworking_student5".tr(),
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
@@ -189,13 +191,13 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
         bgColor: bgColor,
         onPressed: () {
           // Add onPressed logic here
-          if (label == 'Projects') {
+          if (label == "studentdashboard_student7".tr()) {
             context.router.push(const StudentSignupRoute());
-          } else if (label == 'Dashboard') {
+          } else if (label == "studentdashboard_student8".tr()) {
             // context.router.push(const StudentSignupRoute());
-          } else if (label == 'Message') {
+          } else if (label == "studentdashboard_student9".tr()) {
             context.router.push(const StudentSignupRoute());
-          } else if (label == 'Notifications') {
+          } else if (label == "studentdashboard_student10".tr()) {
             context.router.push(const StudentSignupRoute());
           }
         },

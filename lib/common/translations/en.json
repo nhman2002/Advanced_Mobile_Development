@@ -189,7 +189,116 @@
     "projectfilter_project8": "Apply",
 
     "projectlist_project1": "Search Projects",
-    "projectlist_project2": ""
+
+    "schedule_schedule1": "Schedule Interview",
+    "schedule_schedule2": "Title",
+    "schedule_schedule3": "Write a title for interview",
+    "schedule_schedule4": "Start Time",
+    "schedule_schedule5": "Select Date",
+    "schedule_schedule6": "Select Time",
+    "schedule_schedule7": "End Time",
+    "schedule_schedule8": "Select End Date",
+    "schedule_schedule9": "Select End Time",
+    "schedule_schedule10": "Duration: ",
+    "schedule_schedule11": "Cancel",
+    "schedule_schedule12": "Title: ",
+    "schedule_schedule13": "Start Time: ",
+    "schedule_schedule14": "End Time: ",
+    "schedule_schedule15": "Duration: ",
+    "schedule_schedule16": "Send Invite",
+
+    "schedule_scheduledetail1": "Start time",
+    "schedule_scheduledetail2": "End time",
+    "schedule_scheduledetail3": "Join",
+    "schedule_scheduledetail4": "Options",
+    "schedule_scheduledetail5": "Re-schedule the meeting",
+    "schedule_scheduledetail6": "Cancel the meeting",
+
+    "studentdashboard_student1": "Your projects",
+    "studentdashboard_student2": "All",
+    "studentdashboard_student3": "Working",
+    "studentdashboard_student4": "Archived",
+    "studentdashboard_student5": "Active Proposal ",
+    "studentdashboard_student6": "Submitted Proposal ",
+    "studentdashboard_student7": "Projects",
+    "studentdashboard_student8": "Dashboard",
+    "studentdashboard_student9": "Message",
+    "studentdashboard_student10": "Notifications",
+    "studentdashboard_student11": "No proposals found",
+    "studentdashboard_student12": "Submitted today",
+    "studentdashboard_student13": "Submitted yesterday",
+    "studentdashboard_student14": " days ago",
+    "studentdashboard_student15": "Project title not found",
+    "studentdashboard_student16": "No project description found",
+
+    "studentdashboardworking_student1": "Your projects",
+    "studentdashboardworking_student2": "Submitted Proposal (0)",
+    "studentdashboardworking_student3": "Senior frontend developer (Fintech)",
+    "studentdashboardworking_student4": "submitted 3 days ago",
+    "studentdashboardworking_student5": "Clear expectation about your project or deliverables",
+
+    "projectdetail_student1": "Project detail",
+    "projectdetail_student2": "No Title",
+    "projectdetail_student3": "No Description",
+    "projectdetail_student4": "Project scope: ",
+    "projectdetail_student5": "Less than 1 month",
+    "projectdetail_student6": "More than 1 month",
+    "projectdetail_student7": "Student required: ",
+    "projectdetail_student8": " students",
+    "projectdetail_student9": "Apply Now",
+    "projectdetail_student10": "Save",
+
+    "projectlist_student1": "Change brightness mode",
+    "projectlist_student2": "No projects found or you have submitted proposals to every existing projects.",
+    "projectlist_student3": "Posted ",
+    "projectlist_student4": " days ago",
+    "projectlist_student5": "No title",
+    "projectlist_student6": "Duration: ",
+    "projectlist_student7": " students needed",
+    "projectlist_student8": "No description",
+    "projectlist_student9": "Proposals: ",
+    "projectlist_student10": "Project added to favorites",
+    "projectlist_student11": "Project removed from favorites",
+
+    "projectlistcover_student1": "Cover Letter",
+    "projectlistcover_student2": "Describe why you are a good fit for this project: ",
+    "projectlistcover_student3": "Cancel",
+    "projectlistcover_student4": "Submit",
+    "projectlistcover_student5": "Cover letter cannot be empty",
+    "projectlistcover_student6": "Proposal submitted successfully",
+
+    "savedprojectpage_student1": "No favorite projects found",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
