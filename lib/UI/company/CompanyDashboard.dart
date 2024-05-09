@@ -9,6 +9,7 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
@@ -170,27 +171,29 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ],
             ),
           ),
-          bottomNavigationBar: BottomAppBar(
-            color: Colors.blue,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildCompanyDashboardItem(Icons.work, 'Projects',
-                        Colors.white, Colors.blue.shade300),
-                    _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
-                        Colors.black, Colors.grey.shade300),
-                    _buildCompanyDashboardItem(Icons.message, 'Message',
-                        Colors.white, Colors.blue.shade300),
-                    _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
-                        Colors.white, Colors.blue.shade300),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          // bottomNavigationBar: BottomAppBar(
+          //   color: Colors.blue,
+          //   child: Center(
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(0),
+          //       child: Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           _buildCompanyDashboardItem(Icons.work, 'Projects',
+          //               Colors.white, Colors.blue.shade300),
+          //           _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
+          //               Colors.black, Colors.grey.shade300),
+          //           _buildCompanyDashboardItem(Icons.message, 'Message',
+          //               Colors.white, Colors.blue.shade300),
+          //           _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
+          //               Colors.white, Colors.blue.shade300),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
+        bottomNavigationBar: const CustomBottomAppBar(),
+
         );
       },
     );
@@ -386,34 +389,34 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     );
   }
 
-  Widget _buildCompanyDashboardItem(
-      IconData icon, String label, Color color, Color bgColor) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
-      child: AnimatedButton(
-        icon: icon,
-        label: label,
-        color: color,
-        bgColor: bgColor,
-        onPressed: () {
-          // Add onPressed logic here
-          if (label == 'Projects') {
-            context.router.push(const StudentSignupRoute());
-          } else if (label == 'Dashboard') {
-            context.router.push(const StudentSignupRoute());
-          } else if (label == 'Message') {
-            context.router.push(const MessageListScreenRoute());
-          } else if (label == 'Notifications') {
-            context.router.push(const StudentSignupRoute());
-          }
-        },
-      ),
-    );
-  }
+  // Widget _buildCompanyDashboardItem(
+  //     IconData icon, String label, Color color, Color bgColor) {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       color: Colors.blue,
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+  //     child: AnimatedButton(
+  //       icon: icon,
+  //       label: label,
+  //       color: color,
+  //       bgColor: bgColor,
+  //       onPressed: () {
+  //         // Add onPressed logic here
+  //         if (label == 'Projects') {
+  //           context.router.push(const StudentSignupRoute());
+  //         } else if (label == 'Dashboard') {
+  //           context.router.push(const StudentSignupRoute());
+  //         } else if (label == 'Message') {
+  //           context.router.push(const MessageListScreenRoute());
+  //         } else if (label == 'Notifications') {
+  //           context.router.push(const StudentSignupRoute());
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 
   void handleLogout(BuildContext context) {
     _localStorage.clear();

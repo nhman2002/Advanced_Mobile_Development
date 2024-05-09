@@ -78,7 +78,7 @@ class SplashCubit extends WidgetCubit<SplashState> {
     final accessToken = _localStorage.getString(key: StorageKey.accessToken);
     // Initialize socket with server URL
     notiSocket = IO.io(
-      'http://192.168.1.18:4400',
+      'https://api.studenthub.dev/api',
       IO.OptionBuilder()
           .setTransports(['websocket'])
           .disableAutoConnect()

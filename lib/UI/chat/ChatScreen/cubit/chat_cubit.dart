@@ -58,7 +58,7 @@ class ChatCubit extends WidgetCubit<ChatState> {
   Future<void> connectSocket() async {
     // Initialize socket with server URL
     socket = IO.io(
-        'http://192.168.1.24:4400',
+        'https://api.studenthub.dev/api',
         IO.OptionBuilder()
             .enableForceNew()
             .setTransports(['websocket'])

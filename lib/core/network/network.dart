@@ -19,7 +19,7 @@ class NetworkManager {
   static const int connectTimeout = 60000;
   static const int receiveTimeout = 60000;
 
-  String baseUrl = 'http://192.168.1.24:4400/api';
+  String baseUrl = 'https://api.studenthub.dev/api';
   String _accessToken = '';
   // String _refreshToken = '';
 

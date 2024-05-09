@@ -10,7 +10,7 @@ import 'package:student_hub/core/models/input/message_model.dart';
 
 class NotificationSocket {
   IO.Socket socket = IO.io(
-    'http://192.168.1.24:4400',
+    'https://api.studenthub.dev/api',
     IO.OptionBuilder()
         .enableForceNew()
         .setTransports(['websocket'])

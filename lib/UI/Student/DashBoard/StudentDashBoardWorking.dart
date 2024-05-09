@@ -92,27 +92,27 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
             ],
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.blue,
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildCompanyDashboardItem(Icons.work, "studentdashboard_student7".tr(),
-                      Colors.white, Colors.blue.shade300),
-                  _buildCompanyDashboardItem(Icons.dashboard, "studentdashboard_student8".tr(),
-                      Colors.black, Colors.grey.shade300),
-                  _buildCompanyDashboardItem(Icons.message, "studentdashboard_student9".tr(),
-                      Colors.white, Colors.blue.shade300),
-                  _buildCompanyDashboardItem(Icons.notifications, "studentdashboard_student10".tr(),
-                      Colors.white, Colors.blue.shade300),
-                ],
-              ),
-            ),
-          ),
-        ),
+        // bottomNavigationBar: BottomAppBar(
+        //   color: Colors.blue,
+        //   child: Center(
+        //     child: Padding(
+        //       padding: const EdgeInsets.all(0),
+        //       child: Row(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           _buildCompanyDashboardItem(Icons.work, "studentdashboard_student7".tr(),
+        //               Colors.white, Colors.blue.shade300),
+        //           _buildCompanyDashboardItem(Icons.dashboard, "studentdashboard_student8".tr(),
+        //               Colors.black, Colors.grey.shade300),
+        //           _buildCompanyDashboardItem(Icons.message, "studentdashboard_student9".tr(),
+        //               Colors.white, Colors.blue.shade300),
+        //           _buildCompanyDashboardItem(Icons.notifications, "studentdashboard_student10".tr(),
+        //               Colors.white, Colors.blue.shade300),
+        //         ],
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -176,32 +176,32 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
     );
   }
 
-  Widget _buildCompanyDashboardItem(
-      IconData icon, String label, Color color, Color bgColor) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
-      child: AnimatedButton(
-        icon: icon,
-        label: label,
-        color: color,
-        bgColor: bgColor,
-        onPressed: () {
-          // Add onPressed logic here
-          if (label == "studentdashboard_student7".tr()) {
-            context.router.push(const StudentSignupRoute());
-          } else if (label == "studentdashboard_student8".tr()) {
-            // context.router.push(const StudentSignupRoute());
-          } else if (label == "studentdashboard_student9".tr()) {
-            context.router.push(const StudentSignupRoute());
-          } else if (label == "studentdashboard_student10".tr()) {
-            context.router.push(const StudentSignupRoute());
-          }
-        },
-      ),
-    );
-  }
+  // Widget _buildCompanyDashboardItem(
+  //     IconData icon, String label, Color color, Color bgColor) {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       color: Colors.blue,
+  //       borderRadius: BorderRadius.circular(10),
+  //     ),
+  //     padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
+  //     child: AnimatedButton(
+  //       icon: icon,
+  //       label: label,
+  //       color: color,
+  //       bgColor: bgColor,
+  //       onPressed: () {
+  //         // Add onPressed logic here
+  //         if (label == "studentdashboard_student7".tr()) {
+  //           context.router.push(const StudentSignupRoute());
+  //         } else if (label == "studentdashboard_student8".tr()) {
+  //           // context.router.push(const StudentSignupRoute());
+  //         } else if (label == "studentdashboard_student9".tr()) {
+  //           context.router.push(const StudentSignupRoute());
+  //         } else if (label == "studentdashboard_student10".tr()) {
+  //           context.router.push(const StudentSignupRoute());
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
 }
