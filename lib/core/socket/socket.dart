@@ -10,7 +10,7 @@ import 'package:student_hub/core/models/input/message_model.dart';
 
 class NotificationSocket {
   IO.Socket socket = IO.io(
-    'https://api.studenthub.dev/api',
+    'https://api.studenthub.dev',
     IO.OptionBuilder()
         .enableForceNew()
         .setTransports(['websocket'])
@@ -39,13 +39,12 @@ class NotificationSocket {
     });
 
     socket.onDisconnect((data) {
-      print('disconnect from socket');
-      sendPort.send(null);
+      socket.connect();
     });
 
     socket.on('NOTI_$_userId', (data) async {
       print('Received message: $data');
-      final userid = _userId;
+      final userid = data['notification']['receiverId'];
       final title = data['notification']['title'];
       final content = data['notification']['content'];
       final id = data['notification']['id'];
@@ -80,7 +79,7 @@ class NotificationSocket {
     IsolateNameServer.registerPortWithName(receivePort.sendPort, 'notificationIsolate');
     await Isolate.spawn(_connectAndListen, receivePort.sendPort, errorsAreFatal: true, onError: errorPort.sendPort);
     receivePort.listen((message) {
-      if (message != null && _userId == message.userId) {
+      if (_userId == message.userid) {
         _notificationService.showNotification(
             message.id, message.title, message.body, '');
       } else {
