@@ -246,7 +246,7 @@ class _StudentProjectList extends State<StudentProjectList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "projectlist_student3".tr() + '$daysAgo' "projectlist_student4".tr(),
+              "projectlist_student3".tr() + '$daysAgo' + "projectlist_student4".tr(),
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 5),
