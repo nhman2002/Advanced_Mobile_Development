@@ -87,6 +87,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: FavoriteProjectPage(),
       );
     },
+    ForgotPasswordPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ForgotPasswordPage(),
+      );
+    },
     LoginPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -163,7 +169,7 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
     SettingsScreenRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: SettingsScreen(),
+        child: const SettingsScreen(),
       );
     },
     SignupPageRoute.name: (routeData) {
@@ -417,6 +423,20 @@ class FavoriteProjectPageRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'FavoriteProjectPageRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ForgotPasswordPage]
+class ForgotPasswordPageRoute extends PageRouteInfo<void> {
+  const ForgotPasswordPageRoute({List<PageRouteInfo>? children})
+      : super(
+          ForgotPasswordPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgotPasswordPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

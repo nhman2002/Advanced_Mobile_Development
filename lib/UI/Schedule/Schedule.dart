@@ -2,20 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
-void main() {
-  runApp(MaterialApp(
-    home: MySchedule(),
-  ));
-}
 
-class MySchedule extends StatefulWidget {
-  const MySchedule({Key? key}) : super(key: key);
+class ScheduleDialog extends StatefulWidget {
+  final int projectId;
+  final int senderId;
+  final int receiverId;
+
+  const ScheduleDialog({
+    Key? key,
+    required this.projectId,
+    required this.senderId,
+    required this.receiverId,
+  }) : super(key: key);
 
   @override
-  State<MySchedule> createState() => _MyScheduleState();
+  State<ScheduleDialog> createState() => _MyScheduleState();
 }
 
-class _MyScheduleState extends State<MySchedule> {
+class _MyScheduleState extends State<ScheduleDialog> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
   TimeOfDay selectedEndTime = TimeOfDay.now();

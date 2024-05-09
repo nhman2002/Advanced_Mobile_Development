@@ -1,29 +1,13 @@
 import 'dart:convert';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Text('Custom App Bar'),
-      centerTitle: true,
-    );
-  }
 
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
-}
 
-class Connection {
-  static Future<String> postRequest(String url, Map<String, dynamic> data) async {
-    // Code for making a post request to the server
-    return '{"result": {"message": "Login link sent successfully"}}';
-  }
-}
-
+@RoutePage()
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -38,7 +22,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: AppBar(
+        title: Text("forgotpassword_auth0".tr()),
+      ),
       resizeToAvoidBottomInset: true,
       body: _buildBody(context),
     );
@@ -132,73 +118,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   void _handleForgotPassword(String text) async {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    final isValidEmail = emailRegex.hasMatch(_emailController.text);
-    setState(() {
-      showError = !isValidEmail;
-    });
-    if (!isValidEmail) {
-      return;
-    }
-    ;
-
-    var data = {
-      'email': text,
-    };
-
-    String url = '/api/user/forgotPassword';
-    try {
-      var response = await Connection.postRequest(url, data);
-      var responseDecoded = jsonDecode(response);
-      if (responseDecoded['result'] != null) {
-        print('Login link sent successfully');
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Login link sent'),
-              content: Text(
-                responseDecoded['result']['message'],
-              ),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
-      } else {
-        print(' Error occurred: $responseDecoded');
-        dynamic errorDetails = responseDecoded['errorDetails'];
-        String errorMessage = '';
-        if (errorDetails is List) {
-          errorMessage = errorDetails.first.toString();
-        } else {
-          errorMessage = errorDetails ?? 'Unknown error occurred';
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(errorMessage),
-          ),
-        );
-      }
-    } catch (e) {
-      print('Error occurred: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('An error occurred while processing your request.'),
-        ),
-      );
+   
     }
   }
-}
 
-void main() {
-  runApp(MaterialApp(
-    home: ForgotPasswordPage(),
-  ));
-}

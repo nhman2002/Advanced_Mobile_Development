@@ -232,10 +232,11 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
 
   Future<void> sendOffer(int proposalId) async {
     await context.read<CompanyDashboardCubit>().sendOffer(proposalId);
+    if (!mounted) return;
     final message = context.read<CompanyDashboardCubit>().state.message ?? '';
-    showSnackBarSuccess(context, message);
+    showSnackBarSuccess(context, message);   
     //reload the whole page
-    context.router.replace(const CompanyProjectProposalsRoute());
+     context.router.replace(const CompanyProjectProposalsRoute());
             
   }
 

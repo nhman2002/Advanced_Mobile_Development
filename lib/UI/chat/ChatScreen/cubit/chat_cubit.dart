@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/message_model.dart';
@@ -57,7 +58,7 @@ class ChatCubit extends WidgetCubit<ChatState> {
   Future<void> connectSocket() async {
     // Initialize socket with server URL
     socket = IO.io(
-        'http://192.168.1.10:4400',
+        'http://192.168.1.24:4400',
         IO.OptionBuilder()
             .enableForceNew()
             .setTransports(['websocket'])
@@ -72,8 +73,11 @@ class ChatCubit extends WidgetCubit<ChatState> {
       'Authorization': 'Bearer $_accessToken',
     };
 // Connect to the socket.io server
-    print("Connecting to socket of project " + projectId.toString());
+
     await socket.connect();
+    socket.onConnect((data) => {
+          print('Connected to chat'),
+        });
     socket.on('RECEIVE_MESSAGE', (data) {
   
   // Extract senderId and receiverId from the received message
@@ -95,19 +99,29 @@ class ChatCubit extends WidgetCubit<ChatState> {
 
   Future<void> sendMessage(String message) async {
     final form = MessageInput(
+      content: message,
+      projectId: projectId,
       senderId: userId,
       receiverId: receiverId,
-      projectId: projectId,
-      content: message,
       messageFlag: 0,
     );
-    socket.emit('SEND_MESSAGE', form.toJson());
-    // emit(state.copyWith(messageSent: true));
+    final result = await _messages.sendMessage(form);
+    if (result is DataSuccess) {
+      emit(state.copyWith(messageSent: true));
+    } else {
+      emit(state.copyWith(messageSent: false));
+    }
+  }
+
+  Future<void> receiveMessageUpdate() async {
+    emit(state.copyWith(messageReceived: true));
   }
 
   @override
   Future<void> close() async {
-    print("Closing socket on " + projectId.toString());
+    if (kDebugMode) {
+      print("Closing socket on " + projectId.toString());
+    }
     socket.close();
     super.close();
   }

@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart'; // Import BlocBuilder
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_cubit.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
+import 'package:student_hub/UI/chat/ChatScreen/widget/ScheduleMeeting.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
+import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
 
 @RoutePage()
@@ -47,6 +50,7 @@ class ChatWidget extends StatefulWidget {
 class _MessageDetailScreenState extends State<ChatWidget> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
+  final _localStorage = getIt.get<LocalStorage>();
 
   @override
   void initState() {
@@ -79,17 +83,16 @@ class _MessageDetailScreenState extends State<ChatWidget> {
           }
         },
         builder: (context, state) {
-          final List<MessageOutput> _messages =
-              state.messages; // Get messages from state
+          final List<MessageOutput> _messages = state.messages;
+
           return Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 Expanded(
                   child: ListView.builder(
-                    controller: _scrollController, // Attach scroll controller
-                    reverse:
-                        false, // Reverse the list to show newer messages at the bottom
+                    controller: _scrollController,
+                    reverse: false,
                     itemCount: _messages.length,
                     itemBuilder: (context, index) {
                       final message = _messages[index];
@@ -99,11 +102,12 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                         'name': message.senderName,
                         'text': message.content,
                         'time': message.createdAt,
+                        'interview': message.interview
                       });
                     },
                   ),
                 ),
-                _buildMessageInput(),
+                _buildMessageInput(context),
               ],
             ),
           );
@@ -120,23 +124,89 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       curve: Curves.easeInOut,
     );
   }
+Widget _buildMessageItem(Map<String, dynamic> message) {
+  // Check if the message contains interview information
+  if (message['interview'] != null) {
+    final interview = message['interview'];
+    final title = interview.title;
+    final content = message['text'];
+    final start = interview.startTime;
+    final end = interview.endTime;
+    // final roomId = interview.roomId;
 
-  Widget _buildMessageItem(Map<String, dynamic> message) {
     return Container(
       margin: EdgeInsets.only(bottom: 10),
-      alignment:
-          message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: message['isSender']
-            ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
+        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color:Colors.brown ,
+            ),
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  content,
+                  style: TextStyle(
+                    color: message['isSender'] ? Colors.white : Colors.black,
+                  ),
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'Start: $start\nEnd: $end\nRoom ID: test',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: message['isSender'] ? Colors.white70 : Colors.grey,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 8),
+          PopupMenuButton(
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: Text('Edit'),
+                value: 'edit',
+              ),
+              PopupMenuItem(
+                child: Text('Cancel Interview'),
+                value: 'cancel',
+              ),
+            ],
+            onSelected: (value) {
+              if (value == 'edit') {
+                _editInterview(context, interview);
+              } else if (value == 'cancel') {
+                _cancelInterview(context, interview);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  } else {
+    // If interview is null, build the default message item
+    return Container(
+      margin: EdgeInsets.only(bottom: 10),
+      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
           if (!message['isSender']) ...[
-            // CircleAvatar(
-            //   backgroundImage: Icons.verified_user_rounded.toi,
-            //   radius: 20,
-            // ),
             Icon(Icons.verified_user_rounded),
             SizedBox(width: 8),
           ],
@@ -164,13 +234,6 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   ),
                 ),
                 SizedBox(height: 4),
-                // Text(
-                //   _formatTime(message['time']),
-                //   style: TextStyle(
-                //     fontSize: 12,
-                //     color: message['isSender'] ? Colors.white70 : Colors.grey,
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -182,44 +245,72 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       ),
     );
   }
+}
 
-  Widget _buildMessageInput() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
+void _editInterview(BuildContext context, Map<String, dynamic> interview) {
+  // Implement edit interview logic
+}
+
+void _cancelInterview(BuildContext context, Map<String, dynamic> interview) {
+  // Implement cancel interview logic
+}
+Widget _buildMessageInput(BuildContext context) {
+  final chatCubit = context.read<ChatCubit>();
+  final projectId = chatCubit.projectId;
+  final userId = chatCubit.userId;
+  final receiverId = chatCubit.receiverId;
+  final currentRole = _localStorage.getString(key: StorageKey.currentRole);
+
+  return Container(
+    padding: EdgeInsets.symmetric(horizontal: 10),
+    decoration: BoxDecoration(
+      border: Border.all(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Row(
+      children: [
+        if (currentRole != '0') // Check if the current role is not 0
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return ScheduleDialog(
+                    projectId: projectId,
+                    senderId: userId,
+                    receiverId: receiverId,
+                    onScheduleSuccess: () {
+                      chatCubit.receiveMessageUpdate();
+                    },
+                  );
+                },
+              );
+            },
             icon: Icon(Icons.schedule),
             color: Colors.blue,
           ),
-          Expanded(
-            child: TextField(
-              controller: _messageController,
-              decoration: InputDecoration(
-                hintText: 'Type your message...',
-                border: InputBorder.none,
-              ),
+        Expanded(
+          child: TextField(
+            controller: _messageController,
+            decoration: InputDecoration(
+              hintText: 'Type your message...',
+              border: InputBorder.none,
             ),
           ),
-          IconButton(
-            onPressed: () {
-              _sendMessage(_messageController.text);
-            },
-            icon: Icon(
-              Icons.send,
-              color: Colors.blue,
-            ),
+        ),
+        IconButton(
+          onPressed: () {
+            _sendMessage(_messageController.text);
+          },
+          icon: Icon(
+            Icons.send,
+            color: Colors.blue,
           ),
-        ],
-      ),
-    );
-  }
-
+        ),
+      ],
+    ),
+  );
+}
   Future<void> _sendMessage(String message) async {
     print('Sending message: $message');
     if (message.isNotEmpty) {

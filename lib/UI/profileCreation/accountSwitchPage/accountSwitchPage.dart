@@ -61,9 +61,9 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
               IconButton(
                 onPressed: () {
                   if (isStudent == true && hasStudentProfile == true) {
-                    context.router.push(const ProjectListWrapperRoute());
+                    context.router.replace(const ProjectListWrapperRoute());
                   } else if (isCompany == true && hasCompanyProfile == true) {
-                    context.router.push(const CompanyDashboardWrapperRoute());
+                    context.router.replace(const CompanyDashboardWrapperRoute());
                   }
                   else
                     showSnackBarWarning(context, 'Please complete your profile first!');     
@@ -296,7 +296,5 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
     context.router.push(const SettingsScreenRoute());
   }
 
-  void testNotification(BuildContext context) {
-    context.read<AccountSwitchCubit>().testNotification();
-  }
+
 }

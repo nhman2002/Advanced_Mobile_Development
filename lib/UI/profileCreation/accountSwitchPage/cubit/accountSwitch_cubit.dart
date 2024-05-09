@@ -72,8 +72,5 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
     await getIt.get<NotificationSocket>().closeIsolate();
   }
 
-  Future<void> testNotification() async {
-    await _notificationService.showNotification(0,
-         "Test Notification",  "This is a test notification", "nothing to see here");
-  }
+
 }

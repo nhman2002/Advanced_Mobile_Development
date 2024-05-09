@@ -45,7 +45,6 @@ class _StudentProjectList extends State<StudentProjectList> {
         final projectList = state.projectList;
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text('Student Hub'),
             actions: [
               IconButton(
