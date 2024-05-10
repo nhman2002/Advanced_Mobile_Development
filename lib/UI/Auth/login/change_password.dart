@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChangePasswordView extends StatefulWidget {
   final String email;
@@ -47,7 +48,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "Create new password",
+                "changepassword_auth1".tr(),
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -56,7 +57,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               ),
               SizedBox(height: 10),
               Text(
-                "Your new password must be different from previous used password.",
+                "changepassword_auth2".tr(),
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
@@ -65,7 +66,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               ),
               SizedBox(height: 25),
               Text(
-                "Password",
+                "changepassword_auth3".tr(),
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -77,7 +78,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 obscureText: _obscurePassword,
                 cursorColor: Color(0xFF406AFF),
                 decoration: InputDecoration(
-                  hintText: 'Enter your old password',
+                  hintText: "changepassword_auth4".tr(),
                   hintStyle: TextStyle(
                     color: Color(0xFF777B8A),
                     fontSize: 14.0,
@@ -109,7 +110,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               ),
               SizedBox(height: 20),
               Text(
-                "New Password",
+                "changepassword_auth5".tr(),
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -126,8 +127,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 obscureText: _obscurePassword,
                 cursorColor: Color(0xFF406AFF),
                 decoration: InputDecoration(
-                  errorText: _showPassError ? 'Both passwords must match' : null,
-                  hintText: 'Enter your new password',
+                  errorText: _showPassError ? "changepassword_auth6".tr() : null,
+                  hintText: "changepassword_auth7".tr(),
                   hintStyle: TextStyle(
                     color: Color(0xFF777B8A),
                     fontSize: 14.0,
@@ -159,7 +160,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
               ),
               SizedBox(height: 20),
               Text(
-                "Confirm Password",
+                "changepassword_auth8".tr(),
                 style: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
@@ -176,8 +177,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                 obscureText: _obscurePassword,
                 cursorColor: Color(0xFF406AFF),
                 decoration: InputDecoration(
-                  errorText: _showPassError ? 'Both passwords must match' : null,
-                  hintText: 'Confirm your new password',
+                  errorText: _showPassError ? "changepassword_auth6".tr() : null,
+                  hintText: "changepassword_auth9".tr(),
                   hintStyle: TextStyle(
                     color: Color(0xFF777B8A),
                     fontSize: 14.0,
@@ -232,7 +233,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Text(
-                    "Reset password",
+                    "changepassword_auth10".tr(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
