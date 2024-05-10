@@ -15,7 +15,6 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
         actions: [
           IconButton(

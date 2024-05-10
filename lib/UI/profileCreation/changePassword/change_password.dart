@@ -1,21 +1,26 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/repository/user.dart';
 
-class ChangePasswordView extends StatefulWidget {
-  final String email;
-  const ChangePasswordView(this.email, {required Key key}) : super(key: key);
 
+@RoutePage()
+class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({Key? key}) : super(key: key);
   @override
   _ChangePasswordViewState createState() => _ChangePasswordViewState();
 }
 
-class _ChangePasswordViewState extends State<ChangePasswordView> {
+class _ChangePasswordViewState extends State<ChangePasswordScreen> {
   final ValueNotifier<String> oldPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> newPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> confirmPasswordNotifier =
       ValueNotifier<String>('');
   bool _obscurePassword = true;
   bool _showPassError = false;
+
+  final _user = getIt.get<UserRepository>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +34,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
             icon: Icon(
               Icons.person,
-              color: Colors.black,
             ),
             onPressed: () {},
           )
@@ -225,6 +228,10 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       return;
                     }
                     // Call your change password method here
+                    await _user.changePassword(
+                       oldPasswordNotifier.value,
+                       newPasswordNotifier.value,
+                    );
                   }
                       : null,
                   color: Color(0xFF406AFF),
@@ -247,11 +254,5 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: ChangePasswordView('example@email.com', key: UniqueKey()), // Thêm key vào đây
-  ));
 }
 

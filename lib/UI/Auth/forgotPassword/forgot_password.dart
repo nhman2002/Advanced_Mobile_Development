@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:student_hub/common/config/navigation_event.dart';
+import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/models/data_state.dart';
+import 'package:student_hub/core/repository/user.dart';
 
 
 
@@ -17,6 +21,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final TextEditingController _emailController = TextEditingController();
+  final _user = getIt.get<UserRepository>();
   bool showError = false;
 
   @override
@@ -118,7 +123,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   void _handleForgotPassword(String text) async {
-   
+    final response = await _user.forgotPassword(text);
+    if (response is DataSuccess){
+      ShowSnackBarSuccessEvent(
+        "forgotpassword_auth6".tr());
+    } else {
+        ShowSnackBarErrorEvent("forgotpassword_auth7".tr());
+    }
     }
   }
 

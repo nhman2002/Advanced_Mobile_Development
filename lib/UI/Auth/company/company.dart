@@ -40,7 +40,6 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
       ),
       body: Padding(

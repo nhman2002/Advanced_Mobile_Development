@@ -27,7 +27,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
 
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text('Student Hub'),
             actions: [
               IconButton(

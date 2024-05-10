@@ -36,6 +36,7 @@ import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.da
 import 'package:student_hub/UI/company/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
+import 'package:student_hub/UI/profileCreation/changePassword/change_password.dart';
 import 'package:student_hub/UI/profileCreation/settingScreen/SettingScreen.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
@@ -149,6 +150,10 @@ class AppRouter extends _$MessageDetailScreenArguments {
               CustomRoute(
                   page: NotificationScreenRoute.page,
                   path: 'forgotPassword',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: ChangePasswordScreenRoute.page,
+                  path: 'changePassword',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
 
                 CustomRoute(

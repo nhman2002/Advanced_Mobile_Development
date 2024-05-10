@@ -6,12 +6,12 @@ import 'package:auto_route/auto_route.dart';
 class VideoCallScreen extends StatefulWidget {
   final String channelName;
 
-  const VideoCallScreen({Key? key, required this.channelName}) : super(key: key);
+  const VideoCallScreen({Key? key, required this.channelName})
+      : super(key: key);
 
   @override
   _VideoCallScreenState createState() => _VideoCallScreenState();
 }
-
 
 class _VideoCallScreenState extends State<VideoCallScreen> {
   AgoraClient? client; // Make client nullable
@@ -19,34 +19,32 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
   @override
   void initState() {
     super.initState();
-    requestPermissions();
+    initializeAgora();
   }
 
-  Future<void> requestPermissions() async {
-    var cameraStatus = await Permission.camera.request();
-    var micStatus = await Permission.microphone.request();
 
-    if (cameraStatus.isGranted && micStatus.isGranted) {
-      initializeAgora();
-    } else {
-      // Handle permissions not granted
-    }
-  }
 
   void initializeAgora() async {
     // Initialize the Agora client
     final agoraClient = AgoraClient(
       agoraConnectionData: AgoraConnectionData(
-        appId: "0d51072268ce4de290abe457321b0ac5",
-        channelName: widget.channelName,
-      ),
+          appId: "0d51072268ce4de290abe457321b0ac5",
+          channelName: widget.channelName,
+          tempToken:
+              "007eJxTYPgt/6pm0/rlRgFXLDcfnrY4ezb3HPF1sq4G8n8cN7P+uRKgwGCQYmpoYG5kZGaRnGqSkmpkaZCYlGpiam5sZJhkkJhsmqpul9YQyMgw8cJlVkYGCATx2RhySwoyU/MYGAClOiBf"),
     );
 
     await agoraClient.initialize();
-
     setState(() {
       client = agoraClient; // Assign the initialized client
     });
+  }
+
+  @override
+  void dispose() {
+
+    super.dispose();
+    client?.release();
   }
 
   @override
@@ -61,19 +59,30 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         ),
       );
     }
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Video Call'),
-      ),
-      body: SafeArea(
-        child: Stack(
-          children: [
-            AgoraVideoViewer(client: client!), 
-            AgoraVideoButtons(client: client!),
-          ],
-        ),
-      ),
-    );
+    return PopScope(
+        onPopInvoked: (bool didPop) {
+          if (didPop) {
+            
+            
+            }
+          return;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('Video Call'),
+          ),
+          body: SafeArea(
+            child: Stack(
+              children: [
+                AgoraVideoViewer(client: client!,
+                    layoutType: Layout.floating,
+                    showNumberOfUsers: true,
+                ),
+                AgoraVideoButtons(client: client!),
+              ],
+            ),
+          ),
+        ));
   }
 }

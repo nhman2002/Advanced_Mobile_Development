@@ -43,7 +43,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text('Student Hub')),
+      appBar: AppBar( title: Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

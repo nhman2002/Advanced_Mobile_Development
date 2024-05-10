@@ -80,7 +80,6 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
             } else {
               context.router.replace(const CompanyDashboardRoute());
             }
-            context.router.replace(const StudentSignupRoute());
           } else if (tabName == 'Message') {
             context.router.replace(const MessageListScreenRoute());
           } else if (tabName == 'Notifications') {

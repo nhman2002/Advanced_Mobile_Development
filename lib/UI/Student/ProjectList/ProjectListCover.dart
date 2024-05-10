@@ -29,7 +29,6 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
         // Assuming you have access to project details from the state
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text("projectlistcover_student1".tr()),
           ),
           body: SingleChildScrollView(

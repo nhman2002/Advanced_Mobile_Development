@@ -18,23 +18,7 @@ class MessageListScreen extends StatefulWidget {
 }
 
 class _MessageListScreenState extends State<MessageListScreen> {
-  // final List<Map<String, dynamic>> messages = [
-  //   {
-  //     'icon': Icons.message,
-  //     'name': 'Luis Pham',
-  //     'role': 'Senior frontend developer (Fintech)',
-  //     'message': 'Clear expectation about your project or deliverables',
-  //     'date': '6/6/2024'
-  //   },
-  //   {
-  //     'icon': Icons.message,
-  //     'name': 'Philips Truong',
-  //     'role': 'Senior backend developer (Healthcare)',
-  //     'message': 'Looking forward to working with you',
-  //     'date': '19/4/2024'
-  //   },
-  //   // Add more messages here
-  // ];
+
 
   final _localStorage = getIt.get<LocalStorage>();
   final _message = getIt.get<MessageRepository>();
@@ -66,7 +50,6 @@ class _MessageListScreenState extends State<MessageListScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.blue,
           title: Text('Student Hub'),
           actions: [
             IconButton(
@@ -75,35 +58,13 @@ class _MessageListScreenState extends State<MessageListScreen> {
               },
               icon: Icon(
                 Icons.account_circle,
-                color: Colors.white,
                 size: 40.0,
               ),
             ),
           ],
         ),
         body: _buildMessageContent(),
-        // bottomNavigationBar: BottomAppBar(
-        //   color: Colors.blue,
-        //   child: Center(
-        //     child: Padding(
-        //       padding: const EdgeInsets.all(0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           _buildCompanyDashboardItem(Icons.work, 'Projects',
-        //               Colors.white, Colors.blue.shade300),
-        //           _buildCompanyDashboardItem(Icons.dashboard, 'Dashboard',
-        //               Colors.white, Colors.blue.shade300),
-        //           _buildCompanyDashboardItem(Icons.message, 'Message',
-        //               Colors.black, Colors.grey.shade300),
-        //           _buildCompanyDashboardItem(Icons.notifications, 'Notifications',
-        //               Colors.white, Colors.blue.shade300),
-        //         ],
-        //       ),
-        //     ),
-        //   ),
-        // ),
-        // bottomNavigationBar: const CustomBottomAppBar(),
+        bottomNavigationBar: const CustomBottomAppBar(),
       ),
     );
   }
@@ -171,32 +132,5 @@ class _MessageListScreenState extends State<MessageListScreen> {
     );
   }
 
-  // Widget _buildCompanyDashboardItem(
-  //     IconData icon, String label, Color color, Color bgColor) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       color: Colors.blue,
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //     padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
-  //     child: AnimatedButton(
-  //       icon: icon,
-  //       label: label,
-  //       color: color,
-  //       bgColor: bgColor,
-  //       onPressed: () {
-  //         // Add onPressed logic here
-  //         if (label == 'Projects') {
-  //           context.router.push(const StudentSignupRoute());
-  //         } else if (label == 'Dashboard') {
-  //           context.router.push(const StudentSignupRoute());
-  //         } else if (label == 'Message') {
-  //           // context.router.push(const MessageListScreenRoute());
-  //         } else if (label == 'Notifications') {
-  //           context.router.push(const StudentSignupRoute());
-  //         }
-  //       },
-  //     ),
-  //   );
-  // }
+
 }

@@ -39,17 +39,15 @@ class LoginWidget extends StatefulWidget {
   @override
   State<LoginWidget> createState() => _LoginScreenState();
 }
-class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
 
+class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
   final passwordController = TextEditingController();
   final userController = TextEditingController();
-  //final _localStorage = getIt.get<LocalStorage>();
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text('Student Hub')),
+      appBar: AppBar( title: Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -83,7 +81,6 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Add your sign-in logic here
                 handleLogin(context);
               },
               child: Text("login_auth2".tr()),
@@ -92,11 +89,17 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                TextButton(
+                  onPressed: () {
+                    context.router.push(const ForgotPasswordPageRoute());
+                  },
+                  child: Text("Forgot Password?"),
+                ),
+                SizedBox(width: 20),
                 Text("login_auth3".tr()),
                 TextButton(
                   onPressed: () {
                     context.router.replace(const SignupPageRoute());
-                    // Add your sign-up navigation logic here
                   },
                   child: Text("login_auth4".tr()),
                 ),
@@ -108,13 +111,11 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
     );
   }
 
-
   Future<void> handleLogin(BuildContext context) async {
-    
     await context.read<LoginCubit>().login(
-          email: userController.text,
-          password: passwordController.text,
-        );
+      email: userController.text,
+      password: passwordController.text,
+    );
     final isSuccess = context.read<LoginCubit>().state.isLogin;
     final message = context.read<LoginCubit>().state.message ?? '';
     if (isSuccess) {

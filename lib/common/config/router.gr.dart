@@ -15,6 +15,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    ChangePasswordScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ChangePasswordScreen(),
+      );
+    },
     CompanyDashboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -273,6 +279,20 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [ChangePasswordScreen]
+class ChangePasswordScreenRoute extends PageRouteInfo<void> {
+  const ChangePasswordScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          ChangePasswordScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangePasswordScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -5,6 +5,7 @@ import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashboard_cubit.da
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
+import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -27,7 +28,6 @@ class _StudentDashBoard extends State<StudentDashBoard> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text('Student Hub'),
             actions: [
               IconButton(
@@ -98,27 +98,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
               ],
             ),
           ),
-          // bottomNavigationBar: BottomAppBar(
-          //   color: Colors.blue,
-          //   child: Center(
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(0),
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           _buildCompanyDashboardItem(Icons.work, "studentdashboard_student7".tr(),
-          //               Colors.white, Colors.blue.shade300),
-          //           _buildCompanyDashboardItem(Icons.dashboard, "studentdashboard_student8".tr(),
-          //               Colors.black, Colors.grey.shade300),
-          //           _buildCompanyDashboardItem(Icons.message, "studentdashboard_student9".tr(),
-          //               Colors.white, Colors.blue.shade300),
-          //           _buildCompanyDashboardItem(Icons.notifications, "studentdashboard_student10".tr(),
-          //               Colors.white, Colors.blue.shade300),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+           bottomNavigationBar: const CustomBottomAppBar(),
         );
       },
     );
@@ -240,7 +220,7 @@ Widget _buildProjectSectionButton(String label, Color color, bool isBlue, VoidCa
       onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
-          color: isBlue ? Colors.blue : Colors.white,
+          color: isBlue ? Colors.purple : Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         padding: EdgeInsets.all(10),

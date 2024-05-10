@@ -35,7 +35,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
         final projectList = state.favoriteProjectList; // Wrap with BlocBuilder
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             leadingWidth: 200, // Adjust leading width for the text
             automaticallyImplyLeading: true, // This will enable the back button
             titleSpacing: NavigationToolbar.kMiddleSpacing,
