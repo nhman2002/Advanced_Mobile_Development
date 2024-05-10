@@ -6,7 +6,7 @@ import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_state.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_state.dart';
 
 class CompanyRegisterCubit extends WidgetCubit<CompanyRegisterState> {
   CompanyRegisterCubit()

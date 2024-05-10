@@ -7,12 +7,12 @@ import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 
 
-class NotificationRepositor extends BaseRepository {
-  NotificationRepositor() : super('/notification');
+class NotificationRepository extends BaseRepository {
+  NotificationRepository() : super('/notification');
 
     Future<DataState<List<NotificationOutput>>> getNotifications(int id) async {
     return get<List<NotificationOutput>>(
-      path: '/getByReceiverId/%id',
+      path: '/getByReceiverId/$id',
       parseJsonFunction: NotificationOutput.fromJsonList,
     );
   }

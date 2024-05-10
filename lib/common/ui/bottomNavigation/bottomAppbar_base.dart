@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
+import 'package:student_hub/core/config/dependency.dart';
 
 class CustomBottomAppBar extends StatefulWidget {
   const CustomBottomAppBar({Key? key}) : super(key: key);
@@ -12,11 +14,12 @@ class CustomBottomAppBar extends StatefulWidget {
 
 class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   String _selectedTab = 'Projects'; // Default selected tab
+  final _localStorage = getIt.get<LocalStorage>();
+  String? userRole;
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.blue,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -48,10 +51,10 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Widget _buildTabItem(
       {required String tabName, required IconData icon, required Badge badge}) {
     final isSelected = _selectedTab == tabName;
-
+    final userRoleString = _localStorage.getString(key: StorageKey.currentRole);
+    final userRole = int.parse(userRoleString!);
     return (Container(
       decoration: BoxDecoration(
-        color: Colors.blue,
         borderRadius: BorderRadius.circular(10),
       ),
       padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
@@ -66,13 +69,22 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           });
           // Add onPressed logic here
           if (tabName == 'Projects') {
-            context.router.push(const StudentSignupRoute());
+            if (userRole == 0) {
+              context.router.replace(const StudentProjectListRoute());
+            } else {
+              context.router.replace(const StudentProjectListRoute());
+            }
           } else if (tabName == 'Dashboard') {
-            context.router.push(const StudentSignupRoute());
+            if (userRole == 0) {
+              context.router.replace(const StudentDashBoardWrapperRoute());
+            } else {
+              context.router.replace(const CompanyDashboardRoute());
+            }
+            context.router.replace(const StudentSignupRoute());
           } else if (tabName == 'Message') {
-            context.router.push(const MessageListScreenRoute());
+            context.router.replace(const MessageListScreenRoute());
           } else if (tabName == 'Notifications') {
-            context.router.push(const StudentSignupRoute());
+            context.router.replace(const NotificationScreenRoute());
           }
         },
       ),

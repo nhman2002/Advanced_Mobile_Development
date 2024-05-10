@@ -67,8 +67,8 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
     debugPrint('CV Path: $cvPath');
   }
 
-  void setTranscript(File transcriptFile) {
-    emit(state.copyWith(uploadTranscript: transcriptFile));
+  void setTranscript(String transcriptFile) {
+    emit(state.copyWith(transcriptPath: transcriptFile));
     debugPrint('Transcript Path: $transcriptFile');
   }
 
@@ -114,6 +114,15 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
         message = message + errorMessage! + '\n';
       }
     }
+    //if 3 requests are successful, then emit state with isSuccess = true
+    //else emit state with isSuccess = false
+    if (result is DataSuccess && result2 is DataSuccess ) {
+      emit(state.copyWith(isSuccess: true));
+    }
+    else {
+      emit(state.copyWith(isSuccess: false));
+    }
+
     emit(state.copyWith(message: message));
     hideLoading();
   }

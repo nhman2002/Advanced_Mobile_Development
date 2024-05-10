@@ -13,6 +13,7 @@ Future<void> main() async {
   await Permission.notification.isDenied.then((value) {
   if (value) {
     Permission.notification.request();
+    
   }
 });
   await appInit();

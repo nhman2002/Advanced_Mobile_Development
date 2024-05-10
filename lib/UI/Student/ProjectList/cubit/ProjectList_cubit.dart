@@ -13,7 +13,7 @@ import 'package:student_hub/core/repository/project.dart';
 import 'package:student_hub/core/repository/proposal.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/Auth/login/cubit/login_state.dart';
+import 'package:student_hub/UI/auth/login/cubit/login_state.dart';
 
 class ProjectListCubit extends WidgetCubit<ProjectListState> {
   ProjectListCubit()

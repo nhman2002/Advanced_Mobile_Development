@@ -9,8 +9,8 @@ class MeetingRoomRepository extends BaseRepository {
 
   //post meetingroom
   Future<DataState> postMeetingRoom(MeetingRoomInput form) async {
-    return post(
-      path: '/create-room',
+    return customPost(
+      path: '/meeting-room/create-room',
       parseJsonFunction: ErrorModel.fromJson,
       data: form.toJson(),
     );
@@ -18,8 +18,8 @@ class MeetingRoomRepository extends BaseRepository {
 
   //check availability
   Future<DataState> checkAvailability(String roomId, String roomCode) async {
-    return get(
-      path: '/check-availability?meeting_room_code=$roomCode&meeting_room_id=$roomId',
+    return customGet(
+      path: '/meeting-room/check-availability?meeting_room_code=$roomCode&meeting_room_id=$roomId',
       parseJsonFunction: ErrorModel.fromJson,
     );
   }

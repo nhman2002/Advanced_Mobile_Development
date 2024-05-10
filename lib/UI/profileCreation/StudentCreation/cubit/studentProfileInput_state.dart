@@ -11,6 +11,7 @@ class StudentProfileInputState extends WidgetState {
   final List<String> selectedSkillSetList;
   final String? cvPath;
   final String? transcriptPath;
+  final bool? isSuccess;
 
 
   const StudentProfileInputState({
@@ -21,6 +22,7 @@ class StudentProfileInputState extends WidgetState {
     this.selectedSkillSetList = const [],
     this.cvPath,
     this.transcriptPath,
+    this.isSuccess,
   });
 
   @override
@@ -32,6 +34,7 @@ class StudentProfileInputState extends WidgetState {
   ,selectedSkillSetList
   ,cvPath
   ,transcriptPath
+  ,isSuccess
   ];
 
   @override
@@ -54,7 +57,8 @@ class StudentProfileInputState extends WidgetState {
     int? selectedTechStackId,
     List<String>? selectedSkillSetList,
     String? cvPath,
-    File? uploadTranscript,
+    String? transcriptPath,
+    bool? isSuccess,
   }) {
     return StudentProfileInputState(
       message: message ?? this.message,
@@ -64,6 +68,7 @@ class StudentProfileInputState extends WidgetState {
       selectedSkillSetList: selectedSkillSetList ?? this.selectedSkillSetList,
       cvPath: cvPath ?? this.cvPath,
       transcriptPath: transcriptPath ?? this.transcriptPath,
+      isSuccess: isSuccess ?? this.isSuccess,
     );
   }
 }

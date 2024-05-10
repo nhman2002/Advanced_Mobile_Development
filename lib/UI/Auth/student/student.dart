@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:student_hub/UI/Auth/company/company.dart';
+import 'package:student_hub/UI/auth/company/company.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/UI/Auth/student/cubit/student_cubit.dart';
-import 'package:student_hub/UI/Auth/student/cubit/student_state.dart';
+import 'package:student_hub/UI/auth/student/cubit/student_cubit.dart';
+import 'package:student_hub/UI/auth/student/cubit/student_state.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
