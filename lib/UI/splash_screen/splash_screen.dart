@@ -35,6 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final id = idString != null ? int.parse(idString) : -1;
     if (isLogin == false) {
       context.router.replace(const MyAppRoute());
+      // context.router.replace(VideoCallScreenRoute(channelName: 'test'));
     } else {
       _notiSocket.listenInBackground();
       if (isCompany == true && hasProfile == true)

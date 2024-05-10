@@ -7,6 +7,7 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -21,6 +22,11 @@ class StudentProjectList extends StatefulWidget {
 
 class _StudentProjectList extends State<StudentProjectList> {
   bool isLoading = true;
+  SearchController _searchController = SearchController();
+  TextEditingController _projectScopeController = TextEditingController();
+  TextEditingController _numberOfStudentsController = TextEditingController();
+  TextEditingController _proposalsLessThanController = TextEditingController();
+  int? _selectedScope;
   @override
   void initState() {
     super.initState();
@@ -38,176 +44,219 @@ class _StudentProjectList extends State<StudentProjectList> {
       builder: (context, state) {
         final projectList = state.projectList;
         return Scaffold(
-            appBar: AppBar(
-              title: Text('Student Hub'),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    context.router.replace(const SwitchAccountPageRoute());
-                  },
-                  icon: Icon(Icons.account_circle,
-                      color: Colors.white, size: 40.0),
-                )
-              ],
-            ),
-            body: Center(
-              // Wrap the Column with Center widget
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: SearchAnchor(
-                            builder: (BuildContext context,
-                                SearchController controller) {
-                              return SearchBar(
-                                controller: controller,
-                                padding:
-                                    const MaterialStatePropertyAll<EdgeInsets>(
-                                        EdgeInsets.symmetric(horizontal: 16.0)),
-                                onTap: () {
-                                  // controller.openView();
-                                },
-                                onChanged: (_) {
-                                  controller.openView();
-                                },
-                                leading: const Icon(Icons.search),
-                                trailing: <Widget>[
-                                  Tooltip(
-                                    message: "projectlist_student1".tr(),
-                                  ),
-                                ],
-                              );
-                            },
-                            suggestionsBuilder: (BuildContext context,
-                                SearchController controller) {
-                              return List<ListTile>.generate(5, (int index) {
-                                final String item = 'item $index';
-                                return ListTile(
-                                  title: Text(item),
-                                  onTap: () {
-                                    setState(() {
-                                      controller.closeView(item);
-                                    });
-                                  },
-                                );
-                              });
-                            },
+          appBar: AppBar(
+            title: Text('Student Hub'),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  context.router.replace(const SwitchAccountPageRoute());
+                },
+                icon:
+                    Icon(Icons.account_circle, color: Colors.white, size: 40.0),
+              )
+            ],
+          ),
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            _showFilterDialog(context);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.search),
+                                SizedBox(width: 8.0),
+                                Text('Filter Projects'),
+                              ],
+                            ),
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            context
-                                .read<ProjectListCubit>()
-                                .initFavoriteProject();
-                            context.router
-                                .push(const FavoriteProjectPageRoute());
-                          },
-                          icon: const Icon(Icons.favorite),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          // mainAxisAlignment: MainAxisAlignment.center,
-                          // crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            if (projectList.isNotEmpty)
-                              SingleChildScrollView(
-                                child: Container(
-                                  constraints: BoxConstraints(
-                                    minHeight: 20,
-                                  ),
-                                  child: Column(
-                                    children: projectList.map((project) {
-                                      return _buildProjectItem(
-                                          context, project);
-                                    }).toList(),
-                                  ),
-                                ),
-                              )
-                            else
-                              // Show a loading circle if the project list is empty
-                              // The circle dissapears after 5 sec and a message is displayed
-                              Center(
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          context
+                              .read<ProjectListCubit>()
+                              .initFavoriteProject();
+                          context.router.push(const FavoriteProjectPageRoute());
+                        },
+                        icon: const Icon(Icons.favorite),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          if (projectList.isNotEmpty)
+                            SingleChildScrollView(
+                              child: Container(
+                                constraints: BoxConstraints(minHeight: 20),
                                 child: Column(
-                                  children: [
-                                    SizedBox(height: 50),
-                                    Center(
-                                      child: isLoading
-                                          ? CircularProgressIndicator()
-                                          : Text("projectlist_student2".tr()),
-                                    ),
-                                  ],
+                                  children: projectList.map((project) {
+                                    return _buildProjectItem(context, project);
+                                  }).toList(),
                                 ),
                               ),
-                          ],
-                        ),
+                            )
+                          else
+                            Center(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 50),
+                                  Center(
+                                    child: isLoading
+                                        ? CircularProgressIndicator()
+                                        : Text("projectlist_student2".tr()),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-            //   bottomNavigationBar: BottomAppBar(
-            //     color: Colors.blue,
-            //     child: Center(
-            //       child: Padding(
-            //         padding: const EdgeInsets.all(0),
-            //         child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //           children: [
-            //             _buildCompanyDashboardItem(
-            //               Icons.work, "studentdashboard_student7".tr(), Colors.black, Colors.grey.shade300),
-            //             _buildCompanyDashboardItem(
-            //               Icons.dashboard, "studentdashboard_student8".tr(), Colors.white, Colors.blue.shade300),
-            //             _buildCompanyDashboardItem(
-            //               Icons.message, "studentdashboard_student9".tr(), Colors.white, Colors.blue.shade300),
-            //             _buildCompanyDashboardItem(
-            //               Icons.notifications, "studentdashboard_student10".tr(), Colors.white, Colors.blue.shade300),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            );
+            ),
+          ),
+          bottomNavigationBar: const CustomBottomAppBar(),
+        );
       },
     );
   }
 
-  // Widget _buildCompanyDashboardItem(
-  //     IconData icon, String label, Color color, Color bgColor) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       color: Colors.blue,
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //     padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
-  //     child: AnimatedButton(
-  //       icon: icon,
-  //       label: label,
-  //       color: color,
-  //       bgColor: bgColor,
-  //       onPressed: () {
-  //         // Add onPressed logic here
-  //         if (label == "studentdashboard_student7".tr()) {
-  //           // context.router.push(const StudentSignupRoute());
-  //         } else if (label == "studentdashboard_student8".tr()) {
-  //           context.router.replace(const StudentDashBoardWrapperRoute());
-  //         } else if (label == "studentdashboard_student9".tr()) {
-  //           context.router.replace(const MessageListScreenRoute());
-  //         } else if (label == "studentdashboard_student10".tr()) {
-  //           context.router.replace(const StudentSignupRoute());
-  //         }
-  //       },
-  //     ),
-  //   );
-  // }
+  void _showFilterDialog(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+      ),
+      builder: (BuildContext context) {
+        return SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Project Filter',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.0,
+                  ),
+                ),
+                SizedBox(height: 10.0),
+                TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    labelText: 'Search',
+                    prefixIcon: Icon(Icons.search),
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                Text(
+                  'Project Scope',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
+                  ),
+                ),
+                DropdownButtonFormField<int>(
+                  value: _selectedScope,
+                  items: [
+                    DropdownMenuItem<int>(
+                      value: 0,
+                      child: Text('Less than 1 month'),
+                    ),
+                    DropdownMenuItem<int>(
+                      value: 1,
+                      child: Text('1-3 months'),
+                    ),
+                    DropdownMenuItem<int>(
+                      value: 2,
+                      child: Text('3-6 months'),
+                    ),
+                    DropdownMenuItem<int>(
+                      value: 3,
+                      child: Text('More than 6 months'),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedScope = value!;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Select Project Scope',
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                TextField(
+                  controller: _numberOfStudentsController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Number of Students',
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                TextField(
+                  controller: _proposalsLessThanController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Proposals Less Than',
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Cancel'),
+                    ),
+                    SizedBox(width: 10.0),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.read<ProjectListCubit>().filterProject(
+                               _searchController.text,
+                              _selectedScope,
+                               int.tryParse(
+                                  _numberOfStudentsController.text),
+                              int.tryParse(
+                                  _proposalsLessThanController.text),
+                            );
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Filter'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   Widget _buildProjectItem(BuildContext context, ProjectOutput project) {
     DateTime createdAt =

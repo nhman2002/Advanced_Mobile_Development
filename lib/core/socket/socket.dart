@@ -80,13 +80,11 @@ class NotificationSocket {
     await Isolate.spawn(_connectAndListen, receivePort.sendPort, errorsAreFatal: true, onError: errorPort.sendPort);
     receivePort.listen((message) {
       if (_userId == message.userid.toString()) {
-        print("dc rofi ne");
         _notificationService.showNotification(
             message.id, message.title, message.body, '');
       } 
       else {
         print('message is null');
-      //   // receivePort.close();
       }
     });
   }

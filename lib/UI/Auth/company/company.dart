@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/UI/Auth/student/student.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_cubit.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_state.dart';
+import 'package:student_hub/UI/auth/student/student.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_cubit.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_state.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
@@ -40,7 +40,6 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
       ),
       body: Padding(

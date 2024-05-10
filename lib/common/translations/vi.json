@@ -16,11 +16,22 @@
     "login_auth3": "Bạn chưa có tài khoản?",
     "login_auth4": "Đăng kí",
 
-    "forgotpassword_auth1": "Forgot password",
-    "forgotpassword_auth2": "Please enter your email and we'll send you a link to get back into your account.",
-    "forgotpassword_auth3": "Please enter a valid email address.",
-    "forgotpassword_auth4": "Send login link",
-    "forgotpassword_auth5": "Back to login",
+    "forgotpassword_auth1": "Quên mật khẩu",
+    "forgotpassword_auth2": "Vui lòng nhập email của bạn và chúng tôi sẽ gửi cho bạn một đường liên kết để quay lại tài khoản của bạn.",
+    "forgotpassword_auth3": "Vui lòng nhập địa chỉ email hợp lệ.",
+    "forgotpassword_auth4": "Gửi đường liên kết đăng nhập",
+    "forgotpassword_auth5": "Quay lại",
+
+    "changepassword_auth1": "Tạo mật khẩu mới",
+    "changepassword_auth2": "Mật khẩu mới của bạn phải khác với mật khẩu đã sử dụng trước đó.",
+    "changepassword_auth3": "Mật khẩu",
+    "changepassword_auth4": "Nhập mật khẩu cũ",
+    "changepassword_auth5": "Mật khẩu mới",
+    "changepassword_auth6": "Cả hai mật khẩu phải trùng nhau",
+    "changepassword_auth7": "Nhập mật khẩu mới",
+    "changepassword_auth8": "Xác nhận mật khẩu",
+    "changepassword_auth9": "Xác nhận mật khẩu mới",
+    "changepassword_auth10": "Đổi mật khẩu",
 
     "signup_auth1": "Bạn muốn đăng kí cho Công ty hay Sinh viên?",
     "signup_auth2": "Mình là Sinh viên đang tìm dự án để tham gia",
@@ -28,7 +39,6 @@
     "signup_auth4": "Bạn cần lựa chọn vai trò để tiếp tục",
     "signup_auth5": "Tạo tài khoản",
     "signup_auth6": "Tôi là công ty, tìm kỹ sư cho dự án",
-
 
     "student_auth1": "Đăng kí cho Sinh viên",
     "student_auth2": "Tôi đồng ý với các điều khoản và điều kiện của Student Hub",

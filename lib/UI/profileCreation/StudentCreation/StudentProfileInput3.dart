@@ -153,12 +153,17 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
     context.read<StudentProfileInputCubit>().setCV(cvPath);
 
     if (transcriptPath.isNotEmpty) {
-      transcriptFile = File(transcriptPath);
-      context.read<StudentProfileInputCubit>().setTranscript(transcriptFile);
+      context.read<StudentProfileInputCubit>().setTranscript(transcriptPath);
     }
     await context.read<StudentProfileInputCubit>().uploadProfile(context);
+    
       showSnackBarSuccess(context, context.read<StudentProfileInputCubit>().state.message!);
       //context.router.popUntilRoot();
-      context.router.replace(const SwitchAccountPageRoute());
+      final isSuccess = context.read<StudentProfileInputCubit>().state.isSuccess;
+      if (isSuccess == true) {
+        context.router.replace(const ProjectListWrapperRoute());
+      }
+      else
+        context.router.replace(const SwitchAccountPageRoute());
   }
 }

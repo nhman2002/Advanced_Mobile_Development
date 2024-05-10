@@ -22,6 +22,17 @@
     "forgotpassword_auth4": "Send login link",
     "forgotpassword_auth5": "Back to login",
 
+    "changepassword_auth1": "Create new password",
+    "changepassword_auth2": "Your new password must be different from previous used password.",
+    "changepassword_auth3": "Password",
+    "changepassword_auth4": "Enter your old password",
+    "changepassword_auth5": "New Password",
+    "changepassword_auth6": "Both passwords must match",
+    "changepassword_auth7": "Enter your new password",
+    "changepassword_auth8": "Confirm Password",
+    "changepassword_auth9": "Confirm your new password",
+    "changepassword_auth10": "Reset password",
+
     "signup_auth1": "Would you like to join as a student or a company?",
     "signup_auth2": "I am a student, looking for projects to work on",
     "signup_auth3": "Please select a role",

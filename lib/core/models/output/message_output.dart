@@ -107,6 +107,8 @@ class Interview {
   String? startTime;
   String? endTime;
   int? disableFlag;
+  int? meetingRoomId;
+  String? meetingRoomCode;
 
   Interview({
     this.id,
@@ -117,6 +119,8 @@ class Interview {
     this.startTime,
     this.endTime,
     this.disableFlag,
+    this.meetingRoomId,
+    this.meetingRoomCode,
   });
 
   Interview.fromJson(Map<String, dynamic> json) {
@@ -128,6 +132,8 @@ class Interview {
     startTime = json['startTime'];
     endTime = json['endTime'];
     disableFlag = json['disableFlag'];
+    meetingRoomId = json['meetingRoomId'];
+    meetingRoomCode = json['meetingRoom']['meeting_room_code'];
   }
 
   Map<String, dynamic> toJson() {
@@ -140,6 +146,7 @@ class Interview {
     data['startTime'] = startTime;
     data['endTime'] = endTime;
     data['disableFlag'] = disableFlag;
+    data['meetingRoomId'] = meetingRoomId;
     return data;
   }
 }
@@ -191,3 +198,4 @@ class MessageWithProject extends MessageOutput{
 
 
 }
+

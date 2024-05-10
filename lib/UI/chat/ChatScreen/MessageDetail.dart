@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_cubit.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/UI/chat/ChatScreen/widget/ScheduleMeeting.dart';
+import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
@@ -123,8 +124,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       duration: Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
-  }
-Widget _buildMessageItem(Map<String, dynamic> message) {
+  }Widget _buildMessageItem(Map<String, dynamic> message) {
   // Check if the message contains interview information
   if (message['interview'] != null) {
     final interview = message['interview'];
@@ -132,7 +132,9 @@ Widget _buildMessageItem(Map<String, dynamic> message) {
     final content = message['text'];
     final start = interview.startTime;
     final end = interview.endTime;
-    // final roomId = interview.roomId;
+    final roomId = interview.meetingRoomId;
+    final userRole = _localStorage.getString(key: StorageKey.currentRole);
+    final channelName = interview.meetingRoomCode;
 
     return Container(
       margin: EdgeInsets.only(bottom: 10),
@@ -144,7 +146,7 @@ Widget _buildMessageItem(Map<String, dynamic> message) {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color:Colors.brown ,
+              color: Colors.brown,
             ),
             padding: EdgeInsets.all(16),
             child: Column(
@@ -165,35 +167,42 @@ Widget _buildMessageItem(Map<String, dynamic> message) {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  'Start: $start\nEnd: $end\nRoom ID: test',
+                  'Start: $start\nEnd: $end\nRoom ID: $roomId',
                   style: TextStyle(
                     fontSize: 12,
                     color: message['isSender'] ? Colors.white70 : Colors.grey,
                   ),
                 ),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.router.push(VideoCallScreenRoute(channelName: channelName));
+                    },
+                    child: Text('Join Interview'),
+                  ),
               ],
             ),
           ),
-          SizedBox(width: 8),
-          PopupMenuButton(
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                child: Text('Edit'),
-                value: 'edit',
-              ),
-              PopupMenuItem(
-                child: Text('Cancel Interview'),
-                value: 'cancel',
-              ),
-            ],
-            onSelected: (value) {
-              if (value == 'edit') {
-                _editInterview(context, interview);
-              } else if (value == 'cancel') {
-                _cancelInterview(context, interview);
-              }
-            },
-          ),
+          if (userRole != "0") // If user role is not "0" (e.g., admin), show PopupMenuButton
+            SizedBox(width: 8),
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  child: Text('Edit'),
+                  value: 'edit',
+                ),
+                PopupMenuItem(
+                  child: Text('Cancel Interview'),
+                  value: 'cancel',
+                ),
+              ],
+              onSelected: (value) {
+                if (value == 'edit') {
+                  _editInterview(context, interview);
+                } else if (value == 'cancel') {
+                  _cancelInterview(context, interview);
+                }
+              },
+            ),
         ],
       ),
     );
@@ -246,6 +255,7 @@ Widget _buildMessageItem(Map<String, dynamic> message) {
     );
   }
 }
+
 
 void _editInterview(BuildContext context, Map<String, dynamic> interview) {
   // Implement edit interview logic

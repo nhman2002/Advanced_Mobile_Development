@@ -15,6 +15,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    ChangePasswordScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ChangePasswordScreen(),
+      );
+    },
     CompanyDashboardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -122,6 +128,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: MyApp(),
+      );
+    },
+    NotificationScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NotificationScreen(),
       );
     },
     ProjectFilterRoute.name: (routeData) {
@@ -256,7 +268,31 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const SwitchAccountPage(),
       );
     },
+    VideoCallScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<VideoCallScreenRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: VideoCallScreen(
+          key: args.key,
+          channelName: args.channelName,
+        ),
+      );
+    },
   };
+}
+
+/// generated route for
+/// [ChangePasswordScreen]
+class ChangePasswordScreenRoute extends PageRouteInfo<void> {
+  const ChangePasswordScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          ChangePasswordScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ChangePasswordScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -533,6 +569,20 @@ class MyAppRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MyAppRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [NotificationScreen]
+class NotificationScreenRoute extends PageRouteInfo<void> {
+  const NotificationScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          NotificationScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationScreenRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -843,4 +893,42 @@ class SwitchAccountPageRoute extends PageRouteInfo<void> {
   static const String name = 'SwitchAccountPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [VideoCallScreen]
+class VideoCallScreenRoute extends PageRouteInfo<VideoCallScreenRouteArgs> {
+  VideoCallScreenRoute({
+    Key? key,
+    required String channelName,
+    List<PageRouteInfo>? children,
+  }) : super(
+          VideoCallScreenRoute.name,
+          args: VideoCallScreenRouteArgs(
+            key: key,
+            channelName: channelName,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'VideoCallScreenRoute';
+
+  static const PageInfo<VideoCallScreenRouteArgs> page =
+      PageInfo<VideoCallScreenRouteArgs>(name);
+}
+
+class VideoCallScreenRouteArgs {
+  const VideoCallScreenRouteArgs({
+    this.key,
+    required this.channelName,
+  });
+
+  final Key? key;
+
+  final String channelName;
+
+  @override
+  String toString() {
+    return 'VideoCallScreenRouteArgs{key: $key, channelName: $channelName}';
+  }
 }

@@ -36,7 +36,6 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
 
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text('Student Hub'),
             actions: [
               IconButton(

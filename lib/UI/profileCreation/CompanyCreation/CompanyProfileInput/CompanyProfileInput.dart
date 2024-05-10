@@ -28,7 +28,6 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
         actions: [
           IconButton(

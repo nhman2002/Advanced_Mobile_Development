@@ -55,7 +55,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
 
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
             title: Text('Student Hub'),
             actions: [
               IconButton(

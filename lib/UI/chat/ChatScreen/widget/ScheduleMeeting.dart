@@ -188,14 +188,18 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     );
     //check if the meeting room is available, if not create
     final result = await _meetingRoom.checkAvailability(_meetingRoomController.text, _meetingRoomController.text);
-    if (result is DataError) {
-      MeetingRoomInput meetingRoom = MeetingRoomInput(
-        meetingRoomCode: _meetingRoomController.text,
-        meetingRoomId: _meetingRoomController.text,
-        expiredAt: endTime,
-      );
-      await _meetingRoom.postMeetingRoom(meetingRoom);
+    if (result is DataSuccess) {
+      print('meeting room ready');
     }
+    // else
+    // {
+    //   MeetingRoomInput meetingRoom = MeetingRoomInput(
+    //     meetingRoomCode: _meetingRoomController.text,
+    //     meetingRoomId: _meetingRoomController.text,
+    //     expiredAt: endTime,
+    //   );
+    //   await _meetingRoom.postMeetingRoom(meetingRoom);
+    // }
     final result1 = await _interview.postInterview(form);
     if (result1 is DataError) {
       ShowSnackBarWarningEvent('Failed to schedule meeting');

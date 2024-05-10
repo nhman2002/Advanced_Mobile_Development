@@ -2,8 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
 
+@RoutePage()
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key});
 
@@ -19,7 +21,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeMode>(
       builder: (context, themeMode) {
-
         if (themeMode == ThemeMode.dark) {
           _isDarkMode = true;
         } else {
@@ -78,6 +79,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: Text(value),
                     );
                   }).toList(),
+                ),
+                SizedBox(height: 20.0),
+                ListTile(
+                  title: Text("Change Password"),
+                  onTap: () {
+                    // Navigate to the change password screen
+                    context.router.push(const ChangePasswordScreenRoute());
+                  },
                 ),
               ],
             ),

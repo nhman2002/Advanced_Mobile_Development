@@ -18,7 +18,6 @@ class _ProjectFilter extends State<ProjectFilter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
         actions: [
           IconButton(

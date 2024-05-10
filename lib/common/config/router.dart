@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:student_hub/UI/Auth/login/forgot_password.dart';
-import 'package:student_hub/UI/Auth/student/student.dart';
+import 'package:student_hub/UI/Chat/VideoCall/VideoCall.dart';
+import 'package:student_hub/UI/auth/login/forgot_password.dart';
+import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
 import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
 import 'package:student_hub/UI/company/CompanyDashboardWrapper.dart';
@@ -23,17 +24,19 @@ import 'package:student_hub/UI/Project/ProjectPost/ProjectPost2.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost3.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPost4.dart';
 import 'package:student_hub/UI/Project/ProjectPost/ProjectPostWrapper.dart';
+import 'package:student_hub/UI/notification/notificationScreen.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/StudentProfileInput2.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInputWrapper.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/AccountSwitchPage.dart';
 import 'package:student_hub/UI/home.dart';
-import 'package:student_hub/UI/Auth/login/login.dart';
-import 'package:student_hub/UI/Auth/signup/signup.dart';
-import 'package:student_hub/UI/Auth/company/company.dart';
+import 'package:student_hub/UI/auth/login/login.dart';
+import 'package:student_hub/UI/auth/signup/signup.dart';
+import 'package:student_hub/UI/auth/company/company.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyWelcome.dart';
 import 'package:student_hub/UI/company/CompanyDashboard.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileInput/CompanyProfileInput.dart';
 import 'package:student_hub/UI/profileCreation/CompanyCreation/CompanyProfileEdit.dart';
+import 'package:student_hub/UI/profileCreation/changePassword/change_password.dart';
 import 'package:student_hub/UI/profileCreation/settingScreen/SettingScreen.dart';
 import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
@@ -118,6 +121,10 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   ]),
 
               // transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: VideoCallScreenRoute.page,
+                  path: 'videoCall',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
 
               CustomRoute(
                   page: CompanyWelcomeRouteRoute.page,
@@ -140,6 +147,20 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   page: SettingsScreenRoute.page,
                   path: 'settingScreen',
                   ),
+              CustomRoute(
+                  page: NotificationScreenRoute.page,
+                  path: 'forgotPassword',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: ChangePasswordScreenRoute.page,
+                  path: 'changePassword',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+
+                CustomRoute(
+                  page: MessageListScreenRoute.page,
+                  path: 'messageList',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+                
               CustomRoute(
                   page: StudentProfileInputWrapperRoute.page,
                   path: 'studentProfileInput',

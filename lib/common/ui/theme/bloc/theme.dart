@@ -4,15 +4,40 @@ ThemeData lightTheme = ThemeData(
   useMaterial3: true,
   colorScheme: lightScheme,
   appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 229, 196, 245),
+    backgroundColor: Color.fromARGB(255, 209, 108, 230),
+    foregroundColor: Color(4294967295),
+    titleTextStyle: TextStyle(
+      color: Color(4294967295),
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+    ),
+    actionsIconTheme: IconThemeData(
+      color: Color.fromARGB(255, 255, 255, 255),
+    ),
+    iconTheme: IconThemeData(
+      color: Color.fromARGB(255, 255, 255, 255),
+    ),
   ),
+
 );
 
 ThemeData darkTheme = ThemeData(
   useMaterial3: true,
   colorScheme: darkScheme,
   appBarTheme: AppBarTheme(
-    backgroundColor: Color.fromARGB(255, 108, 32, 146),
+    backgroundColor: Color.fromARGB(255, 84, 31, 128),
+    foregroundColor: Color(4293059305),
+    titleTextStyle: TextStyle(
+      color: Color(4293059305),
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+    ),
+    actionsIconTheme: IconThemeData(
+      color: Color.fromARGB(255, 255, 255, 255),
+    ),
+    iconTheme: IconThemeData(
+      color: Color.fromARGB(255, 255, 255, 255),
+    ),
   ),
 );
 

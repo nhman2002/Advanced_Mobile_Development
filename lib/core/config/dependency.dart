@@ -8,6 +8,7 @@ import 'package:student_hub/core/repository/favoriteProject.dart';
 import 'package:student_hub/core/repository/interview.dart';
 import 'package:student_hub/core/repository/meetingRoom.dart';
 import 'package:student_hub/core/repository/message.dart';
+import 'package:student_hub/core/repository/notification.dart';
 import 'package:student_hub/core/repository/profileStudent.dart';
 import 'package:student_hub/core/repository/proposal.dart';
 import 'package:student_hub/core/repository/skillSet.dart';
@@ -36,5 +37,6 @@ Future<void> initializeDependency() async {
     ..registerSingleton<NotificationService>(NotificationService.initial())
     ..registerLazySingleton<NotificationSocket>(NotificationSocket.new)
     ..registerLazySingleton<InterviewRepository>(InterviewRepository.new)
-    ..registerLazySingleton<MeetingRoomRepository>(MeetingRoomRepository.new);
+    ..registerLazySingleton<MeetingRoomRepository>(MeetingRoomRepository.new)
+    ..registerLazySingleton<NotificationRepository>(NotificationRepository.new);
 }
