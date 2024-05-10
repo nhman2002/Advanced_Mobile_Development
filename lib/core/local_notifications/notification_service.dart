@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-
 class NotificationService {
   // Singleton pattern
   static final NotificationService _notificationService =
@@ -9,11 +8,12 @@ class NotificationService {
   factory NotificationService() {
     return _notificationService;
   }
-   NotificationService.initial() {
-    init();}
+  NotificationService.initial() {
+    init();
 
-  NotificationService._internal(){
   }
+
+  NotificationService._internal() {}
 
   static const channelId = "1";
 
@@ -40,6 +40,7 @@ class NotificationService {
   );
 
   Future<void> init() async {
+    requestIOSPermissions();
     print("Initializing notification service");
     final AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("icon");
@@ -60,7 +61,6 @@ class NotificationService {
     // *** Initialize timezone here ***
 
     await flutterLocalNotificationsPlugin.initialize(
-      
       initializationSettings,
     );
   }
@@ -76,7 +76,6 @@ class NotificationService {
         );
   }
 
-
   Future<void> showNotification(
       int id, String title, String body, String payload) async {
     await flutterLocalNotificationsPlugin.show(
@@ -88,8 +87,6 @@ class NotificationService {
     );
   }
 
-
-
   Future<void> cancelNotification(int id) async {
     await flutterLocalNotificationsPlugin.cancel(id);
   }
@@ -98,4 +95,3 @@ class NotificationService {
     await flutterLocalNotificationsPlugin.cancelAll();
   }
 }
-

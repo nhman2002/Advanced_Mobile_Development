@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 
+// missing experience
 
 class Project {
   final String id;
@@ -27,7 +29,8 @@ class StudentProfileInputExperience extends StatefulWidget {
       _StudentProfileInputExperienceState();
 }
 
-class _StudentProfileInputExperienceState extends State<StudentProfileInputExperience> {
+class _StudentProfileInputExperienceState
+    extends State<StudentProfileInputExperience> {
   // Initialize MultiSelectController
 
   List<Project> projectList = [
@@ -35,15 +38,13 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
       id: '1',
       projectName: "studentprofileinput2_ProfileCreation1".tr(),
       period: "studentprofileinput2_ProfileCreation2".tr(),
-      description:
-          "studentprofileinput2_ProfileCreation3".tr(),
+      description: "studentprofileinput2_ProfileCreation3".tr(),
     ),
     Project(
       id: '2',
       projectName: "studentprofileinput2_ProfileCreation1".tr(),
       period: "studentprofileinput2_ProfileCreation2".tr(),
-      description:
-          "studentprofileinput2_ProfileCreation3".tr(),
+      description: "studentprofileinput2_ProfileCreation3".tr(),
     ),
   ];
 
@@ -63,6 +64,31 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
     'Video',
     'Microservices',
   ];
+
+  void _addNewProject(String projectName, DateTime startMonth,
+      DateTime endMonth, String description, List<SkillSets> skills) {
+    setState(() {
+      widget.user.studentUser?.experience?.add(Experience(
+        id: widget.user.id!,
+        title: projectName,
+        startMonth: startMonth,
+        endMonth: endMonth,
+        description: description,
+        skillSet: skills,
+        duration: (widget.user.studentUser!.duration!.inHours / 24).round(),
+      ));
+    });
+    // Add your logic here for handling the icon press
+  }
+
+  void _deleteProject(String projectName) {
+    setState(() {
+      widget.user.studentUser?.experience
+          ?.removeWhere((project) => project.title == projectName);
+    });
+    // Add your logic here for handling the icon press
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -90,48 +116,55 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                   final project = projectList[index];
                   return Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                project.projectName,
-                                style: TextStyle(fontWeight: FontWeight.bold),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Column(
+                      //       crossAxisAlignment: CrossAxisAlignment.start,
+                      //       children: [
+                      //         Text(
+                      //           project.projectName,
+                      //           style: TextStyle(fontWeight: FontWeight.bold),
+                      //         ),
+                              
+                      //         Text(
+                      //           project.period,
+                      //           style: TextStyle(fontSize: 13),
+                      //         )
+                      //       ],
+                      //     ),
+                      //     Row(
+                      //       children: [
+                      //         IconButton(
+                      //           onPressed: () {},
+                      //           icon: Icon(Icons.edit_outlined),
+                      //         ),
+                      //         IconButton(
+                      //           onPressed: () {},
+                      //           icon: Icon(Icons.delete_outlined),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
+                      // Text(project.description),
+                      // SizedBox(height: 15),
+                      // // MultiSelectChipField with onSelectionChanged callback
+                      // MultiSelectChipField(
+                      //   items: skillSetList
+                      //       .map((e) => MultiSelectItem(e, e))
+                      //       .toList(),
+                      //   initialValue: [],
+                      // ),
+                      // SizedBox(height: 20),
+                      // Divider(),
+                      Text(
+                                "Educations",
+                                style: GoogleFonts.poppins(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                              Text(
-                                project.period,
-                                style: TextStyle(fontSize: 13),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.edit_outlined),
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: Icon(Icons.delete_outlined),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Text(project.description),
-                      SizedBox(height: 15),
-                      // MultiSelectChipField with onSelectionChanged callback
-                      MultiSelectChipField(
-                        items: skillSetList
-                            .map((e) => MultiSelectItem(e, e))
-                            .toList(),
-                        initialValue: [],
-                      
-                      ),
-                      SizedBox(height: 20),
-                      Divider(),
                     ],
                   );
                 },
@@ -147,7 +180,8 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                     color: Colors.black,
                     borderRadius: BorderRadius.circular(35),
                   ),
-                  child: Text("studentprofileinput1_ProfileCreation4".tr(), style: TextStyle(color: Colors.white)),
+                  child: Text("studentprofileinput1_ProfileCreation4".tr(),
+                      style: TextStyle(color: Colors.white)),
                 ),
               ),
             ],
