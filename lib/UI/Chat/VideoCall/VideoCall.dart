@@ -31,7 +31,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           appId: "0d51072268ce4de290abe457321b0ac5",
           channelName: widget.channelName,
           tempToken:
-              "007eJxTYPgt/6pm0/rlRgFXLDcfnrY4ezb3HPF1sq4G8n8cN7P+uRKgwGCQYmpoYG5kZGaRnGqSkmpkaZCYlGpiam5sZJhkkJhsmqpul9YQyMgw8cJlVkYGCATx2RhySwoyU/MYGAClOiBf"),
+              "007eJxTYJjIvPecVe2ME07auS2nxXu9r/AeW2Jm8Jfv3Y0Ugw/vLW8rMBikmBoamBsZmVkkp5qkpBpZGiQmpZqYmhsbGSYZJCabcsbZpTUEMjIsjX7FwsgAgSA+G0NuSUFmah4DAwCXEyBI"),
     );
 
     await agoraClient.initialize();
