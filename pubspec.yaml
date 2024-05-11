@@ -46,9 +46,9 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   build_runner: ^2.4.8
   mobx_codegen: ^2.6.0+1
-  auto_route_generator: ^7.3.2
+
 flutter:
-  assets:
-    - lib/common/ui/Assets/
-    - lib/common/translations/
   uses-material-design: true
+  assets:
+    - lib/common/ui/assets/
+    - lib/common/translations/

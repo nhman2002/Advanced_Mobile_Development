@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:student_hub/UI/ProfileCreation/StudentCreation/pop_up_education_widget.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 // import 'package:student_hub/widgets/pop_up_education_widget.dart';
 // import 'package:student_hub/models/model/education.dart';

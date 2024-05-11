@@ -309,7 +309,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
 
   void handleLogout(BuildContext context) async {
     await context.read<AccountSwitchCubit>().logout();
-    context.router.replace(const MyAppRoute());
+    context.router.replace(const HomeScreenRoute());
 
     // _networkManager.closeSocket();
   }

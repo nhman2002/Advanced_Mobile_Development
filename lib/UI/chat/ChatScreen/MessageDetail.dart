@@ -175,7 +175,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                 ),
                   ElevatedButton(
                     onPressed: () {
-                      context.router.push(VideoCallScreenRoute(channelName: channelName));
+                      context.router.replace(VideoCallScreenRoute(channelName: channelName));
                     },
                     child: Text('Join Interview'),
                   ),

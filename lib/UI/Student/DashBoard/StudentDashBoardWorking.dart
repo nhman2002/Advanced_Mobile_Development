@@ -21,8 +21,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
   Widget build(BuildContext context) {
     return BlocBuilder<StudentDashBoardCubit, StudentDashBoardState>(
       builder: (context, state) {
-        return MaterialApp(
-          home: Scaffold(
+        return Scaffold(
             appBar: AppBar(
               title: Text('Student Hub'),
               actions: [
@@ -102,8 +101,8 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
               ),
             ),
             bottomNavigationBar: const CustomBottomAppBar(),
-          ),
-        );
+          );
+        
       },
     );
   }

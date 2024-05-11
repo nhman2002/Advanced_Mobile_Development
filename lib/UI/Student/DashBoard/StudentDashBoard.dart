@@ -234,32 +234,4 @@ Widget _buildProjectSectionButton(String label, Color color, bool isBlue, VoidCa
   );
 }
 
-  // Widget _buildCompanyDashboardItem(
-  //     IconData icon, String label, Color color, Color bgColor) {
-  //   return Container(
-  //     decoration: BoxDecoration(
-  //       color: Colors.blue,
-  //       borderRadius: BorderRadius.circular(10),
-  //     ),
-  //     padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
-  //     child: AnimatedButton(
-  //       icon: icon,
-  //       label: label,
-  //       color: color,
-  //       bgColor: bgColor,
-  //       onPressed: () {
-  //         // Add onPressed logic here
-  //         if (label == "studentdashboard_student7".tr()) {
-  //           context.router.replace(const ProjectListWrapperRoute());
-  //         } else if (label == "studentdashboard_student8".tr()) {
-  //           // context.router.push(const StudentSignupRoute());
-  //         } else if (label == "studentdashboard_student9".tr()) {
-  //           context.router.replace(const MessageListScreenRoute());
-  //         } else if (label == "studentdashboard_student10".tr()) {
-  //           context.router.replace(const StudentSignupRoute());
-  //         }
-  //       },
-  //     ),
-  //   );
-  // }
 }

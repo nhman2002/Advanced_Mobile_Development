@@ -27,14 +27,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    
+    // Delay the navigation by 3 seconds
+    Future.delayed(Duration(seconds: 3), () {
+      navigateToNextScreen(); // Call the method to navigate after delay
+    });
+  }
 
+  // Method to handle navigation
+  void navigateToNextScreen() {
     final isLogin = context.read<SplashCubit>().state.isLogin;
     final isCompany = context.read<SplashCubit>().state.isCompany;
     final hasProfile = context.read<SplashCubit>().state.hasProfile;
     final idString = _localStorage.getString(key: StorageKey.userID);
     final id = idString != null ? int.parse(idString) : -1;
     if (isLogin == false) {
-      context.router.replace(const MyAppRoute());
+      context.router.replace(const HomeScreenRoute());
       // context.router.replace(VideoCallScreenRoute(channelName: 'test'));
     } else {
       _notiSocket.listenInBackground();
@@ -49,10 +57,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.sizeOf(context).height,
-      width: MediaQuery.sizeOf(context).width,
-      color: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white, // Set background color
+      body: Center(
+        child: Image.asset('lib/common/ui/assets/logo.png'),
+      ),
     );
   }
 }

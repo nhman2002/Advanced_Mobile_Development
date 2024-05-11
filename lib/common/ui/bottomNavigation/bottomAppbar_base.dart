@@ -70,9 +70,9 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           // Add onPressed logic here
           if (tabName == 'Projects') {
             if (userRole == 0) {
-              context.router.replace(const StudentProjectListRoute());
+              context.router.replace(const ProjectListWrapperRoute());
             } else {
-              context.router.replace(const StudentProjectListRoute());
+              context.router.replace(const ProjectListWrapperRoute());
             }
           } else if (tabName == 'Dashboard') {
             if (userRole == 0) {

@@ -22,27 +22,31 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     initializeAgora();
   }
 
-
-
   void initializeAgora() async {
-    // Initialize the Agora client
-    final agoraClient = AgoraClient(
-      agoraConnectionData: AgoraConnectionData(
+    try {
+      // Initialize the Agora client
+      final agoraClient = AgoraClient(
+        agoraConnectionData: AgoraConnectionData(
           appId: "0d51072268ce4de290abe457321b0ac5",
           channelName: widget.channelName,
           tempToken:
-              "007eJxTYPgt/6pm0/rlRgFXLDcfnrY4ezb3HPF1sq4G8n8cN7P+uRKgwGCQYmpoYG5kZGaRnGqSkmpkaZCYlGpiam5sZJhkkJhsmqpul9YQyMgw8cJlVkYGCATx2RhySwoyU/MYGAClOiBf"),
-    );
+              "007eJxTYJjIvPecVe2ME07auS2nxXu9r/AeW2Jm8Jfv3Y0Ugw/vLW8rMBikmBoamBsZmVkkp5qkpBpZGiQmpZqYmhsbGSYZJCabcsbZpTUEMjIsjX7FwsgAgSA+G0NuSUFmah4DAwCXEyBI",
+        ),
+      );
 
-    await agoraClient.initialize();
-    setState(() {
-      client = agoraClient; // Assign the initialized client
-    });
+      await agoraClient.initialize();
+      setState(() {
+        client = agoraClient; // Assign the initialized client
+      });
+    } catch (e) {
+      // Handle AgoraRtmChannelException here
+      print('AgoraRtmChannelException occurred: $e');
+      // You can choose to ignore the exception or handle it gracefully
+    }
   }
 
   @override
   void dispose() {
-
     super.dispose();
     client?.release();
   }
@@ -59,30 +63,23 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         ),
       );
     }
-    return PopScope(
-        onPopInvoked: (bool didPop) {
-          if (didPop) {
-            
-            
-            }
-          return;
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text('Video Call'),
-          ),
-          body: SafeArea(
-            child: Stack(
-              children: [
-                AgoraVideoViewer(client: client!,
-                    layoutType: Layout.floating,
-                    showNumberOfUsers: true,
-                ),
-                AgoraVideoButtons(client: client!),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text('Video Call'),
+      ),
+      body: SafeArea(
+        child: Stack(
+          children: [
+            AgoraVideoViewer(
+              client: client!,
+              layoutType: Layout.floating,
+              showNumberOfUsers: true,
             ),
-          ),
-        ));
+            AgoraVideoButtons(client: client!),
+          ],
+        ),
+      ),
+    );
   }
 }

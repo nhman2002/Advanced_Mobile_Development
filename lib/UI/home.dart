@@ -5,21 +5,19 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
-void main() {
-  runApp(MyApp());
-}
+
+
 
 @RoutePage()
-class MyApp extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-    );
-  }
+  State<HomeScreen> createState() => _HomeScreenState();
+
 }
 
-class HomeScreen extends StatelessWidget {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                   height: 40,
                   width: 40,
                   child: Image.asset(
-                    'lib/common/ui/Assets/icon.png',
+                    'lib/common/ui/assets/icon.png',
                     // Assuming 'assets/icon.png' is the correct path to your icon file
                   ),
                 ),
@@ -155,7 +153,7 @@ class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage>
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('lib/common/ui/Assets/background.jpeg'),
+                image: AssetImage('lib/common/ui/assets/background.jpeg'),
                 fit: BoxFit.cover,
               ),
             ),

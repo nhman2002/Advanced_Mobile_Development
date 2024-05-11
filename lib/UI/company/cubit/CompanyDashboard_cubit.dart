@@ -111,4 +111,17 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     }
   }
 
+  Future<void> activeProposal(int proposalId) async {
+    final form = ProposalPatchForm().copyWith(
+      statusFlag: 1
+    );
+
+    final result = await _proposal.updateProposal(proposalId, form);
+    if (result is DataSuccess) {
+      emit(state.copyWith(message: 'Proposal activated successfully'));
+    }
+    else {
+      emit(state.copyWith(message: 'Error'));
+    }
+  }
 }

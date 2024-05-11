@@ -3,8 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:student_hub/UI/ProfileCreation/StudentCreation/experience.dart';
-import 'package:student_hub/UI/ProfileCreation/StudentCreation/skillSets.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
 
 // missing experience
 
@@ -37,50 +36,11 @@ class _StudentProfileInputExperienceState
     extends State<StudentProfileInputExperience> {
   // Initialize MultiSelectController
 
-  List<Project> projectList = [
-    Project(
-      id: '1',
-      projectName: "studentprofileinput2_ProfileCreation1".tr(),
-      period: "studentprofileinput2_ProfileCreation2".tr(),
-      description: "studentprofileinput2_ProfileCreation3".tr(),
-    ),
-    Project(
-      id: '2',
-      projectName: "studentprofileinput2_ProfileCreation1".tr(),
-      period: "studentprofileinput2_ProfileCreation2".tr(),
-      description: "studentprofileinput2_ProfileCreation3".tr(),
-    ),
-  ];
-
-  final List<String> skillSetList = [
-    'iOS Developer',
-    'C',
-    'C++',
-    'Java',
-    'Kubernetes',
-    'PostgreSQL',
-    'Redis',
-    'Android',
-    'NodeJS',
-    'Objective-C',
-    'React Native',
-    'React',
-    'Video',
-    'Microservices',
-  ];
 
   void _addNewProject(String projectName, DateTime startMonth,
-      DateTime endMonth, String description, List<SkillSets> skills) {
+      DateTime endMonth, String description, List<SkillSet> skills) {
     setState(() {
-      widget.user.studentUser?.experience?.add(Experience(
-        id: 0,
-        title: projectName,
-        startMonth: startMonth,
-        endMonth: endMonth,
-        description: description,
-        skillSet: skills,
-        duration: (0 / 24).round(),
-      ));
+
     });
     // Add your logic here for handling the icon press
   }
@@ -304,8 +264,3 @@ class _StudentProfileInputExperienceState
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: StudentProfileInputExperience(),
-  ));
-}

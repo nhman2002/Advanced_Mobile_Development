@@ -237,12 +237,10 @@ class _StudentProjectList extends State<StudentProjectList> {
                     ElevatedButton(
                       onPressed: () {
                         context.read<ProjectListCubit>().filterProject(
-                               _searchController.text,
+                              _searchController.text,
                               _selectedScope,
-                               int.tryParse(
-                                  _numberOfStudentsController.text),
-                              int.tryParse(
-                                  _proposalsLessThanController.text),
+                              int.tryParse(_numberOfStudentsController.text),
+                              int.tryParse(_proposalsLessThanController.text),
                             );
                         Navigator.of(context).pop();
                       },
@@ -263,7 +261,22 @@ class _StudentProjectList extends State<StudentProjectList> {
         DateTime.parse(project.createdAt ?? DateTime.now().toString());
     DateTime now = DateTime.now();
     Duration difference = now.difference(createdAt);
-    int daysAgo = difference.inDays;
+    String formattedTime = '';
+    if (difference.inMinutes < 60) {
+      // Less than 1 hour ago
+      int minutesAgo = difference.inMinutes;
+      String formattedTime =
+          minutesAgo == 1 ? '1 minute ago' : '$minutesAgo minutes ago';
+    } else if (difference.inHours < 24) {
+      // Less than 1 day ago
+      int hoursAgo = difference.inHours;
+      String formattedTime =
+          hoursAgo == 1 ? '1 hour ago' : '$hoursAgo hours ago';
+    } else {
+      // More than 1 day ago
+      int daysAgo = difference.inDays;
+      String formattedTime = daysAgo == 1 ? '1 day ago' : '$daysAgo days ago';
+    }
     int id = project.projectId ?? 0;
     String projectScope = {
           0: 'Less than 1 month',
@@ -296,9 +309,7 @@ class _StudentProjectList extends State<StudentProjectList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "projectlist_student3".tr() +
-                  '$daysAgo' +
-                  "projectlist_student4".tr(),
+                  formattedTime ,
               style: TextStyle(color: Colors.grey),
             ),
             SizedBox(height: 5),

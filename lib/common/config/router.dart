@@ -72,15 +72,23 @@ class AppRouter extends _$MessageDetailScreenArguments {
             transitionsBuilder: null,
             children: [
               CustomRoute(
-                  page: SplashScreenRoute.page, initial: true, path: ''),
+                  page: SplashScreenRoute.page,
+                  initial: true,
+                  path: '',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
-                  page: MyAppRoute.page,
+                  page: HomeScreenRoute.page,
                   path: 'home',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
                   page: LoginPageRoute.page,
                   path: 'login',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
+              CustomRoute(
+                  page: ForgotPasswordPageRoute.page,
+                  path: 'forgotPassword',
+                  transitionsBuilder: TransitionsBuilders.fadeIn),
+
               CustomRoute(
                   page: SignupPageRoute.page,
                   path: 'signup',
@@ -144,9 +152,9 @@ class AppRouter extends _$MessageDetailScreenArguments {
                 transitionsBuilder: TransitionsBuilders.fadeIn,
               ),
               AutoRoute(
-                  page: SettingsScreenRoute.page,
-                  path: 'settingScreen',
-                  ),
+                page: SettingsScreenRoute.page,
+                path: 'settingScreen',
+              ),
               CustomRoute(
                   page: NotificationScreenRoute.page,
                   path: 'forgotPassword',
@@ -156,11 +164,11 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   path: 'changePassword',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
 
-                CustomRoute(
+              CustomRoute(
                   page: MessageListScreenRoute.page,
                   path: 'messageList',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
-                
+
               CustomRoute(
                   page: StudentProfileInputWrapperRoute.page,
                   path: 'studentProfileInput',

@@ -419,7 +419,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
 
   void handleLogout(BuildContext context) {
     _localStorage.clear();
-    context.router.replace(const MyAppRoute());
+    context.router.replace(const HomeScreenRoute());
   }
 
   Future<void> handleProjectPressed(

@@ -104,7 +104,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.blue),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
@@ -114,7 +113,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       child: Text(
         text,
         style: const TextStyle(
-          color: Colors.white,
           fontWeight: FontWeight.bold,
           fontSize: 16.0,
         ),

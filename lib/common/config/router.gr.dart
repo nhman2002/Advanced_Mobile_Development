@@ -99,6 +99,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const ForgotPasswordPage(),
       );
     },
+    HomeScreenRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeScreen(),
+      );
+    },
     LoginPageRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -122,12 +128,6 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const MessageListScreen(),
-      );
-    },
-    MyAppRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: MyApp(),
       );
     },
     NotificationScreenRoute.name: (routeData) {
@@ -478,6 +478,20 @@ class ForgotPasswordPageRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [HomeScreen]
+class HomeScreenRoute extends PageRouteInfo<void> {
+  const HomeScreenRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeScreenRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [LoginPage]
 class LoginPageRoute extends PageRouteInfo<void> {
   const LoginPageRoute({List<PageRouteInfo>? children})
@@ -555,20 +569,6 @@ class MessageListScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MessageListScreenRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [MyApp]
-class MyAppRoute extends PageRouteInfo<void> {
-  const MyAppRoute({List<PageRouteInfo>? children})
-      : super(
-          MyAppRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MyAppRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
