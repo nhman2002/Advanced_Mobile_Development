@@ -11,9 +11,9 @@ import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-
 @RoutePage()
-class SwitchAccountPage extends BaseWidget<AccountSwitchCubit, AccountSwitchState> {
+class SwitchAccountPage
+    extends BaseWidget<AccountSwitchCubit, AccountSwitchState> {
   const SwitchAccountPage({Key? key}) : super(key: key);
   @override
   Widget buildWidget(BuildContext context) {
@@ -33,20 +33,21 @@ class SwitchAccountWidget extends StatefulWidget {
   State<SwitchAccountWidget> createState() => _SwitchAccountPage();
 }
 
-class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault {
-
+class _SwitchAccountPage extends State<SwitchAccountWidget>
+    with SnackBarDefault {
   final _localStorage = getIt.get<LocalStorage>();
   final _networkManager = getIt.get<NetworkManager>();
 
-
-@override
+  @override
   Widget build(BuildContext context) {
     final _localStorage = getIt.get<LocalStorage>();
 
     return BlocBuilder<AccountSwitchCubit, AccountSwitchState>(
       builder: (context, state) {
-        final username = _localStorage.getString(key: StorageKey.userName) ?? '';
-        final userRoles = _localStorage.getString(key: StorageKey.userRoles) ?? '';
+        final username =
+            _localStorage.getString(key: StorageKey.userName) ?? '';
+        final userRoles =
+            _localStorage.getString(key: StorageKey.userRoles) ?? '';
         final hasCompanyProfile = state.hasCompanyProfile;
         final hasStudentProfile = state.hasStudentProfile;
         final isStudent = state.isStudent;
@@ -62,10 +63,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                   if (isStudent == true && hasStudentProfile == true) {
                     context.router.replace(const ProjectListWrapperRoute());
                   } else if (isCompany == true && hasCompanyProfile == true) {
-                    context.router.replace(const CompanyDashboardWrapperRoute());
-                  }
-                  else
-                    showSnackBarWarning(context, 'Please complete your profile first!');     
+                    context.router
+                        .replace(const CompanyDashboardWrapperRoute());
+                  } else
+                    showSnackBarWarning(
+                        context, 'Please complete your profile first!');
                 },
                 icon: Icon(
                   Icons.home,
@@ -80,55 +82,72 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                if (hasMultipleRoles == false)(
-                  _buildUserRolesUI(userRoles.split(',').map((e) => int.parse(e)).toList())
-                )
+                if (hasMultipleRoles == false)
+                  (_buildUserRolesUI(
+                      userRoles.split(',').map((e) => int.parse(e)).toList()))
                 else
-                ExpansionTile(
-                  tilePadding: const EdgeInsets.only(right: 16.0),
-                  title: ListTile(
-                    leading: Icon(
-                      Icons.account_circle,
-                      color: Colors.black,
-                      size: 40.0,
-                    ),
-                    title: Text(username),
-                    subtitle: isCompany == true ? Text(
-                      "accountSwitchPage_ProfileCreation1".tr(),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.grey,
-                      ),
-                    ): Text(
-                      "accountSwitchPage_ProfileCreation2".tr(),
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: Colors.grey,
-                      ),
-                    )
-                  ),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0),
-                      child: Column(
-                        children: [
-                          Divider(
-                            color: Colors.grey,
-                            thickness: 1.0,
-                          ),
-                          ListTile(
-                            leading: Icon(
-                              Icons.account_circle,
-                              color: Colors.black,
-                              size: 40.0,
+                  ExpansionTile(
+                    tilePadding: const EdgeInsets.only(right: 16.0),
+                    title: ListTile(
+                        leading: Icon(
+                          Icons.account_circle,
+                          color: Colors.black,
+                          size: 40.0,
+                        ),
+                        title: Text(username),
+                        subtitle: isCompany == true
+                            ? Text(
+                                "accountSwitchPage_ProfileCreation1".tr(),
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.grey,
+                                ),
+                              )
+                            : Text(
+                                "accountSwitchPage_ProfileCreation2".tr(),
+                                style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.grey,
+                                ),
+                              )),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0),
+                        child: Column(
+                          children: [
+                            Divider(
+                              color: Colors.grey,
+                              thickness: 1.0,
                             ),
-                            title: isCompany == true ? Text(username+' '+"accountSwitchPage_ProfileCreation2".tr()): Text(username+' '+"accountSwitchPage_ProfileCreation1".tr()),
-                          ),
-                        ],
+                            ListTile(
+                              leading: Icon(
+                                Icons.account_circle,
+                                color: Colors.black,
+                                size: 40.0,
+                              ),
+                              title: isCompany == true
+                                  ? Text(username +
+                                      ' ' +
+                                      "accountSwitchPage_ProfileCreation2".tr())
+                                  : Text(username +
+                                      ' ' +
+                                      "accountSwitchPage_ProfileCreation1"
+                                          .tr()),
+                              trailing: (hasCompanyProfile != null &&
+                                          hasStudentProfile != null) &&
+                                      (!hasCompanyProfile && !hasStudentProfile)
+                                  ? Icon(
+                                      Icons.add,
+                                      color: Colors.black,
+                                      size: 30.0,
+                                    )
+                                  : null,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 Column(
                   children: [
                     ElevatedButton(
@@ -150,7 +169,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        gotoSetting(context);            
+                        gotoSetting(context);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
@@ -193,22 +212,21 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
     );
   }
 
-
   void handleProfile(BuildContext context) {
-      final hasCompanyProfile = context.read<AccountSwitchCubit>().state.hasCompanyProfile;
-      final hasStudentProfile = context.read<AccountSwitchCubit>().state.hasStudentProfile;
-      final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
-      final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
-      if (isCompany == true)
-        if (hasCompanyProfile == true)
-          context.router.push(const CompanyProfileEditRoute());
-        else
-          context.router.push(const CompanyProfileInputRoute());
-      else if (isStudent == true)
-        if (hasStudentProfile == true)
-          context.router.push(const StudentProfileInputWrapperRoute());
-        else
-          context.router.push(const StudentProfileInputWrapperRoute());
+    final hasCompanyProfile =
+        context.read<AccountSwitchCubit>().state.hasCompanyProfile;
+    final hasStudentProfile =
+        context.read<AccountSwitchCubit>().state.hasStudentProfile;
+    final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
+    final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
+    if (isCompany == true) if (hasCompanyProfile == true)
+      context.router.push(const CompanyProfileEditRoute());
+    else
+      context.router.push(const CompanyProfileInputRoute());
+    else if (isStudent == true) if (hasStudentProfile == true)
+      context.router.push(const StudentProfileInputWrapperRoute());
+    else
+      context.router.push(const StudentProfileInputWrapperRoute());
   }
 
   Widget _buildUserRolesUI(List<int> roles) {
@@ -229,7 +247,9 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
             color: Colors.black,
             size: 40.0,
           ),
-          title: Text(roles.first == 0 ? "accountSwitchPage_ProfileCreation2".tr() : "accountSwitchPage_ProfileCreation1".tr()),
+          title: Text(roles.first == 0
+              ? "accountSwitchPage_ProfileCreation2".tr()
+              : "accountSwitchPage_ProfileCreation1".tr()),
         ),
       );
     } else {
@@ -244,9 +264,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
           ),
           title: Text('Hai Pham'),
           subtitle: Text(
-            roles.contains(0) && roles.contains(1) ? "accountSwitchPage_ProfileCreation6".tr() : 
-            roles.contains(0) ? "accountSwitchPage_ProfileCreation2".tr() : 
-            "accountSwitchPage_ProfileCreation1".tr(),
+            roles.contains(0) && roles.contains(1)
+                ? "accountSwitchPage_ProfileCreation6".tr()
+                : roles.contains(0)
+                    ? "accountSwitchPage_ProfileCreation2".tr()
+                    : "accountSwitchPage_ProfileCreation1".tr(),
             style: TextStyle(
               fontSize: 14.0,
               color: Colors.grey,
@@ -284,16 +306,15 @@ class _SwitchAccountPage extends State<SwitchAccountWidget> with SnackBarDefault
       );
     }
   }
+
   void handleLogout(BuildContext context) async {
     await context.read<AccountSwitchCubit>().logout();
     context.router.replace(const MyAppRoute());
-    
+
     // _networkManager.closeSocket();
   }
 
   void gotoSetting(BuildContext context) {
     context.router.push(const SettingsScreenRoute());
   }
-
-
 }

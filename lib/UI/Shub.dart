@@ -21,6 +21,7 @@ class MainApp extends StatelessWidget {
       create: (context) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeMode>(
         builder: (context, state) {
+          final theme = state == ThemeMode.light ? lightTheme ?? fallBackTheme : darkTheme ?? fallBackTheme;  //check fallBack
           return MaterialApp.router(
             title: 'Student Hub',
             theme: lightTheme,

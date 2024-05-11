@@ -4,7 +4,7 @@ class AccountSwitchState extends WidgetState {
   final bool? isLogin;
   final bool? isStudent;
   final bool? isCompany;
-  final bool? hasMultipleRoles;
+  final bool? hasMultipleRoles; 
   final bool? hasStudentProfile;
   final bool? hasCompanyProfile;
   const AccountSwitchState({

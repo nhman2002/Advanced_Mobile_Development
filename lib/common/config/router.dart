@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:student_hub/UI/Auth/forgotPassword/forgot_password.dart';
 import 'package:student_hub/UI/Chat/VideoCall/VideoCall.dart';
-import 'package:student_hub/UI/auth/login/forgot_password.dart';
 import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
 import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
