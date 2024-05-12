@@ -60,7 +60,7 @@ class StudentDetailScreen extends StatelessWidget {
                     width: 30,
                     height: 30,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('lib/assets/images/circle_avatar.png'),
+                      backgroundImage: AssetImage('lib/common/ui/assets/circle_avatar.png'),
                     ),
                   ),
                 ),
@@ -161,7 +161,7 @@ class StudentDetailScreen extends StatelessWidget {
                         height: 40,
                         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(
-                          'lib/assets/images/icons8-pdf-48.png',
+                          'lib/common/ui/assets/pdf.png',
                           scale: 1.8,
                         ),
                       ),
@@ -212,7 +212,7 @@ class StudentDetailScreen extends StatelessWidget {
                         height: 40,
                         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(
-                          'lib/assets/images/icons8-pdf-48.png',
+                          'lib/common/ui/assets/pdf.png',
                           scale: 1.8,
                         ),
                       ),
