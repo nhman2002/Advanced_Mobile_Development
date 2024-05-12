@@ -38,39 +38,11 @@ class LoginCubit extends WidgetCubit<LoginState> {
       await _localStorage.saveString(key: StorageKey.accessToken, value: accessToken ?? '');
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
       //send a get to get user details
-      final userResult = await _authRepository.getUser();
-      if (userResult is DataSuccess) {
-        final companyProfile = userResult.data?.companyProfile;
-        final studentProfile = userResult.data?.studentProfile;
-        if (companyProfile != null) {
-          String companyProfileString = jsonEncode(companyProfile);
-          _localStorage.saveString(key: StorageKey.companyProfile, value: companyProfileString);
-          _localStorage.saveString(key: StorageKey.companyID, value: companyProfile.id.toString());
-        }
-        if (studentProfile != null) {
-          String studentProfileString = jsonEncode(studentProfile);
-          _localStorage.saveString(key: StorageKey.studentID, value: studentProfile.id.toString());
-          _localStorage.saveString(key: StorageKey.studentProfile, value: studentProfileString);
-        }
 
-        final fullname = userResult.data?.fullname;
-        _localStorage.saveString(key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
-        _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');
-        final roles = userResult.data?.role as List?;
-        if (roles != null && roles.length > 1) {
-          final roleString = roles.join(",");
-          _localStorage.saveString(key: StorageKey.userRoles, value: roleString);
-          _localStorage.saveString(key: StorageKey.currentRole, value: roles.first.toString());
-        } else {
-          // If there is no role or it's an empty list, handle it accordingly
-          _localStorage.saveString(key: StorageKey.userRoles, value: roles.toString());
-          _localStorage.saveString(key: StorageKey.currentRole, value: roles!.first.toString());
-        }
-        await getIt.get<NotificationSocket>().updateToken();
-        emit(state.copyWith(user: user, isLogin: true));
-        _notiSocket.listenInBackground();
+      await getIt.get<NotificationSocket>().updateToken();
+      emit(state.copyWith(user: user, isLogin: true));
+      _notiSocket.listenInBackground();
 
-      }
     } else {
       final errorDetails = result.error?.response?.data['errorDetails'];
       final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;

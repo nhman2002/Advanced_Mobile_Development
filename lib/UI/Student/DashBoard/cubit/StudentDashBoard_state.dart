@@ -8,6 +8,8 @@ class StudentDashBoardState extends WidgetState {
   final List<ProjectOutput> projectList;
   final List<ProposalWithProject> waitingProposalList;
   final List<ProposalWithProject> activeProposalList;
+  final List<ProposalWithProject> workingProposalList;
+  final List<ProposalWithProject> archievedProposalList;
   final String? username;
   final String? message;
 
@@ -16,6 +18,8 @@ class StudentDashBoardState extends WidgetState {
     this.projectList = const [],
     this.waitingProposalList = const [],
     this.activeProposalList = const [],
+    this.workingProposalList = const [],
+    this.archievedProposalList = const [],
     this.username,
     this.message,
   });
@@ -26,6 +30,8 @@ class StudentDashBoardState extends WidgetState {
         projectList,
         waitingProposalList,
         activeProposalList,
+        workingProposalList,
+        archievedProposalList,
         username,
         message,
 
@@ -47,6 +53,7 @@ class StudentDashBoardState extends WidgetState {
       projectList: (json['projectList'] as List).map((e) => ProjectOutput.fromJson(e)).toList(),
       waitingProposalList: (json['waitingProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
       activeProposalList: (json['activeProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
+      workingProposalList: (json['workingProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
       username: json['username'] as String?,
       message: json['message'] as String?,
     );
@@ -58,6 +65,8 @@ class StudentDashBoardState extends WidgetState {
     List<Proposal>? proposalList,
     List<ProposalWithProject>? waitingProposalList,
     List<ProposalWithProject>? activeProposalList,
+    List<ProposalWithProject>? workingProposalList,
+    List<ProposalWithProject>? archievedProposalList,
     String? username,
     String? message,
   }) {
@@ -66,6 +75,8 @@ class StudentDashBoardState extends WidgetState {
       projectList: projectList ?? this.projectList,
       waitingProposalList: waitingProposalList ?? this.waitingProposalList,
       activeProposalList: activeProposalList ?? this.activeProposalList,
+      workingProposalList: workingProposalList ?? this.workingProposalList,
+      archievedProposalList: archievedProposalList ?? this.archievedProposalList,
       username: username ?? this.username,
       message: message ?? this.message,
     );

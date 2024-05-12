@@ -44,25 +44,19 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
 
     return BlocBuilder<AccountSwitchCubit, AccountSwitchState>(
       builder: (context, state) {
-        final username =
-            _localStorage.getString(key: StorageKey.userName) ?? '';
-        final userRoles =
-            _localStorage.getString(key: StorageKey.userRoles) ?? '';
+        final userRoles = state.userRoles;
         final hasCompanyProfile = state.hasCompanyProfile;
         final hasStudentProfile = state.hasStudentProfile;
-        final isStudent = state.isStudent;
-        final isCompany = state.isCompany;
-        final hasMultipleRoles = state.hasMultipleRoles;
-
+        final currentRole = state.currentRole;
         return Scaffold(
           appBar: AppBar(
             title: Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
-                  if (isStudent == true && hasStudentProfile == true) {
+                  if (currentRole == 0 && hasStudentProfile == true) {
                     context.router.replace(const ProjectListWrapperRoute());
-                  } else if (isCompany == true && hasCompanyProfile == true) {
+                  } else if (currentRole == 1 && hasCompanyProfile == true) {
                     context.router
                         .replace(const CompanyDashboardWrapperRoute());
                   } else
@@ -82,72 +76,8 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                if (hasMultipleRoles == false)
-                  (_buildUserRolesUI(
-                      userRoles.split(',').map((e) => int.parse(e)).toList()))
-                else
-                  ExpansionTile(
-                    tilePadding: const EdgeInsets.only(right: 16.0),
-                    title: ListTile(
-                        leading: Icon(
-                          Icons.account_circle,
-                          color: Colors.black,
-                          size: 40.0,
-                        ),
-                        title: Text(username),
-                        subtitle: isCompany == true
-                            ? Text(
-                                "accountSwitchPage_ProfileCreation1".tr(),
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: Colors.grey,
-                                ),
-                              )
-                            : Text(
-                                "accountSwitchPage_ProfileCreation2".tr(),
-                                style: TextStyle(
-                                  fontSize: 14.0,
-                                  color: Colors.grey,
-                                ),
-                              )),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Column(
-                          children: [
-                            Divider(
-                              color: Colors.grey,
-                              thickness: 1.0,
-                            ),
-                            ListTile(
-                              leading: Icon(
-                                Icons.account_circle,
-                                color: Colors.black,
-                                size: 40.0,
-                              ),
-                              title: isCompany == true
-                                  ? Text(username +
-                                      ' ' +
-                                      "accountSwitchPage_ProfileCreation2".tr())
-                                  : Text(username +
-                                      ' ' +
-                                      "accountSwitchPage_ProfileCreation1"
-                                          .tr()),
-                              trailing: (hasCompanyProfile != null &&
-                                          hasStudentProfile != null) &&
-                                      (!hasCompanyProfile && !hasStudentProfile)
-                                  ? Icon(
-                                      Icons.add,
-                                      color: Colors.black,
-                                      size: 30.0,
-                                    )
-                                  : null,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                if (userRoles != null)
+                  _buildUserRolesUI(userRoles, context, currentRole ?? -1),
                 Column(
                   children: [
                     ElevatedButton(
@@ -217,58 +147,112 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
         context.read<AccountSwitchCubit>().state.hasCompanyProfile;
     final hasStudentProfile =
         context.read<AccountSwitchCubit>().state.hasStudentProfile;
-    final isStudent = context.read<AccountSwitchCubit>().state.isStudent;
-    final isCompany = context.read<AccountSwitchCubit>().state.isCompany;
-    if (isCompany == true) if (hasCompanyProfile == true)
+    final currentRole = context.read<AccountSwitchCubit>().state.currentRole;
+    if (currentRole == 1) if (hasCompanyProfile == true)
       context.router.push(const CompanyProfileEditRoute());
     else
       context.router.push(const CompanyProfileInputRoute());
-    else if (isStudent == true) if (hasStudentProfile == true)
+    else if (currentRole == 0) if (hasStudentProfile == true)
       context.router.push(const StudentProfileInputWrapperRoute());
     else
       context.router.push(const StudentProfileInputWrapperRoute());
   }
 
-  Widget _buildUserRolesUI(List<int> roles) {
-    // Check if user has only one role
+  Widget _buildUserRolesUI(
+      List<int> roles, BuildContext context, int currentRole) {
     if (roles.length == 1) {
-      // Display a button for the single role
-      return ElevatedButton(
-        onPressed: () {
-          // Add functionality for handling the single role
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        child: ListTile(
+      String username;
+      if (currentRole == 0) {
+        username = context.read<AccountSwitchCubit>().state.userName ?? '';
+      } else if (context.read<AccountSwitchCubit>().state.hasCompanyProfile ==
+          false) {
+        username = context.read<AccountSwitchCubit>().state.userName ?? '';
+      } else {
+        username = context.read<AccountSwitchCubit>().state.companyName ?? '';
+      }
+      // If there's only one role, display an ExpansionTile with an icon to add a new role
+      return ExpansionTile(
+        tilePadding: const EdgeInsets.only(right: 16.0),
+        title: ListTile(
           leading: Icon(
             roles.first == 0 ? Icons.account_circle : Icons.business,
             color: Colors.black,
             size: 40.0,
           ),
-          title: Text(roles.first == 0
-              ? "accountSwitchPage_ProfileCreation2".tr()
-              : "accountSwitchPage_ProfileCreation1".tr()),
+          title: Text(username),
+          subtitle: Text(
+            roles.contains(0)
+                ? "accountSwitchPage_ProfileCreation2".tr()
+                : "accountSwitchPage_ProfileCreation1".tr(),
+            style: TextStyle(
+              fontSize: 14.0,
+              color: Colors.grey,
+            ),
+          ),
         ),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              children: [
+                Divider(
+                  color: Colors.grey,
+                  thickness: 1.0,
+                ),
+                ListTile(
+                  leading: Icon(
+                    Icons.add_circle_outline,
+                    color: Colors.black,
+                    size: 40.0,
+                  ),
+                  title: Text(
+                      "Add a ${currentRole == 0 ? 'company' : 'student'} profile"),
+                  onTap: () {
+                    if (currentRole == 0)
+                      context.router.push(const CompanyProfileInputRoute());
+                    else
+                      context.router
+                          .push(const StudentProfileInputWrapperRoute());
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
       );
     } else {
-      // Display expansion tile with multiple roles
+      // If there are two roles, display the name of the other role
+      int otherRole = 1 - currentRole;
+      String mainRole;
+      String secondaryRole;
+      if (currentRole == 1) {
+        if (context.read<AccountSwitchCubit>().state.hasCompanyProfile ==
+            false) {
+          mainRole = context.read<AccountSwitchCubit>().state.userName ?? '';
+          secondaryRole =
+              context.read<AccountSwitchCubit>().state.userName ?? '';
+        } else {
+          mainRole = context.read<AccountSwitchCubit>().state.companyName ?? '';
+          secondaryRole =
+              context.read<AccountSwitchCubit>().state.userName ?? '';
+        }
+      } else {
+        mainRole = context.read<AccountSwitchCubit>().state.userName ?? '';
+        secondaryRole =
+            context.read<AccountSwitchCubit>().state.companyName ?? '';
+      }
       return ExpansionTile(
         tilePadding: const EdgeInsets.only(right: 16.0),
         title: ListTile(
           leading: Icon(
             Icons.account_circle,
-            color: Colors.black,
             size: 40.0,
           ),
-          title: Text('Hai Pham'),
+          title: Text(mainRole),
           subtitle: Text(
-            roles.contains(0) && roles.contains(1)
-                ? "accountSwitchPage_ProfileCreation6".tr()
-                : roles.contains(0)
-                    ? "accountSwitchPage_ProfileCreation2".tr()
-                    : "accountSwitchPage_ProfileCreation1".tr(),
+            currentRole == 0
+                ? "accountSwitchPage_ProfileCreation2".tr()
+                : "accountSwitchPage_ProfileCreation1".tr(),
             style: TextStyle(
               fontSize: 14.0,
               color: Colors.grey,
@@ -287,17 +271,21 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                 ListTile(
                   leading: Icon(
                     Icons.account_circle,
-                    color: Colors.black,
                     size: 40.0,
                   ),
-                  title: Text("accountSwitchPage_ProfileCreation7".tr()),
+                  title: Text(secondaryRole),
                   subtitle: Text(
-                    "accountSwitchPage_ProfileCreation2".tr(),
+                    otherRole == 0
+                        ? "accountSwitchPage_ProfileCreation2".tr()
+                        : "accountSwitchPage_ProfileCreation1".tr(),
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.grey,
                     ),
                   ),
+                  onTap: () {
+                    context.read<AccountSwitchCubit>().switchRole(otherRole);
+                  },
                 ),
               ],
             ),

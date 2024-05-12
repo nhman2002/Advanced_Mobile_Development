@@ -9,7 +9,6 @@ import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-
 @RoutePage()
 class StudentDashBoard extends StatefulWidget {
   const StudentDashBoard({Key? key}) : super(key: key);
@@ -58,9 +57,16 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton("studentdashboard_student2".tr(), Colors.white, true, (){}),
-                    _buildProjectSectionButton("studentdashboard_student3".tr(), Colors.black, false, (){context.router.replace(const StudentWorkingProjectsRoute());}),
-                    _buildProjectSectionButton("studentdashboard_student4".tr(), Colors.black, false, (){}),
+                    _buildProjectSectionButton("studentdashboard_student2".tr(),
+                        Colors.white, true, () {}),
+                    _buildProjectSectionButton(
+                        "studentdashboard_student3".tr(), Colors.black, false,
+                        () {
+                      context.router
+                          .replace(const StudentWorkingProjectsRoute());
+                    }),
+                    _buildProjectSectionButton("studentdashboard_student4".tr(),
+                        Colors.black, false, () {}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -71,11 +77,13 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                         _buildProposalSection(
                           isWaiting: false,
                           state: state,
-                          title: "studentdashboard_student5".tr() + '${state.activeProposalList.length}',
+                          title: "studentdashboard_student5".tr() +
+                              '${state.activeProposalList.length}',
                           isExpanded: isContentExpandedActive,
                           onPressed: () {
                             setState(() {
-                              isContentExpandedActive = !isContentExpandedActive;
+                              isContentExpandedActive =
+                                  !isContentExpandedActive;
                             });
                           },
                         ),
@@ -83,11 +91,13 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                         _buildProposalSection(
                           isWaiting: true,
                           state: state,
-                          title: "studentdashboard_student6".tr() + '(${state.waitingProposalList.length})',
+                          title: "studentdashboard_student6".tr() +
+                              '(${state.waitingProposalList.length})',
                           isExpanded: isContentExpandedSubmitted,
                           onPressed: () {
                             setState(() {
-                              isContentExpandedSubmitted = !isContentExpandedSubmitted;
+                              isContentExpandedSubmitted =
+                                  !isContentExpandedSubmitted;
                             });
                           },
                         ),
@@ -98,75 +108,82 @@ class _StudentDashBoard extends State<StudentDashBoard> {
               ],
             ),
           ),
-           bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(),
         );
       },
     );
   }
-Widget _buildProposalSection({
-  required String title,
-  required bool isExpanded,
-  required VoidCallback onPressed,
-  required StudentDashBoardState state,
-  required bool isWaiting,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      border: Border.all(color: Colors.black),
-    ),
-    padding: EdgeInsets.all(5),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(fontWeight: FontWeight.bold),
+
+  Widget _buildProposalSection({
+    required String title,
+    required bool isExpanded,
+    required VoidCallback onPressed,
+    required StudentDashBoardState state,
+    required bool isWaiting,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+      ),
+      padding: EdgeInsets.all(5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  title,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            IconButton(
-              icon: Icon(
-                isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
-                size: 30,
+              IconButton(
+                icon: Icon(
+                  isExpanded ? Icons.arrow_drop_up : Icons.arrow_drop_down,
+                  size: 30,
+                ),
+                onPressed: onPressed,
               ),
-              onPressed: onPressed,
-            ),
+            ],
+          ),
+          if (isExpanded) ...[
+            if ((isWaiting && state.waitingProposalList.isEmpty) ||
+                (!isWaiting && state.activeProposalList.isEmpty))
+              Center(
+                child: Text("studentdashboard_student11".tr()),
+              )
+            else
+              Container(
+                height: MediaQuery.of(context).size.height *
+                    0.3, // Set the height as needed
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: isWaiting
+                      ? state.waitingProposalList.length
+                      : state.activeProposalList.length,
+                  itemBuilder: (context, index) {
+                    if (isWaiting) {
+                      if (state.waitingProposalList.isNotEmpty)
+                        return _buildContent(
+                            context, state.waitingProposalList[index]);
+                    } else {
+                      if (state.activeProposalList.isNotEmpty)
+                        return _buildContent(
+                            context, state.activeProposalList[index]);
+                    }
+                    return SizedBox(); // Placeholder to satisfy the itemBuilder requirement
+                  },
+                ),
+              ),
           ],
-        ),
-        if (isExpanded) ...[
-          if ((isWaiting && state.waitingProposalList.isEmpty) || (!isWaiting && state.activeProposalList.isEmpty))
-            Center(
-              child: Text("studentdashboard_student11".tr()),
-            )
-          else
-            Container(
-              height: MediaQuery.of(context).size.height * 0.3, // Set the height as needed
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: isWaiting ? state.waitingProposalList.length : state.activeProposalList.length,
-                itemBuilder: (context, index) {
-                  if (isWaiting) {
-                    if (state.waitingProposalList.isNotEmpty)
-                      return _buildContent(context, state.waitingProposalList[index]);
-                  } else {
-                    if (state.activeProposalList.isNotEmpty)
-                      return _buildContent(context, state.activeProposalList[index]);
-                  }
-                  return SizedBox(); // Placeholder to satisfy the itemBuilder requirement
-                },
-              ),
-            ),
         ],
-      ],
-    ),
-  );
-}
+      ),
+    );
+  }
 
   Widget _buildContent(BuildContext context, ProposalWithProject proposal) {
-    DateTime createdAt = DateTime.parse(proposal.createdAt ?? DateTime.now().toString());
+    DateTime createdAt =
+        DateTime.parse(proposal.createdAt ?? DateTime.now().toString());
     DateTime now = DateTime.now();
     Duration difference = now.difference(createdAt);
     int daysAgo = difference.inDays;
@@ -184,7 +201,10 @@ Widget _buildProposalSection({
         children: [
           Text(
             proposal.project.title ?? "studentdashboard_student15".tr(),
-            style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold, fontSize: 18.0),
+            style: TextStyle(
+                color: Colors.green,
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0),
           ),
           Text(
             daysValue,
@@ -198,7 +218,8 @@ Widget _buildProposalSection({
               children: [
                 Expanded(
                   child: Text(
-                    proposal.project.description ?? "studentdashboard_student16".tr(),
+                    proposal.project.description ??
+                        "studentdashboard_student16".tr(),
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ),
@@ -206,7 +227,6 @@ Widget _buildProposalSection({
             ),
           ),
           Divider(
-            color: Colors.grey,
             thickness: 1.0,
           ),
         ],
@@ -214,24 +234,24 @@ Widget _buildProposalSection({
     );
   }
 
-Widget _buildProjectSectionButton(String label, Color color, bool isBlue, VoidCallback onPressed) {
-  return Expanded(
-    child: GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        decoration: BoxDecoration(
-          color: isBlue ? Colors.purple : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          style: TextStyle(color: color),
-          textAlign: TextAlign.center,
+  Widget _buildProjectSectionButton(
+      String label, Color color, bool isBlue, VoidCallback onPressed) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isBlue ? Colors.purple : Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.all(10),
+          child: Text(
+            label,
+            style: TextStyle(color: color),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 }

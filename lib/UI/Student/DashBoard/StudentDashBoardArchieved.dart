@@ -10,19 +10,19 @@ import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 
 @RoutePage()
-class StudentWorkingProjects extends StatefulWidget {
-  const StudentWorkingProjects({super.key});
+class StudentArchievedProject extends StatefulWidget {
+  const StudentArchievedProject({super.key});
 
   @override
-  State<StudentWorkingProjects> createState() => _StudentWorkingProjects();
+  State<StudentArchievedProject> createState() => _StudentArchievedProject();
 }
 
-class _StudentWorkingProjects extends State<StudentWorkingProjects> {
+class _StudentArchievedProject extends State<StudentArchievedProject> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StudentDashBoardCubit, StudentDashBoardState>(
       builder: (context, state) {
-        context.read<StudentDashBoardCubit>().getWorkingProposals();
+        context.read<StudentDashBoardCubit>().getArchievedProposals();
         return Scaffold(
           appBar: AppBar(
             title: Text('Student Hub'),
@@ -61,13 +61,13 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
                     ),
                     _buildProjectSectionButton(
                       "studentdashboard_student3".tr(),
-                      Colors.white,
-                      true,
+                      Colors.black,
+                      false,
                     ),
                     _buildProjectSectionButton(
                       "studentdashboard_student4".tr(),
-                      Colors.black,
-                      false,
+                      Colors.white,
+                      true,
                     ),
                   ],
                 ),
@@ -152,11 +152,11 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
     return "$daysAgo day${daysAgo != 1 ? "s" : ""}";
   }
 
-  Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {
+  Widget _buildProjectSectionButton(String label, Color color, bool isChosen) {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
-          color: isBlue ? Colors.purple : Colors.white,
+          color: isChosen ? Colors.purple : Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         padding: EdgeInsets.all(10),

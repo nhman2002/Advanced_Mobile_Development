@@ -95,8 +95,6 @@
     "accountSwitchPage_ProfileCreation3": "Profiles",
     "accountSwitchPage_ProfileCreation4": "Settings",
     "accountSwitchPage_ProfileCreation5": "Log out",
-    "accountSwitchPage_ProfileCreation6": "Student, Company",
-    "accountSwitchPage_ProfileCreation7": "Hai Pham Student",
 
     "companyprofileinput_ProfileCreation1": "Welcome to Student Hub",
     "companyprofileinput_ProfileCreation2": "Tell us about your company and you will be on your way connect with high-skilled students",
@@ -225,7 +223,7 @@
     "schedule_scheduledetail5": "Re-schedule the meeting",
     "schedule_scheduledetail6": "Cancel the meeting",
 
-    "studentdashboard_student1": "Your projects",
+    "studentdashboard_student1": "Your proposals",
     "studentdashboard_student2": "All",
     "studentdashboard_student3": "Working",
     "studentdashboard_student4": "Archived",

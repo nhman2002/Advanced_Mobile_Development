@@ -30,7 +30,12 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
   @override
   Future<void> init() async {
     showLoading();
-    final studentIDString = _localStorage.getString(key: StorageKey.studentID);
+    await initCubit();
+    hideLoading();
+  }
+
+  Future<void> initCubit() async {
+        final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
     var project = null;
     await initFavoriteProject();
@@ -55,7 +60,6 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
           .toList();
       emit(state.copyWith(projectList: filteredProjectList));
     }
-    hideLoading();
   }
 
   Future<void> projectClicked(int index) async {

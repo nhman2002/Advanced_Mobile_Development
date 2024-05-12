@@ -156,7 +156,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    handleMessage(proposalId);
                     context.router.push(MessageDetailScreenRoute(userId: userID, receiverId: receiverID, projectId: projectId, receiverName: name));
                   },
                   child: Text("companyprojectproposals_company1".tr()),
@@ -239,9 +238,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
     context.router.replace(const CompanyProjectProposalsRoute());            
   }
 
-  Future<void> handleMessage(int proposalId) async {
-    await context.read<CompanyDashboardCubit>().activeProposal(proposalId);
-  }
+
 
 
   Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {

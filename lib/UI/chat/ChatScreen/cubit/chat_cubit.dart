@@ -4,9 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/message_model.dart';
+import 'package:student_hub/core/models/input/proposal_model.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/message.dart';
+import 'package:student_hub/core/repository/proposal.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
@@ -33,7 +35,9 @@ class ChatCubit extends WidgetCubit<ChatState> {
 
   final _messages = getIt.get<MessageRepository>();
   final _localStorage = getIt.get<LocalStorage>();
+  final _proposal = getIt.get<ProposalRepository>();
   bool socketInitialized = false;
+
 
   @override
   Future<void> init() async {
@@ -98,6 +102,12 @@ class ChatCubit extends WidgetCubit<ChatState> {
   }
 
   Future<void> sendMessage(String message) async {
+    if (message.isEmpty) {
+      return;
+    }
+    //check if the there is any message in state (check length)
+
+
     final form = MessageInput(
       content: message,
       projectId: projectId,
@@ -107,6 +117,10 @@ class ChatCubit extends WidgetCubit<ChatState> {
     );
     final result = await _messages.sendMessage(form);
     if (result is DataSuccess) {
+      if (state.messages.isEmpty) {
+        activeProposal(projectId);
+      }
+
       emit(state.copyWith(messageSent: true));
     } else {
       emit(state.copyWith(messageSent: false));
@@ -124,5 +138,19 @@ class ChatCubit extends WidgetCubit<ChatState> {
     }
     socket.close();
     super.close();
+  }
+
+    Future<void> activeProposal(int proposalId) async {
+    final form = ProposalPatchForm().copyWith(
+      statusFlag: 1
+    );
+
+    final result = await _proposal.updateProposal(proposalId, form);
+    if (result is DataSuccess) {
+      emit(state.copyWith(message: 'Proposal activated successfully'));
+    }
+    else {
+      emit(state.copyWith(message: 'Error'));
+    }
   }
 } 

@@ -202,6 +202,12 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const SplashWrapper(),
       );
     },
+    StudentArchievedProjectRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const StudentArchievedProject(),
+      );
+    },
     StudentDashBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -737,6 +743,20 @@ class SplashWrapperRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'SplashWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentArchievedProject]
+class StudentArchievedProjectRoute extends PageRouteInfo<void> {
+  const StudentArchievedProjectRoute({List<PageRouteInfo>? children})
+      : super(
+          StudentArchievedProjectRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentArchievedProjectRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

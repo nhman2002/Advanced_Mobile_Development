@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/forgotPassword/forgot_password.dart';
 import 'package:student_hub/UI/Chat/VideoCall/VideoCall.dart';
+import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardArchieved.dart';
 import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
 import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
@@ -248,6 +249,10 @@ class AppRouter extends _$MessageDetailScreenArguments {
                     CustomRoute(
                         page: StudentWorkingProjectsRoute.page,
                         path: 'studentDashBoardWorking',
+                        transitionsBuilder: TransitionsBuilders.fadeIn),
+                    CustomRoute(
+                        page: StudentArchievedProjectRoute.page,
+                        path: 'studentDashBoardArchieved',
                         transitionsBuilder: TransitionsBuilders.fadeIn),
                   ]),
               CustomRoute(

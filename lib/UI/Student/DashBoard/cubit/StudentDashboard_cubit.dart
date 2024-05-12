@@ -56,4 +56,36 @@ class StudentDashBoardCubit extends WidgetCubit<StudentDashBoardState> {
     }    
     hideLoading();
   }
+
+  Future<void> getWorkingProposals() async {
+    showLoading();
+    final studentIDString = _localStorage.getString(key: StorageKey.studentID);
+    final studentID = int.parse(studentIDString!);
+    final result1 = await _proposal.getStudentProposalWithTypeFlag(studentID, 1);
+    if (result1 is DataSuccess) {
+      final activeProposal = result1.data;
+      emit(state.copyWith(workingProposalList: activeProposal));
+    }
+    else {
+      emit(state.copyWith(workingProposalList: null));
+    }
+    hideLoading();
+  }
+
+
+  
+  Future<void> getArchievedProposals() async {
+    showLoading();
+    final studentIDString = _localStorage.getString(key: StorageKey.studentID);
+    final studentID = int.parse(studentIDString!);
+    final result1 = await _proposal.getStudentProposalWithTypeFlag(studentID, 2 );
+    if (result1 is DataSuccess) {
+      final activeProposal = result1.data;
+      emit(state.copyWith(archievedProposalList: activeProposal));
+    }
+    else {
+      emit(state.copyWith(archievedProposalList: null));
+    }
+    hideLoading();
+  }
 }

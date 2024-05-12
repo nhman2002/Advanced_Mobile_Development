@@ -1,23 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Offer List',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: OfferListPage(),
-    );
-  }
-}
-
 class OfferListPage extends StatelessWidget {
   final List<Map<String, String>> offers = [
     {'projectName': 'Project A', 'companyName': 'Company X'},

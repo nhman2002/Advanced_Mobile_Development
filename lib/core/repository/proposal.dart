@@ -76,6 +76,14 @@ class ProposalRepository extends BaseRepository {
     );
   }
 
+    Future<DataState<List<ProposalWithProject>>> getStudentProposalWithTypeFlag(
+      int id, int flag) async {
+    return get<List<ProposalWithProject>>(
+      path: '/project/$id?typeFlag=$flag',
+      parseJsonFunction: ProposalWithProject.fromJsonList,
+    );
+  }
+
   Future<DataState<List<Proposal>>> getAllStudentProposals(int id) async {
     return get<List<Proposal>>(
       path: '/student/$id',

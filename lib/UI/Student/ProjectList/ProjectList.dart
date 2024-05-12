@@ -265,17 +265,17 @@ class _StudentProjectList extends State<StudentProjectList> {
     if (difference.inMinutes < 60) {
       // Less than 1 hour ago
       int minutesAgo = difference.inMinutes;
-      String formattedTime =
+      formattedTime =
           minutesAgo == 1 ? '1 minute ago' : '$minutesAgo minutes ago';
     } else if (difference.inHours < 24) {
       // Less than 1 day ago
       int hoursAgo = difference.inHours;
-      String formattedTime =
+      formattedTime =
           hoursAgo == 1 ? '1 hour ago' : '$hoursAgo hours ago';
     } else {
       // More than 1 day ago
       int daysAgo = difference.inDays;
-      String formattedTime = daysAgo == 1 ? '1 day ago' : '$daysAgo days ago';
+      formattedTime = daysAgo == 1 ? '1 day ago' : '$daysAgo days ago';
     }
     int id = project.projectId ?? 0;
     String projectScope = {

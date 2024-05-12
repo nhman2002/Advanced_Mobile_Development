@@ -353,7 +353,6 @@ Widget _buildMessageInput(BuildContext context) {
           Icon(Icons.more_vert),
         ],
       ),
-      backgroundColor: Colors.white,
     );
   }
 }

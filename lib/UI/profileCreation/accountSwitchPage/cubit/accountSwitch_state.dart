@@ -2,18 +2,22 @@ import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class AccountSwitchState extends WidgetState {
   final bool? isLogin;
-  final bool? isStudent;
-  final bool? isCompany;
+  final int? currentRole;
+  final List<int>? userRoles;
   final bool? hasMultipleRoles; 
   final bool? hasStudentProfile;
   final bool? hasCompanyProfile;
+  final String? userName;
+  final String? companyName;
   const AccountSwitchState({
     this.isLogin = null,
-    this.isStudent = null,
-    this.isCompany = null,
+    this.currentRole = null,
+    this.userRoles = null,
     this.hasMultipleRoles = null,
     this.hasStudentProfile = null,
-    this.hasCompanyProfile = null
+    this.hasCompanyProfile = null,
+    this.userName = null,
+    this.companyName = null,
 
   });
 
@@ -21,11 +25,13 @@ class AccountSwitchState extends WidgetState {
   // TODO: implement props
   List<Object?> get props => [
     isLogin,
-    isStudent,
-    isCompany,
+    currentRole,
+    userRoles,
     hasMultipleRoles,
     hasCompanyProfile,
-    hasStudentProfile
+    hasStudentProfile,
+    userName,
+    companyName,
   ];
 
   @override
@@ -36,30 +42,36 @@ class AccountSwitchState extends WidgetState {
   factory AccountSwitchState.fromJson(Map<String, dynamic> json) {
     return AccountSwitchState(
       isLogin: json['isLogin'] as bool?,
-      isStudent: json['isStudent'] as bool?,
-      isCompany: json['isCompany'] as bool?,
+      currentRole: json['currentRole'] as int?,
+      userRoles: json['userRoles'] as List<int>?,
       hasMultipleRoles: json['hasMultipleRoles'] as bool?,
       hasCompanyProfile: json['hasCompanyProfile'] as bool?,
-      hasStudentProfile: json['hasStudentProfiles'] as bool?
+      hasStudentProfile: json['hasStudentProfiles'] as bool?,
+      userName: json['currentName'] as String?,
+      companyName: json['companyName'] as String?,
 
     );
   }
 
   AccountSwitchState copyWith({
     bool? isLogin,
-    bool? isStudent,
-    bool? isCompany,
+    int? currentRole,
+    List<int>? userRoles,
     bool? hasMultipleRoles,
     bool? hasCompanyProfile,
-    bool? hasStudentProfile
+    bool? hasStudentProfile,
+    String? userName,
+    String? companyName,
   }) {
     return AccountSwitchState(
       isLogin: isLogin ?? this.isLogin,
-      isStudent: isStudent ?? this.isStudent,
-      isCompany: isCompany ?? this.isCompany,
+      currentRole: currentRole ?? this.currentRole,    
+      userRoles: userRoles ?? this.userRoles,  
       hasMultipleRoles: hasMultipleRoles ?? this.hasMultipleRoles,
       hasCompanyProfile: hasCompanyProfile ?? this.hasCompanyProfile,
-      hasStudentProfile: hasStudentProfile ?? this.hasStudentProfile
+      hasStudentProfile: hasStudentProfile ?? this.hasStudentProfile,
+      userName: userName ?? this.userName,
+      companyName: companyName ?? this.companyName,
     );
   }
 }
