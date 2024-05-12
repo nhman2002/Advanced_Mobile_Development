@@ -13,8 +13,6 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-// below skill (c++ ,python) is missing language, education,
-
 @RoutePage()
 class StudentProfileInputTechStack extends StatefulWidget {
   const StudentProfileInputTechStack({Key? key}) : super(key: key);
@@ -28,16 +26,11 @@ class _StudentProfileInputTechStackState
     extends State<StudentProfileInputTechStack> {
   String? selectedTechStackID;
   List<String> selectedSkills = [];
-  List<Language> languages = [
-    // Add more languages here
-  ];
+  List<Language> languages = [];
+  List<Education> educationList = [];
 
-  List<Education> educationList = [
-    // Add more education items here
-  ];
   void _addNewLanguage(String language, String level) {
     setState(() {
-      // print("ID: ${widget.user.id}, Language: $language, Level: $level");
       final Language newLanguage = Language(
         languageName: language,
         level: level,
@@ -59,8 +52,6 @@ class _StudentProfileInputTechStackState
 
   void _addNewEducation(String schoolName, int yearsStart, int yearsEnd) {
     setState(() {
-      // print(
-      // "ID: ${widget.user.id}, School: $schoolName, Start: $yearsStart, End: $yearsEnd");
       final Education newEducation = Education(
         schoolName: schoolName,
         startYear: '',
@@ -79,17 +70,6 @@ class _StudentProfileInputTechStackState
     setState(() {
       educationList.removeWhere((element) => element.schoolName == schoolName);
     });
-  }
-
-  void _editLanguage(List<Map<String, dynamic>> listLanguagesDelete) {
-    for (var i = 0; i < listLanguagesDelete.length; i++) {
-      print(listLanguagesDelete[i]);
-      if (languages.contains(listLanguagesDelete[i])) {
-        setState(() {
-          languages.removeWhere((element) => element == listLanguagesDelete[i]);
-        });
-      }
-    }
   }
 
   @override
@@ -214,10 +194,10 @@ class _StudentProfileInputTechStackState
                           },
                         );
                       },
-                      icon: Image.asset(
-                        'lib/common/ui/Assets/edit.jpg', // Đường dẫn đến hình ảnh edit.jpg
-                        width: 20, // Kích thước của hình ảnh
-                        height: 20,
+                      icon: Icon(
+                        Icons.edit,
+                        size: 30,
+                        color: Color(0xFF406AFF),
                       ),
                     ),
                   ],
@@ -231,8 +211,8 @@ class _StudentProfileInputTechStackState
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Color.fromARGB(
-                                  255, 190, 190, 192), // Set border color
-                              width: 1, // Set border width
+                                  255, 190, 190, 192),
+                              width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -272,8 +252,8 @@ class _StudentProfileInputTechStackState
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Color.fromARGB(
-                                  255, 190, 190, 192), // Set border color
-                              width: 1, // Set border width
+                                  255, 190, 190, 192),
+                              width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
