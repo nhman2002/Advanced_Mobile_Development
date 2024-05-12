@@ -111,17 +111,49 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     }
   }
 
-  Future<void> activeProposal(int proposalId) async {
-    final form = ProposalPatchForm().copyWith(
-      statusFlag: 1
-    );
-
-    final result = await _proposal.updateProposal(proposalId, form);
+  Future<void> deleteProject(int projectId) async {
+    final result = await _project.deleteProject(projectId);
     if (result is DataSuccess) {
-      emit(state.copyWith(message: 'Proposal activated successfully'));
+      emit(state.copyWith(message: 'Project deleted successfully'));
     }
     else {
       emit(state.copyWith(message: 'Error'));
     }
+    String? id = _localStorage.getString(key: StorageKey.companyID);
+    final result1 = await _project.getCompanyProjects(int.parse(id!));
+    if (result1 is DataSuccess) {
+      emit(state.copyWith(projectList: result1.data?.projectOutputList));
+    }
+    else {
+      emit(state.copyWith(projectList: null));
+    }
   }
+
+  Future<void> updateProject(ProjectOutput project) async {
+    final apiform = ProjectPostForm().copyWith(
+      companyId: project.companyId,
+      title: project.title,
+      description: project.description,
+      projectScopeFlag: project.projectScopeFlag,
+      numberOfStudents: project.numberOfStudents,
+      typeFlag: project.typeFlag
+    );
+    final result = await _project.updateProject(project.projectId!, apiform);
+    if (result is DataSuccess) {
+      emit(state.copyWith(message: 'Project updated successfully'));
+    }
+    else {
+      emit(state.copyWith(message: 'Error'));
+    }
+    String? id = _localStorage.getString(key: StorageKey.companyID);
+    final result1 = await _project.getCompanyProjects(int.parse(id!));
+    if (result1 is DataSuccess) {
+      emit(state.copyWith(projectList: result1.data?.projectOutputList));
+    }
+    else {
+      emit(state.copyWith(projectList: null));
+    }
+  }
+
+
 }

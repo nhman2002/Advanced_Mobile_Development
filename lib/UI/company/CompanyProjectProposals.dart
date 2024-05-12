@@ -7,6 +7,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 
@@ -18,7 +19,8 @@ class CompanyProjectProposals extends StatefulWidget {
   State<CompanyProjectProposals> createState() => _CompanyProjectProposals();
 }
 
-class _CompanyProjectProposals extends State<CompanyProjectProposals> with SnackBarDefault {
+class _CompanyProjectProposals extends State<CompanyProjectProposals>
+    with SnackBarDefault {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CompanyDashboardCubit, CompanyDashboardState>(
@@ -62,10 +64,10 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton('Proposals', Colors.white, true),
-                    _buildProjectSectionButton('Detail', Colors.black, false),
-                    _buildProjectSectionButton('Message', Colors.black, false),
-                    _buildProjectSectionButton('Hired', Colors.black, false),
+                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.white, true, (){}),
+                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Message', Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -102,7 +104,8 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
     );
   }
 
-  Widget _buildContent(int proposalId, String name, String pos, String des, int statusFlag, int userID, int receiverID, int projectId) {
+  Widget _buildContent(int proposalId, String name, String pos, String des,
+      int statusFlag, int userID, int receiverID, int projectId) {
     return Padding(
       padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: Column(
@@ -156,7 +159,11 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    context.router.push(MessageDetailScreenRoute(userId: userID, receiverId: receiverID, projectId: projectId, receiverName: name));
+                    context.router.push(MessageDetailScreenRoute(
+                        userId: userID,
+                        receiverId: receiverID,
+                        projectId: projectId,
+                        receiverName: name));
                   },
                   child: Text("companyprojectproposals_company1".tr()),
                 ),
@@ -171,16 +178,19 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                             context: context,
                             builder: (BuildContext context) {
                               return AlertDialog(
-                                title: Text("companyprojectproposals_company2".tr()),
+                                title: Text(
+                                    "companyprojectproposals_company2".tr()),
                                 content: Text(
-                                    "companyprojectproposals_company3".tr() + '$name?'),
+                                    "companyprojectproposals_company3".tr() +
+                                        '$name?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .pop();
+                                      Navigator.of(context).pop();
                                     },
-                                    child: Text("companyprojectproposals_company4".tr()),
+                                    child: Text(
+                                        "companyprojectproposals_company4"
+                                            .tr()),
                                   ),
                                   TextButton(
                                     onPressed: () {
@@ -190,7 +200,9 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                                       Navigator.of(context)
                                           .pop(); // Close dialog
                                     },
-                                    child: Text("companyprojectproposals_company5".tr()),
+                                    child: Text(
+                                        "companyprojectproposals_company5"
+                                            .tr()),
                                   ),
                                 ],
                               );
@@ -207,7 +219,9 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
                     ),
                   ),
                   child: Text(
-                    statusFlag != 2 ? "companyprojectproposals_company6".tr() : "companyprojectproposals_company7".tr(),
+                    statusFlag != 2
+                        ? "companyprojectproposals_company6".tr()
+                        : "companyprojectproposals_company7".tr(),
                     style: TextStyle(
                       color: statusFlag != 2
                           ? Colors.white
@@ -233,40 +247,9 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals> with Snack
     await context.read<CompanyDashboardCubit>().sendOffer(proposalId);
     if (!mounted) return;
     final message = context.read<CompanyDashboardCubit>().state.message ?? '';
-    showSnackBarSuccess(context, message);   
+    showSnackBarSuccess(context, message);
     //reload the whole page
-    context.router.replace(const CompanyProjectProposalsRoute());            
+    context.router.replace(const CompanyProjectProposalsRoute());
   }
 
-
-
-
-  Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () {
-          // Navigate to different screens based on the button clicked
-          if (label == 'Detail') {
-            context.router.replace(const CompanyProjectDetailRoute());
-          } else if (label == 'Message') {
-            context.router.replace(const CompanyProjectMessageRoute());
-          } else if (label == 'Hired') {
-            context.router.replace(const CompanyProjectHiredRoute());
-          }
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: isBlue ? Colors.blue : Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: EdgeInsets.all(10),
-          child: Text(
-            label,
-            style: TextStyle(color: color),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
 }

@@ -50,8 +50,7 @@ class ProjectRepository extends BaseRepository {
       parseJsonFunction: ProjectPostForm.fromJson,
     );
   }
-//https://api.studenthub.dev/api/project?title=2&projectScopeFlag=2&numberOfStudents=2&proposalsLessThan=2&page=2&perPage=10
-//all field can be null
+
   Future<DataState<ProjectOutputList>> filterProject(String? title, int? projectScope, int? numberOfStudents, int? projectType, int? page, int? perPage) async {
     String path = '';
 

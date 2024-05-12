@@ -6,6 +6,8 @@ import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardArchieved.dart'
 import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
 import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
+import 'package:student_hub/UI/company/CompanyDashBoardWorking.dart';
+import 'package:student_hub/UI/company/CompanyDashboardArchieved.dart';
 import 'package:student_hub/UI/company/CompanyDashboardWrapper.dart';
 import 'package:student_hub/UI/company/CompanyProjectDetail.dart';
 import 'package:student_hub/UI/company/CompanyProjectHired.dart';
@@ -113,7 +115,15 @@ class AppRouter extends _$MessageDetailScreenArguments {
                     ),
                     CustomRoute(
                       page: CompanyProjectProposalsRoute.page,
-                      path: 'companyProjectDetail',
+                      path: 'companyProjectProposal',
+                    ),
+                    CustomRoute(
+                      page: CompanyDashboardWorkingRoute.page,
+                      path: 'companyDashBoardWorking',
+                    ),
+                    CustomRoute(
+                      page: CompanyDashboardArchievedRoute.page,
+                      path: 'companyDashBoardArchieved',
                     ),
                     CustomRoute(
                       page: CompanyProjectDetailRoute.page,

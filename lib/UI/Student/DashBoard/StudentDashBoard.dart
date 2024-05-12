@@ -62,11 +62,18 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                     _buildProjectSectionButton(
                         "studentdashboard_student3".tr(), Colors.black, false,
                         () {
+                                  context.read<StudentDashBoardCubit>().getWorkingProposals();
+
                       context.router
                           .replace(const StudentWorkingProjectsRoute());
                     }),
                     _buildProjectSectionButton("studentdashboard_student4".tr(),
-                        Colors.black, false, () {}),
+                        Colors.black, false, () {
+                                                            context.read<StudentDashBoardCubit>().getWorkingProposals();
+
+                      context.router
+                          .replace(const StudentArchievedProjectRoute());
+                        }),
                   ],
                 ),
                 SizedBox(height: 20),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/company/widget/ProjectSectionButton.dart';
 import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_cubit.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
@@ -17,21 +18,24 @@ import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
-class CompanyDashboard extends StatefulWidget {
-  const CompanyDashboard({super.key});
+class CompanyDashboardWorking extends StatefulWidget {
+  const CompanyDashboardWorking({super.key});
 
   @override
-  State<CompanyDashboard> createState() => _CompanyDashboard();
+  State<CompanyDashboardWorking> createState() => _CompanyDashboardWorking();
 }
 
 final _localStorage = getIt.get<LocalStorage>();
 
-class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
+class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with SnackBarDefault {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CompanyDashboardCubit, CompanyDashboardState>(
       builder: (context, state) {
-        final projectList = state.projectList;
+        //filter out project with typeflag = 1
+        final projectList = state.projectList
+            .where((element) => element.typeFlag == 1)
+            .toList();
 
         return Scaffold(
           appBar: AppBar(
@@ -76,26 +80,25 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   ],
                 ),
                 SizedBox(height: 20),
-                if (projectList.isNotEmpty)
                   Container(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        _buildProjectSectionButton(
+                        buildProjectSectionButton(
                             "companydashboard_company4".tr(),
+                            Colors.black,
+                            false, () {
+                          context.router.replace(const CompanyDashboardRoute());
+                          print('All Projects pressed');
+                        }, Theme.of(context)),
+                        buildProjectSectionButton(
+                            "companydashboard_company5".tr(),
                             Colors.black,
                             true, () {
                           // Add onPressed logic here
-                          print('All Projects pressed');
-                        }, Theme.of(context)),
-                        _buildProjectSectionButton(
-                            "companydashboard_company5".tr(),
-                            Colors.black,
-                            false, () {
-                          context.router.replace(const CompanyDashboardWorkingRoute());
                           print('Active pressed');
                         }, Theme.of(context)),
-                        _buildProjectSectionButton(
+                        buildProjectSectionButton(
                             "companydashboard_company6".tr(),
                             Colors.black,
                             false, () {
@@ -110,18 +113,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   Column(
                     children: [
                       Text(
-                        "companydashboard_company7".tr() +
-                            _localStorage.getString(key: StorageKey.userName)!,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        "companydashboard_company8".tr(),
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
+                        "No working projects",
                       ),
                     ],
                   ),
@@ -331,34 +323,6 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     );
   }
 
-  Widget _buildProjectSectionButton(
-    String label,
-    Color color,
-    bool isBlue,
-    VoidCallback onPressed,
-    ThemeData theme,
-  ) {
-    final buttonColor = isBlue ? theme.colorScheme.primaryContainer : theme.colorScheme.secondary;
-    final textColor = isBlue ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSecondary;
-
-    return Expanded(
-      child: GestureDetector(
-        onTap: onPressed,
-        child: Container(
-          decoration: BoxDecoration(
-            color: buttonColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: EdgeInsets.all(10),
-          child: Text(
-            label,
-            style: TextStyle(color: textColor),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
 
 
   Future<void> handleProjectPressed(

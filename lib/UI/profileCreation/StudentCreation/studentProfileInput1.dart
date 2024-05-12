@@ -11,6 +11,7 @@ import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show-langu
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show_school_widget.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -28,7 +29,7 @@ class _StudentProfileInputTechStackState
   String? selectedTechStackID;
   List<String> selectedSkills = [];
   List<Language> languages = [];
-  List<Education> educationList = [];
+  List<EducationInput> educationList = [];
 
   void _addNewLanguage(String language, String level) {
     setState(() {
@@ -53,20 +54,18 @@ class _StudentProfileInputTechStackState
 
   void _addNewEducation(String schoolName, int yearsStart, int yearsEnd) {
     setState(() {
-      final Education newEducation = Education(
+      print(
+          "ID: , School: $schoolName, Start: $yearsStart, End: $yearsEnd");
+      final EducationInput newEducation = EducationInput(
         schoolName: schoolName,
-        startYear: '',
-        endYear: '',
-        id: 0,
-        createdAt: '',
-        updatedAt: '',
-        deletedAt: '',
-        studentId: 0,
+        startYear: yearsStart,
+        endYear: yearsEnd,
       );
       educationList.add(newEducation);
     });
   }
 
+  
   void _deleteEducation(String schoolName) {
     setState(() {
       educationList.removeWhere((element) => element.schoolName == schoolName);
@@ -211,8 +210,7 @@ class _StudentProfileInputTechStackState
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromARGB(
-                                  255, 190, 190, 192),
+                              color: Color.fromARGB(255, 190, 190, 192),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
@@ -248,11 +246,17 @@ class _StudentProfileInputTechStackState
                         alignment: Alignment.centerRight,
                         child: IconButton(
                           onPressed: () async {
-                            final result = await showDialog<Education>(
+                            final result = await showDialog<EducationInput>(
                               context: context,
                               builder: (BuildContext context) {
                                 return PopUpEducationEditWidget(
-                                    _addNewEducation, _deleteEducation, '', 0, 0);
+                                    _addNewEducation,
+                                    _deleteEducation,
+                                    '',
+                                    0,
+                                    0
+                                    
+                                    );
                               },
                             );
 
@@ -280,8 +284,7 @@ class _StudentProfileInputTechStackState
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromARGB(
-                                  255, 190, 190, 192),
+                              color: Color.fromARGB(255, 190, 190, 192),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
@@ -298,7 +301,6 @@ class _StudentProfileInputTechStackState
                     ),
                   ),
                 ),
-
                 ElevatedButton(
                   onPressed: () {
                     next(context);
@@ -323,4 +325,3 @@ class _StudentProfileInputTechStackState
     context.router.push(const StudentProfileInputExperienceRoute());
   }
 }
-

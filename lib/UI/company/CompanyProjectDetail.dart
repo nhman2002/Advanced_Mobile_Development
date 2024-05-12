@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_hub/UI/company/CompanyProjectProposals.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/company/widget/ProjectSectionButton.dart';
+import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -58,10 +61,10 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton('Proposals', Colors.black, false),
-                    _buildProjectSectionButton('Detail', Colors.white, true),
-                    _buildProjectSectionButton('Message', Colors.black, false),
-                    _buildProjectSectionButton('Hired', Colors.black, false),
+                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.white, true, (){}),
+                    buildProposalSectionButton(Theme.of(context),'Message', Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -188,33 +191,4 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
   }
 
 
-
-Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {
-  return Expanded(
-    child: GestureDetector(
-      onTap: () {
-        // Navigate to different screens based on the button clicked
-        if (label == 'Proposals') {
-          context.router.replace(const CompanyProjectProposalsRoute());
-        } else if (label == 'Message') {
-          context.router.replace(const CompanyProjectMessageRoute());
-        } else if (label == 'Hired') {
-          context.router.replace(const CompanyProjectHiredRoute());
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: isBlue ? Colors.blue : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          style: TextStyle(color: color),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ),
-  );
-}
 }

@@ -4,6 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
+import 'package:student_hub/common/config/router.dart';
 
 @RoutePage()
 class CompanyProjectMessage extends StatefulWidget {
@@ -56,10 +58,10 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton('Proposals', Colors.white, true),
-                    _buildProjectSectionButton('Detail', Colors.black, false),
-                    _buildProjectSectionButton('Message', Colors.black, false),
-                    _buildProjectSectionButton('Hired', Colors.black, false),
+                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Message', Colors.white, true, (){}),
+                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
                 SizedBox(height: 20),

@@ -22,7 +22,6 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
   Widget build(BuildContext context) {
     return BlocBuilder<StudentDashBoardCubit, StudentDashBoardState>(
       builder: (context, state) {
-        context.read<StudentDashBoardCubit>().getArchievedProposals();
         return Scaffold(
           appBar: AppBar(
             title: Text('Student Hub'),
@@ -58,16 +57,26 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
                       "studentdashboard_student2".tr(),
                       Colors.black,
                       false,
+                      () {
+                        context.router.replace(const StudentDashBoardRoute());
+                      },
                     ),
                     _buildProjectSectionButton(
                       "studentdashboard_student3".tr(),
                       Colors.black,
                       false,
+                      () {
+                        context
+                            .read<StudentDashBoardCubit>()
+                            .getWorkingProposals();
+                        context.router.replace(const StudentWorkingProjectsRoute());
+                      },
                     ),
                     _buildProjectSectionButton(
                       "studentdashboard_student4".tr(),
                       Colors.white,
                       true,
+                      () {},
                     ),
                   ],
                 ),
@@ -152,18 +161,22 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
     return "$daysAgo day${daysAgo != 1 ? "s" : ""}";
   }
 
-  Widget _buildProjectSectionButton(String label, Color color, bool isChosen) {
+  Widget _buildProjectSectionButton(
+      String label, Color color, bool isBlue, VoidCallback onPressed) {
     return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          color: isChosen ? Colors.purple : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          style: TextStyle(color: color),
-          textAlign: TextAlign.center,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: Container(
+          decoration: BoxDecoration(
+            color: isBlue ? Colors.purple : Colors.white,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: EdgeInsets.all(10),
+          child: Text(
+            label,
+            style: TextStyle(color: color),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

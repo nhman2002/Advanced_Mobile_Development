@@ -26,10 +26,7 @@ class AnimatedButton extends StatefulWidget {
 class _AnimatedButtonState extends State<AnimatedButton> {
   bool isPressed = false;
 
-  final selectedTextColor = Colors.black;
-  final unselectedTextColor = Colors.white;
-  final selectedBg = Colors.grey.shade300;
-  final unselectedBg = Colors.blue.shade300;
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +50,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
       child: AnimatedContainer(
         duration: Duration(milliseconds: 300),
         decoration: BoxDecoration(
-          color: isPressed
-              ? Colors.grey.shade300
-              : widget.isSelected
-                  ? selectedBg
-                  : unselectedBg,
+
           borderRadius: BorderRadius.circular(10),
         ),
         padding: const EdgeInsets.only(left: 10, right: 10),
@@ -66,16 +59,10 @@ class _AnimatedButtonState extends State<AnimatedButton> {
           children: [
             Icon(widget.icon,
                 size: 30,
-                color: widget.isSelected
-                    ? selectedTextColor
-                    : unselectedTextColor),
+            ),
             SizedBox(height: 5),
             Text(
-              widget.label,
-              style: TextStyle(
-                  color: widget.isSelected
-                      ? selectedTextColor
-                      : unselectedTextColor), // Use the provided text color
+              widget.label, // Use the provided text color
             ),
           ],
         ),

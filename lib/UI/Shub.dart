@@ -7,6 +7,8 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 final router = AppRouter(navigatorKey: navigatorKey);
@@ -21,12 +23,16 @@ class MainApp extends StatelessWidget {
       create: (context) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeMode>(
         builder: (context, state) {
-          final theme = state == ThemeMode.light ? lightTheme ?? fallBackTheme : darkTheme ?? fallBackTheme;  //check fallBack
+          final brightness = View.of(context).platformDispatcher.platformBrightness;
+
+          TextTheme textTheme = createTextTheme(context, "Roboto", "Montserrat");
+
+          MaterialTheme theme = MaterialTheme(textTheme); 
           return MaterialApp.router(
             title: 'Student Hub',
-            theme: lightTheme,
+            theme: brightness == Brightness.light ? theme.lightHighContrast() : theme.dark(),
             themeMode: state,
-            darkTheme: darkTheme,
+            darkTheme: theme.darkHighContrast(),
             routerDelegate: router.delegate(),
             routeInformationParser: router.defaultRouteParser(),
             localizationsDelegates: context.localizationDelegates,
@@ -37,4 +43,24 @@ class MainApp extends StatelessWidget {
       ),
     );
   }
+}
+
+
+
+
+TextTheme createTextTheme(
+    BuildContext context, String bodyFontString, String displayFontString) {
+  TextTheme baseTextTheme = Theme.of(context).textTheme;
+  TextTheme bodyTextTheme = GoogleFonts.getTextTheme(bodyFontString, baseTextTheme);
+  TextTheme displayTextTheme =
+      GoogleFonts.getTextTheme(displayFontString, baseTextTheme);
+  TextTheme textTheme = displayTextTheme.copyWith(
+    bodyLarge: bodyTextTheme.bodyLarge,
+    bodyMedium: bodyTextTheme.bodyMedium,
+    bodySmall: bodyTextTheme.bodySmall,
+    labelLarge: bodyTextTheme.labelLarge,
+    labelMedium: bodyTextTheme.labelMedium,
+    labelSmall: bodyTextTheme.labelSmall,
+  );
+  return textTheme;
 }

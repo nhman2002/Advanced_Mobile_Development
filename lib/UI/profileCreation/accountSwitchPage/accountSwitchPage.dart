@@ -65,7 +65,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                 },
                 icon: Icon(
                   Icons.home,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -89,12 +88,12 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.person, color: Colors.black),
+                        leading: Icon(Icons.person),
                         title: Text("accountSwitchPage_ProfileCreation3".tr()),
                       ),
                     ),
                     Divider(
-                      color: Colors.grey,
+
                       thickness: 1.0,
                     ),
                     ElevatedButton(
@@ -106,12 +105,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.settings, color: Colors.black),
+                        leading: Icon(Icons.settings),
                         title: Text("accountSwitchPage_ProfileCreation4".tr()),
                       ),
                     ),
                     Divider(
-                      color: Colors.grey,
                       thickness: 1.0,
                     ),
                     ElevatedButton(
@@ -124,14 +122,13 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.logout, color: Colors.black),
+                        leading: Icon(Icons.logout),
                         title: Text("accountSwitchPage_ProfileCreation5".tr()),
                       ),
                     ),
                   ],
                 ),
                 Divider(
-                  color: Colors.grey,
                   thickness: 1.0,
                 ),
               ],
@@ -176,7 +173,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
         title: ListTile(
           leading: Icon(
             roles.first == 0 ? Icons.account_circle : Icons.business,
-            color: Colors.black,
             size: 40.0,
           ),
           title: Text(username),
@@ -186,7 +182,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                 : "accountSwitchPage_ProfileCreation1".tr(),
             style: TextStyle(
               fontSize: 14.0,
-              color: Colors.grey,
             ),
           ),
         ),
@@ -196,13 +191,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             child: Column(
               children: [
                 Divider(
-                  color: Colors.grey,
                   thickness: 1.0,
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.add_circle_outline,
-                    color: Colors.black,
                     size: 40.0,
                   ),
                   title: Text(
@@ -255,7 +248,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                 : "accountSwitchPage_ProfileCreation1".tr(),
             style: TextStyle(
               fontSize: 14.0,
-              color: Colors.grey,
             ),
           ),
         ),
@@ -265,7 +257,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             child: Column(
               children: [
                 Divider(
-                  color: Colors.grey,
                   thickness: 1.0,
                 ),
                 ListTile(
@@ -280,7 +271,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         : "accountSwitchPage_ProfileCreation1".tr(),
                     style: TextStyle(
                       fontSize: 14.0,
-                      color: Colors.grey,
                     ),
                   ),
                   onTap: () {

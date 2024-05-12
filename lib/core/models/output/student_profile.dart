@@ -195,8 +195,8 @@ class Education {
   String? deletedAt;
   int studentId;
   String schoolName;
-  String startYear;
-  String endYear;
+  int startYear;
+  int endYear;
 
   Education({
     required this.id,
@@ -230,21 +230,21 @@ class Education {
       deletedAt: map['deletedAt'] == null ? null : map['deletedAt'] as String,
       studentId: map['studentId'] as int,
       schoolName: map['schoolName'] as String,
-      startYear: map['startYear'] as String,
-      endYear: map['endYear'] as String,
+      startYear: map['startYear'] as int,
+      endYear: map['endYear'] as int,
     );
   }
 
   factory Education.fromJson(Map<String, dynamic> json) {
     return Education(
-      id: json['result']['id'] as int,
+      id: json['id'] as int,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
       studentId: json['studentId'] as int,
       schoolName: json['schoolName'] as String,
-      startYear: json['startYear'] as String,
-      endYear: json['endYear'] as String,
+      startYear: json['startYear'] as int,
+      endYear: json['endYear'] as int,
     );
   }
   

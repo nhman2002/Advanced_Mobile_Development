@@ -5,6 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
+import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
+import 'package:student_hub/common/config/router.dart';
 
 @RoutePage()
 class CompanyProjectHired extends StatefulWidget {
@@ -57,10 +59,10 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildProjectSectionButton("companyprojecthired_company1".tr(), Colors.white, true),
-                    _buildProjectSectionButton("companyprojecthired_company2".tr(), Colors.black, false),
-                    _buildProjectSectionButton("companyprojecthired_company3".tr(), Colors.black, false),
-                    _buildProjectSectionButton("companyprojecthired_company4".tr(), Colors.black, false),
+                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Message', Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
+                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.white, true, (){}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -86,38 +88,4 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
     );
   }
 
-
-
-Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {
-  return Expanded(
-    child: GestureDetector(
-      onTap: () {
-        // Navigate to different screens based on the button clicked
-        if (label == 'Detail') {
-          // Navigate to project detail screen
-          // Replace 'ProjectDetailScreen' with the appropriate screen/widget
-          
-        } else if (label == 'Message') {
-          // Navigate to message screen
-          // Replace 'MessageScreen' with the appropriate screen/widget
-        } else if (label == 'Hired') {
-          // Navigate to hired screen
-          // Replace 'HiredScreen' with the appropriate screen/widget
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: isBlue ? Colors.blue : Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          style: TextStyle(color: color),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ),
-  );
-}
 }

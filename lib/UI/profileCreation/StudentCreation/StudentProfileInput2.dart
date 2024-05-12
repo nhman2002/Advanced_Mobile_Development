@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
+
 
 class Project {
   String title;
@@ -15,13 +18,14 @@ class Project {
   });
 }
 
-class StudentInputProfile2 extends StatefulWidget {
+@RoutePage()
+class StudentProfileInputExperience extends StatefulWidget {
   @override
-  _StudentInputProfile2State createState() => _StudentInputProfile2State();
+  _StudentProfileInputExperienceState createState() => _StudentProfileInputExperienceState();
 }
 
-class _StudentInputProfile2State extends State<StudentInputProfile2> {
-  final List<Project> projects = [];
+class _StudentProfileInputExperienceState extends State<StudentProfileInputExperience> {
+  final List<ExperienceInput> projects = [];
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -123,11 +127,11 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      projects[index].title,
+                      projects[index].title ?? '',
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      projects[index].subtitle,
+                      'CON ACAC',
                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.grey[600]),
                     ),
                   ],
@@ -139,7 +143,7 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  projects[index].description,
+                  projects[index].description ?? '',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
@@ -148,7 +152,7 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _showSkillSet(projects[index]),
+                _showSkillSet(projects[index] ),
               ],
             ),
           ),
@@ -157,7 +161,7 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
     );
   }
 
-  Widget _showSkillSet(Project project) {
+  Widget _showSkillSet(ExperienceInput project) {
     return Container(
       height: 90,
       width: double.infinity,
@@ -174,7 +178,7 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
         child: Wrap(
           spacing: 10.0,
           runSpacing: 10.0,
-          children: project.selectedSkillSet.map((skill) => _buildSkillSetButton(skill)).toList(),
+          children: project.skillSets!.map((skill) => _buildSkillSetButton(skill)).toList(),
         ),
       ),
     );
@@ -251,7 +255,10 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
                 _buildTextField('Description', _descriptionController),
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed: _addProject,
+                  onPressed:() {_addProject;
+                  Navigator.of(context).pop();
+                  }
+                  ,
                   child: Text('Add'),
                 ),
               ],
@@ -311,11 +318,11 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
       String subtitle = '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
       int monthsDifference = _endDate.month - _startDate.month;
       projects.add(
-        Project(
+        ExperienceInput(
           title: _titleController.text,
-          subtitle: '$subtitle ($monthsDifference months)',
+          
           description: _descriptionController.text,
-          selectedSkillSet: ['Skill 1', 'Skill 2'],
+          skillSets: ['Skill 1', 'Skill 2'],
         ),
       );
       _titleController.clear();
@@ -325,18 +332,17 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
       _startDateController.clear();
       _endDateController.clear();
     });
-    Navigator.pop(context);
+    _buildProjectCards();
   }
 
   void _editProject(int index) {
     setState(() {
       String subtitle = '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
       int monthsDifference = _endDate.month - _startDate.month;
-      projects[index] = Project(
+      projects[index] = ExperienceInput(
         title: _titleController.text,
-        subtitle: '$subtitle ($monthsDifference months)',
         description: _descriptionController.text,
-        selectedSkillSet: ['Skill 1', 'Skill 2'],
+        skillSets: ['Skill 1', 'Skill 2'],
       );
       _titleController.clear();
       _descriptionController.clear();
@@ -429,8 +435,3 @@ class _StudentInputProfile2State extends State<StudentInputProfile2> {
   }
 }
 
-void main() {
-  runApp(MaterialApp(
-    home: StudentInputProfile2(),
-  ));
-}

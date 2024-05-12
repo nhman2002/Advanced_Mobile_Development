@@ -47,8 +47,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: Text('Student Hub'),
           actions: [
@@ -65,7 +64,6 @@ class _MessageListScreenState extends State<MessageListScreen> {
         ),
         body: _buildMessageContent(),
         bottomNavigationBar: const CustomBottomAppBar(),
-      ),
     );
   }
 

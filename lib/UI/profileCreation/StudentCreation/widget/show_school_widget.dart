@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 // import 'package:student_hub/widgets/pop_up_education_widget.dart';
 // import 'package:student_hub/models/model/education.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
 
 class ShowSchoolWidget extends StatelessWidget {
-  final List<Education> educationList;
+  final List<EducationInput> educationList;
   final Function _deleteSchool;
   final Function _addNewEducation;
   final bool? isEditing;
@@ -48,7 +49,7 @@ class ShowSchoolWidget extends StatelessWidget {
                     visible: isEditing!, // Hiển thị khi isEditing là true
                     child: IconButton(
                       icon: Image.asset(
-                        'assets/icons/edit.jpg', // Đường dẫn đến hình ảnh edit.jpg
+                        'lib/common/ui/assets/edit.jpg', // Đường dẫn đến hình ảnh edit.jpg
                         width: 21, // Kích thước của hình ảnh
                         height: 21,
                       ),
@@ -73,7 +74,7 @@ class ShowSchoolWidget extends StatelessWidget {
                     visible: isEditing!, // Hiển thị khi isEditing là true
                     child: IconButton(
                       icon: Image.asset(
-                        'assets/icons/delete.jpg', // Đường dẫn đến hình ảnh edit.jpg
+                        'lib/common/ui/assets/delete.jpg', // Đường dẫn đến hình ảnh edit.jpg
                         width: 21, // Kích thước của hình ảnh
                         height: 21,
                       ),

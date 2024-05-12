@@ -92,7 +92,7 @@ class ShowLanguagesWidget extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: Image.asset(
-                        'assets/icons/delete.jpg',
+                        'lib/common/ui/assets/delete.jpg',
                         width: 21,
                         height: 21,
                       ),

@@ -27,6 +27,18 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const CompanyDashboard(),
       );
     },
+    CompanyDashboardArchievedRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyDashboardArchieved(),
+      );
+    },
+    CompanyDashboardWorkingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CompanyDashboardWorking(),
+      );
+    },
     CompanyDashboardWrapperRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -229,7 +241,7 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
     StudentProfileInputExperienceRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const StudentProfileInputExperience(),
+        child: StudentProfileInputExperience(),
       );
     },
     StudentProfileInputTechStackRoute.name: (routeData) {
@@ -311,6 +323,34 @@ class CompanyDashboardRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'CompanyDashboardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyDashboardArchieved]
+class CompanyDashboardArchievedRoute extends PageRouteInfo<void> {
+  const CompanyDashboardArchievedRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyDashboardArchievedRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyDashboardArchievedRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CompanyDashboardWorking]
+class CompanyDashboardWorkingRoute extends PageRouteInfo<void> {
+  const CompanyDashboardWorkingRoute({List<PageRouteInfo>? children})
+      : super(
+          CompanyDashboardWorkingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CompanyDashboardWorkingRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
