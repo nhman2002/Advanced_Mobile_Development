@@ -1,3 +1,4 @@
+import 'package:student_hub/core/models/output/message_output.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
@@ -7,6 +8,7 @@ class CompanyDashboardState extends WidgetState {
   final List<ProjectOutput> projectList;
   final String? username;
   final int clickedProjectID;
+  final List<MessageOutput> messagesOfProject;
   final ProjectOutput? clickedProject;
   final List<ProjectProposalOutput> currentProposals;
   final String? message;
@@ -17,6 +19,7 @@ class CompanyDashboardState extends WidgetState {
     this.projectList = const [],
     this.username,
     this.clickedProjectID = -1,
+    this.messagesOfProject = const [],
     this.clickedProject,
     this.currentProposals = const [],
     this.message,
@@ -30,6 +33,7 @@ class CompanyDashboardState extends WidgetState {
         username,
         clickedProject,
         clickedProjectID,
+        messagesOfProject,
         currentProposals,
         message,
         userId,
@@ -57,6 +61,7 @@ class CompanyDashboardState extends WidgetState {
     List<ProjectOutput>? projectList,
     String? username,
     int? clickedProjectID,
+    List<MessageOutput>? messagesOfProject,
     ProjectOutput? clickedProject,
     List<ProjectProposalOutput>? currentProposals,
     String? message,
@@ -66,6 +71,7 @@ class CompanyDashboardState extends WidgetState {
       hasProject: hasProject ?? this.hasProject,
       projectList: projectList ?? this.projectList,
       username: username ?? this.username,
+      messagesOfProject: messagesOfProject ?? this.messagesOfProject,
       clickedProjectID: clickedProjectID ?? this.clickedProjectID,
       clickedProject: clickedProject ?? this.clickedProject,
       currentProposals: currentProposals ?? this.currentProposals,

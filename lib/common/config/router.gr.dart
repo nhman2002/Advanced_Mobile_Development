@@ -232,6 +232,16 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const StudentDashBoardWrapper(),
       );
     },
+    StudentInformationScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<StudentInformationScreenRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: StudentInformationScreen(
+          key: args.key,
+          student: args.student,
+        ),
+      );
+    },
     StudentProfileInputCVRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -827,6 +837,45 @@ class StudentDashBoardWrapperRoute extends PageRouteInfo<void> {
   static const String name = 'StudentDashBoardWrapperRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [StudentInformationScreen]
+class StudentInformationScreenRoute
+    extends PageRouteInfo<StudentInformationScreenRouteArgs> {
+  StudentInformationScreenRoute({
+    Key? key,
+    required StudentProfile student,
+    List<PageRouteInfo>? children,
+  }) : super(
+          StudentInformationScreenRoute.name,
+          args: StudentInformationScreenRouteArgs(
+            key: key,
+            student: student,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'StudentInformationScreenRoute';
+
+  static const PageInfo<StudentInformationScreenRouteArgs> page =
+      PageInfo<StudentInformationScreenRouteArgs>(name);
+}
+
+class StudentInformationScreenRouteArgs {
+  const StudentInformationScreenRouteArgs({
+    this.key,
+    required this.student,
+  });
+
+  final Key? key;
+
+  final StudentProfile student;
+
+  @override
+  String toString() {
+    return 'StudentInformationScreenRouteArgs{key: $key, student: $student}';
+  }
 }
 
 /// generated route for

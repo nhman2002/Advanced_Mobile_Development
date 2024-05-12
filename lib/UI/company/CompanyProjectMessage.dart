@@ -6,6 +6,7 @@ import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
 import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
 import 'package:student_hub/common/config/router.dart';
+import 'package:student_hub/core/models/output/message_output.dart';
 
 @RoutePage()
 class CompanyProjectMessage extends StatefulWidget {
@@ -21,9 +22,8 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
     return BlocBuilder<CompanyDashboardCubit, CompanyDashboardState>(
       builder: (context, state) {
         // Retrieve project detail from state if needed
-        final projectDetail = state.clickedProject; 
-        final proposals = projectDetail?.proposals;
-        final proposalList = state.currentProposals;
+        final projectDetail = state.clickedProject;
+        final messages = state.messagesOfProject;
 
         return Scaffold(
           appBar: AppBar(
@@ -35,7 +35,6 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -58,10 +57,22 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Message', Colors.white, true, (){}),
-                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
+                    buildProposalSectionButton(
+                        Theme.of(context), 'Proposals', Colors.black, false,
+                        () {
+                      context.router
+                          .replace(const CompanyProjectProposalsRoute());
+                    }),
+                    buildProposalSectionButton(
+                        Theme.of(context), 'Detail', Colors.black, false, () {
+                      context.router.replace(const CompanyProjectDetailRoute());
+                    }),
+                    buildProposalSectionButton(Theme.of(context), 'Message',
+                        Colors.white, true, () {}),
+                    buildProposalSectionButton(
+                        Theme.of(context), 'Hired', Colors.black, false, () {
+                      context.router.replace(const CompanyProjectHiredRoute());
+                    }),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -72,9 +83,8 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        //build content for proposals
-
-                        
+                        _buildMessageContent(
+                            messages, state.userId!, state.clickedProjectID),
                       ],
                     ),
                   ),
@@ -87,38 +97,60 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
     );
   }
 
-
-
-Widget _buildProjectSectionButton(String label, Color color, bool isBlue) {
-  return Expanded(
-    child: GestureDetector(
-      onTap: () {
-        // Navigate to different screens based on the button clicked
-        if (label == 'Detail') {
-          // Navigate to project detail screen
-          // Replace 'ProjectDetailScreen' with the appropriate screen/widget
-          
-        } else if (label == 'Message') {
-          // Navigate to message screen
-          // Replace 'MessageScreen' with the appropriate screen/widget
-        } else if (label == 'Hired') {
-          // Navigate to hired screen
-          // Replace 'HiredScreen' with the appropriate screen/widget
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          color: isBlue ? Colors.blue : Colors.white,
-          borderRadius: BorderRadius.circular(10),
+  Widget _buildMessageContent(
+      List<MessageOutput>? messages, int userId, int projectId) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            decoration: InputDecoration(
+              labelText: "Search",
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+              ),
+            ),
+          ),
         ),
-        padding: EdgeInsets.all(10),
-        child: Text(
-          label,
-          style: TextStyle(color: color),
-          textAlign: TextAlign.center,
+        Expanded(
+          child: ListView.separated(
+            itemCount: messages!.length,
+            separatorBuilder: (context, index) => Divider(color: Colors.black),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  print('Tile clicked');
+                  context.router.push(MessageDetailScreenRoute(
+                    userId: userId,
+                    receiverId: messages![index].receiverId! == userId
+                        ? messages![index].senderId!
+                        : messages![index].receiverId!,
+                    projectId: projectId,
+                    receiverName: messages![index].receiverId == userId
+                        ? messages![index].senderName!
+                        : messages![index].receiverName!,
+                  ));
+                },
+                child: ListTile(
+                  leading: Icon(Icons
+                      .supervised_user_circle), // Replace with actual icons
+                  title: Text(messages![index].receiverId == userId
+                      ? messages![index].senderName ?? ''
+                      : messages![index].receiverName ?? ''),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(messages![index].content ?? ''),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
-      ),
-    ),
-  );
-}
+      ],
+    );
+  }
 }

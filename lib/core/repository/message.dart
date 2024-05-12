@@ -32,5 +32,11 @@ class MessageRepository extends BaseRepository {
     );
   }
 
+  Future<DataState<List<MessageOutput>>> getMessageByProject(int projectId) async {
+    return get<List<MessageOutput>>(
+      path: '/$projectId',
+      parseJsonFunction: MessageOutput.fromJsonList,
+    );
+  }
     
 }

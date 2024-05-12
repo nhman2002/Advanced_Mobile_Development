@@ -8,6 +8,7 @@ import 'package:student_hub/core/models/input/project_post_model.dart';
 import 'package:student_hub/core/models/input/proposal_model.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:student_hub/core/repository/message.dart';
 import 'package:student_hub/core/repository/profileStudent.dart';
 import 'package:student_hub/core/repository/project.dart';
 import 'package:student_hub/core/repository/proposal.dart';
@@ -26,6 +27,7 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
   final _localStorage = getIt.get<LocalStorage>();
   final _student = getIt.get<StudentProfileRepository>();
   final _proposal = getIt.get<ProposalRepository>();
+  final _message  = getIt.get<MessageRepository>();
 
   @override
   Future<void> init() async {
@@ -62,6 +64,13 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     else {
       emit(state.copyWith(clickedProject: null));
     }
+    final result2 = await _message.getMessageByProject(index);
+    if (result2 is DataSuccess) {
+      emit(state.copyWith(messagesOfProject: result2.data));
+    }
+    else {
+      emit(state.copyWith(messagesOfProject: null));
+    }
     hideLoading();
   }
 
@@ -83,12 +92,27 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     final result = await _project.updateProject(form.projectId!, apiform);
 
     if (result is DataSuccess) {
-      final project = result.data;
+      init();
+      emit(state.copyWith(message: 'Project updated successfully'));
+
     }
     else {
       emit(state.copyWith(clickedProject: null));
     }
 
+  }
+
+  Future<void> editProject(ProjectPostForm project, int projectId) async {
+    showLoading();
+    final result = await _project.updateProject(projectId, project);
+    if (result is DataSuccess) {
+      emit(state.copyWith(message: 'Project updated successfully'));
+    }
+    else {
+      emit(state.copyWith(message: 'Error'));
+    }
+    init();
+    hideLoading();
   }
 
   Future<void> sendOffer(int proposalId) async {
@@ -112,6 +136,7 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
   }
 
   Future<void> deleteProject(int projectId) async {
+    showLoading();
     final result = await _project.deleteProject(projectId);
     if (result is DataSuccess) {
       emit(state.copyWith(message: 'Project deleted successfully'));
@@ -127,9 +152,11 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     else {
       emit(state.copyWith(projectList: null));
     }
+    hideLoading();
   }
 
   Future<void> updateProject(ProjectOutput project) async {
+    showLoading();
     final apiform = ProjectPostForm().copyWith(
       companyId: project.companyId,
       title: project.title,
@@ -153,6 +180,7 @@ class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
     else {
       emit(state.copyWith(projectList: null));
     }
+    hideLoading();
   }
 
 

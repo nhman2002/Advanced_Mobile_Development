@@ -28,7 +28,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
         final userId = state.userId;
         // Retrieve project detail from state if needed
         final projectDetail = state.clickedProject;
-        final proposals = projectDetail?.proposals;
         final proposalList = state.currentProposals;
 
         return Scaffold(

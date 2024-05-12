@@ -13,6 +13,7 @@ import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
+import 'package:student_hub/core/models/input/project_post_model.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -92,14 +93,16 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                             "companydashboard_company5".tr(),
                             Colors.black,
                             false, () {
-                          context.router.replace(const CompanyDashboardWorkingRoute());
+                          context.router
+                              .replace(const CompanyDashboardWorkingRoute());
                           print('Active pressed');
                         }, Theme.of(context)),
                         _buildProjectSectionButton(
                             "companydashboard_company6".tr(),
                             Colors.black,
                             false, () {
-                          context.router.replace(const CompanyDashboardArchievedRoute());
+                          context.router
+                              .replace(const CompanyDashboardArchievedRoute());
                           print('Archived pressed');
                         }, Theme.of(context)),
                       ],
@@ -142,7 +145,6 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                       ),
                     ),
                   ),
-                Spacer(),
               ],
             ),
           ),
@@ -247,8 +249,9 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
+                  Navigator.pop(context);
                   context.router.push(const CompanyProjectProposalsRoute());
-                  Navigator.pop(context); // Close the bottom sheet
+                  // Close the bottom sheet
                 },
               ),
               ListTile(
@@ -259,8 +262,9 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
+                  Navigator.pop(context);
                   context.router.push(const CompanyProjectMessageRoute());
-                  Navigator.pop(context); // Close the bottom sheet
+                  // Close the bottom sheet
                 },
               ),
               ListTile(
@@ -271,8 +275,9 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
+                  Navigator.pop(context);
                   context.router.push(const CompanyProjectHiredRoute());
-                  Navigator.pop(context); // Close the bottom sheet
+                  // Close the bottom sheet
                 },
               ),
               Divider(),
@@ -284,8 +289,9 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
+                  Navigator.pop(context);
                   context.router.push(const CompanyProjectDetailRoute());
-                  Navigator.pop(context); // Close the bottom sheet
+                  // Close the bottom sheet
                 },
               ),
               ListTile(
@@ -297,7 +303,8 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 onTap: () {
                   // Add logic to edit posting
                   print('Edit Posting');
-                  Navigator.pop(context); // Close the bottom sheet
+                  Navigator.pop(context);
+                  _showEditDialog(context, project);
                 },
               ),
               ListTile(
@@ -307,7 +314,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   style: TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
-                  // Add logic to delete posting
+                  deleteProject(project.projectId ?? -1);
                   print('Delete Posting');
                   Navigator.pop(context); // Close the bottom sheet
                 },
@@ -338,8 +345,12 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     VoidCallback onPressed,
     ThemeData theme,
   ) {
-    final buttonColor = isBlue ? theme.colorScheme.primaryContainer : theme.colorScheme.secondary;
-    final textColor = isBlue ? theme.colorScheme.onPrimaryContainer : theme.colorScheme.onSecondary;
+    final buttonColor = isBlue
+        ? theme.colorScheme.primaryContainer
+        : theme.colorScheme.secondary;
+    final textColor = isBlue
+        ? theme.colorScheme.onPrimaryContainer
+        : theme.colorScheme.onSecondary;
 
     return Expanded(
       child: GestureDetector(
@@ -360,6 +371,147 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     );
   }
 
+  void _showEditDialog(BuildContext context, ProjectOutput project) {
+    // Define project details variables
+    int projectScopeFlag = project.projectScopeFlag ?? -1; // Default value
+    String projectTitle = ''; // Empty string
+    String projectDescription = ''; // Empty string
+    int numberOfStudents = -1; // Default value
+
+    // Options for project scope
+    List<String> scopeOptions = [
+      'Less than one month',
+      'One to three months',
+      'Three to six months',
+      'More than six months',
+    ];
+    // Create a dropdown value for the selected scope
+    String selectedScope = scopeOptions[projectScopeFlag];
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        String newValue;
+
+        return AlertDialog(
+          title: Text('Edit Project'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text('Keep the fields empty to keep the current values'),
+              // Input field for project title
+              Tooltip(
+                message: 'Leave empty to keep current title',
+                child: TextField(
+                  onChanged: (value) {
+                    projectTitle = value;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Project Title',
+                  ),
+                ),
+              ),
+              // Input field for project description
+              Tooltip(
+                message: 'Leave empty to keep current description',
+                child: TextField(
+                  onChanged: (value) {
+                    projectDescription = value;
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Project Description',
+                  ),
+                ),
+              ),
+              // Input field for number of students
+              Tooltip(
+                message: 'Leave empty to keep current number of students',
+                child: TextField(
+                  onChanged: (value) {
+                    numberOfStudents = int.tryParse(value) ?? 0;
+                  },
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: 'Number of Students',
+                  ),
+                ),
+              ),
+              SizedBox(height: 10)
+              ,
+              //text field for project scope
+              const Align(
+                alignment: Alignment.centerLeft, // Align to the left side
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      top: 8.0), // Add top padding for spacing
+                  child: Text(
+                    'Choose your desired project Scope',
+                    style: TextStyle(
+                        fontSize: 16), // Adjust the font size as needed
+                  ),
+                ),
+              ),
+
+              DropdownButtonFormField<String>(
+                value: selectedScope,
+                onChanged: (newValue) {
+                  
+                  setState(() {
+                    print('New value: $newValue');
+                    print('Index: ${scopeOptions.indexOf(newValue!)}');
+                    selectedScope = newValue;
+                    projectScopeFlag = scopeOptions.indexOf(selectedScope);
+                  });
+                },
+                onSaved: (newValue) {
+                  
+                  setState(() {
+                    selectedScope = newValue!;
+                    projectScopeFlag = scopeOptions.indexOf(selectedScope);
+                  });
+                },
+                items: scopeOptions.map((String scope) {
+                  return DropdownMenuItem<String>(
+                    value: scope,
+                    child: Text(scope),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                // anything empty will become that of the project
+                final form = ProjectPostForm().copyWith(
+                  companyId: project.companyId,
+                  title: projectTitle.isEmpty ? project.title : projectTitle,
+                  description: projectDescription.isEmpty
+                      ? project.description
+                      : projectDescription,
+                  projectScopeFlag: projectScopeFlag,
+                  numberOfStudents: numberOfStudents == -1
+                      ? project.numberOfStudents
+                      : numberOfStudents,
+                );
+                handleEditProject(form, project.projectId ?? -1);
+
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Close the dialog without saving
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Future<void> handleProjectPressed(
       ProjectOutput project, BuildContext context) async {
@@ -376,5 +528,21 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
     showSnackBarSuccess(
         context, 'Project started, check active tab for details!');
+  }
+
+  Future<void> deleteProject(int projectId) async {
+    await context.read<CompanyDashboardCubit>().deleteProject(projectId);
+    showSnackBarSuccess(
+        context,
+        context.read<CompanyDashboardCubit>().state.message ??
+            'Failed to delete project!');
+  }
+
+  Future<void> handleEditProject(ProjectPostForm project, int projectId) async {
+    await context.read<CompanyDashboardCubit>().editProject(project, projectId);
+    showSnackBarSuccess(
+        context,
+        context.read<CompanyDashboardCubit>().state.message ??
+            'Project update failed!');
   }
 }

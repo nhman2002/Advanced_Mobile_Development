@@ -1,35 +1,32 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/models/data_state.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:student_hub/core/repository/profileStudent.dart';
 
-void main() {
-  runApp(MyApp());
-}
+@RoutePage()
+class StudentInformationScreen extends StatefulWidget {
+  final StudentProfile student;
+  const StudentInformationScreen({super.key, required this.student});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Student Detail',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: StudentDetailScreen(),
-    );
-  }
+  State<StudentInformationScreen> createState() => _StudentInformationScreen();
 }
 
-class StudentDetailScreen extends StatelessWidget {
+class _StudentInformationScreen extends State<StudentInformationScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Student Detail",
-          style: theme.textTheme.headline6!.copyWith(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+        
+          style: theme.textTheme.headlineMedium!.copyWith(
           ),
         ),
       ),
@@ -69,12 +66,8 @@ class StudentDetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Full Name', // Replace with actual data
-                      style: theme.textTheme.bodyText1,
-                    ),
-                    Text(
-                      'Student Name', // Replace with actual data
-                      style: theme.textTheme.bodyText1,
+                      widget.student.fullname ?? '', // Replace with actual data
+                      style: theme.textTheme.bodyMedium,
                     ),
                   ],
                 ),
@@ -130,7 +123,7 @@ class StudentDetailScreen extends StatelessWidget {
               width: 150,
               child: Text(
                 'No data', // Replace with actual data
-                style: theme.textTheme.bodyText1,
+                style: theme.textTheme.bodyMedium,
               ),
             ),
             SizedBox(height: 10),
@@ -139,10 +132,7 @@ class StudentDetailScreen extends StatelessWidget {
               children: [
                 Text(
                   "Resume",
-                  style: theme.textTheme.bodyText1!.copyWith(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: theme.textTheme.bodyMedium,
                 ),
                 SizedBox(height: 10),
                 Container(
