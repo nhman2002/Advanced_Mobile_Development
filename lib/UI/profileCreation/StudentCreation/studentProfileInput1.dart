@@ -8,6 +8,7 @@ import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProf
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_language_edit_widget.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_languages_widget.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show-language_widget.dart';
+import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show_school_widget.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
@@ -241,6 +242,34 @@ class _StudentProfileInputTechStackState
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          onPressed: () async {
+                            final result = await showDialog<Education>(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return PopUpEducationEditWidget(
+                                    _addNewEducation, _deleteEducation, '', 0, 0);
+                              },
+                            );
+
+                            if (result != null) {
+                              setState(() {
+                                educationList.add(result);
+                              });
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.add,
+                            size: 30,
+                            color: Color(0xFF406AFF),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Padding(
@@ -269,6 +298,7 @@ class _StudentProfileInputTechStackState
                     ),
                   ),
                 ),
+
                 ElevatedButton(
                   onPressed: () {
                     next(context);
@@ -293,3 +323,4 @@ class _StudentProfileInputTechStackState
     context.router.push(const StudentProfileInputExperienceRoute());
   }
 }
+
