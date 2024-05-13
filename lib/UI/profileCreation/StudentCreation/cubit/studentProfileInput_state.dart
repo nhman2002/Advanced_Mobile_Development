@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
@@ -12,6 +13,7 @@ class StudentProfileInputState extends WidgetState {
   final String? cvPath;
   final String? transcriptPath;
   final bool? isSuccess;
+  final List<ExperienceInput?> experienceList;
 
 
   const StudentProfileInputState({
@@ -23,6 +25,7 @@ class StudentProfileInputState extends WidgetState {
     this.cvPath,
     this.transcriptPath,
     this.isSuccess,
+    this.experienceList = const [],
   });
 
   @override
@@ -35,6 +38,7 @@ class StudentProfileInputState extends WidgetState {
   ,cvPath
   ,transcriptPath
   ,isSuccess
+  ,experienceList
   ];
 
   @override
@@ -59,6 +63,8 @@ class StudentProfileInputState extends WidgetState {
     String? cvPath,
     String? transcriptPath,
     bool? isSuccess,
+   List<ExperienceInput?>? experienceList,
+
   }) {
     return StudentProfileInputState(
       message: message ?? this.message,
@@ -69,6 +75,7 @@ class StudentProfileInputState extends WidgetState {
       cvPath: cvPath ?? this.cvPath,
       transcriptPath: transcriptPath ?? this.transcriptPath,
       isSuccess: isSuccess ?? this.isSuccess,
+      experienceList: experienceList ?? this.experienceList,
     );
   }
 }
