@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:student_hub/UI/ProfileCreation/StudentCreation/cubit/studentProfileInput_cubit.dart';
+import 'package:student_hub/UI/ProfileCreation/StudentCreation/cubit/studentProfileInput_state.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
-
+import 'package:student_hub/core/models/output/student_profile.dart';
 
 class Project {
   String title;
@@ -20,11 +23,15 @@ class Project {
 
 @RoutePage()
 class StudentProfileInputExperience extends StatefulWidget {
+  const StudentProfileInputExperience({Key? key}) : super(key: key);
+
   @override
-  _StudentProfileInputExperienceState createState() => _StudentProfileInputExperienceState();
+  State<StudentProfileInputExperience> createState() =>
+      _StudentProfileInputExperienceState();
 }
 
-class _StudentProfileInputExperienceState extends State<StudentProfileInputExperience> {
+class _StudentProfileInputExperienceState
+    extends State<StudentProfileInputExperience> {
   final List<ExperienceInput> projects = [];
 
   final TextEditingController _titleController = TextEditingController();
@@ -35,7 +42,62 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
 
-  Future<void> _selectStartDate(BuildContext context) async {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<StudentProfileInputCubit, StudentProfileInputState>(
+      builder: (context, state) {
+        // final TechStackList = state.techStackList;
+        // final skillSetList = state.skillSetList;
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Experiences'),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  SizedBox(height: 20.0),
+                  Text(
+                    'Experiences',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Tell us about yourself and you will be on your way connect with real-world projects',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+                  ),
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Projects',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.add_circle_outline),
+                        onPressed: _showAddProjectDialog,
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  _buildProjectCards(),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+    Future<void> _selectStartDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: _startDate,
@@ -65,51 +127,6 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Experiences'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              SizedBox(height: 20.0),
-              Text(
-                'Experiences',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16.0),
-              Text(
-                'Tell us about yourself and you will be on your way connect with real-world projects',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
-              ),
-              SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Projects',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.add_circle_outline),
-                    onPressed: _showAddProjectDialog,
-                  ),
-                ],
-              ),
-              SizedBox(height: 16.0),
-              _buildProjectCards(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildProjectCards() {
     return Column(
       children: List.generate(projects.length, (index) {
@@ -128,11 +145,15 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                   children: [
                     Text(
                       projects[index].title ?? '',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       'CON ACAC',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.grey[600]),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -152,7 +173,7 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _showSkillSet(projects[index] ),
+                _showSkillSet(projects[index]),
               ],
             ),
           ),
@@ -178,7 +199,9 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
         child: Wrap(
           spacing: 10.0,
           runSpacing: 10.0,
-          children: project.skillSets!.map((skill) => _buildSkillSetButton(skill)).toList(),
+          children: project.skillSets!
+              .map((skill) => _buildSkillSetButton(skill))
+              .toList(),
         ),
       ),
     );
@@ -255,10 +278,10 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
                 _buildTextField('Description', _descriptionController),
                 SizedBox(height: 16.0),
                 ElevatedButton(
-                  onPressed:() {_addProject;
-                  Navigator.of(context).pop();
-                  }
-                  ,
+                  onPressed: () {
+                    _addProject();
+                    Navigator.of(context).pop();
+                  },
                   child: Text('Add'),
                 ),
               ],
@@ -315,12 +338,13 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
 
   void _addProject() {
     setState(() {
-      String subtitle = '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
+      String subtitle =
+          '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
       int monthsDifference = _endDate.month - _startDate.month;
+      // print(monthsDifference);
       projects.add(
         ExperienceInput(
           title: _titleController.text,
-          
           description: _descriptionController.text,
           skillSets: ['Skill 1', 'Skill 2'],
         ),
@@ -337,7 +361,8 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
 
   void _editProject(int index) {
     setState(() {
-      String subtitle = '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
+      String subtitle =
+          '${DateFormat('dd-MM').format(_startDate)} - ${DateFormat('dd-MM').format(_endDate)}';
       int monthsDifference = _endDate.month - _startDate.month;
       projects[index] = ExperienceInput(
         title: _titleController.text,
@@ -434,4 +459,3 @@ class _StudentProfileInputExperienceState extends State<StudentProfileInputExper
     );
   }
 }
-
