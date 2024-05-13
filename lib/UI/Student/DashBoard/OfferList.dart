@@ -1,28 +1,41 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashBoard_state.dart';
+import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashboard_cubit.dart';
 
-class OfferListPage extends StatelessWidget {
-  final List<Map<String, String>> offers = [
-    {'projectName': 'Project A', 'companyName': 'Company X'},
-    {'projectName': 'Project B', 'companyName': 'Company Y'},
-    {'projectName': 'Project C', 'companyName': 'Company Z'},
-  ];
+@RoutePage()
+class OfferListPage extends StatefulWidget {
+  const OfferListPage({super.key});
+
+  @override
+  State<OfferListPage> createState() => _OfferListPage();
+}
+
+class _OfferListPage extends State<OfferListPage> {
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Offer List'),
-      ),
-      body: ListView.builder(
-        itemCount: offers.length,
-        itemBuilder: (context, index) {
-          final offer = offers[index];
-          return OfferItem(
-            projectName: offer['projectName']!,
-            companyName: offer['companyName']!,
-          );
-        },
-      ),
+    return BlocBuilder<StudentDashBoardCubit, StudentDashBoardState>(
+      builder: (context, state) {
+        final offers = state.offerList;
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Offer List'),
+          ),
+          body: ListView.builder(
+            itemCount: offers.length,
+            itemBuilder: (context, index) {
+              final offer = offers[index];
+              return OfferItem(
+                projectName: offer.project.title ?? '',
+                companyName: '',
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

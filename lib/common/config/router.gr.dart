@@ -148,6 +148,22 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: const NotificationScreen(),
       );
     },
+    OfferDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<OfferDetailRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: OfferDetail(
+          projectName: args.projectName,
+          companyName: args.companyName,
+        ),
+      );
+    },
+    OfferListPageRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OfferListPage(),
+      );
+    },
     ProjectFilterRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -251,7 +267,7 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
     StudentProfileInputExperienceRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: StudentProfileInputExperience(),
+        child: const StudentProfileInputExperience(),
       );
     },
     StudentProfileInputTechStackRoute.name: (routeData) {
@@ -639,6 +655,58 @@ class NotificationScreenRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'NotificationScreenRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OfferDetail]
+class OfferDetailRoute extends PageRouteInfo<OfferDetailRouteArgs> {
+  OfferDetailRoute({
+    required String projectName,
+    required String companyName,
+    List<PageRouteInfo>? children,
+  }) : super(
+          OfferDetailRoute.name,
+          args: OfferDetailRouteArgs(
+            projectName: projectName,
+            companyName: companyName,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OfferDetailRoute';
+
+  static const PageInfo<OfferDetailRouteArgs> page =
+      PageInfo<OfferDetailRouteArgs>(name);
+}
+
+class OfferDetailRouteArgs {
+  const OfferDetailRouteArgs({
+    required this.projectName,
+    required this.companyName,
+  });
+
+  final String projectName;
+
+  final String companyName;
+
+  @override
+  String toString() {
+    return 'OfferDetailRouteArgs{projectName: $projectName, companyName: $companyName}';
+  }
+}
+
+/// generated route for
+/// [OfferListPage]
+class OfferListPageRoute extends PageRouteInfo<void> {
+  const OfferListPageRoute({List<PageRouteInfo>? children})
+      : super(
+          OfferListPageRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OfferListPageRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

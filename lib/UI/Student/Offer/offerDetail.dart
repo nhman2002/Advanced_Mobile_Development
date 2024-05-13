@@ -1,24 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(OfferDetailPage());
-}
+@RoutePage()
+class OfferDetail extends StatefulWidget {
+  final String projectName;
+  final String companyName;
 
-class OfferDetailPage extends StatelessWidget {
+  const OfferDetail({
+    required this.projectName,
+    required this.companyName,
+  });
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Offer Detail'),
-        ),
-        body: OfferDetail(),
-      ),
-    );
-  }
+  _OfferDetailState createState() => _OfferDetailState();
 }
 
-class OfferDetail extends StatelessWidget {
+class _OfferDetailState extends State<OfferDetail> {
   @override
   Widget build(BuildContext context) {
     return Center(

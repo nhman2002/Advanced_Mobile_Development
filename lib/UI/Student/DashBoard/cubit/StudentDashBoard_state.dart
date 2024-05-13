@@ -10,6 +10,7 @@ class StudentDashBoardState extends WidgetState {
   final List<ProposalWithProject> activeProposalList;
   final List<ProposalWithProject> workingProposalList;
   final List<ProposalWithProject> archievedProposalList;
+  final List<ProposalWithProject> offerList;
   final String? username;
   final String? message;
 
@@ -20,6 +21,7 @@ class StudentDashBoardState extends WidgetState {
     this.activeProposalList = const [],
     this.workingProposalList = const [],
     this.archievedProposalList = const [],
+    this.offerList = const [],
     this.username,
     this.message,
   });
@@ -32,6 +34,7 @@ class StudentDashBoardState extends WidgetState {
         activeProposalList,
         workingProposalList,
         archievedProposalList,
+        offerList,
         username,
         message,
 
@@ -54,6 +57,7 @@ class StudentDashBoardState extends WidgetState {
       waitingProposalList: (json['waitingProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
       activeProposalList: (json['activeProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
       workingProposalList: (json['workingProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
+      archievedProposalList: (json['archievedProposalList'] as List).map((e) => ProposalWithProject.fromJson(e)).toList(),
       username: json['username'] as String?,
       message: json['message'] as String?,
     );
@@ -67,6 +71,7 @@ class StudentDashBoardState extends WidgetState {
     List<ProposalWithProject>? activeProposalList,
     List<ProposalWithProject>? workingProposalList,
     List<ProposalWithProject>? archievedProposalList,
+    List<ProposalWithProject>? offerList,
     String? username,
     String? message,
   }) {
@@ -77,6 +82,7 @@ class StudentDashBoardState extends WidgetState {
       activeProposalList: activeProposalList ?? this.activeProposalList,
       workingProposalList: workingProposalList ?? this.workingProposalList,
       archievedProposalList: archievedProposalList ?? this.archievedProposalList,
+      offerList: offerList ?? this.offerList,
       username: username ?? this.username,
       message: message ?? this.message,
     );

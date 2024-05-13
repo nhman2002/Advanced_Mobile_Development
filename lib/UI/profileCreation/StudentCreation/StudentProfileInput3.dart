@@ -14,6 +14,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class StudentProfileInputCV extends StatefulWidget {
+  const StudentProfileInputCV({Key? key}) : super(key: key);
+
   @override
   _StudentProfileInputCVState createState() => _StudentProfileInputCVState();
 }
