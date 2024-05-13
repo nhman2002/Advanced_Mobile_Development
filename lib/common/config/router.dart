@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/Auth/forgotPassword/forgot_password.dart';
 import 'package:student_hub/UI/Chat/VideoCall/VideoCall.dart';
 import 'package:student_hub/UI/Student/DashBoard/StudentDashBoardArchieved.dart';
+import 'package:student_hub/UI/Student/Information/StudentInformation.dart';
 import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/chat/ChatList/MessageList.dart';
 import 'package:student_hub/UI/chat/ChatScreen/MessageDetail.dart';
@@ -45,6 +46,7 @@ import 'package:student_hub/UI/splash_screen/splash_wrapper.dart';
 import 'package:student_hub/UI/splash_screen/splash_screen.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput1.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput3.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
 
 part 'router.gr.dart';
 
