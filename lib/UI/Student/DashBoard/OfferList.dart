@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashBoard_state.dart';
 import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashboard_cubit.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 
 @RoutePage()
 class OfferListPage extends StatefulWidget {
-  const OfferListPage({super.key});
+  const OfferListPage({Key? key}) : super(key: key);
 
   @override
   State<OfferListPage> createState() => _OfferListPage();
 }
 
-class _OfferListPage extends State<OfferListPage> {
-
-
+class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StudentDashBoardCubit, StudentDashBoardState>(
@@ -28,9 +27,10 @@ class _OfferListPage extends State<OfferListPage> {
             itemCount: offers.length,
             itemBuilder: (context, index) {
               final offer = offers[index];
-              return OfferItem(
+              return offerItem(
                 projectName: offer.project.title ?? '',
-                companyName: '',
+                id: offer.id,
+                func: () {acceptOffer(offer.id);},
               );
             },
           ),
@@ -38,19 +38,12 @@ class _OfferListPage extends State<OfferListPage> {
       },
     );
   }
-}
 
-class OfferItem extends StatelessWidget {
-  final String projectName;
-  final String companyName;
-
-  const OfferItem({
-    required this.projectName,
-    required this.companyName,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget offerItem({
+    required String projectName,
+    required int id,
+    required VoidCallback func,
+  }) {
     return Card(
       margin: EdgeInsets.all(8),
       child: Padding(
@@ -64,7 +57,7 @@ class OfferItem extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              'Company: $companyName',
+              'Owner of this project has sent your an offer',
             ),
             SizedBox(height: 16),
             Row(
@@ -72,7 +65,7 @@ class OfferItem extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Handle accept button press
+                    func();
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
@@ -95,5 +88,12 @@ class OfferItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> acceptOffer(int id) async {
+    // Call the API to accept the offer
+    await context.read<StudentDashBoardCubit>().acceptOffer(id);
+    showSnackBarSuccess(
+        context, context.read<StudentDashBoardCubit>().state.message ?? '');
   }
 }

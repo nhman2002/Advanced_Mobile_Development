@@ -54,6 +54,15 @@ class StudentDashBoardCubit extends WidgetCubit<StudentDashBoardState> {
     else {
       emit(state.copyWith(waitingProposalList: null));
     }    
+
+    final result3 = await _proposal.getStudentProposal(studentID, 2);
+    if (result3 is DataSuccess) {
+      final offer = result3.data;
+      emit(state.copyWith(offerList: offer));
+    }
+    else {
+      emit(state.copyWith(offerList: null));
+    }
     hideLoading();
   }
 
@@ -68,6 +77,26 @@ class StudentDashBoardCubit extends WidgetCubit<StudentDashBoardState> {
     }
     else {
       emit(state.copyWith(workingProposalList: null));
+    }
+    hideLoading();
+  }
+
+  Future<void> acceptOffer(int proposalID) async {
+    showLoading();
+    final studentIDString = _localStorage.getString(key: StorageKey.studentID);
+    final studentID = int.parse(studentIDString!);
+    final result = await _proposal.acceptOffer(proposalID);
+    if (result is DataSuccess) {
+      emit(state.copyWith(message: 'Offer accepted successfully'));
+      final result1 = await _proposal.getStudentProposalWithTypeFlag(studentID, 3);
+      if (result1 is DataSuccess) {
+        final offer = result1.data;
+        emit(state.copyWith(offerList: offer));
+      }
+      else {
+        emit(state.copyWith(message: 'Error'));
+
+      }
     }
     hideLoading();
   }

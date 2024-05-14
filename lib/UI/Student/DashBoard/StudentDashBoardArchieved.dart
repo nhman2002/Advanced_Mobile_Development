@@ -42,12 +42,26 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "studentdashboardworking_student1".tr(),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "studentdashboard_student1".tr(),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                        width:
+                            8), // Add some space between the Text and the button
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const OfferListPageRoute());
+                      },
+                      child: Text("View Offer"),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20),
                 Row(

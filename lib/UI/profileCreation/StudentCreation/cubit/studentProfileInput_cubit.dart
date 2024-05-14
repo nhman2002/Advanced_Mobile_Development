@@ -75,6 +75,16 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
     debugPrint('Experience List: $experienceList');
   }
 
+  void setLanguages(List<Language> languagesList) {
+    emit(state.copyWith(languagesList: languagesList));
+    debugPrint('Languages List: $languagesList');
+  }
+
+  void setEducation(List<EducationInput> educationList) {
+    emit(state.copyWith(educationList: educationList));
+    debugPrint('Education List: $educationList');
+  }
+
   Future<void> uploadProfile(BuildContext context) async {
     showLoading();
     int studentID = 0;

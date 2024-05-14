@@ -46,12 +46,26 @@ class _StudentDashBoard extends State<StudentDashBoard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "studentdashboard_student1".tr(),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "studentdashboard_student1".tr(),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                        width:
+                            8), // Add some space between the Text and the button
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const OfferListPageRoute());
+                      },
+                      child: Text("View Offer"),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -62,18 +76,23 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                     _buildProjectSectionButton(
                         "studentdashboard_student3".tr(), Colors.black, false,
                         () {
-                                  context.read<StudentDashBoardCubit>().getWorkingProposals();
+                      context
+                          .read<StudentDashBoardCubit>()
+                          .getWorkingProposals();
 
                       context.router
                           .replace(const StudentWorkingProjectsRoute());
                     }),
-                    _buildProjectSectionButton("studentdashboard_student4".tr(),
-                        Colors.black, false, () {
-                                                            context.read<StudentDashBoardCubit>().getWorkingProposals();
+                    _buildProjectSectionButton(
+                        "studentdashboard_student4".tr(), Colors.black, false,
+                        () {
+                      context
+                          .read<StudentDashBoardCubit>()
+                          .getWorkingProposals();
 
                       context.router
                           .replace(const StudentArchievedProjectRoute());
-                        }),
+                    }),
                   ],
                 ),
                 SizedBox(height: 20),

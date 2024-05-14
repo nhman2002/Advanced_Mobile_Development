@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:student_hub/common/config/navigation_event.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/repository/user.dart';
 
 
@@ -12,7 +15,7 @@ class ChangePasswordScreen extends StatefulWidget {
   _ChangePasswordViewState createState() => _ChangePasswordViewState();
 }
 
-class _ChangePasswordViewState extends State<ChangePasswordScreen> {
+class _ChangePasswordViewState extends State<ChangePasswordScreen> with SnackBarDefault {
   final ValueNotifier<String> oldPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> newPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> confirmPasswordNotifier =
@@ -228,10 +231,8 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                       return;
                     }
                     // Call your change password method here
-                    await _user.changePassword(
-                       oldPasswordNotifier.value,
-                       newPasswordNotifier.value,
-                    );
+                    await changePassword(
+                        oldPasswordNotifier.value, newPasswordNotifier.value);
                   }
                       : null,
                   color: Color(0xFF406AFF),
@@ -254,5 +255,21 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
       ),
     );
   }
+
+
+  Future<void> changePassword(String oldPassword, String newPassword) async {
+    final result = await _user.changePassword(
+      oldPassword,
+      newPassword,
+    );
+    if (result is DataSuccess) {
+      context.router.maybePop();
+      showSnackBarSuccess(context, "Password changed successfully");
+    } else {
+      final errorDetails = result.error?.response?.data['errorDetails'];
+      final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;
+      showSnackBarError(context, errorMessage ?? '');
+    }
 }
 
+}

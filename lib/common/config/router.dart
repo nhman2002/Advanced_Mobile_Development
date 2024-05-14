@@ -268,6 +268,8 @@ class AppRouter extends _$MessageDetailScreenArguments {
                         page: StudentArchievedProjectRoute.page,
                         path: 'studentDashBoardArchieved',
                         transitionsBuilder: TransitionsBuilders.fadeIn),
+                    CustomRoute(page: OfferListPageRoute.page, path: 'offerList'),
+
                   ]),
               CustomRoute(
                   page: MessageDetailScreenRoute.page,

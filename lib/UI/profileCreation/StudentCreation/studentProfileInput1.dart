@@ -54,8 +54,7 @@ class _StudentProfileInputTechStackState
 
   void _addNewEducation(String schoolName, int yearsStart, int yearsEnd) {
     setState(() {
-      print(
-          "ID: , School: $schoolName, Start: $yearsStart, End: $yearsEnd");
+      print("ID: , School: $schoolName, Start: $yearsStart, End: $yearsEnd");
       final EducationInput newEducation = EducationInput(
         schoolName: schoolName,
         startYear: yearsStart,
@@ -65,7 +64,6 @@ class _StudentProfileInputTechStackState
     });
   }
 
-  
   void _deleteEducation(String schoolName) {
     setState(() {
       educationList.removeWhere((element) => element.schoolName == schoolName);
@@ -254,9 +252,7 @@ class _StudentProfileInputTechStackState
                                     _deleteEducation,
                                     '',
                                     0,
-                                    0
-                                    
-                                    );
+                                    0);
                               },
                             );
 
@@ -322,6 +318,9 @@ class _StudentProfileInputTechStackState
     context
         .read<StudentProfileInputCubit>()
         .setSelectedTechStackID(selectedTechStackID);
+
+    context.read<StudentProfileInputCubit>().setLanguages(languages);
+    context.read<StudentProfileInputCubit>().setEducation(educationList);
     context.router.push(const StudentProfileInputExperienceRoute());
   }
 }

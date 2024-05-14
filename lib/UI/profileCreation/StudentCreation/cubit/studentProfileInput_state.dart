@@ -7,13 +7,15 @@ import 'package:student_hub/core/widget_cubit/widget_state.dart';
 class StudentProfileInputState extends WidgetState {
   final String? message;
   final List<TechStack?> techStackList;
-  final List<SkillSet?> skillSetList;
+  final List<SkillSet> skillSetList;
   final int? selectedTechStackId;
   final List<String> selectedSkillSetList;
   final String? cvPath;
   final String? transcriptPath;
   final bool? isSuccess;
   final List<ExperienceInput?> experienceList;
+  final List<Language?> languagesList;
+  final List<EducationInput?> educationList;
 
 
   const StudentProfileInputState({
@@ -26,6 +28,8 @@ class StudentProfileInputState extends WidgetState {
     this.transcriptPath,
     this.isSuccess,
     this.experienceList = const [],
+    this.languagesList = const [],
+    this.educationList = const [],
   });
 
   @override
@@ -39,6 +43,7 @@ class StudentProfileInputState extends WidgetState {
   ,transcriptPath
   ,isSuccess
   ,experienceList
+  ,languagesList
   ];
 
   @override
@@ -57,13 +62,15 @@ class StudentProfileInputState extends WidgetState {
   StudentProfileInputState copyWith({
     String? message,
     List<TechStack?>? techStackList,
-    List<SkillSet?>? skillSetList,
+    List<SkillSet>? skillSetList,
     int? selectedTechStackId,
     List<String>? selectedSkillSetList,
     String? cvPath,
     String? transcriptPath,
     bool? isSuccess,
    List<ExperienceInput?>? experienceList,
+    List<Language?>? languagesList,
+    List<EducationInput?>? educationList,
 
   }) {
     return StudentProfileInputState(
@@ -76,6 +83,8 @@ class StudentProfileInputState extends WidgetState {
       transcriptPath: transcriptPath ?? this.transcriptPath,
       isSuccess: isSuccess ?? this.isSuccess,
       experienceList: experienceList ?? this.experienceList,
+      languagesList: languagesList ?? this.languagesList,
+      educationList: educationList ?? this.educationList,
     );
   }
 }

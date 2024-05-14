@@ -42,7 +42,6 @@ class LoginOutput extends BaseModel{
     };
   }
 
-  @override
   // TODO: implement props
   List<Object?> get props => [
     user,

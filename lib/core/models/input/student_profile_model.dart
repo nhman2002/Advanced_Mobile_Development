@@ -144,3 +144,67 @@ class ExperienceInput{
 
 }
 
+// {
+//   "languages": [
+//     {
+//       "languageName": "engrish",
+//       "level": "high"
+//     }
+//   ]
+class LanguageInput{
+  final String? languageName;
+  final String? level;
+
+  LanguageInput({
+    this.languageName,
+    this.level,
+  });
+
+  factory LanguageInput.fromJson(Map<String, dynamic> json) {
+    return LanguageInput(
+      languageName: json['languageName'] as String?,
+      level: json['level'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['languageName'] = languageName;
+    map['level'] = level;
+    return map;
+  }
+
+  LanguageInput copyWith({
+    String? languageName,
+    String? level,
+  }) =>
+      LanguageInput(
+        languageName: languageName ?? this.languageName,
+        level: level ?? this.level,
+    );
+} 
+
+class LanguageList {
+  final List<LanguageInput>? languages;
+
+  LanguageList({
+    this.languages,
+  });
+
+  factory LanguageList.fromJson(Map<String, dynamic> json) {
+    var list = json['languages'] as List<dynamic>;
+    List<LanguageInput> languageInputs =
+        list.map((e) => LanguageInput.fromJson(e)).toList();
+
+    return LanguageList(
+      languages: languageInputs,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {
+      'languages': languages?.map((e) => e.toJson()).toList(),
+    };
+    return data;
+  }
+}

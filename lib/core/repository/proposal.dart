@@ -108,6 +108,18 @@ class ProposalRepository extends BaseRepository {
       parseJsonFunction: ProposalPatchForm.fromJson,
       data: {'statusFlag': 2},
     );
+
+    
   }
 
+    Future<DataState<ProposalPatchForm>> acceptOffer(
+      int id) async {
+    return patch<ProposalPatchForm>(
+      path: '/$id',
+      parseJsonFunction: ProposalPatchForm.fromJson,
+      data: {'statusFlag': 3},
+    );
+
+    
+  }
 }
