@@ -15,6 +15,13 @@ class GeneralRepository extends BaseRepository {
     );
   }
 
+  Future<DataState<ExperienceList>> getExperience(int id) async {
+    return get(
+      path: '/experience/getByStudentId/$id',
+      parseJsonFunction: ExperienceList.fromJson,
+    );
+  }
+
   //education/updateByStudentId/201
 
   Future<DataState> putEducation(EducationList form, int id) async {
