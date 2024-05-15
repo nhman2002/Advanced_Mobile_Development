@@ -315,13 +315,11 @@ class Experience {
       endMonth: map['endMonth'] as String,
       description: map['description'] as String,
       skillSets: map['skillSets'] as List<SkillSet>,
-      skillSets: map['skillSets'] as List<SkillSet>,
     );
   }
 
   factory Experience.fromJson(Map<String, dynamic> json) {
     return Experience(
-      id: json['id'] as int,
       id: json['id'] as int,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
@@ -446,7 +444,6 @@ class Language {
 
   factory Language.fromJson(Map<String, dynamic> json) {
     return Language(
-      id: json['id'] as int,
       id: json['id'] as int,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
