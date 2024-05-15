@@ -58,7 +58,6 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF406AFF),
           )),
       content: SizedBox(
         height: 210.0,
@@ -70,14 +69,14 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                     )),
                 SizedBox(width: 10.0),
                 Expanded(
                   child: TextFormField(
                     style: GoogleFonts.poppins(
                       fontSize: 14,
-                      color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                     ),
                     cursorColor: Color(0xFF406AFF),
                     controller: _schoolNameController,
@@ -102,7 +101,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary
                     )),
                 Text(_startYear == 0 ? 'Select Year' : _startYear.toString(),
                     style: GoogleFonts.poppins(
@@ -131,9 +130,8 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                             height: 200.0,
                             width: 250.0,
                             decoration: BoxDecoration(
-                              color: isDarkMode
-                                  ? Color(0xFF2f2f2f)
-                                  : Colors.white.withOpacity(1),
+                              color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+
                               borderRadius: BorderRadius.circular(
                                   20.0), // Điều chỉnh giá trị để thay đổi độ cong của góc
                             ),
@@ -152,9 +150,8 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                                         child: Text(
                                           year.toString(),
                                           style: TextStyle(
-                                            color: isDarkMode
-                                                ? Colors.white
-                                                : Colors.black, // Màu chữ
+                                           color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+ // Màu chữ
                                           ),
                                         ),
                                       ))
@@ -165,7 +162,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                   },
                   icon: Icon(Icons.calendar_today),
                   iconSize: 20.0,
-                  color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                 ),
               ],
             ),
@@ -177,12 +174,11 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: isDarkMode ? Colors.white : Colors.black)),
+                        color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+)),
                 Text(_endYear == 0 ? 'Select Year' : _endYear.toString(),
                     style: GoogleFonts.poppins(
-                        color: isDarkMode
-                            ? Color.fromARGB(255, 187, 187, 189)
-                            : Color(0xFF777B8A),
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                         fontSize: 14)),
                 IconButton(
                   onPressed: () {
@@ -203,9 +199,8 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                             height: 200.0,
                             width: 250.0,
                             decoration: BoxDecoration(
-                              color: isDarkMode
-                                  ? Color(0xFF2f2f2f)
-                                  : Colors.white.withOpacity(1),
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+
                               borderRadius: BorderRadius.circular(
                                   20.0), // Điều chỉnh giá trị để thay đổi độ cong của góc
                             ),
@@ -224,9 +219,8 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                                         child: Text(
                                           year.toString(),
                                           style: TextStyle(
-                                            color: isDarkMode
-                                                ? Colors.white
-                                                : Colors.black, // Màu chữ
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+ // Màu chữ
                                           ),
                                         ),
                                       ))
@@ -237,7 +231,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                   },
                   icon: Icon(Icons.calendar_today),
                   iconSize: 20.0,
-                  color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                 ),
               ],
             ),
@@ -247,7 +241,6 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                 child: Text(
                   'Make sure to fill all the fields',
                   style: TextStyle(
-                    color: Colors.red,
                     fontSize: 14.0,
                     fontStyle: FontStyle.italic,
                   ),
@@ -263,7 +256,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
           ),
           child: Text('Cancel',
               style: GoogleFonts.poppins(
-                  color: Color(0xFF406AFF), fontWeight: FontWeight.w500)),
+              fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
             _startYear = 0;
@@ -276,7 +269,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
           ),
           child: Text('Add',
               style: GoogleFonts.poppins(
-                  color: Colors.white, fontWeight: FontWeight.w500)),
+              fontWeight: FontWeight.w500)),
           onPressed: () {
             schoolName = _schoolNameController.text;
             print(schoolName);

@@ -87,7 +87,6 @@ class ShowSchoolWidget extends StatelessWidget {
               ),
             ),
             const Divider(
-              color: Color.fromARGB(255, 190, 190, 192),
               thickness: 0.8,
             ),
           ],

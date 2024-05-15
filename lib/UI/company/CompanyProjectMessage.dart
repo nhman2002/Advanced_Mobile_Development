@@ -49,7 +49,6 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                   projectDetail!.title!,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -117,7 +116,7 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
         Expanded(
           child: ListView.separated(
             itemCount: messages!.length,
-            separatorBuilder: (context, index) => Divider(color: Colors.black),
+            separatorBuilder: (context, index) => Divider(),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {

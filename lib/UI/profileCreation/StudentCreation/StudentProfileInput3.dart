@@ -103,7 +103,6 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                   child: Text(
                     "studentprofileinput3_ProfileCreation5".tr(),
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16.0,
                     ),
                   
@@ -125,7 +124,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
         Container(
           height: 100.0,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
+            border: Border.all(),
           ),
           child: Center(
             child: Column(

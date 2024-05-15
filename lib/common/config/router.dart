@@ -49,6 +49,7 @@ import 'package:student_hub/UI/splash_screen/splash_screen.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput1.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/studentProfileInput3.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
 
 part 'router.gr.dart';
 

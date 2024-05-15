@@ -27,7 +27,6 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF406AFF),
           )),
       contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       content: SizedBox(
@@ -51,7 +50,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
                   ),
                   IconButton(
                     icon: Icon(Icons.cancel,
-                        color: Color(0xFF777B8A), size: 17.0),
+                    size: 17.0),
                     onPressed: () {
                       widget._deleteLanguage(language.languageName!);
                       setState(() {
@@ -72,7 +71,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           ),
           child: Text('Cancel',
               style: GoogleFonts.poppins(
-                  color: Color(0xFF406AFF), fontWeight: FontWeight.w500)),
+               fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -83,7 +82,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           ),
           child: Text('OK',
               style: GoogleFonts.poppins(
-                  color: Colors.white, fontWeight: FontWeight.w500)),
+                fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
           },

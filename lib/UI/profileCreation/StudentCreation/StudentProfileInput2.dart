@@ -213,9 +213,7 @@ String endDate = DateFormat('MM-yyyy').format(
       height: 90,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
         border: Border.all(
-          color: Colors.grey,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(10.0),
@@ -252,7 +250,7 @@ String endDate = DateFormat('MM-yyyy').format(
       ),
       child: Text(
         skill,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(fontSize: 16),
       ),
     );
   }
@@ -310,8 +308,8 @@ String endDate = DateFormat('MM-yyyy').format(
                   },
                   chipColor: Colors.white,
                   selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(color: Colors.black),
-                  selectedTextStyle: TextStyle(color: Colors.white),
+                  textStyle: TextStyle(),
+                  selectedTextStyle: TextStyle(),
                 ),
                 SizedBox(height: 16.0),
                 _datePicker(context),
@@ -373,8 +371,8 @@ String endDate = DateFormat('MM-yyyy').format(
                   },
                   chipColor: Colors.white,
                   selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(color: Colors.black),
-                  selectedTextStyle: TextStyle(color: Colors.white),
+                  textStyle: TextStyle(),
+                  selectedTextStyle: TextStyle(),
                 ),
                 SizedBox(height: 16.0),
                 _datePicker(context),

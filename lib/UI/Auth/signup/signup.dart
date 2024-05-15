@@ -41,16 +41,10 @@ class _SignupPageState extends State<SignupPage> {
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
-                color: _selectedRole == 'student'
-                    ? Colors.blue
-                    : Colors.grey.shade300,
                 child: Center(
                   child: Text(
                     "signup_auth2".tr(),
                     style: TextStyle(
-                      color: _selectedRole == 'student'
-                          ? Colors.white
-                          : Colors.black,
                     ),
                   ),
                 ),
@@ -66,16 +60,10 @@ class _SignupPageState extends State<SignupPage> {
               child: Container(
                 width: double.infinity,
                 padding: EdgeInsets.all(20),
-                color: _selectedRole == 'company'
-                    ? Colors.blue
-                    : Colors.grey.shade300,
                 child: Center(
                   child: Text(
                     "signup_auth6".tr(),
                     style: TextStyle(
-                      color: _selectedRole == 'company'
-                          ? Colors.white
-                          : Colors.black,
                     ),
                   ),
                 ),

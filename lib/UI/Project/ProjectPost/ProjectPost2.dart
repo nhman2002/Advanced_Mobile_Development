@@ -137,7 +137,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
               child: errorMessage.isNotEmpty
                   ? Text(
                       errorMessage,
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                     )
                   : SizedBox(),
             ),
@@ -153,7 +153,6 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
                 border: OutlineInputBorder(),
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                    color: const Color(0xFF008ABD),
                   ),
                 ),
                 hintText: "projectpost2_project11".tr(),
@@ -170,7 +169,7 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
               child: errorMessage2.isNotEmpty
                   ? Text(
                       errorMessage2,
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                     )
                   : SizedBox(),
             ),

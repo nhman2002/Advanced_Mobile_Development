@@ -27,7 +27,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
               // Navigate to the login page
               // Navigator.pushNamed(context, context.router.push(const LoginPageRoute()) as String);
             },
-            icon: Icon(Icons.account_circle, color: Colors.white, size: 40.0),
+            icon: Icon(Icons.account_circle, size: 40.0),
           )
         ],
       ),
@@ -48,7 +48,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                           Text(
                             "projectdetail_student1".tr(),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0),
                           ),
@@ -56,7 +55,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                           Text(
                             project?.title ?? "projectdetail_student2".tr(),
                             style: TextStyle(
-                                color: Colors.black,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0),
                           ),
@@ -66,7 +64,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                           Text(
                             project?.description ?? "projectdetail_student3".tr(),
                             style: TextStyle(
-                              color: Colors.black,
                               fontWeight: FontWeight.bold, // Make the text bold
                             ),
                           ),
@@ -78,7 +75,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                               Icon(
                                 Icons.alarm,
                                 size: 40.0,
-                                color: Colors.black,
                               ),
                               SizedBox(width: 30),
                               Expanded(
@@ -88,7 +84,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                     Text(
                                       "projectdetail_student4".tr(),
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -99,7 +94,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                           Icon(
                                             Icons.remove,
                                             size: 10.0,
-                                            color: Colors.black,
                                           ),
                                           SizedBox(
                                               width:
@@ -107,7 +101,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                           Expanded(
                                             child: Text(
                                               project?.projectScopeFlag == 0 ? "projectdetail_student5".tr() : "projectdetail_student6".tr(),
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                         ],
@@ -124,7 +118,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                               Icon(
                                 Icons.people,
                                 size: 40.0,
-                                color: Colors.black,
                               ),
                               SizedBox(width: 30),
                               Expanded(
@@ -134,7 +127,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                     Text(
                                       "projectdetail_student7".tr(),
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -145,7 +137,6 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                           Icon(
                                             Icons.remove,
                                             size: 10.0,
-                                            color: Colors.black,
                                           ),
                                           SizedBox(
                                               width:
@@ -153,7 +144,7 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                           Expanded(
                                             child: Text(
                                               '${project?.numberOfStudents}' + "projectdetail_student8".tr(),
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                         ],

@@ -1,20 +1,88 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:student_hub/core/config/dependency.dart';
-import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/core/repository/profileStudent.dart';
 
-@RoutePage()
-class StudentInformationScreen extends StatefulWidget {
-  final StudentProfile student;
-  const StudentInformationScreen({super.key, required this.student});
+class StudentInformationScreen extends StatelessWidget {
 
-  @override
-  State<StudentInformationScreen> createState() => _StudentInformationScreen();
-}
+   StudentInformationScreen({Key? key}) : super(key: key);
 
-class _StudentInformationScreen extends State<StudentInformationScreen> {
+
+var student = StudentProfile().copyWith(
+  id: 147,
+  userId: 439,
+  fullname: "em ien dep trai",
+  techStack: [TechStack(
+    id: 3,
+    createdAt: "2024-04-08T00:58:11.228Z",
+    updatedAt: "2024-04-08T00:58:11.228Z",
+    deletedAt: null,
+    name: "Backend Developer",
+  ),]
+  resume: "resumes/1715260407352-20126064.pdf",
+  transcript: null,
+  skillSets: [
+    SkillSet(
+      id: 2,
+      createdAt: "2024-04-08T00:58:11.256Z",
+      updatedAt: "2024-04-08T00:58:11.256Z",
+      deletedAt: null,
+      name: "C++",
+    ),
+    SkillSet(
+      id: 4,
+      createdAt: "2024-04-08T00:58:11.270Z",
+      updatedAt: "2024-04-08T00:58:11.270Z",
+      deletedAt: null,
+      name: "Java",
+    ),
+  ],
+  educations: [
+    Education(
+      id: 497,
+      createdAt: "2024-05-12T14:44:15.068Z",
+      updatedAt: "2024-05-12T14:44:15.068Z",
+      deletedAt: null,
+      studentId: 201,
+      schoolName: "My School",
+      startYear: 2020,
+      endYear: 2024,
+    ),
+  ],
+  experiences: [
+    Experience(
+      id: 371,
+      createdAt: "2024-05-12T22:47:50.334Z",
+      updatedAt: "2024-05-12T22:47:50.334Z",
+      deletedAt: null,
+      studentId: 201,
+      title: "cool",
+      startMonth: "06-2021",
+      endMonth: "09-2023",
+      description: "being so cool",
+      skillSets: [
+        SkillSet(
+          id: 1,
+          createdAt: "2024-04-08T00:58:11.238Z",
+          updatedAt: "2024-04-08T00:58:11.238Z",
+          deletedAt: null,
+          name: "C",
+        ),
+      ],
+    ),
+  ],
+  languages: [
+    Language(
+      id: 912,
+      createdAt: "2024-05-12T22:48:27.723Z",
+      updatedAt: "2024-05-12T22:48:27.723Z",
+      deletedAt: null,
+      studentId: 201,
+      languageName: "engrish",
+      level: "high",
+    ),
+  ],
+);
+
+
 
 
 
@@ -24,16 +92,13 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Student Detail",
-        
-          style: theme.textTheme.headlineMedium!.copyWith(
-          ),
+          "Student Profile",
+          style: theme.textTheme.headline6,
         ),
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
-          color: Colors.white,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +114,6 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     border: Border.all(
-                      color: Colors.grey.withOpacity(0.2), // Adjusted color usage
                       width: 2,
                     ),
                   ),
@@ -66,8 +130,8 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.student.fullname ?? '', // Replace with actual data
-                      style: theme.textTheme.bodyMedium,
+                      student.fullname ?? '',
+                      style: theme.textTheme.bodyText2,
                     ),
                   ],
                 ),
@@ -77,9 +141,8 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
             Row(
               children: [
                 Text(
-                  'Tech Stack', // Replace with actual data
+                  'Tech Stack: ${student.techStackName ?? "No data"}',
                   style: theme.textTheme.bodyText1!.copyWith(
-                    color: Colors.blue, // Change color if needed
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -87,9 +150,8 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                 Row(
                   children: [
                     Text(
-                      'Project Title', // Replace with actual data
+                      'Project Title: ${student.proposals.isNotEmpty ? student.proposals[0].projectId.toString() : "No data"}',
                       style: theme.textTheme.bodyText1!.copyWith(
-                        color: const Color.fromARGB(255, 231, 144, 5),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -99,12 +161,12 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
             ),
             SizedBox(height: 20),
             Text(
-              'Cover Letter', // Replace with actual data
+              'Cover Letter: ${student.proposals.isNotEmpty ? student.proposals[0].coverLetter : "No data"}',
               style: theme.textTheme.bodyText1,
             ),
             SizedBox(height: 20),
             Text(
-              "TechStack",
+              "Tech Stack",
               style: theme.textTheme.bodyText1!.copyWith(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -119,12 +181,17 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
               ),
             ),
             SizedBox(height: 10),
-            SizedBox(
-              width: 150,
-              child: Text(
-                'No data', // Replace with actual data
-                style: theme.textTheme.bodyMedium,
-              ),
+            Text(
+              'School Name: ${student.educations.isNotEmpty ? student.educations[0].schoolName : "No data"}',
+              style: theme.textTheme.bodyText2,
+            ),
+            Text(
+              'Start Year: ${student.educations.isNotEmpty ? student.educations[0].startYear.toString() : "No data"}',
+              style: theme.textTheme.bodyText2,
+            ),
+            Text(
+              'End Year: ${student.educations.isNotEmpty ? student.educations[0].endYear.toString() : "No data"}',
+              style: theme.textTheme.bodyText2,
             ),
             SizedBox(height: 10),
             Column(
@@ -132,7 +199,7 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
               children: [
                 Text(
                   "Resume",
-                  style: theme.textTheme.bodyMedium,
+                  style: theme.textTheme.bodyText2,
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -140,7 +207,6 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                   margin: EdgeInsets.only(right: 10),
                   padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
                   decoration: BoxDecoration(
-                    color: const Color(0xffF6F7F9),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Row(
@@ -149,7 +215,7 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                       Container(
                         width: 40,
                         height: 40,
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(
                           'lib/common/ui/assets/pdf.png',
                           scale: 1.8,
@@ -191,7 +257,6 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                   margin: EdgeInsets.only(right: 10),
                   padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
                   decoration: BoxDecoration(
-                    color: const Color(0xffF6F7F9),
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Row(
@@ -200,7 +265,7 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
                       Container(
                         width: 40,
                         height: 40,
-                        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(
                           'lib/common/ui/assets/pdf.png',
                           scale: 1.8,
@@ -230,4 +295,22 @@ class _StudentInformationScreen extends State<StudentInformationScreen> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Student Hub',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: StudentInformationScreen(student StudentProfile()),
+    );
+  }
+}
 }

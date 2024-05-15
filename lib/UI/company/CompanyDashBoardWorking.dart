@@ -154,13 +154,12 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: isActive ? Colors.blue : null, // Highlight active section
             borderRadius: isActive ? BorderRadius.circular(5) : null,
           ),
           padding: EdgeInsets.symmetric(vertical: 5),
           child: Text(
             title,
-            style: TextStyle(color: isActive ? Colors.white : Colors.black),
+            style: TextStyle(),
           ),
         ),
       ),
@@ -185,7 +184,6 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
                   project.title ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
                   ),
                 ),
                 IconButton(

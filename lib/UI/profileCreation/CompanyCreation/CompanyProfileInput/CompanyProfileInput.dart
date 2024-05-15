@@ -36,7 +36,6 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
             },
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
               size: 40.0,
             ),
           ),
@@ -127,7 +126,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey),
+        border: Border.all(),
       ),
       child: TextFormField(
         controller: controller,
