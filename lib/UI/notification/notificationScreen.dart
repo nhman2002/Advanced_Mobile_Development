@@ -119,38 +119,31 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
         icon = Icons.link;
         actionLabel = 'View Offer';
         onPressedAction = () {
-          // Example: Navigator.pushNamed(context, '/offer', arguments: notification.offerId);
+          context.router.push(const StudentDashBoardWrapperRoute());
         };
-        actions = [
-          TextButton(
-            onPressed: () {
-              // Add accept action
-              // Example: acceptOffer(notification.offerId);
-            },
-            child: Text('Accept'),
-          ),
-          TextButton(
-            onPressed: () {
-              // Add decline action
-              // Example: declineOffer(notification.offerId);
-            },
-            child: Text('Decline'),
-          ),
-        ];
+        
         break;
       case '1': // Interview
+        icon = Icons.calendar_today;
+        actionLabel = 'View Interview';
+        onPressedAction = () {
+          context.router.push(const MessageListScreenRoute());
+        };
+        break;
       case '3': // Chat
         icon = Icons.chat;
         actionLabel = 'Open Chat';
         onPressedAction = () {
           // Add action for chat
-          // Example: Navigator.pushNamed(context, '/chat', arguments: notification.chatId);
+          context.router.push(const MessageListScreenRoute());
+  
         };
         break;
       case '2': // Submitted
         icon = Icons.description;
         actionLabel = 'View Proposal';
         onPressedAction = () {
+          context.router.push(const CompanyDashboardWrapperRoute());
           // Add action for proposal
           // Example: Navigator.pushNamed(context, '/proposal', arguments: notification.proposalId);
         };
@@ -159,8 +152,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
         icon = Icons.work;
         actionLabel = 'View Project';
         onPressedAction = () {
-          // Add action for project
-          // Example: Navigator.pushNamed(context, '/project', arguments: notification.projectId);
+          context.router.push(const StudentDashBoardWrapperRoute());
         };
         break;
       default:
