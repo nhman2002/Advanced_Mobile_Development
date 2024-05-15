@@ -21,14 +21,35 @@ class GeneralRepository extends BaseRepository {
       parseJsonFunction: ExperienceList.fromJson,
     );
   }
+    // missing techStack, transcript, resume API
+
+
+  // Future<DataState<String>>getTranscript (int id) async{
+  //   return get(
+  //      path: '/profile/student/$id/transcript',
+  //     parseJsonFunction: ,);
+  // }
+
+  Future<DataState<EducationList>> getEducation(int id) async {
+    return get(
+      path: 'education/getByStudentId/$id',
+      parseJsonFunction: EducationList.fromJson,
+    );
+  }
 
   //education/updateByStudentId/201
-
   Future<DataState> putEducation(EducationList form, int id) async {
     return put(
       path: '/education/updateByStudentId/$id',
       parseJsonFunction: EducationInput.fromJson,
       data: form.toJson(),
+    );
+  }
+
+  Future<DataState<LanguageList>> getLanguage(int id) async {
+    return get(
+      path: 'language/getByStudentId/$id',
+      parseJsonFunction: LanguageList.fromJson,
     );
   }
 
@@ -41,19 +62,4 @@ class GeneralRepository extends BaseRepository {
       data: form.toJson(),
     );
   }
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
