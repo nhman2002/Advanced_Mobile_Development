@@ -34,7 +34,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
     showLoading();
 
     final userId =
-        int.parse(_localStorage.getString(key: StorageKey.studentID)!);
+        int.parse(_localStorage.getString(key: StorageKey.studentID) ?? '-1');
     // _requestPermission();
     final result = await _techStack.getAll();
     if (result is DataSuccess) {
@@ -97,9 +97,11 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
       emit(state.copyWith(educationList: inputEducationList));
 
       emit(state.copyWith(
-          cvPath: studentProfile?.resume, transcriptPath: studentProfile?.transcript));
+          cvPath: studentProfile?.resume,
+          transcriptPath: studentProfile?.transcript));
       emit(state.copyWith(isEdit: true));
     } else {
+      emit(state.copyWith(isEdit: false));
       emit(state.copyWith(studentProfile: null));
     }
 
@@ -150,25 +152,32 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
 
   Future<void> uploadProfile(BuildContext context) async {
     showLoading();
-    int studentID = -1;
+
+    int studentID = int.parse(
+        _localStorage.getString(key: StorageKey.studentID) ?? '-1');
     final techStackID = state.selectedTechStackId;
     final skillSetList = state.selectedSkillSetList;
-    File cv = File(state.cvPath!);
-    final form = TechStackForm()
-        .copyWith(techStackId: techStackID, skillSets: skillSetList);
-    // final experience = ExperienceInput().copyWith();
-    String message = '';
-    final result = await _studentProfile.inputStudentProfile(form);
     bool successFlag = true;
+      String message = '';
 
-    if (result is DataSuccess) {
-      studentID = result.data!.id ?? -1;
-    } else {
-      final error = result.error?.response?.data['errorDetails'];
-      final errorMessage = error is List ? error.join(", ") : error as String?;
-      message = message + errorMessage! + '\n';
-      successFlag = false;
+    File cv = File(state.cvPath!);
+    if (state.isEdit == false) {
+      final form = TechStackForm()
+          .copyWith(techStackId: techStackID, skillSets: skillSetList);
+      // final experience = ExperienceInput().copyWith();
+      final result = await _studentProfile.inputStudentProfile(form);
+
+      if (result is DataSuccess) {
+        studentID = result.data!.id ?? -1;
+      } else {
+        final error = result.error?.response?.data['errorDetails'];
+        final errorMessage =
+            error is List ? error.join(", ") : error as String?;
+        message = message + errorMessage! + '\n';
+        successFlag = false;
+      }
     }
+
     final result2 = await _studentProfile.inputStudentCV(cv, studentID);
     if (result2 is DataSuccess) {
     } else {

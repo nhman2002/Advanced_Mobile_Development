@@ -18,7 +18,7 @@ import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
-class LoginPage extends BaseWidget<LoginCubit, LoginState>{
+class LoginPage extends BaseWidget<LoginCubit, LoginState> {
   const LoginPage({super.key});
 
   @override
@@ -31,7 +31,6 @@ class LoginPage extends BaseWidget<LoginCubit, LoginState>{
     return LoginCubit();
   }
 }
-
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({super.key});
@@ -47,7 +46,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( title: Text('Student Hub')),
+      appBar: AppBar(title: Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -86,24 +85,19 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
               child: Text("login_auth2".tr()),
             ),
             SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    context.router.push(const ForgotPasswordPageRoute());
-                  },
-                  child: Text("login_auth6".tr()),
-                ),
-                SizedBox(width: 20),
-                Text("login_auth3".tr()),
-                TextButton(
-                  onPressed: () {
-                    context.router.replace(const SignupPageRoute());
-                  },
-                  child: Text("login_auth4".tr()),
-                ),
-              ],
+            TextButton(
+              onPressed: () {
+                context.router.push(const ForgotPasswordPageRoute());
+              },
+              child: Text("login_auth6".tr()),
+            ),
+            SizedBox(width: 20),
+            Text("login_auth3".tr()),
+            TextButton(
+              onPressed: () {
+                context.router.replace(const SignupPageRoute());
+              },
+              child: Text("login_auth4".tr()),
             ),
           ],
         ),
@@ -113,9 +107,9 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
 
   Future<void> handleLogin(BuildContext context) async {
     await context.read<LoginCubit>().login(
-      email: userController.text,
-      password: passwordController.text,
-    );
+          email: userController.text,
+          password: passwordController.text,
+        );
     final isSuccess = context.read<LoginCubit>().state.isLogin;
     final message = context.read<LoginCubit>().state.message ?? '';
     if (isSuccess) {

@@ -154,7 +154,7 @@ class _StudentProfileInputTechStackState
                   }).toList(),
                 ),
                 SizedBox(height: 20),
-                isEdit!
+                isEdit
                     ? Wrap(
                         children: selectedSkills.map((skillId) {
                           final skill = skillSetList.firstWhere(
@@ -177,11 +177,11 @@ class _StudentProfileInputTechStackState
                       )
                     : MultiSelectChipField(
                         items: skillSetList
-                                ?.map((skill) => MultiSelectItem<String>(
-                                    skill!.id.toString(), skill.name))
-                                .toList() ??
-                            [],
-                        initialValue: selectedSkills ?? [],
+                                .map((skill) => MultiSelectItem<String>(
+                                    skill.id.toString(), skill.name))
+                                .toList()  ?? []
+                            ,
+                        initialValue: selectedSkills,
                         onTap: (values) {
                           setState(() {
                             selectedSkills = values.toList().cast<String>();
@@ -190,8 +190,12 @@ class _StudentProfileInputTechStackState
                         },
                         chipColor: Colors.white,
                         selectedChipColor: Colors.purple,
-                        textStyle: TextStyle(),
-                        selectedTextStyle: TextStyle(),
+                        textStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        selectedTextStyle: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
                 SizedBox(height: 20),
                 Row(

@@ -36,19 +36,19 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
     if (userResult is DataSuccess) {
       final companyProfile = userResult.data?.companyProfile;
       final studentProfile = userResult.data?.studentProfile;
-
-      String companyProfileString = jsonEncode(companyProfile);
-      _localStorage.saveString(
-          key: StorageKey.companyProfile, value: companyProfileString);
-      _localStorage.saveString(
-          key: StorageKey.companyID, value: companyProfile.id.toString());
-
-      String studentProfileString = 'yes'; //jsonEncode(studentProfile);
-      _localStorage.saveString(
-          key: StorageKey.studentID, value: studentProfile.id.toString());
-      _localStorage.saveString(
-          key: StorageKey.studentProfile, value: studentProfileString);
-
+      if (companyProfile != null) {
+        String companyProfileString = jsonEncode(companyProfile);
+        _localStorage.saveString(
+            key: StorageKey.companyProfile, value: companyProfileString);
+        _localStorage.saveString(
+            key: StorageKey.companyID, value: companyProfile.id.toString());
+      }
+      if (studentProfile != null) {
+        _localStorage.saveString(
+            key: StorageKey.studentID, value: studentProfile.id.toString());
+        _localStorage.saveString(
+            key: StorageKey.studentProfile, value: 'studentProfileString');
+      }
       final fullname = userResult.data?.fullname;
       // _localStorage.saveString(
       //     key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
@@ -57,7 +57,7 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
       if (roles != null && roles.length > 1) {
         final roleString = roles.join(",");
         _localStorage.saveString(key: StorageKey.userRoles, value: roleString);
-        if (_localStorage.getString(key: StorageKey.currentRole) == null) {
+        if (_localStorage.getString(key: StorageKey.currentRole) == 'null') {
           _localStorage.saveString(
               key: StorageKey.currentRole, value: roles.first.toString());
         }
@@ -65,9 +65,9 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
         // If there is no role or it's an empty list, handle it accordingly
         _localStorage.saveString(
             key: StorageKey.userRoles, value: roles.toString());
-        if (_localStorage.getString(key: StorageKey.currentRole) == null) {
-          _localStorage.saveString(key: StorageKey.currentRole, value: '0');
-        }
+
+        _localStorage.saveString(
+            key: StorageKey.currentRole, value: roles?.first.toString() ?? '');
       }
     }
   }
@@ -80,13 +80,13 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
         _localStorage.getString(key: StorageKey.currentRole)!;
     int currentRole = int.parse(currentRoleString);
 
-    if (_localStorage.getString(key: StorageKey.companyProfile) != null) {
+    if (_localStorage.getString(key: StorageKey.companyProfile) != 'null') {
       emit(state.copyWith(hasCompanyProfile: true));
     } else {
       emit(state.copyWith(hasCompanyProfile: false));
     }
 
-    if (_localStorage.getString(key: StorageKey.studentProfile) != null) {
+    if (_localStorage.getString(key: StorageKey.studentProfile) != 'null') {
       emit(state.copyWith(hasStudentProfile: true));
     } else {
       emit(state.copyWith(hasStudentProfile: false));
@@ -96,8 +96,8 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
     if (currentRole == 0) {
       emit(state.copyWith(userName: userResult.data.fullname));
     }
-    ;
-    if (_localStorage.getString(key: StorageKey.companyProfile) != null) {
+
+    if (_localStorage.getString(key: StorageKey.companyProfile) != 'null') {
       emit(state.copyWith(
           companyName: userResult.data.companyProfile.companyName));
     }

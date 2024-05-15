@@ -84,7 +84,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         handleProfile(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
                         elevation: 0,
                       ),
                       child: ListTile(
@@ -101,7 +100,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         gotoSetting(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
                         elevation: 0,
                       ),
                       child: ListTile(
@@ -118,7 +116,6 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         handleLogout(context);
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
                         elevation: 0,
                       ),
                       child: ListTile(
