@@ -39,7 +39,7 @@ dependencies:
   flutter_material_pickers: ^3.6.0
   textfield_tags: ^3.0.1
   month_picker_dialog: ^2.11.2
-
+  hydrated_bloc: ^9.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

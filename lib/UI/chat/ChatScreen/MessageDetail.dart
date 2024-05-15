@@ -7,6 +7,7 @@ import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/UI/chat/ChatScreen/widget/ScheduleMeeting.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
+import 'package:student_hub/common/ui/theme/bloc/theme.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
@@ -133,6 +134,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     final start = interview.startTime;
     final end = interview.endTime;
     final roomId = interview.meetingRoomId;
+    final code = interview.meetingRoomCode;
     final userRole = _localStorage.getString(key: StorageKey.currentRole);
     final channelName = interview.meetingRoomCode;
 
@@ -175,7 +177,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                 ),
                   ElevatedButton(
                     onPressed: () {
-                      context.router.replace(VideoCallScreenRoute(channelName: channelName));
+                      context.router.replace(VideoCallScreenRoute(channelName: channelName, tempToken: code ));
                     },
                     child: Text('Join Interview'),
                   ),
@@ -222,7 +224,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: message['isSender'] ? Colors.blue : Colors.grey.shade300,
+              color: message['isSender'] ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.tertiary,
             ),
             padding: EdgeInsets.all(16),
             child: Column(
@@ -233,13 +235,13 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                     message['name'],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.onTertiary
                     ),
                   ),
                 Text(
                   message['text'],
                   style: TextStyle(
-                    color: message['isSender'] ? Colors.white : Colors.black,
+                    color: message['isSender'] ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.onTertiary,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -274,7 +276,7 @@ Widget _buildMessageInput(BuildContext context) {
   return Container(
     padding: EdgeInsets.symmetric(horizontal: 10),
     decoration: BoxDecoration(
-      border: Border.all(color: Colors.grey.shade300),
+      border: Border.all(),
       borderRadius: BorderRadius.circular(10),
     ),
     child: Row(
@@ -297,7 +299,6 @@ Widget _buildMessageInput(BuildContext context) {
               );
             },
             icon: Icon(Icons.schedule),
-            color: Colors.blue,
           ),
         Expanded(
           child: TextField(
@@ -314,7 +315,6 @@ Widget _buildMessageInput(BuildContext context) {
           },
           icon: Icon(
             Icons.send,
-            color: Colors.blue,
           ),
         ),
       ],

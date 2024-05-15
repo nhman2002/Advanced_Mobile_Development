@@ -63,7 +63,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
           ],
         ),
         body: _buildMessageContent(),
-        bottomNavigationBar: const CustomBottomAppBar(),
+        bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Message'),
     );
   }
 

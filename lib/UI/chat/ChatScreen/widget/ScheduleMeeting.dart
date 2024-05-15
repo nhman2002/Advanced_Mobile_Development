@@ -29,6 +29,7 @@ class ScheduleDialog extends StatefulWidget {
 class _ScheduleDialogState extends State<ScheduleDialog> {
   late TextEditingController _titleController;
   late TextEditingController _contentController;
+  late TextEditingController _meetingRoomCodeController;
   late DateTime _startTime;
   late DateTime _endTime;
   late TextEditingController _meetingRoomController;
@@ -39,9 +40,11 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     super.initState();
     _titleController = TextEditingController();
     _contentController = TextEditingController();
+    _meetingRoomCodeController = TextEditingController();
     _startTime = DateTime.now();
     _endTime = DateTime.now().add(Duration(hours: 1));
     _meetingRoomController = TextEditingController();
+
   }
 
   @override
@@ -49,6 +52,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     _titleController.dispose();
     _contentController.dispose();
     _meetingRoomController.dispose();
+    _meetingRoomCodeController.dispose();
     super.dispose();
   }
 
@@ -92,6 +96,10 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           ),
           TextField(
             controller: _meetingRoomController,
+            decoration: InputDecoration(labelText: 'Meeting Room ID'),
+          ),
+          TextField(
+            controller: _meetingRoomCodeController,
             decoration: InputDecoration(labelText: 'Meeting Room Code'),
           ),
         ],
@@ -180,7 +188,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
       content: _contentController.text,
       startTime: startTime,
       endTime: endTime,
-      meetingRoomCode: _meetingRoomController.text,
+      meetingRoomCode: _meetingRoomCodeController.text,
       meetingRoomId: _meetingRoomController.text,
       projectId: widget.projectId,
       senderId: widget.senderId,

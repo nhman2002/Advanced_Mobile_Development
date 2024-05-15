@@ -134,7 +134,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );

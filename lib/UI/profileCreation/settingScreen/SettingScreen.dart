@@ -34,7 +34,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
         return Scaffold(
           appBar: AppBar(
             title: Text("settingscreen_ProfileCreation1".tr()),
-            backgroundColor: Colors.purple,
           ),
           body: Padding(
             padding: const EdgeInsets.all(16.0),

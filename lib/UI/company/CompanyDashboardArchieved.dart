@@ -140,7 +140,7 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );

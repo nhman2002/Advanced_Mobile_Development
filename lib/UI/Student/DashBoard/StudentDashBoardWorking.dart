@@ -100,7 +100,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );

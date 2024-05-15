@@ -134,7 +134,7 @@ class _StudentProjectList extends State<StudentProjectList> {
               ),
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Project'),
         );
       },
     );

@@ -58,7 +58,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
             padding: const EdgeInsets.all(20.0),
             child: _buildNotificationList(notificationList, context),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Notifications'),
         );
       },
     );
@@ -107,72 +107,103 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
     );
   }
 
-Widget _buildCurvedNotification(
+  Widget _buildCurvedNotification(
     NotificationOutput notification, BuildContext context) {
-  IconData icon;
-  String actionLabel;
-  Function()? onPressedAction;
+    IconData icon;
+    String actionLabel;
+    Function()? onPressedAction;
+    List<Widget> actions = [];
 
-  switch (notification.typeNotifyFlag) {
-    case '0': // Offer
-      icon = Icons.link;
-      actionLabel = 'View Offer';
-      onPressedAction = () {
-        // Add action for offer
-        // Example: Navigator.pushNamed(context, '/offer', arguments: notification.offerId);
-      };
-      break;
-    case '1': // Interview
-    case '3': // Chat
-      icon = Icons.chat;
-      actionLabel = 'Open Chat';
-      onPressedAction = () {
-        // Add action for chat
-        // Example: Navigator.pushNamed(context, '/chat', arguments: notification.chatId);
-      };
-      break;
-    case '2': // Submitted
-      icon = Icons.description;
-      actionLabel = 'View Proposal';
-      onPressedAction = () {
-        // Add action for proposal
-        // Example: Navigator.pushNamed(context, '/proposal', arguments: notification.proposalId);
-      };
-      break;
-    case '4': // Hired
-      icon = Icons.work;
-      actionLabel = 'View Project';
-      onPressedAction = () {
-        // Add action for project
-        // Example: Navigator.pushNamed(context, '/project', arguments: notification.projectId);
-      };
-      break;
-    default:
-      icon = Icons.notifications;
-      actionLabel = 'View Notification';
-      onPressedAction = () {
-        // Add default action
-      };
-  }
+    switch (notification.typeNotifyFlag) {
+      case '0': // Offer
+        icon = Icons.link;
+        actionLabel = 'View Offer';
+        onPressedAction = () {
+          // Example: Navigator.pushNamed(context, '/offer', arguments: notification.offerId);
+        };
+        actions = [
+          TextButton(
+            onPressed: () {
+              // Add accept action
+              // Example: acceptOffer(notification.offerId);
+            },
+            child: Text('Accept'),
+          ),
+          TextButton(
+            onPressed: () {
+              // Add decline action
+              // Example: declineOffer(notification.offerId);
+            },
+            child: Text('Decline'),
+          ),
+        ];
+        break;
+      case '1': // Interview
+      case '3': // Chat
+        icon = Icons.chat;
+        actionLabel = 'Open Chat';
+        onPressedAction = () {
+          // Add action for chat
+          // Example: Navigator.pushNamed(context, '/chat', arguments: notification.chatId);
+        };
+        break;
+      case '2': // Submitted
+        icon = Icons.description;
+        actionLabel = 'View Proposal';
+        onPressedAction = () {
+          // Add action for proposal
+          // Example: Navigator.pushNamed(context, '/proposal', arguments: notification.proposalId);
+        };
+        break;
+      case '4': // Hired
+        icon = Icons.work;
+        actionLabel = 'View Project';
+        onPressedAction = () {
+          // Add action for project
+          // Example: Navigator.pushNamed(context, '/project', arguments: notification.projectId);
+        };
+        break;
+      default:
+        icon = Icons.notifications;
+        actionLabel = 'View Notification';
+        onPressedAction = () {
+          // Add default action
+        };
+    }
 
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 4.0),
-    decoration: BoxDecoration(
-      color: Color.fromARGB(255, 250, 169, 200),
-      borderRadius: BorderRadius.circular(10.0),
-    ),
-    child: ListTile(
-      contentPadding: EdgeInsets.all(12.0),
-      leading: Icon(icon),
-      title: Text(notification.title ?? ''),
-      subtitle: Text(notification.content ?? ''),
-      trailing: IconButton(
-        icon: Icon(Icons.arrow_forward),
-        onPressed: onPressedAction ,
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 4.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.tertiaryContainer,
+        borderRadius: BorderRadius.circular(10.0),
       ),
-    ),
-  );
-}
+      child: ListTile(
+        contentPadding: EdgeInsets.all(12.0),
+        leading: Icon(icon,
+            color: Theme.of(context).colorScheme.onTertiaryContainer),
+        title: Text(notification.title ?? '',
+            style: TextStyle(
+                color: Theme.of(context).colorScheme.onTertiaryContainer)),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(notification.content ?? '',
+                style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiaryContainer)),
+            if (notification.typeNotifyFlag == '0')
+              ...actions, // Show actions if it's an offer
+          ],
+        ),
+        trailing: notification.typeNotifyFlag == '0'
+            ? null
+            : IconButton(
+                icon: Icon(Icons.arrow_forward,
+                    color: Theme.of(context).colorScheme.onTertiaryContainer),
+                onPressed: onPressedAction,
+              ),
+      ),
+    );
+  }
 
   String _formatDay(DateTime day) {
     final now = DateTime.now();

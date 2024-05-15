@@ -138,7 +138,7 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );
