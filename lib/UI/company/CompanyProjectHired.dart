@@ -178,7 +178,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    
+                    context.router.push(const StudentInformationScreenRoute());
                   },
                   child: Text("Information"),
                 ),

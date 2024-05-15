@@ -109,6 +109,10 @@ class AppRouter extends _$MessageDetailScreenArguments {
                   path: 'companySignup',
                   transitionsBuilder: TransitionsBuilders.fadeIn),
               CustomRoute(
+                page: StudentInformationScreenRoute.page,
+                path: 'studentInformationScreen',
+              ),
+              CustomRoute(
                   page: CompanyDashboardWrapperRoute.page,
                   path: 'CompanyDashBoardWrapper',
                   children: [

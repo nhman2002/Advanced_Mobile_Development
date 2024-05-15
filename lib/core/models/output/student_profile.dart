@@ -526,6 +526,8 @@ class Proposal {
       disableFlag: json['disableFlag'] as int,
     );
   }
+
+  toJson() {}
 }
 
 class ProposalWithProject extends Proposal {
