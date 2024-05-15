@@ -37,7 +37,6 @@ class ShowSchoolWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,
-                    color: isDarkMode ? Colors.white : Colors.black,
                   )),
               subtitle: Text(
                   ' ${educationList[index].startYear!} - ${educationList[index].endYear!}',

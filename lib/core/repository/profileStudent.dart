@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
+import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 
@@ -26,10 +27,10 @@ class StudentProfileRepository extends BaseRepository {
     );
   }
 
-  Future<DataState<StudentProfile>> getStudentProfile(int id) async {
-    return get<StudentProfile>(
+  Future<DataState<StudentProfileWithoutDate>> getStudentProfile(int id) async {
+    return get<StudentProfileWithoutDate>(
       path: '/$id',
-      parseJsonFunction: StudentProfile.fromJson,
+      parseJsonFunction: StudentProfileWithoutDate.fromJson,
     );
   }
 

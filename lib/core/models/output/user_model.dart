@@ -4,7 +4,7 @@ import 'package:student_hub/core/models/base_model.dart';
 import 'package:student_hub/core/models/output/company_user.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 
-class LoginOutput extends BaseModel{
+class LoginOutput extends BaseModel {
   final User? user;
   final Token? token;
 
@@ -44,12 +44,10 @@ class LoginOutput extends BaseModel{
 
   // TODO: implement props
   List<Object?> get props => [
-    user,
-    token,
-  ];
+        user,
+        token,
+      ];
 }
-
-
 
 class Token {
   final String? token;
@@ -163,7 +161,7 @@ class User {
   final String? password;
   final String? fullname;
   final List<dynamic>? role;
-  StudentProfile? studentProfile;
+  StudentProfileWithoutDate? studentProfile;
   CompanyProfile? companyProfile;
 
   User({
@@ -182,7 +180,7 @@ class User {
     String? password,
     String? fullname,
     List<dynamic>? role,
-    StudentProfile? studentUser,
+    StudentProfileWithoutDate? studentUser,
     CompanyProfile? companyUser,
     List<String>? studentProfile,
     List<String>? companyProfile,
@@ -193,8 +191,10 @@ class User {
         password: password ?? this.password,
         fullname: fullname ?? this.fullname,
         role: role ?? this.role,
-        studentProfile: studentProfile as StudentProfile? ?? this.studentProfile,
-        companyProfile: companyProfile as CompanyProfile? ?? this.companyProfile,
+        studentProfile:
+            studentProfile as StudentProfileWithoutDate? ?? this.studentProfile,
+        companyProfile:
+            companyProfile as CompanyProfile? ?? this.companyProfile,
       );
 
   Map<String, dynamic> toMapUser() => {
@@ -222,12 +222,16 @@ class User {
       id: json['result']['id'] as int,
       fullname: json['result']['fullname'] as String?,
       role: List<int>.from(json['result']['roles'] as List),
-      studentProfile: json['result']['student'] != null ?
-      StudentProfile.fromJson(json['result']['student'] as Map<String, dynamic>): null,
-      companyProfile: json['result']['company'] != null ?
-      CompanyProfile.fromJson(json['result']['company'] as Map<String, dynamic>): null,
+      studentProfile: json['result']['student'] != null
+          ? StudentProfileWithoutDate.fromJson(
+              json['result']['student'] as Map<String, dynamic>)
+          : null,
+      companyProfile: json['result']['company'] != null
+          ? CompanyProfile.fromJson(
+              json['result']['company'] as Map<String, dynamic>)
+          : null,
       // studentUser: json['student'] != null
-      //     ? StudentProfile.fromJson(json['student'] as Map<String, dynamic>)
+      //     ? StudentProfileWithoutDate.fromJson(json['student'] as Map<String, dynamic>)
       //     : null,
       // companyUser: json['company'] != null
       //     ? CompanyProfile.fromJson(json['company'] as Map<String, dynamic>)
@@ -246,71 +250,97 @@ class User {
       // 'company': companyUser?.toJson(),
     };
   }
-    
 }
 
-//         "student": {
-//             "id": 1,
-//             "createdAt": "2024-04-07T04:06:10.653Z",
-//             "updatedAt": "2024-04-07T04:06:10.653Z",
-//             "deletedAt": null,
-//             "userId": 2,
-//             "techStackId": 1,
-//             "resume": null,
-//             "transcript": null,
-//             "techStack": {
-//                 "id": 1,
-//                 "createdAt": "2024-04-07T04:03:20.172Z",
-//                 "updatedAt": "2024-04-07T04:03:20.172Z",
-//                 "deletedAt": null,
-//                 "name": "Fullstack Engineer"
-//             },
+// student: {id: 256, createdAt: 2024-05-15T04:53:58.181Z, updatedAt: 2024-05-15T04:54:08.243Z, deletedAt: null, userId: 440, techStackId: 8, resume: resumes/1715748848203-BHXH_da98ba799ce64b2f9266f22371811e552398325.pdf, transcript: null, proposals: [], techStack: {id: 8, createdAt: 2024-04-13T16:04:24.196Z, updatedAt: 2024-04-13T16:04:24.196Z, deletedAt: null, name: Software Engineer}, educations: [{id: 514, createdAt: 2024-05-15T04:54:14.989Z, updatedAt: 2024-05-15T04:54:14.989Z, deletedAt: null, studentId: 256, schoolName: hcmus, startYear: 2022, endYear: 2025}], languages: [{id: 943, createdAt: 2024-05-15T04:54:12.771Z, updatedAt: 2024-05-15T04:54:12.771Z, deletedAt: null, studentId: 256, languageName: Spanish, level: Intermediate}], experiences: [{id: 386, createdAt: 2024-05-15T04:54:10.618Z, updatedAt: 2024-05-15T04:54:10.618Z, deletedAt: null, studentId: 256, title: wow, startMonth: 05-2022, endMonth: 05-2024, description: projevt, skillSets: [{id: 1, createdAt: 2024-04-08T00:58:11.238Z, updatedAt: 2024-04-08T00:58:11.238Z, deletedAt: null, name: C}, {id: 2, createdAt: 2024-04-08T00:58:11.256Z, updatedAt: 2024-04-08T00:58:11.256Z, deletedAt: null, name: C++}]}], skillSets: [{id: 2, createdAt: 2024-04-08T00:58:11.256Z, updatedAt: 2024-04-08T00:58:11.256Z, deletedAt: null, name: C++}, {id: 3, createdAt: 2024-04-08T00:58:11.263Z, updatedAt: 2024-04-08T00:58:11.263Z, deletedAt: null, name: C#}]},
 ///create student profile from this
 
-class StudentProfile{
+class StudentProfileWithoutDate {
   final int? id;
   final int? userId;
   final int? techStackId;
   final String? resume;
   final String? transcript;
   final TechStack? techStack;
+  final List<Education>? educations;
+  final List<Language>? languages;
+  final List<Experience>? experiences;
+  final List<SkillSet>? skillSets;
 
-  StudentProfile({
+
+  StudentProfileWithoutDate({
     this.id,
     this.userId,
     this.techStackId,
     this.resume,
     this.transcript,
     this.techStack,
+    this.educations,
+    this.languages,
+    this.experiences,
+    this.skillSets,
   });
 
-  StudentProfile copyWith({
+  StudentProfileWithoutDate copyWith({
     int? id,
     int? userId,
     int? techStackId,
     String? resume,
     String? transcript,
     TechStack? techStack,
+    List<Education>? educations,
+    List<Language>? languages,
+    List<Experience>? experiences,
+    List<SkillSet>? skillSets,
   }) =>
-      StudentProfile(
+      StudentProfileWithoutDate(
         id: id ?? this.id,
         userId: userId ?? this.userId,
         techStackId: techStackId ?? this.techStackId,
         resume: resume ?? this.resume,
         transcript: transcript ?? this.transcript,
         techStack: techStack ?? this.techStack,
+        educations: educations ?? this.educations,
+        languages: languages ?? this.languages,
+        experiences: experiences ?? this.experiences,
+        skillSets: skillSets ?? this.skillSets,
       );
 
-  factory StudentProfile.fromJson(Map<String, dynamic> json) {
-    return StudentProfile(
+  factory StudentProfileWithoutDate.fromJson(Map<String, dynamic> json1) {
+    Map<String, dynamic> json;
+    if (json1['result'] == null){
+      json = json1;
+    }
+    else{
+      json = json1['result'];
+    }
+    return StudentProfileWithoutDate(
       id: json['id'] as int,
       userId: json['userId'] as int,
-      techStackId: json['techStackId'] as int,
+      techStackId: json['techStack']['id'] as int,
       resume: json['resume'] as String?,
       transcript: json['transcript'] as String?,
       techStack: json['techStack'] != null
           ? TechStack.fromJson(json['techStack'] as Map<String, dynamic>)
           : null,
+      educations: json['educations'] != null
+          ? List<Education>.from(
+              json['educations'].map((x) => Education.fromJson(x)))
+          : [],
+      languages: json['languages'] != null
+          ? List<Language>.from(
+              json['languages'].map((x) => Language.fromJson(x)))
+          : [],
+      experiences: json['experiences'] != null
+          ? List<Experience>.from(
+              json['experiences'].map((x) => Experience.fromJson(x)))
+          : [],
+
+      skillSets: json['skillSets'] != null
+          ? List<SkillSet>.from(
+              json['skillSets'].map((x) => SkillSet.fromJson(x)))
+          : [],
+      
     );
   }
 
@@ -321,10 +351,9 @@ class StudentProfile{
       'techStackId': techStackId,
       'resume': resume,
       'transcript': transcript,
-      'techStack': techStack?.toJson(),
+      'techStack': techStack,
     };
   }
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -337,8 +366,8 @@ class StudentProfile{
     };
   }
 
-  factory StudentProfile.fromMap(Map<String, dynamic> map) {
-    return StudentProfile(
+  factory StudentProfileWithoutDate.fromMap(Map<String, dynamic> map) {
+    return StudentProfileWithoutDate(
       id: map['id'],
       userId: map['userId'],
       techStackId: map['techStackId'],
@@ -347,57 +376,54 @@ class StudentProfile{
       techStack: TechStack.fromMap(map['techStack']),
     );
   }
-
 }
 
-class TechStack {
-  final int? id;
-  final String? name;
+// class TechStack {
+//   final int? id;
+//   final String? name;
 
-  TechStack({
-    this.id,
-    this.name,
-  });
+//   TechStack({
+//     this.id,
+//     this.name,
+//   });
 
-  TechStack copyWith({
-    int? id,
-    String? name,
-  }) =>
-      TechStack(
-        id: id ?? this.id,
-        name: name ?? this.name,
-      );
+//   TechStack copyWith({
+//     int? id,
+//     String? name,
+//   }) =>
+//       TechStack(
+//         id: id ?? this.id,
+//         name: name ?? this.name,
+//       );
 
-  factory TechStack.fromJson(Map<String, dynamic> json) {
-    return TechStack(
-      id: json['id'] as int,
-      name: json['name'] as String?,
-    );
-  }
+//   factory TechStack.fromJson(Map<String, dynamic> json) {
+//     return TechStack(
+//       id: json['id'] as int,
+//       name: json['name'] as String?,
+//     );
+//   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-    };
-  }
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'id': id,
+//       'name': name,
+//     };
+//   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'name': name,
+//     };
+//   }
 
-  factory TechStack.fromMap(Map<String, dynamic> map) {
-    return TechStack(
-      id: map['id'],
-      name: map['name'],
-    );
-  }
-}
-
-
+//   factory TechStack.fromMap(Map<String, dynamic> map) {
+//     return TechStack(
+//       id: map['id'],
+//       name: map['name'],
+//     );
+//   }
+// }
 
 class CompanyProfile {
   final int? id;
@@ -413,8 +439,6 @@ class CompanyProfile {
     this.description,
     this.size,
   });
-
-
 
   factory CompanyProfile.fromJson(Map<String, dynamic> json) {
     return CompanyProfile(
@@ -499,4 +523,4 @@ class Message extends BaseModel {
       'message': message,
     };
   }
-  }
+}

@@ -43,10 +43,7 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
       final result = await _project.getAllProjects();
       if (result is DataSuccess) {
         project = result.data?.projectOutputList;
-        emit(state.copyWith(projectList: project));
       }
-    } else {
-      emit(state.copyWith(projectList: null));
     }
 
     final result1 = await _proposal.getAllStudentProposals(studentID ?? 0);

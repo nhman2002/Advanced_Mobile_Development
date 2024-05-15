@@ -16,23 +16,7 @@ import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class Project {
-  String title;
-  final String subtitle;
-  DateTime startMonth;
-  DateTime endMonth;
-  String description;
-  List<String> selectedSkillSet;
 
-  Project({
-    required this.title,
-    required this.subtitle,
-    required this.startMonth,
-    required this.endMonth,
-    required this.description,
-    this.selectedSkillSet = const [],
-  });
-}
 
 @RoutePage()
 class StudentProfileInputExperience extends StatefulWidget {
@@ -46,13 +30,14 @@ class StudentProfileInputExperience extends StatefulWidget {
 class _StudentProfileInputExperienceState
     extends State<StudentProfileInputExperience> {
   List<SkillSet> skillSetList = [];
-  final List<ExperienceInput> projects = [];
+  List<ExperienceInput> projects = [];
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _startDateController = TextEditingController();
   final TextEditingController _endDateController = TextEditingController();
   List<String> selectedSkills = [];
+  bool isEdit = false;
 
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
@@ -68,6 +53,12 @@ class _StudentProfileInputExperienceState
       builder: (context, state) {
         skillSetList =
             context.read<StudentProfileInputCubit>().state.skillSetList;
+        isEdit = context.read<StudentProfileInputCubit>().state.isEdit ?? false;
+        if (isEdit) {
+          var projectsList = context.read<StudentProfileInputCubit>().state.experienceList; 
+          //convert the list of experience to list of ExperienceInput
+          projects = projectsList!.experiences!.map((e) => ExperienceInput().copyWith(title: e.title, description: e.description, startMonth: e.startMonth, endMonth: e.endMonth, skillSets: e.skillSets)).toList();
+        }
 
         return Scaffold(
           appBar: AppBar(

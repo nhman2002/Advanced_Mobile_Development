@@ -61,7 +61,6 @@ class ShowLanguagesWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               ),
@@ -87,7 +86,7 @@ class ShowLanguagesWidget extends StatelessWidget {
                 
               ),
               Visibility(
-                visible: isEditing!,
+                visible: isEditing,
                 child: Row(
                   children: [
                     IconButton(

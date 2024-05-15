@@ -108,10 +108,23 @@ class StudentProfile {
       resume: json['resume'] == null ? null : json['resume'] as String,
       transcript: json['transcript'] == null ? null : json['transcript'] as String,
       proposals: (json['proposals'] as List<dynamic>?)?.map((e) => Proposal.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-      educations: (json['educations'] as List<dynamic>?)?.map((e) => Education.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-      languages: (json['languages'] as List<dynamic>?)?.map((e) => Language.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-      experiences: (json['experiences'] as List<dynamic>?)?.map((e) => Experience.fromJson(e as Map<String, dynamic>)).toList() ?? [],
-      skillSets: (json['skillSets'] as List<dynamic>?)?.map((e) => SkillSet.fromJson(e as Map<String, dynamic>)).toList() ?? [],
+      educations: json['educations'] != null
+          ? List<Education>.from(
+              json['educations'].map((x) => Education.fromJson(x)))
+          : [],
+      languages: json['languages'] != null
+          ? List<Language>.from(
+              json['languages'].map((x) => Language.fromJson(x)))
+          : [],
+      experiences: json['experiences'] != null
+          ? List<Experience>.from(
+              json['experiences'].map((x) => Experience.fromJson(x)))
+          : [],
+
+      skillSets: json['skillSets'] != null
+          ? List<SkillSet>.from(
+              json['skillSets'].map((x) => SkillSet.fromJson(x)))
+          : [],
     );
   }
 
@@ -260,7 +273,7 @@ class Experience {
   String startMonth;
   String endMonth;
   String description;
-  List<TechStack> skillSets;
+  List<SkillSet>? skillSets;
 
   Experience({
     required this.id,
@@ -301,13 +314,13 @@ class Experience {
       startMonth: map['startMonth'] as String,
       endMonth: map['endMonth'] as String,
       description: map['description'] as String,
-      skillSets: map['skillSets'] as List<TechStack>,
+      skillSets: map['skillSets'] as List<SkillSet>,
     );
   }
 
   factory Experience.fromJson(Map<String, dynamic> json) {
     return Experience(
-      id: json['result']['id'] as int,
+      id: json['id'] as int,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
@@ -316,7 +329,10 @@ class Experience {
       startMonth: json['startMonth'] as String,
       endMonth: json['endMonth'] as String,
       description: json['description'] as String,
-      skillSets: json['skillSets'] as List<TechStack>
+      skillSets: json['skillSets'] != null
+          ? List<SkillSet>.from(
+              json['skillSets'].map((x) => SkillSet.fromJson(x)))
+          : [],
     );
   }
 }
@@ -428,7 +444,7 @@ class Language {
 
   factory Language.fromJson(Map<String, dynamic> json) {
     return Language(
-      id: json['result']['id'] as int,
+      id: json['id'] as int,
       createdAt: json['createdAt'] as String,
       updatedAt: json['updatedAt'] as String,
       deletedAt: json['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
