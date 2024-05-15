@@ -23,7 +23,6 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
             },
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
               size: 40.0,
             ),
           ),
@@ -37,7 +36,6 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
             Icon(
               Icons.directions,
               size: 100.0,
-              color: Colors.blue,
             ),
             SizedBox(height: 20),
             Text(

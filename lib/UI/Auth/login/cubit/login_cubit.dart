@@ -37,11 +37,19 @@ class LoginCubit extends WidgetCubit<LoginState> {
       final accessToken = result.data?.token?.toJson()['token'] as String?;
       await _localStorage.saveString(key: StorageKey.accessToken, value: accessToken ?? '');
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
+
       //send a get to get user details
 
       await getIt.get<NotificationSocket>().updateToken();
       emit(state.copyWith(user: user, isLogin: true));
-      _notiSocket.listenInBackground();
+      final result2 = await _authRepository.getUser();
+      if (result2 is DataSuccess) {
+        final userId = result2.data?.id;
+        await _localStorage.saveString(key: StorageKey.userID, value: userId.toString());
+        print('User ID: $userId');
+        _notiSocket.listenInBackground();
+
+      }
 
     } else {
       final errorDetails = result.error?.response?.data['errorDetails'];

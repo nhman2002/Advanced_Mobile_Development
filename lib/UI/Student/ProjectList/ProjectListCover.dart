@@ -53,7 +53,7 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                       // Handle text field changes if needed
                     },
                     decoration: InputDecoration(
-                      hintText: 'Write your cover letter here...',
+                      hintText: "projectlistcover_student7".tr(),
                       border: OutlineInputBorder(),
                     ),
                   ),

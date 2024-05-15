@@ -12,7 +12,7 @@ class UserRepository extends BaseRepository{
   Future<DataState> forgotPassword(String email) async {
     return post(
       path: '/forgotPassword',
-      parseJsonFunction: User.fromJson,
+      parseJsonFunction: LoginOutput.fromJson,
       data: {
         "email": email,
       }
@@ -23,7 +23,7 @@ class UserRepository extends BaseRepository{
   Future<DataState> changePassword(String oldPassword, String newPassword) async {
     return put(
       path: '/changePassword',
-      parseJsonFunction: User.fromJson,
+      parseJsonFunction: LoginOutput.fromJson,
       data: {
         "oldPassword": oldPassword,
         "newPassword": newPassword,

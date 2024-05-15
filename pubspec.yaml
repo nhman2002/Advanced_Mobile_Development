@@ -39,13 +39,18 @@ dependencies:
   flutter_material_pickers: ^3.6.0
   textfield_tags: ^3.0.1
   month_picker_dialog: ^2.11.2
-
+  hydrated_bloc: ^9.1.5
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
   build_runner: ^2.4.8
   mobx_codegen: ^2.6.0+1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/common/ui/assets/app_icon.png"
 
 flutter:
   uses-material-design: true

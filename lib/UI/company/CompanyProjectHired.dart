@@ -36,7 +36,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -51,7 +50,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   projectDetail!.title!,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -60,22 +58,22 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildProposalSectionButton(
-                        Theme.of(context), 'Proposals', Colors.black, false,
+                        Theme.of(context), "companyprojecthired_company1".tr(), Colors.black, false,
                         () {
                       context.router
                           .replace(const CompanyProjectProposalsRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Detail', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company2".tr(), Colors.black, false, () {
                       context.router.replace(const CompanyProjectDetailRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Message', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company3".tr(), Colors.black, false, () {
                       context.router
                           .replace(const CompanyProjectMessageRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Hired', Colors.white, true, () {}),
+                        Theme.of(context), "companyprojecthired_company4".tr(), Colors.white, true, () {}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -147,7 +145,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   // Job title
                   Text(
                     pos,
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(),
                   ),
                 ],
               ),
@@ -180,7 +178,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   onPressed: () {
                     context.router.push(const StudentInformationScreenRoute());
                   },
-                  child: Text("Information"),
+                  child: Text("companyprojecthired_company5".tr()),
                 ),
               ),
               
@@ -189,7 +187,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
           ),
           SizedBox(height: 10), // Add some vertical space between sections
           Divider(
-            color: Colors.grey,
             thickness: 1.0,
           ),
         ],

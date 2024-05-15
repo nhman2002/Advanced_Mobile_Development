@@ -111,7 +111,7 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
                   Column(
                     children: [
                       Text(
-                       "No Archived Projects",
+                       "companydashboardarchived_company1".tr(),
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );
@@ -156,13 +156,12 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: isActive ? Colors.blue : null, // Highlight active section
             borderRadius: isActive ? BorderRadius.circular(5) : null,
           ),
           padding: EdgeInsets.symmetric(vertical: 5),
           child: Text(
             title,
-            style: TextStyle(color: isActive ? Colors.white : Colors.black),
+            style: TextStyle(),
           ),
         ),
       ),
@@ -187,7 +186,6 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
                   project.title ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.green,
                   ),
                 ),
                 IconButton(
@@ -339,6 +337,6 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
   Future<void> startWorkingOnProject(ProjectOutput project) async {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
     showSnackBarSuccess(
-        context, 'Project started, check active tab for details!');
+        context, "companydashboardarchived_company2".tr());
   }
 }

@@ -74,7 +74,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
                     "forgotpassword_auth3".tr(),
-                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               const SizedBox(height: 20.0),
@@ -83,8 +82,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   _handleForgotPassword(_emailController.text);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Please fill in all the required fields."),
+                    SnackBar(
+                      content: Text("forgotpassword_auth6".tr()),
                     ),
                   );
                 }

@@ -1,19 +1,24 @@
 import 'dart:io';
 
-import 'package:student_hub/core/models/input/student_profile_model.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart' ;
 import 'package:student_hub/core/models/output/student_profile.dart';
+import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class StudentProfileInputState extends WidgetState {
   final String? message;
-  final List<TechStack?> techStackList;
-  final List<SkillSet?> skillSetList;
+  final List<TechStack> techStackList;
+  final List<SkillSet> skillSetList;
   final int? selectedTechStackId;
   final List<String> selectedSkillSetList;
   final String? cvPath;
   final String? transcriptPath;
   final bool? isSuccess;
-  final List<ExperienceInput?> experienceList;
+  final ExperienceList? experienceList;
+  final LanguageList? languageList;
+  final EducationList? educationList;
+  final StudentProfileWithoutDate? studentProfile;
+  final bool? isEdit;
 
 
   const StudentProfileInputState({
@@ -25,7 +30,11 @@ class StudentProfileInputState extends WidgetState {
     this.cvPath,
     this.transcriptPath,
     this.isSuccess,
-    this.experienceList = const [],
+    this.experienceList,
+    this.languageList,
+    this.educationList,
+    this.studentProfile,
+    this.isEdit,
   });
 
   @override
@@ -39,6 +48,10 @@ class StudentProfileInputState extends WidgetState {
   ,transcriptPath
   ,isSuccess
   ,experienceList
+  ,languageList
+  ,educationList
+  ,studentProfile
+  ,isEdit
   ];
 
   @override
@@ -56,14 +69,18 @@ class StudentProfileInputState extends WidgetState {
 
   StudentProfileInputState copyWith({
     String? message,
-    List<TechStack?>? techStackList,
-    List<SkillSet?>? skillSetList,
+    List<TechStack>? techStackList,
+    List<SkillSet>? skillSetList,
     int? selectedTechStackId,
     List<String>? selectedSkillSetList,
     String? cvPath,
     String? transcriptPath,
     bool? isSuccess,
-   List<ExperienceInput?>? experienceList,
+    ExperienceList? experienceList,
+    LanguageList? languagesList,
+    EducationList? educationList,
+    StudentProfileWithoutDate? studentProfile,
+    bool? isEdit,
 
   }) {
     return StudentProfileInputState(
@@ -76,6 +93,10 @@ class StudentProfileInputState extends WidgetState {
       transcriptPath: transcriptPath ?? this.transcriptPath,
       isSuccess: isSuccess ?? this.isSuccess,
       experienceList: experienceList ?? this.experienceList,
+      languageList: languagesList ?? this.languageList,
+      educationList: educationList ?? this.educationList,
+      studentProfile: studentProfile ?? this.studentProfile,
+      isEdit: isEdit ?? this.isEdit,
     );
   }
 }

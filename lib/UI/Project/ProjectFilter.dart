@@ -24,7 +24,7 @@ class _ProjectFilter extends State<ProjectFilter> {
             onPressed: () {
               // Implement route logic here
             },
-            icon: Icon(Icons.account_circle, color: Colors.white, size: 40.0),
+            icon: Icon(Icons.account_circle),
           ),
         ],
       ),
@@ -127,7 +127,7 @@ class FilterSection extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(color: Colors.grey),
+        border: Border.all(),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -225,7 +225,7 @@ class FilterSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Colors.grey),
+        border: Border.all(),
       ),
       child: TextFormField(
         controller: controller, // Use the provided controller

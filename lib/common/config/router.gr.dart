@@ -315,6 +315,7 @@ abstract class _$MessageDetailScreenArguments extends RootStackRouter {
         child: VideoCallScreen(
           key: args.key,
           channelName: args.channelName,
+          tempToken: args.tempToken,
         ),
       );
     },
@@ -1049,12 +1050,14 @@ class VideoCallScreenRoute extends PageRouteInfo<VideoCallScreenRouteArgs> {
   VideoCallScreenRoute({
     Key? key,
     required String channelName,
+    String? tempToken,
     List<PageRouteInfo>? children,
   }) : super(
           VideoCallScreenRoute.name,
           args: VideoCallScreenRouteArgs(
             key: key,
             channelName: channelName,
+            tempToken: tempToken,
           ),
           initialChildren: children,
         );
@@ -1069,14 +1072,17 @@ class VideoCallScreenRouteArgs {
   const VideoCallScreenRouteArgs({
     this.key,
     required this.channelName,
+    this.tempToken,
   });
 
   final Key? key;
 
   final String channelName;
 
+  final String? tempToken;
+
   @override
   String toString() {
-    return 'VideoCallScreenRouteArgs{key: $key, channelName: $channelName}';
+    return 'VideoCallScreenRouteArgs{key: $key, channelName: $channelName, tempToken: $tempToken}';
   }
 }

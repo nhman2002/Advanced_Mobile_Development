@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
@@ -49,7 +50,6 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                   projectDetail!.title!,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -58,19 +58,19 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildProposalSectionButton(
-                        Theme.of(context), 'Proposals', Colors.black, false,
+                        Theme.of(context), "companyprojecthired_company1".tr(), Colors.black, false,
                         () {
                       context.router
                           .replace(const CompanyProjectProposalsRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Detail', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company2".tr(), Colors.black, false, () {
                       context.router.replace(const CompanyProjectDetailRoute());
                     }),
-                    buildProposalSectionButton(Theme.of(context), 'Message',
+                    buildProposalSectionButton(Theme.of(context), "companyprojecthired_company3".tr(),
                         Colors.white, true, () {}),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Hired', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company4".tr(), Colors.black, false, () {
                       context.router.replace(const CompanyProjectHiredRoute());
                     }),
                   ],
@@ -105,8 +105,8 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration: InputDecoration(
-              labelText: "Search",
-              hintText: "Search",
+              labelText: "companyprojectmessage_company1".tr(),
+              hintText: "companyprojectmessage_company1".tr(),
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),
@@ -117,7 +117,7 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
         Expanded(
           child: ListView.separated(
             itemCount: messages!.length,
-            separatorBuilder: (context, index) => Divider(color: Colors.black),
+            separatorBuilder: (context, index) => Divider(),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {

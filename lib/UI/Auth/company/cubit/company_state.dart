@@ -5,6 +5,7 @@ class CompanyRegisterState extends WidgetState {
   final bool isRegister;
   final String? message;
   final User? user;
+  
 
   const CompanyRegisterState({
     this.isRegister = false,

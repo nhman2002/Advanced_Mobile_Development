@@ -1,12 +1,14 @@
 import 'package:agora_uikit/agora_uikit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class VideoCallScreen extends StatefulWidget {
   final String channelName;
+  final String? tempToken;
 
-  const VideoCallScreen({Key? key, required this.channelName})
+  const VideoCallScreen({Key? key, required this.channelName, this.tempToken})
       : super(key: key);
 
   @override
@@ -15,6 +17,7 @@ class VideoCallScreen extends StatefulWidget {
 
 class _VideoCallScreenState extends State<VideoCallScreen> {
   AgoraClient? client; // Make client nullable
+
 
   @override
   void initState() {
@@ -30,7 +33,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
           appId: "0d51072268ce4de290abe457321b0ac5",
           channelName: widget.channelName,
           tempToken:
-              "007eJxTYJjIvPecVe2ME07auS2nxXu9r/AeW2Jm8Jfv3Y0Ugw/vLW8rMBikmBoamBsZmVkkp5qkpBpZGiQmpZqYmhsbGSYZJCabcsbZpTUEMjIsjX7FwsgAgSA+G0NuSUFmah4DAwCXEyBI",
+              widget.tempToken, // Pass the temp token to the Agora client
         ),
       );
 
@@ -56,7 +59,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     if (client == null) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Video Call'),
+          title: Text("videocall1".tr()),
         ),
         body: Center(
           child: CircularProgressIndicator(),
@@ -66,7 +69,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Video Call'),
+        title: Text("videocall1".tr()),
       ),
       body: SafeArea(
         child: Stack(

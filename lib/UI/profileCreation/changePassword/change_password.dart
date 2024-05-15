@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:student_hub/common/config/navigation_event.dart';
+import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/config/dependency.dart';
+import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/repository/user.dart';
 
 
@@ -12,7 +15,7 @@ class ChangePasswordScreen extends StatefulWidget {
   _ChangePasswordViewState createState() => _ChangePasswordViewState();
 }
 
-class _ChangePasswordViewState extends State<ChangePasswordScreen> {
+class _ChangePasswordViewState extends State<ChangePasswordScreen> with SnackBarDefault {
   final ValueNotifier<String> oldPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> newPasswordNotifier = ValueNotifier<String>('');
   final ValueNotifier<String> confirmPasswordNotifier =
@@ -29,7 +32,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
         title: Text(
           'Student Hub',
           style: TextStyle(
-            color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -55,7 +57,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF406AFF),
                 ),
               ),
               SizedBox(height: 10),
@@ -64,7 +65,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
-                  color: Colors.black.withOpacity(0.5),
                 ),
               ),
               SizedBox(height: 25),
@@ -83,21 +83,19 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                 decoration: InputDecoration(
                   hintText: "changepassword_auth4".tr(),
                   hintStyle: TextStyle(
-                    color: Color(0xFF777B8A),
                     fontSize: 14.0,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 0.8),
+                    borderSide: BorderSide( width: 0.8),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 1),
+                    borderSide: BorderSide(width: 1),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.black,
                     ),
                     onPressed: () {
                       setState(() {
@@ -107,7 +105,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   ),
                 ),
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.0,
                 ),
               ),
@@ -133,21 +130,19 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   errorText: _showPassError ? "changepassword_auth6".tr() : null,
                   hintText: "changepassword_auth7".tr(),
                   hintStyle: TextStyle(
-                    color: Color(0xFF777B8A),
                     fontSize: 14.0,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 0.8),
+                    borderSide: BorderSide(width: 0.8),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 1),
+                    borderSide: BorderSide(width: 1),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.black,
                     ),
                     onPressed: () {
                       setState(() {
@@ -157,7 +152,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   ),
                 ),
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.0,
                 ),
               ),
@@ -183,21 +177,19 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   errorText: _showPassError ? "changepassword_auth6".tr() : null,
                   hintText: "changepassword_auth9".tr(),
                   hintStyle: TextStyle(
-                    color: Color(0xFF777B8A),
                     fontSize: 14.0,
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 0.8),
+                    borderSide: BorderSide( width: 0.8),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF4BEC0C7), width: 1),
+                    borderSide: BorderSide(width: 1),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
                       _obscurePassword ? Icons.visibility_off : Icons.visibility,
-                      color: Colors.black,
                     ),
                     onPressed: () {
                       setState(() {
@@ -207,7 +199,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   ),
                 ),
                 style: TextStyle(
-                  color: Colors.black,
                   fontSize: 14.0,
                 ),
               ),
@@ -228,13 +219,10 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                       return;
                     }
                     // Call your change password method here
-                    await _user.changePassword(
-                       oldPasswordNotifier.value,
-                       newPasswordNotifier.value,
-                    );
+                    await changePassword(
+                        oldPasswordNotifier.value, newPasswordNotifier.value);
                   }
                       : null,
-                  color: Color(0xFF406AFF),
                   disabledColor: Colors.grey.shade500,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -242,7 +230,6 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
                   child: Text(
                     "changepassword_auth10".tr(),
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 16.0,
                     ),
                   ),
@@ -254,5 +241,21 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> {
       ),
     );
   }
+
+
+  Future<void> changePassword(String oldPassword, String newPassword) async {
+    final result = await _user.changePassword(
+      oldPassword,
+      newPassword,
+    );
+    if (result is DataSuccess) {
+      context.router.maybePop();
+      showSnackBarSuccess(context, "changepass1".tr());
+    } else {
+      final errorDetails = result.error?.response?.data['errorDetails'];
+      final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;
+      showSnackBarError(context, errorMessage ?? '');
+    }
 }
 
+}

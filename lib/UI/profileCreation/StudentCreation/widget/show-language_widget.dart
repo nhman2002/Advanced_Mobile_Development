@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/models/model/language.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
 
 class ShowLanguagesWidget extends StatelessWidget {
-  final List<Language> languages;
+  final List<LanguageInput> languages;
   final bool isEditing;
   final Function(String) _deleteLanguage;
 
@@ -60,7 +61,6 @@ class ShowLanguagesWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
-                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               ),
@@ -86,7 +86,7 @@ class ShowLanguagesWidget extends StatelessWidget {
                 
               ),
               Visibility(
-                visible: isEditing!,
+                visible: isEditing,
                 child: Row(
                   children: [
                     IconButton(

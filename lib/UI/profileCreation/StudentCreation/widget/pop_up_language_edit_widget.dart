@@ -1,11 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/models/model/language.dart';
 
 class PopUpLanguagesEditWidget extends StatefulWidget {
   final Function(String) _deleteLanguage;
-  final List<Language> languages;
+  final List<LanguageInput> languages;
 
   PopUpLanguagesEditWidget(this._deleteLanguage, this.languages);
 
@@ -22,11 +24,10 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Edit language',
+      title: Text("languagepop1".tr(),
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF406AFF),
           )),
       contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       content: SizedBox(
@@ -50,7 +51,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
                   ),
                   IconButton(
                     icon: Icon(Icons.cancel,
-                        color: Color(0xFF777B8A), size: 17.0),
+                    size: 17.0),
                     onPressed: () {
                       widget._deleteLanguage(language.languageName!);
                       setState(() {
@@ -69,9 +70,9 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           style: TextButton.styleFrom(
             backgroundColor: Color.fromARGB(244, 213, 222, 255),
           ),
-          child: Text('Cancel',
+          child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
-                  color: Color(0xFF406AFF), fontWeight: FontWeight.w500)),
+               fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -82,7 +83,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           ),
           child: Text('OK',
               style: GoogleFonts.poppins(
-                  color: Colors.white, fontWeight: FontWeight.w500)),
+                fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
           },

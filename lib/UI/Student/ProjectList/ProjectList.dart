@@ -52,7 +52,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
                 icon:
-                    Icon(Icons.account_circle, color: Colors.white, size: 40.0),
+                    Icon(Icons.account_circle,size: 40.0),
               )
             ],
           ),
@@ -74,7 +74,6 @@ class _StudentProjectList extends State<StudentProjectList> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 8.0, horizontal: 16.0),
                             decoration: BoxDecoration(
-                              color: Colors.grey[200],
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Row(
@@ -134,7 +133,7 @@ class _StudentProjectList extends State<StudentProjectList> {
               ),
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Project'),
         );
       },
     );
@@ -303,14 +302,14 @@ class _StudentProjectList extends State<StudentProjectList> {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.grey)),
+          border: Border(bottom: BorderSide()),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
                   formattedTime ,
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(),
             ),
             SizedBox(height: 5),
             Row(
@@ -319,7 +318,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                 Flexible(
                   child: Text(
                     project.title ?? "projectlist_student5".tr(),
-                    style: TextStyle(color: Colors.green, fontSize: 20),
+                    style: TextStyle(fontSize: 20),
                     overflow: TextOverflow
                         .ellipsis, // Add this line to handle long titles
                     maxLines: 1, // Add this line to limit the title to one line
@@ -333,7 +332,7 @@ class _StudentProjectList extends State<StudentProjectList> {
               "projectlist_student6".tr() +
                   '$projectScope, ${project.numberOfStudents}' +
                   "projectlist_student7".tr(),
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(),
             ),
             SizedBox(height: 5),
             Row(
@@ -342,13 +341,12 @@ class _StudentProjectList extends State<StudentProjectList> {
                 Icon(
                   Icons.remove,
                   size: 16.0,
-                  color: Colors.black,
                 ),
                 SizedBox(width: 5),
                 Expanded(
                   child: Text(
                     project.description ?? "projectlist_student8".tr(),
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(),
                   ),
                 ),
               ],
@@ -356,7 +354,7 @@ class _StudentProjectList extends State<StudentProjectList> {
             SizedBox(height: 5),
             Text(
               "projectlist_student9".tr() + '$proposal',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(),
             ),
           ],
         ),
@@ -416,7 +414,6 @@ class _FavoriteIconButtonState extends State<FavoriteIconButton>
           },
           icon: Icon(
             _isFavorite ? Icons.favorite : Icons.favorite_border,
-            color: Colors.black,
           ),
         );
       },

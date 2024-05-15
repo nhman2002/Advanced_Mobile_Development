@@ -30,7 +30,7 @@ class MainApp extends StatelessWidget {
           MaterialTheme theme = MaterialTheme(textTheme); 
           return MaterialApp.router(
             title: 'Student Hub',
-            theme: brightness == Brightness.light ? theme.lightHighContrast() : theme.dark(),
+            theme: brightness == Brightness.light ? theme.lightMediumContrast() : theme.darkMediumContrast(),
             themeMode: state,
             darkTheme: theme.darkHighContrast(),
             routerDelegate: router.delegate(),

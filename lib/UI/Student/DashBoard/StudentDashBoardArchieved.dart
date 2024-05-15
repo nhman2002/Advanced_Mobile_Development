@@ -42,12 +42,26 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "studentdashboardworking_student1".tr(),
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "studentdashboard_student1".tr(),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                        width:
+                            8), // Add some space between the Text and the button
+                    ElevatedButton(
+                      onPressed: () {
+                        context.router.push(const OfferListPageRoute());
+                      },
+                      child: Text("studentdashboard_student17".tr()),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -94,7 +108,7 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(),
+          bottomNavigationBar: CustomBottomAppBar(selectedTab: "studentdashboard_student18".tr()),
         );
       },
     );
@@ -117,14 +131,14 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
+        border: Border.all(),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            proposal.project.title ?? "Title",
+            proposal.project.title ?? "studentdashboard_student20".tr(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -132,13 +146,13 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
           ),
           SizedBox(height: 10),
           Text(
-            proposal.project.description ?? "Description",
-            style: TextStyle(color: Colors.green),
+            proposal.project.description ?? "studentdashboard_student19".tr(),
+            style: TextStyle(),
           ),
           SizedBox(height: 5),
           Text(
             daysValue,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
         ],
       ),

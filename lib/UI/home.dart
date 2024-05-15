@@ -30,7 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Icon(
               Icons.account_circle,
-              color: Colors.white,
               size: 40.0,
             ),
           ),
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          AnimatedBackgroundImage(),
+          // AnimatedBackgroundImage(),
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -52,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                      ),
                 ),
                 SizedBox(
                   height: 40,
@@ -65,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "home_title2".tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -86,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "home_title3".tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 20),
               ],
@@ -110,56 +109,56 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class AnimatedBackgroundImage extends StatefulWidget {
-  @override
-  _AnimatedBackgroundImageState createState() =>
-      _AnimatedBackgroundImageState();
-}
+// class AnimatedBackgroundImage extends StatefulWidget {
+//   @override
+//   _AnimatedBackgroundImageState createState() =>
+//       _AnimatedBackgroundImageState();
+// }
 
-class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
+// class _AnimatedBackgroundImageState extends State<AnimatedBackgroundImage>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _controller;
+//   late Animation<double> _animation;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Duration(seconds: 1),
-      vsync: this,
-    );
-    _animation = Tween<double>(begin: 1.0, end: 1.2).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
-    );
-    _controller.forward();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = AnimationController(
+//       duration: Duration(seconds: 1),
+//       vsync: this,
+//     );
+//     _animation = Tween<double>(begin: 1.0, end: 1.2).animate(
+//       CurvedAnimation(
+//         parent: _controller,
+//         curve: Curves.easeInOut,
+//       ),
+//     );
+//     _controller.forward();
+//   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     _controller.dispose();
+//     super.dispose();
+//   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, child) {
-        return Transform.scale(
-          scale: _animation.value,
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('lib/common/ui/assets/background.jpeg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedBuilder(
+//       animation: _animation,
+//       builder: (context, child) {
+//         return Transform.scale(
+//           scale: _animation.value,
+//           child: Container(
+//             decoration: BoxDecoration(
+//               image: DecorationImage(
+//                 image: AssetImage('lib/common/ui/assets/background.jpeg'),
+//                 fit: BoxFit.cover,
+//               ),
+//             ),
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }

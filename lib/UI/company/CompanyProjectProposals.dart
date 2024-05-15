@@ -40,7 +40,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -55,7 +54,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                   projectDetail?.title ?? '',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -63,10 +61,10 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.white, true, (){}),
-                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Message', Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company1".tr(), Colors.white, true, (){}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company2".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company3".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company4".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -140,7 +138,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                   // Job title
                   Text(
                     pos,
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(),
                   ),
                 ],
               ),
@@ -222,10 +220,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                         ? "companyprojectproposals_company6".tr()
                         : "companyprojectproposals_company7".tr(),
                     style: TextStyle(
-                      color: statusFlag != 2
-                          ? Colors.white
-                          : Colors
-                              .black, // Adjust text color based on statusFlag
                     ),
                   ),
                 ),
@@ -234,7 +228,6 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
           ),
           SizedBox(height: 10), // Add some vertical space between sections
           Divider(
-            color: Colors.grey,
             thickness: 1.0,
           ),
         ],

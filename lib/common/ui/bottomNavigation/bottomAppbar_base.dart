@@ -4,42 +4,48 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/config/dependency.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class CustomBottomAppBar extends StatefulWidget {
-  const CustomBottomAppBar({Key? key}) : super(key: key);
+  final String _selectedTab;
+  const CustomBottomAppBar({Key? key, required String selectedTab})
+      : _selectedTab = selectedTab,
+        super(key: key);
 
   @override
   _CustomBottomAppBarState createState() => _CustomBottomAppBarState();
 }
 
 class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
-  String _selectedTab = 'Projects'; // Default selected tab
+  var _selectedTab;
+   // Default selected tab
   final _localStorage = getIt.get<LocalStorage>();
-  String? userRole;
 
   @override
   Widget build(BuildContext context) {
+    _selectedTab = widget._selectedTab;
     return BottomAppBar(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildTabItem(
-            tabName: 'Projects',
+            tabName: "bottomappbar1".tr(),
             icon: Icons.work,
             badge: Badge(child: Icon(Icons.work)),
           ),
           _buildTabItem(
-            tabName: 'Dashboard',
+            tabName: "bottomappbar2".tr(),
             icon: Icons.dashboard,
             badge: Badge(child: Icon(Icons.dashboard)),
           ),
           _buildTabItem(
-            tabName: 'Message',
+            tabName: "bottomappbar3".tr(),
             icon: Icons.message,
             badge: Badge(child: Icon(Icons.message)),
           ),
           _buildTabItem(
-            tabName: 'Notifications',
+            tabName: "bottomappbar4".tr(),
             icon: Icons.notifications,
             badge: Badge(child: Icon(Icons.notifications)),
           ),
@@ -53,40 +59,53 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
     final isSelected = _selectedTab == tabName;
     final userRoleString = _localStorage.getString(key: StorageKey.currentRole);
     final userRole = int.parse(userRoleString!);
-    return (Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      padding: EdgeInsets.fromLTRB(2, 0, 2, 0),
-      child: AnimatedButton(
-        icon: icon,
-        badge: badge,
-        label: tabName,
-        isSelected: isSelected,
-        onPressed: () {
-          setState(() {
-            _selectedTab = tabName;
-          });
-          // Add onPressed logic here
-          if (tabName == 'Projects') {
-            if (userRole == 0) {
-              context.router.replace(const ProjectListWrapperRoute());
-            } else {
-              context.router.replace(const ProjectListWrapperRoute());
-            }
-          } else if (tabName == 'Dashboard') {
-            if (userRole == 0) {
-              context.router.replace(const StudentDashBoardWrapperRoute());
-            } else {
-              context.router.replace(const CompanyDashboardRoute());
-            }
-          } else if (tabName == 'Message') {
-            context.router.replace(const MessageListScreenRoute());
-          } else if (tabName == 'Notifications') {
-            context.router.replace(const NotificationScreenRoute());
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedTab = tabName;
+        });
+        // Add onPressed logic here
+        if (tabName == "bottomappbar1".tr()) {
+          if (userRole == 0) {
+            context.router.replace(const ProjectListWrapperRoute());
+          } else {
+            context.router.replace(const ProjectListWrapperRoute());
           }
-        },
+        } else if (tabName == "bottomappbar2".tr()) {
+          if (userRole == 0) {
+            context.router.replace(const StudentDashBoardWrapperRoute());
+          } else {
+            context.router.replace(const CompanyDashboardWrapperRoute());
+          }
+        } else if (tabName == "bottomappbar3".tr()) {
+          context.router.replace(const MessageListScreenRoute());
+        } else if (tabName == "bottomappbar4".tr()) {
+          context.router.replace(const NotificationScreenRoute());
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+        ),
+        padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              color: isSelected ?  Theme.of(context).colorScheme.tertiaryContainer : Theme.of(context).colorScheme.onBackground, // Icon color for selected tab
+            ),
+            Text(
+              tabName,
+              style: TextStyle(
+                color: isSelected ? Theme.of(context).colorScheme.tertiaryContainer : Theme.of(context).colorScheme.onBackground, // Label color for selected tab
+              ),
+            ),
+            // badge, // Display badge if provided
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

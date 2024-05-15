@@ -16,23 +16,7 @@ import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class Project {
-  String title;
-  final String subtitle;
-  DateTime startMonth;
-  DateTime endMonth;
-  String description;
-  List<String> selectedSkillSet;
 
-  Project({
-    required this.title,
-    required this.subtitle,
-    required this.startMonth,
-    required this.endMonth,
-    required this.description,
-    this.selectedSkillSet = const [],
-  });
-}
 
 @RoutePage()
 class StudentProfileInputExperience extends StatefulWidget {
@@ -45,12 +29,15 @@ class StudentProfileInputExperience extends StatefulWidget {
 
 class _StudentProfileInputExperienceState
     extends State<StudentProfileInputExperience> {
-  final List<ExperienceInput> projects = [];
+  List<SkillSet> skillSetList = [];
+  List<ExperienceInput> projects = [];
 
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _startDateController = TextEditingController();
   final TextEditingController _endDateController = TextEditingController();
+  List<String> selectedSkills = [];
+  bool isEdit = false;
 
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
@@ -64,12 +51,18 @@ class _StudentProfileInputExperienceState
   Widget build(BuildContext context) {
     return BlocBuilder<StudentProfileInputCubit, StudentProfileInputState>(
       builder: (context, state) {
-        // final techStackList = state.techStackList;
-        // final skillSetList = state.skillSetList;
+        skillSetList =
+            context.read<StudentProfileInputCubit>().state.skillSetList;
+        isEdit = context.read<StudentProfileInputCubit>().state.isEdit ?? false;
+        if (isEdit) {
+          var projectsList = context.read<StudentProfileInputCubit>().state.experienceList; 
+          //convert the list of experience to list of ExperienceInput
+          projects = projectsList!.experiences!.map((e) => ExperienceInput().copyWith(title: e.title, description: e.description, startMonth: e.startMonth, endMonth: e.endMonth, skillSets: e.skillSets)).toList();
+        }
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Experiences'),
+            title: Text("studentprofileinput2_ProfileCreation4".tr()),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -79,12 +72,12 @@ class _StudentProfileInputExperienceState
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   Text(
-                    'Experiences',
+                    "studentprofileinput2_ProfileCreation4".tr(),
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Tell us about yourself and you will be on your way connect with real-world projects',
+                    "studentprofileinput1_ProfileCreation1".tr(),
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
@@ -93,7 +86,7 @@ class _StudentProfileInputExperienceState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Projects',
+                        "studentprofileinput2_ProfileCreation5".tr(),
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -120,42 +113,44 @@ class _StudentProfileInputExperienceState
     );
   }
 
-  Future<void> _selectStartDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _startDate,
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != _startDate) {
-      setState(() {
-        _startDate = picked;
-        _startDateController.text = DateFormat('dd-MM-yyyy').format(_startDate);
-      });
-    }
+Future<void> _selectStartDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: _startDate,
+    firstDate: DateTime(2020),
+    lastDate: DateTime(2101),
+  );
+  if (picked != null && picked != _startDate) {
+    setState(() {
+      _startDate = picked;
+      _startDateController.text = DateFormat('MM-yyyy').format(_startDate);
+    });
   }
+}
 
-  Future<void> _selectEndDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: _endDate.isBefore(_startDate) ? _startDate : _endDate,
-      firstDate: _startDate,
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != _endDate) {
-      setState(() {
-        _endDate = picked;
-        _endDateController.text = DateFormat('dd-MM-yyyy').format(_endDate);
-      });
-    }
+Future<void> _selectEndDate(BuildContext context) async {
+  final DateTime? picked = await showDatePicker(
+    context: context,
+    initialDate: _endDate.isBefore(_startDate) ? _startDate : _endDate,
+    firstDate: _startDate,
+    lastDate: DateTime(2101),
+  );
+  if (picked != null && picked != _endDate) {
+    setState(() {
+      _endDate = picked;
+      _endDateController.text = DateFormat('MM-yyyy').format(_endDate);
+    });
   }
+}
 
   Widget _buildProjectCards() {
     return Column(
       children: List.generate(projects.length, (index) {
         // String startDate = DateFormat('MM-yyyy').parse(projects[index].startMonth as String) ;
-        String startDate = DateFormat('yy-mm-dd').parse(projects[index].startMonth as String).toString().substring(0,10);
-        String endDate = DateFormat('yy-mm-dd').parse(projects[index].endMonth as String).toString().substring(0,10);
+String startDate = DateFormat('MM-yyyy').format(
+    DateFormat('MM-yyyy').parse(projects[index].startMonth as String));
+String endDate = DateFormat('MM-yyyy').format(
+    DateFormat('MM-yyyy').parse(projects[index].endMonth as String));
 
 // String formattedDate = '${projects[index].startMonth?.day}-${projects[index].startMonth.month}';
 // DateTime formattedDate = DateFormat('dd-MM').format(projects[index].startMonth);
@@ -200,7 +195,7 @@ class _StudentProfileInputExperienceState
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  'Skillset',
+                  "studentprofileinput2_ProfileCreation6".tr(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
@@ -218,9 +213,7 @@ class _StudentProfileInputExperienceState
       height: 90,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
         border: Border.all(
-          color: Colors.grey,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(10.0),
@@ -230,8 +223,10 @@ class _StudentProfileInputExperienceState
         child: Wrap(
           spacing: 10.0,
           runSpacing: 10.0,
+          //skillSets is a list of index of skillsetList, build the buttons using the index
           children: project.skillSets!
-              .map((skill) => _buildSkillSetButton(skill))
+              .map((index) => _buildSkillSetButton(
+                  skillSetList[int.parse(index)]?.name ?? ''))
               .toList(),
         ),
       ),
@@ -255,7 +250,7 @@ class _StudentProfileInputExperienceState
       ),
       child: Text(
         skill,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: TextStyle(fontSize: 16),
       ),
     );
   }
@@ -290,29 +285,43 @@ class _StudentProfileInputExperienceState
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Add Project',
+                  "studentprofileinput2_ProfileCreation7".tr(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _buildTextField('Title', _titleController),
+                _buildTextField("studentprofileinput2_ProfileCreation8".tr(), _titleController),
                 SizedBox(height: 16.0),
                 Text(
-                  'Skillset',
+                  "studentprofileinput2_ProfileCreation9".tr(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _buildSkillSet(),
+                MultiSelectChipField(
+                  items: skillSetList
+                      .map((skill) => MultiSelectItem<String>(
+                          skill!.id.toString(), skill!.name))
+                      .toList(),
+                  initialValue: [],
+                  onTap: (values) {
+                    selectedSkills = values.toList().cast<String>();
+                    debugPrint(selectedSkills.toString());
+                  },
+                  chipColor: Colors.white,
+                  selectedChipColor: Colors.purple,
+                  textStyle: TextStyle(),
+                  selectedTextStyle: TextStyle(),
+                ),
                 SizedBox(height: 16.0),
                 _datePicker(context),
                 SizedBox(height: 16.0),
-                _buildTextField('Description', _descriptionController),
+                _buildTextField("studentprofileinput2_ProfileCreation10".tr(), _descriptionController),
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () {
                     _addProject();
                     Navigator.of(context).pop();
                   },
-                  child: Text('Add'),
+                  child: Text("studentprofileinput2_ProfileCreation11".tr()),
                 ),
               ],
             ),
@@ -336,7 +345,7 @@ class _StudentProfileInputExperienceState
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Edit Project',
+                  "studentprofileinput2_ProfileCreation12".tr(),
                   style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.bold,
                     // color: theme.colorScheme.onTertiary
@@ -346,11 +355,25 @@ class _StudentProfileInputExperienceState
                 _buildTextField(projects[index].title, _titleController),
                 SizedBox(height: 16.0),
                 Text(
-                  'Skillset',
+                  "studentprofileinput2_ProfileCreation9".tr(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _buildSkillSet(),
+                MultiSelectChipField(
+                  items: skillSetList
+                      .map((skill) => MultiSelectItem<String>(
+                          skill!.id.toString(), skill!.name))
+                      .toList(),
+                  initialValue: [],
+                  onTap: (values) {
+                    selectedSkills = values.toList().cast<String>();
+                    debugPrint(selectedSkills.toString());
+                  },
+                  chipColor: Colors.white,
+                  selectedChipColor: Colors.purple,
+                  textStyle: TextStyle(),
+                  selectedTextStyle: TextStyle(),
+                ),
                 SizedBox(height: 16.0),
                 _datePicker(context),
                 SizedBox(height: 16.0),
@@ -359,7 +382,7 @@ class _StudentProfileInputExperienceState
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () => _editProject(index),
-                  child: Text('Edit'),
+                  child: Text("studentprofileinput2_ProfileCreation13".tr()),
                 ),
               ],
             ),
@@ -381,7 +404,7 @@ class _StudentProfileInputExperienceState
           description: _descriptionController.text,
           startMonth: _startDateController.text,
           endMonth: _endDateController.text,
-          skillSets: ['Skill 1', 'Skill 2'],
+          skillSets: selectedSkills,
         ),
       );
       _titleController.clear();
@@ -403,7 +426,7 @@ class _StudentProfileInputExperienceState
       projects[index] = ExperienceInput(
         title: _titleController.text,
         description: _descriptionController.text,
-        skillSets: ['Skill 1', 'Skill 2'],
+        skillSets: ["studentprofileinput2_ProfileCreation14".tr(), "studentprofileinput2_ProfileCreation15".tr()],
       );
       _titleController.clear();
       _descriptionController.clear();
@@ -446,7 +469,7 @@ class _StudentProfileInputExperienceState
               child: TextField(
                 controller: _endDateController,
                 decoration: InputDecoration(
-                  labelText: 'End Date',
+                  labelText: "studentprofileinput2_ProfileCreation16".tr(),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -459,7 +482,7 @@ class _StudentProfileInputExperienceState
 
   Widget _buildTextField(String? title, TextEditingController controller) {
     // print(controller);
-    
+
     return TextField(
       controller: controller,
       decoration: InputDecoration(
@@ -469,33 +492,34 @@ class _StudentProfileInputExperienceState
     );
   }
 
-  Widget _buildSkillSet() {
-    return Container(
-      height: 150,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(
-          color: Colors.grey,
-          width: 1.0,
-        ),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: SingleChildScrollView(
-        padding: EdgeInsets.all(2.0),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
-          child: Wrap(
-            spacing: 10.0,
-            runSpacing: 10.0,
-            children: ['Skill 1', 'Skill 2']
-                .map((skill) => _buildSkillSetButton(skill))
-                .toList(),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildSkillSet(BuildContext context) {
+  //   final skillsetList =  context.read<StudentProfileInputCubit>().state.skillSetList;
+  //   return Container(
+  //     height: 150,
+  //     width: double.infinity,
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       border: Border.all(
+  //         color: Colors.grey,
+  //         width: 1.0,
+  //       ),
+  //       borderRadius: BorderRadius.circular(10.0),
+  //     ),
+  //     child: SingleChildScrollView(
+  //       padding: EdgeInsets.all(2.0),
+  //       child: Padding(
+  //         padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
+  //         child: Wrap(
+  //           spacing: 10.0,
+  //           runSpacing: 10.0,
+  //           children: skillsetList
+  //               .map((skill) => _buildSkillSetButton(skill))
+  //               .toList(),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Future<void> next(BuildContext context) async {
     context.read<StudentProfileInputCubit>().setExperience(projects);
