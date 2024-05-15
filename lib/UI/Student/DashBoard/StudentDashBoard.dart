@@ -227,6 +227,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
           Text(
             proposal.project.title ?? "studentdashboard_student15".tr(),
             style: TextStyle(
+                color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0),
           ),

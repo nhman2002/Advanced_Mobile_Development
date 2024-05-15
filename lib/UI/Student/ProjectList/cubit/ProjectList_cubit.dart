@@ -35,6 +35,11 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
   }
 
   Future<void> initCubit() async {
+    if (_localStorage.getString(key: StorageKey.currentRole) == '0'){
+      emit(state.copyWith(isStudent: true));
+    } else {
+      emit(state.copyWith(isStudent: false));
+    }
         final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
     var project = null;

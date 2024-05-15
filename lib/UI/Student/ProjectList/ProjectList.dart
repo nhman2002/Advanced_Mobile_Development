@@ -8,6 +8,7 @@ import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
+import 'package:student_hub/common/ui/theme/bloc/theme.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -27,10 +28,12 @@ class _StudentProjectList extends State<StudentProjectList> {
   TextEditingController _numberOfStudentsController = TextEditingController();
   TextEditingController _proposalsLessThanController = TextEditingController();
   int? _selectedScope;
+  bool isStudent = false;
+
   @override
   void initState() {
     super.initState();
-    // Set a delay to hide the loading indicator after 5 seconds
+    // Set a delay to hide the loading indicator after 10 seconds
     Future.delayed(Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
@@ -42,8 +45,10 @@ class _StudentProjectList extends State<StudentProjectList> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProjectListCubit, ProjectListState>(
       builder: (context, state) {
+        isStudent = state.isStudent ?? false;
         final projectList = state.projectList;
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
           appBar: AppBar(
             title: Text('Student Hub'),
             actions: [
@@ -51,8 +56,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                 onPressed: () {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
-                icon:
-                    Icon(Icons.account_circle,size: 40.0),
+                icon: Icon(Icons.account_circle, size: 40.0),
               )
             ],
           ),
@@ -74,6 +78,10 @@ class _StudentProjectList extends State<StudentProjectList> {
                             padding: EdgeInsets.symmetric(
                                 vertical: 8.0, horizontal: 16.0),
                             decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                              color: Theme.of(context).colorScheme.surface,
                               borderRadius: BorderRadius.circular(8.0),
                             ),
                             child: Row(
@@ -86,15 +94,17 @@ class _StudentProjectList extends State<StudentProjectList> {
                           ),
                         ),
                       ),
-                      IconButton(
-                        onPressed: () {
-                          context
-                              .read<ProjectListCubit>()
-                              .initFavoriteProject();
-                          context.router.push(const FavoriteProjectPageRoute());
-                        },
-                        icon: const Icon(Icons.favorite),
-                      ),
+                      if (isStudent)
+                        IconButton(
+                          onPressed: () {
+                            context
+                                .read<ProjectListCubit>()
+                                .initFavoriteProject();
+                            context.router
+                                .push(const FavoriteProjectPageRoute());
+                          },
+                          icon: const Icon(Icons.favorite),
+                        ),
                     ],
                   ),
                   Expanded(
@@ -107,7 +117,8 @@ class _StudentProjectList extends State<StudentProjectList> {
                                 constraints: BoxConstraints(minHeight: 20),
                                 child: Column(
                                   children: projectList.map((project) {
-                                    return _buildProjectItem(context, project);
+                                    return _buildProjectItem(
+                                        context, project, isStudent);
                                   }).toList(),
                                 ),
                               ),
@@ -133,7 +144,8 @@ class _StudentProjectList extends State<StudentProjectList> {
               ),
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Project'),
+          bottomNavigationBar:
+              const CustomBottomAppBar(selectedTab: 'Projects'),
         );
       },
     );
@@ -238,8 +250,10 @@ class _StudentProjectList extends State<StudentProjectList> {
                         context.read<ProjectListCubit>().filterProject(
                               _searchController.text,
                               _selectedScope,
-                              int.tryParse(_numberOfStudentsController.text),
-                              int.tryParse(_proposalsLessThanController.text),
+                              int.tryParse(
+                                  _numberOfStudentsController.text),
+                              int.tryParse(
+                                  _proposalsLessThanController.text),
                             );
                         Navigator.of(context).pop();
                       },
@@ -255,7 +269,8 @@ class _StudentProjectList extends State<StudentProjectList> {
     );
   }
 
-  Widget _buildProjectItem(BuildContext context, ProjectOutput project) {
+  Widget _buildProjectItem(BuildContext context, ProjectOutput project,
+      bool isStudent) {
     DateTime createdAt =
         DateTime.parse(project.createdAt ?? DateTime.now().toString());
     DateTime now = DateTime.now();
@@ -269,8 +284,7 @@ class _StudentProjectList extends State<StudentProjectList> {
     } else if (difference.inHours < 24) {
       // Less than 1 day ago
       int hoursAgo = difference.inHours;
-      formattedTime =
-          hoursAgo == 1 ? '1 hour ago' : '$hoursAgo hours ago';
+      formattedTime = hoursAgo == 1 ? '1 hour ago' : '$hoursAgo hours ago';
     } else {
       // More than 1 day ago
       int daysAgo = difference.inDays;
@@ -302,13 +316,13 @@ class _StudentProjectList extends State<StudentProjectList> {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide()),
+          border: Border(bottom: BorderSide(color: Theme.of(context).colorScheme.outline)), 
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                  formattedTime ,
+              formattedTime,
               style: TextStyle(),
             ),
             SizedBox(height: 5),
@@ -318,13 +332,13 @@ class _StudentProjectList extends State<StudentProjectList> {
                 Flexible(
                   child: Text(
                     project.title ?? "projectlist_student5".tr(),
-                    style: TextStyle(fontSize: 20),
-                    overflow: TextOverflow
-                        .ellipsis, // Add this line to handle long titles
-                    maxLines: 1, // Add this line to limit the title to one line
+                    style: TextStyle(fontSize: 20, color: Theme.of(context).colorScheme.tertiary),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                 ),
-                FavoriteIconButton(projectId: project.projectId ?? -1)
+                if (isStudent)
+                  FavoriteIconButton(projectId: project.projectId ?? -1)
               ],
             ),
             SizedBox(height: 5),
@@ -354,8 +368,9 @@ class _StudentProjectList extends State<StudentProjectList> {
             SizedBox(height: 5),
             Text(
               "projectlist_student9".tr() + '$proposal',
-              style: TextStyle(),
+              style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
+            // Divider(color: Theme.of(context).colorScheme.outline),
           ],
         ),
       ),

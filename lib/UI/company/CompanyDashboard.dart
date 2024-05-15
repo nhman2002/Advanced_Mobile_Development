@@ -194,6 +194,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   project.title ?? '',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
                 IconButton(

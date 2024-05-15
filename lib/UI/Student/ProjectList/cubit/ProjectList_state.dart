@@ -9,6 +9,7 @@ class ProjectListState extends WidgetState {
   final List<ProjectOutput> favoriteProjectList;
   final String? username;
   final String? message;
+  final bool? isStudent;
 
   const ProjectListState({
     this.clickedProject,
@@ -17,6 +18,7 @@ class ProjectListState extends WidgetState {
     this.favoriteProjectList = const [],
     this.username,
     this.message,
+    this.isStudent,
   });
 
   @override
@@ -27,6 +29,7 @@ class ProjectListState extends WidgetState {
         favoriteProjectList,
         username,
         message,
+        isStudent,
       ];
 
   @override
@@ -37,6 +40,7 @@ class ProjectListState extends WidgetState {
       'projectList': projectList.map((e) => e?.toJson()).toList(),
       'username': username,
       'message': message ?? '',
+
     };
   }
 
@@ -47,6 +51,7 @@ class ProjectListState extends WidgetState {
       projectList: (json['projectList'] as List).map((e) => ProjectOutput.fromJson(e)).toList(),
       username: json['username'] as String?,
       message: json['message'] as String?,
+      isStudent: json['isStudent'] as bool?,
     );
   }
 
@@ -57,6 +62,7 @@ class ProjectListState extends WidgetState {
     List<ProjectOutput>? favoriteProjectList,
     String? username,
     String? message,
+    bool? isStudent,
   }) {
     return ProjectListState(
       clickedProject: clickedProject ?? this.clickedProject,
@@ -65,6 +71,7 @@ class ProjectListState extends WidgetState {
       favoriteProjectList: favoriteProjectList ?? this.favoriteProjectList,
       username: username ?? this.username,
       message: message ?? this.message,
+      isStudent: isStudent ?? this.isStudent,
     );
   }
   

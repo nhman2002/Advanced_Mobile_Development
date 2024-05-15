@@ -149,6 +149,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
+              color: message['isSender'] ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.background
             ),
             padding: EdgeInsets.all(16),
             child: Column(
@@ -158,6 +159,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onSecondary,
                   ),
                 ),
                 Text(

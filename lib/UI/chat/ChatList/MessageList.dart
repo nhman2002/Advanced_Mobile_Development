@@ -66,26 +66,23 @@ class _MessageListScreenState extends State<MessageListScreen> {
           ],
         ),
         body: _buildMessageContent(),
-        bottomNavigationBar:  CustomBottomAppBar(selectedTab:  "messagelist1".tr()),
+        bottomNavigationBar:  CustomBottomAppBar(selectedTab:  "Messages"),
     );
   }
 
   Widget _buildMessageContent() {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: "messagelist2".tr(),
-              hintText: "messagelist2".tr(),
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+        Expanded(
+              child: TabBarView(
+                children: [
+                  // Messages tab content
+                  Center(child: Text('Messages Content')),
+                  // Interviews tab content
+                  Center(child: Text('Interviews Content')),
+                ],
               ),
             ),
-          ),
-        ),
         Expanded(
           child: ListView.separated(
             itemCount: messages!.length,
@@ -93,7 +90,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  print('Tile clicked');
+                  print('Title clicked');
                   context.router.push(MessageDetailScreenRoute(
                       userId: userId,
                       receiverId: messages![index].receiverId! == userId

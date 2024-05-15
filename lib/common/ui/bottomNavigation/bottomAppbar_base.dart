@@ -66,21 +66,21 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           _selectedTab = tabName;
         });
         // Add onPressed logic here
-        if (tabName == "bottomappbar1".tr()) {
+        if (tabName == 'Projects') {
           if (userRole == 0) {
             context.router.replace(const ProjectListWrapperRoute());
           } else {
             context.router.replace(const ProjectListWrapperRoute());
           }
-        } else if (tabName == "bottomappbar2".tr()) {
+        } else if (tabName == 'Dashboard') {
           if (userRole == 0) {
             context.router.replace(const StudentDashBoardWrapperRoute());
           } else {
             context.router.replace(const CompanyDashboardWrapperRoute());
           }
-        } else if (tabName == "bottomappbar3".tr()) {
+        } else if (tabName == 'Messages') {
           context.router.replace(const MessageListScreenRoute());
-        } else if (tabName == "bottomappbar4".tr()) {
+        } else if (tabName == 'Notifications') {
           context.router.replace(const NotificationScreenRoute());
         }
       },

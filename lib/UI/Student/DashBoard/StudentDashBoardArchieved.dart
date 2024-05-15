@@ -108,7 +108,7 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
               ],
             ),
           ),
-          bottomNavigationBar: CustomBottomAppBar(selectedTab: "studentdashboard_student18".tr()),
+          bottomNavigationBar: CustomBottomAppBar(selectedTab: 'Dashboard'),
         );
       },
     );
