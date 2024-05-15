@@ -28,19 +28,14 @@ class _StudentProfileInputTechStackState
     extends State<StudentProfileInputTechStack> {
   String? selectedTechStackID;
   List<String> selectedSkills = [];
-  List<Language> languages = [];
+  List<LanguageInput> languages = [];
   List<EducationInput> educationList = [];
 
   void _addNewLanguage(String language, String level) {
     setState(() {
-      final Language newLanguage = Language(
+      final newLanguage = LanguageInput(
         languageName: language,
         level: level,
-        id: 0,
-        createdAt: '',
-        updatedAt: '',
-        deletedAt: '',
-        studentId: 0,
       );
       languages.add(newLanguage);
     });
@@ -160,7 +155,7 @@ class _StudentProfileInputTechStackState
                         alignment: Alignment.centerRight,
                         child: IconButton(
                           onPressed: () async {
-                            final result = await showDialog<Language>(
+                            final result = await showDialog<LanguageInput>(
                               context: context,
                               builder: (BuildContext context) {
                                 return PopUpLanguagesWidget(

@@ -4,13 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/models/model/language.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
 
 class PopUpLanguagesWidget extends StatefulWidget {
   final Function _addTask;
-  final List<Language> languagesSelected;
+  final List<LanguageInput> languagesSelected;
   const PopUpLanguagesWidget(this._addTask, this.languagesSelected,
       {super.key});
 
@@ -23,7 +24,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
   String _selectedLevel = "null";
 
   List<String> checkLanguageExits(
-      List<Language> languagesSelected, List<String> languages) {
+      List<LanguageInput> languagesSelected, List<String> languages) {
     List<String> existingLanguages = [];
     for (var i = 0; i < languagesSelected.length; i++) {
       //remove the existing language from the list

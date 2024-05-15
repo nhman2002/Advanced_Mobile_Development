@@ -23,7 +23,7 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
   Future<void> init() async {
     showLoading();
     userResult = await _authRepository.getUser();
-    if(_localStorage.getString(key: StorageKey.userName) == null){
+    if(_localStorage.getString(key: StorageKey.userName) == null || _localStorage.getString(key: StorageKey.companyProfile) == null || _localStorage.getString(key: StorageKey.studentProfile) == null){
       await initProfile();
     }
     await _handleInitial();
@@ -50,8 +50,8 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
       }
 
       final fullname = userResult.data?.fullname;
-      _localStorage.saveString(
-          key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
+      // _localStorage.saveString(
+      //     key: StorageKey.userID, value: userResult.data?.id.toString() ?? '');
       _localStorage.saveString(key: StorageKey.userName, value: fullname ?? '');
       final roles = userResult.data?.role as List?;
       if (roles != null && roles.length > 1) {

@@ -207,4 +207,80 @@ class LanguageList {
     };
     return data;
   }
+
+  LanguageList copyWith({
+    List<LanguageInput>? languages,
+  }) =>
+      LanguageList(
+        languages: languages ?? this.languages,
+      );
+}
+
+class ExperienceList {
+  final List<ExperienceInput>? experiences;
+
+  ExperienceList({
+    this.experiences,
+  });
+
+  factory ExperienceList.fromJson(Map<String, dynamic> json) {
+    var list = json['experiences'] as List<dynamic>;
+    List<ExperienceInput> experienceInputs =
+        list.map((e) => ExperienceInput.fromJson(e)).toList();
+
+    return ExperienceList(
+      experiences: experienceInputs,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {
+      'experience': experiences?.map((e) => e.toJson()).toList(),
+    };
+    return data;
+  }
+
+  ExperienceList copyWith({
+    List<ExperienceInput>? experiences,
+  }) =>
+      ExperienceList(
+        experiences: experiences ?? this.experiences,
+      );
+}
+
+
+class EducationList {
+  final List<EducationInput>? educations;
+
+  //translate from List<EducationInput> to EducationList
+
+  
+
+  EducationList({
+    this.educations,
+  });
+
+  factory EducationList.fromJson(Map<String, dynamic> json) {
+    var list = json['educations'] as List<dynamic>;
+    List<EducationInput> educationInputs =
+        list.map((e) => EducationInput.fromJson(e)).toList();
+
+    return EducationList(
+      educations: educationInputs,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = {
+      'education': educations?.map((e) => e.toJson()).toList(),
+    };
+    return data;
+  }
+
+  EducationList copyWith({
+    List<EducationInput>? educations,
+  }) =>
+      EducationList(
+        educations: educations ?? this.educations,
+      );
 }

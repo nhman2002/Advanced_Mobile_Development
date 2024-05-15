@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/models/model/language.dart';
 
 class PopUpLanguagesEditWidget extends StatefulWidget {
   final Function(String) _deleteLanguage;
-  final List<Language> languages;
+  final List<LanguageInput> languages;
 
   PopUpLanguagesEditWidget(this._deleteLanguage, this.languages);
 

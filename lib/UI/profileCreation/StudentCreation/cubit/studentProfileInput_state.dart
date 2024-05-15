@@ -13,9 +13,9 @@ class StudentProfileInputState extends WidgetState {
   final String? cvPath;
   final String? transcriptPath;
   final bool? isSuccess;
-  final List<ExperienceInput?> experienceList;
-  final List<Language?> languagesList;
-  final List<EducationInput?> educationList;
+  final ExperienceList? experienceList;
+  final LanguageList? languageList;
+  final EducationList? educationList;
 
 
   const StudentProfileInputState({
@@ -27,9 +27,9 @@ class StudentProfileInputState extends WidgetState {
     this.cvPath,
     this.transcriptPath,
     this.isSuccess,
-    this.experienceList = const [],
-    this.languagesList = const [],
-    this.educationList = const [],
+    this.experienceList,
+    this.languageList,
+    this.educationList,
   });
 
   @override
@@ -43,7 +43,8 @@ class StudentProfileInputState extends WidgetState {
   ,transcriptPath
   ,isSuccess
   ,experienceList
-  ,languagesList
+  ,languageList
+  ,educationList
   ];
 
   @override
@@ -68,9 +69,9 @@ class StudentProfileInputState extends WidgetState {
     String? cvPath,
     String? transcriptPath,
     bool? isSuccess,
-   List<ExperienceInput?>? experienceList,
-    List<Language?>? languagesList,
-    List<EducationInput?>? educationList,
+    ExperienceList? experienceList,
+    LanguageList? languagesList,
+    EducationList? educationList,
 
   }) {
     return StudentProfileInputState(
@@ -83,7 +84,7 @@ class StudentProfileInputState extends WidgetState {
       transcriptPath: transcriptPath ?? this.transcriptPath,
       isSuccess: isSuccess ?? this.isSuccess,
       experienceList: experienceList ?? this.experienceList,
-      languagesList: languagesList ?? this.languagesList,
+      languageList: languagesList ?? this.languageList,
       educationList: educationList ?? this.educationList,
     );
   }

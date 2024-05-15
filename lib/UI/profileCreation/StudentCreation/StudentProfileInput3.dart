@@ -162,10 +162,6 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
       showSnackBarSuccess(context, context.read<StudentProfileInputCubit>().state.message!);
       //context.router.popUntilRoot();
       final isSuccess = context.read<StudentProfileInputCubit>().state.isSuccess;
-      if (isSuccess == true) {
-        context.router.replace(const ProjectListWrapperRoute());
-      }
-      else
         context.router.replace(const SwitchAccountPageRoute());
   }
 }

@@ -18,7 +18,6 @@ class NotificationSocket {
         .build(),
   );
 
-
   final _notificationService = getIt.get<NotificationService>();
   final _localStorage = getIt.get<LocalStorage>();
   var _accessToken =
@@ -57,41 +56,41 @@ class NotificationSocket {
       );
       sendPort.send(message);
     });
-
   }
 
   Future<void> updateToken() async {
     _accessToken = await _localStorage.getString(key: StorageKey.accessToken);
     _userId = await _localStorage.getString(key: StorageKey.userID);
-    }
+  }
 
   Future<void> listenInBackground() async {
+    _userId = getIt<LocalStorage>().getString(key: StorageKey.userID);
 
     //check if isolate already running
-        final receivePort = ReceivePort();
+    final receivePort = ReceivePort();
     // final completer = Completer<OutputType>();
     final errorPort = ReceivePort()
       ..listen((message) {
         throw Exception(message);
       });
-      //spawn named isolate
+    //spawn named isolate
 
-    IsolateNameServer.registerPortWithName(receivePort.sendPort, 'notificationIsolate');
-    await Isolate.spawn(_connectAndListen, receivePort.sendPort, errorsAreFatal: true, onError: errorPort.sendPort);
+    IsolateNameServer.registerPortWithName(
+        receivePort.sendPort, 'notificationIsolate');
+    await Isolate.spawn(_connectAndListen, receivePort.sendPort,
+        errorsAreFatal: true, onError: errorPort.sendPort);
     receivePort.listen((message) {
       if (_userId == message.userid.toString()) {
         _notificationService.showNotification(
             message.id, message.title, message.body, '');
-      } 
-      else {
+      } else {
         print('message is null');
       }
     });
   }
 
-  Future<void> closeIsolate() async{
+  Future<void> closeIsolate() async {
     bool res = IsolateNameServer.removePortNameMapping('notificationIsolate');
     print('Isolate removed: $res');
   }
-
 }

@@ -7,8 +7,8 @@ class GeneralRepository extends BaseRepository {
   GeneralRepository() : super('');
   //experience/updateByStudentId/201
 
-  Future<DataState> postExperience(ExperienceInput form, int id) async {
-    return post(
+  Future<DataState> putExperience(ExperienceList form, int id) async {
+    return put(
       path: '/experience/updateByStudentId/$id',
       parseJsonFunction: ExperienceInput.fromJson,
       data: form.toJson(),
@@ -17,8 +17,8 @@ class GeneralRepository extends BaseRepository {
 
   //education/updateByStudentId/201
 
-  Future<DataState> postEducation(EducationInput form, int id) async {
-    return post(
+  Future<DataState> putEducation(EducationList form, int id) async {
+    return put(
       path: '/education/updateByStudentId/$id',
       parseJsonFunction: EducationInput.fromJson,
       data: form.toJson(),
@@ -27,8 +27,8 @@ class GeneralRepository extends BaseRepository {
 
   //language/updateByStudentId/201
 
-  Future<DataState> postLanguage(LanguageInput form, int id) async {
-    return post(
+  Future<DataState> putLanguage(LanguageList form, int id) async {
+    return put(
       path: '/language/updateByStudentId/$id',
       parseJsonFunction: LanguageInput.fromJson,
       data: form.toJson(),
