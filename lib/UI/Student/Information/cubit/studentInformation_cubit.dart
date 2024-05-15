@@ -3,7 +3,6 @@ import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/repository/base.dart';
-import 'package:student_hub/core/repository/general.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 import 'package:student_hub/core/repository/proposal.dart';
 
@@ -17,7 +16,6 @@ class StudentInformationCubit extends WidgetCubit<StudentInformationState> {
 
   final _localStorage = getIt.get<LocalStorage>();
   final _proposal = getIt.get<ProposalRepository>();
-  final _general = getIt.get<GeneralRepository>();
   var iniStatus = 0;
   @override
   Future<void> init() async{
@@ -32,14 +30,15 @@ class StudentInformationCubit extends WidgetCubit<StudentInformationState> {
     showLoading();
     final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.parse(studentIDString!);
-    final result1 = await _general.getExperience(studentID);
-    final result2 = await _general.getEducation(studentID);
-    final result3 = await _general.getLanguage(studentID);
-    // missing techStack, transcript, resume API
+    final result1 = await _proposal.getStudentProposal(studentID, 1);
 
-    // final result1 = await _proposal.getStudentProposal(studentID, 1);
-
-    
+    if(result1 is DataSuccess) {
+      final activeProposal = result1.data;
+      emit(state.copyWith(activeProposalList: activeProposal));
+    }
+    else {
+      emit(state.copyWith(activeProposalList: null));
+    }
     hideLoading();
   }
 
