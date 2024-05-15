@@ -8,9 +8,8 @@ import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
+import 'package:student_hub/core/repository/interview.dart';
 import 'package:student_hub/core/repository/message.dart';
-import 'package:easy_localization/easy_localization.dart';
-
 
 @RoutePage()
 class MessageListScreen extends StatefulWidget {
@@ -21,12 +20,12 @@ class MessageListScreen extends StatefulWidget {
 }
 
 class _MessageListScreenState extends State<MessageListScreen> {
-
-
   final _localStorage = getIt.get<LocalStorage>();
   final _message = getIt.get<MessageRepository>();
+  final _interview = getIt.get<InterviewRepository>();
   List<MessageWithProject>? messages = [];
   int userId = -1;
+  List<Interview>? interviews = [];
 
   @override
   void initState() {
@@ -45,14 +44,29 @@ class _MessageListScreenState extends State<MessageListScreen> {
         messages = result.data;
       });
     }
-  }
 
+    final result2 = await _interview.getActiveInterview(userId);
+    if (result2 is DataSuccess) {
+      setState(() {
+        interviews = result2.data;
+      });
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
         appBar: AppBar(
           title: Text('Student Hub'),
+          bottom: TabBar(
+            tabs: [
+              Tab(text: 'Messages'),
+              Tab(text: 'Interviews'),
+            ],
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -65,70 +79,88 @@ class _MessageListScreenState extends State<MessageListScreen> {
             ),
           ],
         ),
-        body: _buildMessageContent(),
-        bottomNavigationBar:  CustomBottomAppBar(selectedTab:  "Messages"),
+        body: Column(
+          children: [
+            Expanded(
+              child: TabBarView(
+                children: [
+                  _buildMessageContent(),
+                  _buildInterviewContent(),
+                ],
+              ),
+            ),
+          ],
+        ),
+        bottomNavigationBar: CustomBottomAppBar(selectedTab: "Messages"),
+      ),
     );
   }
 
   Widget _buildMessageContent() {
-    return Column(
-      children: <Widget>[
-        Expanded(
-              child: TabBarView(
-                children: [
-                  // Messages tab content
-                  Center(child: Text('Messages Content')),
-                  // Interviews tab content
-                  Center(child: Text('Interviews Content')),
-                ],
-              ),
-            ),
-        Expanded(
-          child: ListView.separated(
-            itemCount: messages!.length,
-            separatorBuilder: (context, index) => Divider(color: Colors.black),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  print('Title clicked');
-                  context.router.push(MessageDetailScreenRoute(
-                      userId: userId,
-                      receiverId: messages![index].receiverId! == userId
-                          ? messages![index].senderId!
-                          : messages![index].receiverId!,
-                      projectId: messages![index].project!.projectId!,
-                      receiverName: messages![index].receiverId == userId
-                          ? messages![index].senderName!
-                          : messages![index].receiverName!,));
-                },
-                child: ListTile(
-                  leading: Icon(Icons
-                      .supervised_user_circle), // Replace with actual icons
-                  title: Text(messages![index].receiverId == userId
-                      ? messages![index].senderName ?? ''
-                      : messages![index].receiverName ?? ''
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        messages![index].project!.title ?? '',
-                        style: TextStyle(
-                            color: Colors.green), // Set text color to green
-                      ),
-                      Text(messages![index].content ?? ''),
-                    ],
-                  ),
+    return ListView.separated(
+      itemCount: messages?.length ?? 0,
+      separatorBuilder: (context, index) => Divider(color: Colors.black),
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          onTap: () {
+            context.router.push(MessageDetailScreenRoute(
+              userId: userId,
+              receiverId: messages![index].receiverId! == userId
+                  ? messages![index].senderId!
+                  : messages![index].receiverId!,
+              projectId: messages![index].project!.projectId!,
+              receiverName: messages![index].receiverId == userId
+                  ? messages![index].senderName!
+                  : messages![index].receiverName!,
+            ));
+          },
+          child: ListTile(
+            leading: Icon(Icons.supervised_user_circle),
+            title: Text(messages![index].receiverId == userId
+                ? messages![index].senderName ?? ''
+                : messages![index].receiverName ?? ''),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  messages![index].project!.title ?? '',
+                  style: TextStyle(color: Colors.green),
                 ),
-
-              );
-              
-            },
+                Text(messages![index].content ?? ''),
+              ],
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 
-
+Widget _buildInterviewContent() {
+  return ListView.separated(
+    itemCount: interviews?.length ?? 0,
+    separatorBuilder: (context, index) => Divider(color: Colors.black),
+    itemBuilder: (context, index) {
+      return ListTile(
+        leading: Icon(Icons.calendar_today),
+        title: Text(interviews![index].title ?? 'No Title'),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Start: ${DateFormat('kk:mm – dd-MM-yyyy').format(DateTime.parse(interviews![index].startTime!))}'),
+            Text('End: ${DateFormat('kk:mm – dd-MM-yyyy').format(DateTime.parse(interviews![index].endTime!))}'),
+            Text('Room Code: ${interviews![index].meetingRoomId ?? 'No Room Code'}'),
+          ],
+        ),
+        trailing: ElevatedButton(
+          onPressed: () {
+            // Add your join logic here, for example:
+            print('Joining interview ${interviews![index].title}');
+            context.router.push(VideoCallScreenRoute(channelName: interviews![index].meetingRoomId.toString(), tempToken: interviews![index].meetingRoomCode));
+          },
+          child: Text('Join'),
+        ),
+      );
+    },
+  );
+}
 }

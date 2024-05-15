@@ -176,7 +176,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    context.router.push(const StudentInformationScreenRoute());
+                    context.router.push(StudentInformationScreenRoute(id: proposalId));
                   },
                   child: Text("companyprojecthired_company5".tr()),
                 ),

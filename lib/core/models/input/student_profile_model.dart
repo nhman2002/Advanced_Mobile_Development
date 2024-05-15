@@ -174,6 +174,13 @@ class LanguageInput{
     return map;
   }
 
+  static List<LanguageInput> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return [];
+    } else
+      return (json['result'] as List).map((e) => LanguageInput.fromJson(e)).toList();
+  }
+
   LanguageInput copyWith({
     String? languageName,
     String? level,
@@ -192,7 +199,12 @@ class LanguageList {
   });
 
   factory LanguageList.fromJson(Map<String, dynamic> json) {
-    var list = json['languages'] as List<dynamic>;
+    var list;
+    if (json['result'] != null){
+      list =  json['result'] as List<LanguageInput>;
+    }
+    else
+     list = json['languages'] as List<LanguageInput>;
     List<LanguageInput> languageInputs =
         list.map((e) => LanguageInput.fromJson(e)).toList();
 

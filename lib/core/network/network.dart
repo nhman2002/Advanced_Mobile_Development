@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:student_hub/common/config/navigation_event.dart';
@@ -13,7 +14,6 @@ class NetworkManager {
   }
 
   final LocalStorage _localStorage = LocalStorage.instance;
-  final _notificationService = NotificationService();
   final Dio _dio = Dio();
 
   static const int connectTimeout = 60000;
@@ -55,6 +55,8 @@ class NetworkManager {
       onError: _onError,
     ));
   }
+
+
 
   Future<void> _onRequest(
     RequestOptions options,

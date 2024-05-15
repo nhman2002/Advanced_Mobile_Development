@@ -15,6 +15,11 @@ Future<void> main() async {
     Permission.notification.request();
   }
 });
+  await Permission.storage.isDenied.then((value) {
+  if (value) {
+    Permission.storage.request();
+  }
+});
   await appInit();
   runApp(EasyLocalization(
       supportedLocales: [Locale('en'), Locale('vi')],

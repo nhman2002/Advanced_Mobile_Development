@@ -76,7 +76,7 @@ class ProposalRepository extends BaseRepository {
     );
   }
 
-    Future<DataState<List<ProposalWithProject>>> getStudentProposalWithTypeFlag(
+  Future<DataState<List<ProposalWithProject>>> getStudentProposalWithTypeFlag(
       int id, int flag) async {
     return get<List<ProposalWithProject>>(
       path: '/project/$id?typeFlag=$flag',
@@ -101,25 +101,26 @@ class ProposalRepository extends BaseRepository {
     );
   }
 
-  Future<DataState<ProposalPatchForm>> sendOffer(
-      int id) async {
+  Future<DataState<ProposalPatchForm>> sendOffer(int id) async {
     return patch<ProposalPatchForm>(
       path: '/$id',
       parseJsonFunction: ProposalPatchForm.fromJson,
       data: {'statusFlag': 2},
     );
-
-    
   }
 
-    Future<DataState<ProposalPatchForm>> acceptOffer(
-      int id) async {
+  Future<DataState<ProposalPatchForm>> acceptOffer(int id) async {
     return patch<ProposalPatchForm>(
       path: '/$id',
       parseJsonFunction: ProposalPatchForm.fromJson,
       data: {'statusFlag': 3},
     );
+  }
 
-    
+    Future<DataState<ProposalWithStudent>> getProposalInfo(int id) async {
+    return get<ProposalWithStudent>(
+      path: '/$id',
+      parseJsonFunction: ProposalWithStudent.fromJson,
+    );
   }
 }

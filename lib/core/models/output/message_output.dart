@@ -136,6 +136,13 @@ class Interview {
     meetingRoomCode = json['meetingRoom']['meeting_room_code'];
   }
 
+  static List<Interview> fromJsonList(Map<String, dynamic> json) {
+    if (json['result'] == null) {
+      return [];
+    } else
+      return (json['result'] as List).map((e) => Interview.fromJson(e)).toList();
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

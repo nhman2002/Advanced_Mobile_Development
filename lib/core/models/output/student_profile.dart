@@ -642,6 +642,87 @@ class ProposalWithProject extends Proposal {
 }
 
 
+class ProposalWithStudent extends Proposal {
+  StudentProfile student;
+  String resumeLink;
+  String? transcriptLink;
+
+  ProposalWithStudent({
+    required this.student,
+    required int id,
+    required String createdAt,
+    required String updatedAt,
+    required String? deletedAt,
+    required int projectId,
+    required int studentId,
+    required String coverLetter,
+    required int statusFlag,
+    required int disableFlag,
+    required this.resumeLink,
+    this.transcriptLink,
+  }) : super(
+          id: id,
+          createdAt: createdAt,
+          updatedAt: updatedAt,
+          deletedAt: deletedAt,
+          projectId: projectId,
+          studentId: studentId,
+          coverLetter: coverLetter,
+          statusFlag: statusFlag,
+          disableFlag: disableFlag,
+        );
+
+  Map<String, dynamic> toMap() {
+    return {
+      'student': student,
+      'id': this.id,
+      'createdAt': this.createdAt,
+      'updatedAt': this.updatedAt,
+      'deletedAt': this.deletedAt,
+      'projectId': this.projectId,
+      'studentId': this.studentId,
+      'coverLetter': this.coverLetter,
+      'statusFlag': this.statusFlag,
+      'disableFlag': this.disableFlag,
+      'resumeLink': this.resumeLink,
+
+    };
+  }
+
+  factory ProposalWithStudent.fromMap(Map<String, dynamic> map) {
+    return ProposalWithStudent(
+      student: map['student'] as StudentProfile,
+      id: map['id'] as int,
+      createdAt: map['createdAt'] as String,
+      updatedAt: map['updatedAt'] as String,
+      deletedAt: map['deletedAt'] == null ? null : map['deletedAt'] as String,
+      projectId: map['projectId'] as int,
+      studentId: map['studentId'] as int,
+      coverLetter: map['coverLetter'] as String,
+      statusFlag: map['statusFlag'] as int,
+      disableFlag: map['disableFlag'] as int,
+      resumeLink: map['resumeLink'] as String,
+      transcriptLink: map['transcriptLink'] as String?,
+    );
+  }
+
+  factory ProposalWithStudent.fromJson(Map<String, dynamic> json) {
+    return ProposalWithStudent(
+      student: StudentProfile.fromJson2(json['result']['student']),
+      id: json['result']['id'] as int,
+      createdAt: json['result']['createdAt'] as String,
+      updatedAt: json['result']['updatedAt'] as String,
+      deletedAt: json['result']['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
+      projectId: json['result']['projectId'] as int,
+      studentId: json['result']['studentId'] as int,
+      coverLetter: json['result']['coverLetter'] as String,
+      statusFlag: json['result']['statusFlag'] as int,
+      disableFlag: json['result']['disableFlag'] as int,
+      resumeLink: json['result']['student']['resumeLink'] as String,
+      transcriptLink: json['result']['student']['transcriptLink'] == null ? null : json['result']['student']['transcriptLink'],
+    );
+}
+}
 
 class SkillSet {
   int id;
@@ -720,6 +801,8 @@ class ProjectProposalOutput {
   int? statusFlag;
   int? disableFlag;
   StudentProfile? student;
+  String? resumeLink;
+  String? transcriptLink;
 
   ProjectProposalOutput({
     this.id,
@@ -732,6 +815,9 @@ class ProjectProposalOutput {
     this.statusFlag,
     this.disableFlag,
     this.student,
+    this.resumeLink,
+    this.transcriptLink,
+
   });
 
   factory ProjectProposalOutput.fromJson(Map<String, dynamic> json) {
@@ -746,6 +832,8 @@ class ProjectProposalOutput {
       statusFlag: json['statusFlag'],
       disableFlag: json['disableFlag'],
       student: json['student'] == null ? null : StudentProfile.fromJson2(json['student']),
+      resumeLink: json['student']['resumeLink'],
+      transcriptLink: json['student']['transcriptLink'],
     );
   }
 

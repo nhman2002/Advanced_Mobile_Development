@@ -32,7 +32,7 @@ class GeneralRepository extends BaseRepository {
 
   Future<DataState<EducationList>> getEducation(int id) async {
     return get(
-      path: 'education/getByStudentId/$id',
+      path: '/education/getByStudentId/$id',
       parseJsonFunction: EducationList.fromJson,
     );
   }
@@ -46,10 +46,10 @@ class GeneralRepository extends BaseRepository {
     );
   }
 
-  Future<DataState<LanguageList>> getLanguage(int id) async {
-    return get(
-      path: 'language/getByStudentId/$id',
-      parseJsonFunction: LanguageList.fromJson,
+  Future<DataState<List<LanguageInput>>> getLanguage(int id) async {
+    return get<List<LanguageInput>>(
+      path: '/language/getByStudentId/$id',
+      parseJsonFunction: LanguageInput.fromJsonList,
     );
   }
 

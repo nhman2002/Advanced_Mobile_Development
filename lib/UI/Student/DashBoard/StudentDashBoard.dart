@@ -31,7 +31,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
             actions: [
               IconButton(
                 onPressed: () {
-                  // Add onPressed logic here
+                  context.router.replace(const SwitchAccountPageRoute());
                 },
                 icon: Icon(
                   Icons.account_circle,
