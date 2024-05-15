@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
             TextField(
               controller: userController,
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: "login_auth7".tr(),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
               obscureText: true,
               controller: passwordController,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: "login_auth8".tr(),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
                   onPressed: () {
                     context.router.push(const ForgotPasswordPageRoute());
                   },
-                  child: Text("Forgot Password?"),
+                  child: Text("login_auth6".tr()),
                 ),
                 SizedBox(width: 20),
                 Text("login_auth3".tr()),
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginWidget> with SnackBarDefault {
     final isSuccess = context.read<LoginCubit>().state.isLogin;
     final message = context.read<LoginCubit>().state.message ?? '';
     if (isSuccess) {
-      showSnackBarSuccess(context, 'Login successful');
+      showSnackBarSuccess(context, "login_auth5".tr());
       context.router.popUntilRoot();
       context.router.replace(const SwitchAccountPageRoute());
     } else {

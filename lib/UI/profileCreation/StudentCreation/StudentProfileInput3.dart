@@ -148,7 +148,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
 
   Future<void> next(BuildContext context) async {
     if (cvPath.isEmpty) {
-      showSnackBarWarning(context, 'Please upload your CV');
+      showSnackBarWarning(context, "studentprofileinput3_ProfileCreation8".tr());
       return;
     }
     context.read<StudentProfileInputCubit>().setCV(cvPath);

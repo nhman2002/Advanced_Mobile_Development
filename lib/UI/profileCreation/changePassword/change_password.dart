@@ -250,7 +250,7 @@ class _ChangePasswordViewState extends State<ChangePasswordScreen> with SnackBar
     );
     if (result is DataSuccess) {
       context.router.maybePop();
-      showSnackBarSuccess(context, "Password changed successfully");
+      showSnackBarSuccess(context, "changepass1".tr());
     } else {
       final errorDetails = result.error?.response?.data['errorDetails'];
       final errorMessage = errorDetails is List ? errorDetails.join(", ") : errorDetails as String?;

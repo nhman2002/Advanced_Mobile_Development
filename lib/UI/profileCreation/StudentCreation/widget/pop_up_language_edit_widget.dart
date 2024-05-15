@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
@@ -23,7 +24,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Edit language',
+      title: Text("languagepop1".tr(),
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -69,7 +70,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
           style: TextButton.styleFrom(
             backgroundColor: Color.fromARGB(244, 213, 222, 255),
           ),
-          child: Text('Cancel',
+          child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
                fontWeight: FontWeight.w500)),
           onPressed: () {

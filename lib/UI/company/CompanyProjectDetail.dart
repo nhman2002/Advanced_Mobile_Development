@@ -59,10 +59,10 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildProposalSectionButton(Theme.of(context),'Proposals', Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Detail', Colors.white, true, (){}),
-                    buildProposalSectionButton(Theme.of(context),'Message', Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
-                    buildProposalSectionButton(Theme.of(context),'Hired', Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company1".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectProposalsRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company2".tr(), Colors.white, true, (){}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company3".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
+                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company4".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
                 SizedBox(height: 20),

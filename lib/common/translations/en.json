@@ -15,12 +15,22 @@
     "login_auth2": "Sign In",
     "login_auth3": "Don't have an account?",
     "login_auth4": "Sign Up",
+    "login_auth5": "Login successful",
+    "login_auth6": "Forgot Password?",
+    "login_auth7": "Username",
+    "login_auth8": "Password",
+
+    "bottomappbar1": "Projects",
+    "bottomappbar2": "Dashboard",
+    "bottomappbar3": "Messages",
+    "bottomappbar4": "Notifications",
 
     "forgotpassword_auth1": "Forgot password",
     "forgotpassword_auth2": "Please enter your email and we'll send you a link to get back into your account.",
     "forgotpassword_auth3": "Please enter a valid email address.",
     "forgotpassword_auth4": "Send login link",
     "forgotpassword_auth5": "Back to login",
+    "forgotpassword_auth6": "Please fill in all the required fields.",
 
     "changepassword_auth1": "Create new password",
     "changepassword_auth2": "Your new password must be different from previous used password.",
@@ -51,6 +61,29 @@
     "videocall_chat1": "Video call",
     "videocall_chat2": "Video will be displayed here",
 
+    "messagelist1": "Message",
+    "messagelist2": "Search",
+
+    "schedulemeeting1": "Schedule Meeting",
+    "schedulemeeting2": "Title",
+    "schedulemeeting3": "Content",
+    "schedulemeeting4": "Start Time: ",
+    "schedulemeeting5": "End Time: ",
+    "schedulemeeting6": "Meeting Room ID",
+    "schedulemeeting7": "Meeting Room Code",
+    "schedulemeeting8": "Cancel",
+    "schedulemeeting9": "Schedule",
+    "schedulemeeting10": "Failed to schedule meeting",
+    "schedulemeeting11": "Meeting scheduled successfully",
+
+    "messagedetail1": "Join Interview",
+    "messagedetail2": "Edit",
+    "messagedetail3": "Cancel Interview",
+    "messagedetail4": "Type your message...",
+    "messagedetail5": "Yesterday",
+
+    "videocall1": "Video Call",
+
     "companydashboard_company1": "Your projects",
     "companydashboard_company2": "Let's get started",
     "companydashboard_company3": "Post a job",
@@ -69,11 +102,30 @@
     "companydashboard_company16": "Edit Posting",
     "companydashboard_company17": "Delete Posting",
     "companydashboard_company18": "Start Working this Project",
+    "companydashboard_company19": "Edit Project",
+    "companydashboard_company20": "Keep the fields empty to keep the current values",
+    "companydashboard_company21": "Leave empty to keep current title",
+    "companydashboard_company22": "Leave empty to keep current description",
+    "companydashboard_company23": "Project Description",
+    "companydashboard_company24": "Leave empty to keep current number of students",
+    "companydashboard_company25": "Number of Students",
+    "companydashboard_company26": "Choose your desired project Scope",
+    "companydashboard_company27": "Save",
+    "companydashboard_company28": "Cancel",
+    "companydashboard_company29": "Project started, check active tab for details!",
+    "companydashboard_company30": "Failed to delete project!",
+    "companydashboard_company31": "Project update failed!",
+
+    "companydashboardarchived_company1": "No Archived Projects",
+    "companydashboardarchived_company2": "Project started, check active tab for details!",
+
+    "companydashboardworking_company1": "No working projects",
 
     "companyprojecthired_company1": "Proposals",
     "companyprojecthired_company2": "Detail",
     "companyprojecthired_company3": "Message",
     "companyprojecthired_company4": "Hired",
+    "companyprojecthired_company5": "Information",
 
     "companyprojectdetail_company1": "No Description",
     "companyprojectdetail_company2": "Project scope:",
@@ -90,11 +142,27 @@
     "companyprojectproposals_company6": "Hire",
     "companyprojectproposals_company7": "Hired offer sent",
 
+    "companyprojectmessage_company1": "Search",
+
+    "notificationscreen1": "View Offer",
+    "notificationscreen2": "Accept",
+    "notificationscreen3": "Decline",
+    "notificationscreen4": "Open Chat",
+    "notificationscreen5": "View Proposal",
+    "notificationscreen6": "View Project",
+    "notificationscreen7": "View Notification",
+
+    "accountswitch1": "Please complete your profile first!",
+    "changepass1": "Password changed successfully",
+
+
     "accountSwitchPage_ProfileCreation1": "Company",
     "accountSwitchPage_ProfileCreation2": "Student",
     "accountSwitchPage_ProfileCreation3": "Profiles",
     "accountSwitchPage_ProfileCreation4": "Settings",
     "accountSwitchPage_ProfileCreation5": "Log out",
+    "accountSwitchPage_ProfileCreation6": "Student, Company",
+    "accountSwitchPage_ProfileCreation7": "Hai Pham student",
 
     "companyprofileinput_ProfileCreation1": "Welcome to Student Hub",
     "companyprofileinput_ProfileCreation2": "Tell us about your company and you will be on your way connect with high-skilled students",
@@ -108,6 +176,38 @@
     "companyprofileinput_ProfileCreation10": "Website",
     "companyprofileinput_ProfileCreation11": "Description",
     "companyprofileinput_ProfileCreation12": "Continue",
+
+    "setting1": "Change Password",
+
+    "educationpop1": "Add education",
+    "educationpop2": "'School name: ",
+    "educationpop3": "Please enter school name",
+    "educationpop4": "Start year: ",
+    "educationpop5": "Select Year",
+    "educationpop6": "End year:  ",
+    "educationpop7": "Make sure to fill all the fields",
+    "educationpop8": "Cancel",
+    "educationpop9": "Add",
+
+    "languagepop1": "Edit language",
+    "languagepop2": "Native",
+    "languagepop3": "Intermediate",
+    "languagepop4": "Basic",
+    "languagepop5": "Advanced",
+    "languagepop6": "Add language",
+    "languagepop7": "Select Language",
+    "languagepop8": "Select Level",
+
+    "projectpop1": "Add project",
+    "projectpop2": "Project name:",
+    "projectpop3": "Enter project name",
+    "projectpop4": "No Date Chosen",
+    "projectpop5": "Skills",
+    "projectpop6": "You already entered that",
+    "projectpop7": "Add your skills",
+    "projectpop8": "Project description:",
+    "projectpop9": "Enter project description",
+
 
     "companyprofileedit_ProfileCreation1": "Edit",
     "companyprofileedit_ProfileCreation2": "Cancel",
@@ -126,11 +226,32 @@
     "studentprofileinput1_ProfileCreation2": "Techstack",
     "studentprofileinput1_ProfileCreation3": "Select your main techstack",
     "studentprofileinput1_ProfileCreation4": "Next",
+    "studentprofileinput1_ProfileCreation5": "Added new language:",
+    "studentprofileinput1_ProfileCreation6": "Level:",
+    "studentprofileinput1_ProfileCreation7": "School: ",
+    "studentprofileinput1_ProfileCreation8": "Start: ",
+    "studentprofileinput1_ProfileCreation9": "End: ",
+    "studentprofileinput1_ProfileCreation10": "Languages",
+    "studentprofileinput1_ProfileCreation11": "Educations",
+
 
     "studentprofileinput2_ProfileCreation1": "Intelligent Taxi Dispatching system",
     "studentprofileinput2_ProfileCreation2": "09/2020 - 12/2020, 4 months",
     "studentprofileinput2_ProfileCreation3": "It is the developer of a super-app for ride-hailing, food delivery, and digital payments services on mobile devices that operates in Singapore, Malaysia, ..",
     "studentprofileinput2_ProfileCreation4": "Experience",
+    "studentprofileinput2_ProfileCreation5": "Projects",
+    "studentprofileinput2_ProfileCreation6": "Skillset",
+    "studentprofileinput2_ProfileCreation7": "Add Project",
+    "studentprofileinput2_ProfileCreation8": "Title",
+    "studentprofileinput2_ProfileCreation9": "Skillset",
+    "studentprofileinput2_ProfileCreation10": "Description",
+    "studentprofileinput2_ProfileCreation11": "Add",
+    "studentprofileinput2_ProfileCreation12": "Edit Project",
+    "studentprofileinput2_ProfileCreation13": "Edit",
+    "studentprofileinput2_ProfileCreation14": "Skill 1",
+    "studentprofileinput2_ProfileCreation15": "Skill 2",
+    "studentprofileinput2_ProfileCreation16": "End Date",
+
     
     "studentprofileinput3_ProfileCreation1": "Student Profile",
     "studentprofileinput3_ProfileCreation2": "CV & Transcript",
@@ -139,6 +260,14 @@
     "studentprofileinput3_ProfileCreation5": "Continue",
     "studentprofileinput3_ProfileCreation6": "Choose File or Drag File In",
     "studentprofileinput3_ProfileCreation7": "Change File",
+    "studentprofileinput3_ProfileCreation8": "Please upload your CV",
+
+    "offerlist1": "Offer List",
+    "offerlist2": "Project: ",
+    "offerlist3": "Owner of this project has sent your an offer",
+    "offerlist4": "Accept",
+    "offerlist5": "Reject",
+    
 
     "projectpost1_project1": "Project Post",
     "projectpost1_project2": "1/4 Let's start with a strong title",
@@ -239,6 +368,10 @@
     "studentdashboard_student14": " days ago",
     "studentdashboard_student15": "Project title not found",
     "studentdashboard_student16": "No project description found",
+    "studentdashboard_student17": "View Offer",
+    "studentdashboard_student18": "Dashboard",
+    "studentdashboard_student19": "Description",
+    "studentdashboard_student20": "Title",
 
     "studentdashboardworking_student1": "Your projects",
     "studentdashboardworking_student2": "Submitted Proposal (0)",
@@ -275,6 +408,7 @@
     "projectlistcover_student4": "Submit",
     "projectlistcover_student5": "Cover letter cannot be empty",
     "projectlistcover_student6": "Proposal submitted successfully",
+    "projectlistcover_student7": "Write your cover letter here...",
 
     "savedprojectpage_student1": "No favorite projects found"
 

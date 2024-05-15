@@ -59,7 +59,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
                       onPressed: () {
                         context.router.push(const OfferListPageRoute());
                       },
-                      child: Text("View Offer"),
+                      child: Text("studentdashboard_student17".tr()),
                     ),
                   ],
                 ),
@@ -130,7 +130,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            proposal.project.title ?? "Title",
+            proposal.project.title ?? "studentdashboard_student20".tr(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -138,7 +138,7 @@ class _StudentWorkingProjects extends State<StudentWorkingProjects> {
           ),
           SizedBox(height: 10),
           Text(
-            proposal.project.description ?? "Description",
+            proposal.project.description ??  "studentdashboard_student19".tr(),
             style: TextStyle(),
           ),
           SizedBox(height: 5),

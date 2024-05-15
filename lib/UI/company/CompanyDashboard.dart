@@ -392,14 +392,14 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
         String newValue;
 
         return AlertDialog(
-          title: Text('Edit Project'),
+          title: Text("companydashboard_company19".tr()),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text('Keep the fields empty to keep the current values'),
+              Text("companydashboard_company20".tr()),
               // Input field for project title
               Tooltip(
-                message: 'Leave empty to keep current title',
+                message: "companydashboard_company21".tr(),
                 child: TextField(
                   onChanged: (value) {
                     projectTitle = value;
@@ -411,39 +411,39 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
               ),
               // Input field for project description
               Tooltip(
-                message: 'Leave empty to keep current description',
+                message: "companydashboard_company22".tr(),
                 child: TextField(
                   onChanged: (value) {
                     projectDescription = value;
                   },
                   decoration: InputDecoration(
-                    labelText: 'Project Description',
+                    labelText:  "companydashboard_company23".tr(),
                   ),
                 ),
               ),
               // Input field for number of students
               Tooltip(
-                message: 'Leave empty to keep current number of students',
+                message: "companydashboard_company24".tr(),
                 child: TextField(
                   onChanged: (value) {
                     numberOfStudents = int.tryParse(value) ?? 0;
                   },
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    labelText: 'Number of Students',
+                    labelText: "companydashboard_company25".tr(),
                   ),
                 ),
               ),
               SizedBox(height: 10)
               ,
               //text field for project scope
-              const Align(
+               Align(
                 alignment: Alignment.centerLeft, // Align to the left side
                 child: Padding(
-                  padding: const EdgeInsets.only(
+                  padding:  EdgeInsets.only(
                       top: 8.0), // Add top padding for spacing
                   child: Text(
-                    'Choose your desired project Scope',
+                    "companydashboard_company26".tr(),
                     style: TextStyle(
                         fontSize: 16), // Adjust the font size as needed
                   ),
@@ -496,14 +496,14 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
 
                 Navigator.of(context).pop();
               },
-              child: Text('Save'),
+              child: Text("companydashboard_company27".tr()),
             ),
             TextButton(
               onPressed: () {
                 // Close the dialog without saving
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: Text("companydashboard_company28".tr()),
             ),
           ],
         );
@@ -525,7 +525,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
   Future<void> startWorkingOnProject(ProjectOutput project) async {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
     showSnackBarSuccess(
-        context, 'Project started, check active tab for details!');
+        context, "companydashboard_company29".tr());
   }
 
   Future<void> deleteProject(int projectId) async {
@@ -533,7 +533,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     showSnackBarSuccess(
         context,
         context.read<CompanyDashboardCubit>().state.message ??
-            'Failed to delete project!');
+             "companydashboard_company30".tr());
   }
 
   Future<void> handleEditProject(ProjectPostForm project, int projectId) async {
@@ -541,6 +541,6 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     showSnackBarSuccess(
         context,
         context.read<CompanyDashboardCubit>().state.message ??
-            'Project update failed!');
+            "companydashboard_company31".tr());
   }
 }

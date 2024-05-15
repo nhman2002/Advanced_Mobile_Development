@@ -42,7 +42,7 @@ class _StudentProfileInputTechStackState
         level: level,
       );
       languages.add(newLanguage);
-          print("Added new language: $language, Level: $level");
+          print("studentprofileinput1_ProfileCreation5".tr() + '$language' + "studentprofileinput1_ProfileCreation6".tr()+ '$level');
     });
   }
 
@@ -54,7 +54,7 @@ class _StudentProfileInputTechStackState
 
   void _addNewEducation(String schoolName, int yearsStart, int yearsEnd) {
     setState(() {
-      print("ID: , School: $schoolName, Start: $yearsStart, End: $yearsEnd");
+      print("studentprofileinput1_ProfileCreation7".tr() + '$schoolName' + "studentprofileinput1_ProfileCreation8".tr() + '$yearsStart' + "studentprofileinput1_ProfileCreation9".tr() + '$yearsEnd');
       final EducationInput newEducation = EducationInput(
         schoolName: schoolName,
         startYear: yearsStart,
@@ -201,7 +201,7 @@ class _StudentProfileInputTechStackState
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Languages",
+                          "studentprofileinput1_ProfileCreation10".tr(),
                           style: GoogleFonts.poppins(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
@@ -282,7 +282,7 @@ class _StudentProfileInputTechStackState
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Educations",
+                          "studentprofileinput1_ProfileCreation11".tr(),
                           style: GoogleFonts.poppins(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,

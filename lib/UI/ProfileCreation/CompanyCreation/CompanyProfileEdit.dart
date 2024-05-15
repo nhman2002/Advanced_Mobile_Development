@@ -62,11 +62,11 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit> {
               ],
             ),
             SizedBox(height: 20),
-            _buildInputField('Company Name'),
+            _buildInputField("companyprofileinput_ProfileCreation9".tr()),
             SizedBox(height: 10),
-            _buildInputField('Website'),
+            _buildInputField("companyprofileinput_ProfileCreation10".tr()),
             SizedBox(height: 10),
-            _buildInputField('Description'),
+            _buildInputField("companyprofileinput_ProfileCreation11".tr()),
             Spacer(),
             Column(
               children: [

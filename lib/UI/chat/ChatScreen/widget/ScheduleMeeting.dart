@@ -59,22 +59,22 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Schedule Meeting'),
+      title: Text("schedulemeeting1".tr()),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextField(
             controller: _titleController,
-            decoration: InputDecoration(labelText: 'Title'),
+            decoration: InputDecoration(labelText: "schedulemeeting2".tr()),
           ),
           TextField(
             controller: _contentController,
-            decoration: InputDecoration(labelText: 'Content'),
+            decoration: InputDecoration(labelText: "schedulemeeting3".tr()),
           ),
           Row(
             children: [
-              Text('Start Time: '),
+              Text("schedulemeeting4".tr()),
               TextButton(
                 onPressed: () => _selectStartTime(context),
                 child: Text(
@@ -85,7 +85,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           ),
           Row(
             children: [
-              Text('End Time: '),
+              Text("schedulemeeting5".tr()),
               TextButton(
                 onPressed: () => _selectEndTime(context),
                 child: Text(
@@ -96,11 +96,11 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           ),
           TextField(
             controller: _meetingRoomController,
-            decoration: InputDecoration(labelText: 'Meeting Room ID'),
+            decoration: InputDecoration(labelText: "schedulemeeting6".tr()),
           ),
           TextField(
             controller: _meetingRoomCodeController,
-            decoration: InputDecoration(labelText: 'Meeting Room Code'),
+            decoration: InputDecoration(labelText: "schedulemeeting7".tr()),
           ),
         ],
       ),
@@ -109,14 +109,14 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          child: Text("schedulemeeting8".tr()),
         ),
         TextButton(
           onPressed: () {
             handleScheldule(context);
             Navigator.of(context).pop();
           },
-          child: Text('Schedule'),
+          child: Text("schedulemeeting9".tr()),
         ),
       ],
     );
@@ -178,7 +178,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     if (_titleController.text.isEmpty ||
         _contentController.text.isEmpty ||
         _meetingRoomController.text.isEmpty) {
-      ShowSnackBarWarningEvent('Please fill in all the required fields.');
+      ShowSnackBarWarningEvent("forgotpassword_auth6".tr());
       return;
     }
     String startTime = _startTime.toIso8601String();
@@ -210,9 +210,9 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     // }
     final result1 = await _interview.postInterview(form);
     if (result1 is DataError) {
-      ShowSnackBarWarningEvent('Failed to schedule meeting');
+      ShowSnackBarWarningEvent("schedulemeeting10".tr());
     } else if (result1 is DataSuccess) {
-      ShowSnackBarSuccessEvent('Meeting scheduled successfully');
+      ShowSnackBarSuccessEvent("schedulemeeting11".tr());
       widget.onScheduleSuccess?.call(); // Call the callback function
     }   //call api to create meeting
 

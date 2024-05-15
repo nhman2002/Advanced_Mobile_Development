@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashBoard_state.dart';
 import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashboard_cubit.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class OfferListPage extends StatefulWidget {
@@ -21,7 +23,7 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
         final offers = state.offerList;
         return Scaffold(
           appBar: AppBar(
-            title: Text('Offer List'),
+            title: Text("offerlist1".tr()),
           ),
           body: ListView.builder(
             itemCount: offers.length,
@@ -52,12 +54,12 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Project: $projectName',
+              "offerlist2".tr() + '$projectName',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 8),
             Text(
-              'Owner of this project has sent your an offer',
+              "offerlist3".tr(),
             ),
             SizedBox(height: 16),
             Row(
@@ -70,7 +72,7 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  child: Text('Accept'),
+                  child: Text("offerlist4".tr()),
                 ),
                 SizedBox(width: 8),
                 ElevatedButton(
@@ -80,7 +82,7 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.red),
                   ),
-                  child: Text('Reject'),
+                  child: Text("offerlist5".tr()),
                 ),
               ],
             ),

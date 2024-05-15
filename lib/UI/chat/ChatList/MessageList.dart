@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/config/router.dart';
@@ -8,6 +9,8 @@ import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
 import 'package:student_hub/core/repository/message.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 @RoutePage()
 class MessageListScreen extends StatefulWidget {
@@ -63,7 +66,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
           ],
         ),
         body: _buildMessageContent(),
-        bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Message'),
+        bottomNavigationBar:  CustomBottomAppBar(selectedTab:  "messagelist1".tr()),
     );
   }
 
@@ -74,8 +77,8 @@ class _MessageListScreenState extends State<MessageListScreen> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration: InputDecoration(
-              labelText: "Search",
-              hintText: "Search",
+              labelText: "messagelist2".tr(),
+              hintText: "messagelist2".tr(),
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(25.0)),

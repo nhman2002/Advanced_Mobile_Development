@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/notification/cubit/notification_cubit.dart';
@@ -117,7 +118,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
     switch (notification.typeNotifyFlag) {
       case '0': // Offer
         icon = Icons.link;
-        actionLabel = 'View Offer';
+        actionLabel = "notificationscreen1".tr();
         onPressedAction = () {
           context.router.push(const StudentDashBoardWrapperRoute());
         };
@@ -132,7 +133,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
         break;
       case '3': // Chat
         icon = Icons.chat;
-        actionLabel = 'Open Chat';
+        actionLabel = "notificationscreen4".tr();
         onPressedAction = () {
           // Add action for chat
           context.router.push(const MessageListScreenRoute());
@@ -141,7 +142,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
         break;
       case '2': // Submitted
         icon = Icons.description;
-        actionLabel = 'View Proposal';
+        actionLabel = "notificationscreen5".tr();
         onPressedAction = () {
           context.router.push(const CompanyDashboardWrapperRoute());
           // Add action for proposal
@@ -150,14 +151,14 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
         break;
       case '4': // Hired
         icon = Icons.work;
-        actionLabel = 'View Project';
+        actionLabel =  "notificationscreen6".tr();
         onPressedAction = () {
           context.router.push(const StudentDashBoardWrapperRoute());
         };
         break;
       default:
         icon = Icons.notifications;
-        actionLabel = 'View Notification';
+        actionLabel = "notificationscreen7".tr();
         onPressedAction = () {
           // Add default action
         };
@@ -204,7 +205,7 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
     } else if (now.year == day.year &&
         now.month == day.month &&
         now.day - day.day == 1) {
-      return 'Yesterday';
+      return "messagedetail5".tr();
     } else {
       return '${day.day}/${day.month}/${day.year}';
     }

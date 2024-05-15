@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Import package intl
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import BlocBuilder
@@ -148,7 +149,6 @@ class _MessageDetailScreenState extends State<ChatWidget> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.brown,
             ),
             padding: EdgeInsets.all(16),
             child: Column(
@@ -158,7 +158,6 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   title,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
                   ),
                 ),
                 Text(
@@ -179,7 +178,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                     onPressed: () {
                       context.router.replace(VideoCallScreenRoute(channelName: channelName, tempToken: code ));
                     },
-                    child: Text('Join Interview'),
+                    child: Text("messagedetail1".tr()),
                   ),
               ],
             ),
@@ -189,11 +188,11 @@ class _MessageDetailScreenState extends State<ChatWidget> {
             PopupMenuButton(
               itemBuilder: (context) => [
                 PopupMenuItem(
-                  child: Text('Edit'),
+                  child: Text("messagedetail2".tr()),
                   value: 'edit',
                 ),
                 PopupMenuItem(
-                  child: Text('Cancel Interview'),
+                  child: Text("messagedetail3".tr()),
                   value: 'cancel',
                 ),
               ],
@@ -304,7 +303,7 @@ Widget _buildMessageInput(BuildContext context) {
           child: TextField(
             controller: _messageController,
             decoration: InputDecoration(
-              hintText: 'Type your message...',
+              hintText: "messagedetail4".tr(),
               border: InputBorder.none,
             ),
           ),
@@ -338,7 +337,7 @@ Widget _buildMessageInput(BuildContext context) {
     if (time.isAfter(today)) {
       return DateFormat.Hm().format(time); // Sử dụng DateFormat từ package intl
     } else if (time.isAfter(yesterday)) {
-      return 'Yesterday';
+      return "messagedetail5".tr();
     } else {
       return DateFormat('MMM d').format(time);
     }

@@ -58,22 +58,22 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildProposalSectionButton(
-                        Theme.of(context), 'Proposals', Colors.black, false,
+                        Theme.of(context), "companyprojecthired_company1".tr(), Colors.black, false,
                         () {
                       context.router
                           .replace(const CompanyProjectProposalsRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Detail', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company2".tr(), Colors.black, false, () {
                       context.router.replace(const CompanyProjectDetailRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Message', Colors.black, false, () {
+                        Theme.of(context), "companyprojecthired_company3".tr(), Colors.black, false, () {
                       context.router
                           .replace(const CompanyProjectMessageRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), 'Hired', Colors.white, true, () {}),
+                        Theme.of(context), "companyprojecthired_company4".tr(), Colors.white, true, () {}),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -178,7 +178,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   onPressed: () {
                     
                   },
-                  child: Text("Information"),
+                  child: Text("companyprojecthired_company5".tr()),
                 ),
               ),
               

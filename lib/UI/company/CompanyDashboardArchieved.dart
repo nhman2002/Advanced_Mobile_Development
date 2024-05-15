@@ -111,7 +111,7 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
                   Column(
                     children: [
                       Text(
-                       "No Archived Projects",
+                       "companydashboardarchived_company1".tr(),
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -337,6 +337,6 @@ class _CompanyDashboardArchieved extends State<CompanyDashboardArchieved>
   Future<void> startWorkingOnProject(ProjectOutput project) async {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
     showSnackBarSuccess(
-        context, 'Project started, check active tab for details!');
+        context, "companydashboardarchived_company2".tr());
   }
 }

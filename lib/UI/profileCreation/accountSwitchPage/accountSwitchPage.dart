@@ -61,7 +61,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         .replace(const CompanyDashboardWrapperRoute());
                   } else
                     showSnackBarWarning(
-                        context, 'Please complete your profile first!');
+                        context, "accountswitch1".tr());
                 },
                 icon: Icon(
                   Icons.home,

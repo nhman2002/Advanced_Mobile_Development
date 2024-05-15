@@ -4,6 +4,8 @@ import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/config/dependency.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 class CustomBottomAppBar extends StatefulWidget {
   final String _selectedTab;
@@ -28,22 +30,22 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildTabItem(
-            tabName: 'Projects',
+            tabName: "bottomappbar1".tr(),
             icon: Icons.work,
             badge: Badge(child: Icon(Icons.work)),
           ),
           _buildTabItem(
-            tabName: 'Dashboard',
+            tabName: "bottomappbar2".tr(),
             icon: Icons.dashboard,
             badge: Badge(child: Icon(Icons.dashboard)),
           ),
           _buildTabItem(
-            tabName: 'Message',
+            tabName: "bottomappbar3".tr(),
             icon: Icons.message,
             badge: Badge(child: Icon(Icons.message)),
           ),
           _buildTabItem(
-            tabName: 'Notifications',
+            tabName: "bottomappbar4".tr(),
             icon: Icons.notifications,
             badge: Badge(child: Icon(Icons.notifications)),
           ),
@@ -64,21 +66,21 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           _selectedTab = tabName;
         });
         // Add onPressed logic here
-        if (tabName == 'Projects') {
+        if (tabName == "bottomappbar1".tr()) {
           if (userRole == 0) {
             context.router.replace(const ProjectListWrapperRoute());
           } else {
             context.router.replace(const ProjectListWrapperRoute());
           }
-        } else if (tabName == 'Dashboard') {
+        } else if (tabName == "bottomappbar2".tr()) {
           if (userRole == 0) {
             context.router.replace(const StudentDashBoardWrapperRoute());
           } else {
             context.router.replace(const CompanyDashboardWrapperRoute());
           }
-        } else if (tabName == 'Message') {
+        } else if (tabName == "bottomappbar3".tr()) {
           context.router.replace(const MessageListScreenRoute());
-        } else if (tabName == 'Notifications') {
+        } else if (tabName == "bottomappbar4".tr()) {
           context.router.replace(const NotificationScreenRoute());
         }
       },

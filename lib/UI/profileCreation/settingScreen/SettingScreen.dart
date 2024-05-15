@@ -81,7 +81,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SizedBox(height: 20.0),
                 ListTile(
-                  title: Text("Change Password"),
+                  title: Text("setting1".tr()),
                   onTap: () {
                     // Navigate to the change password screen
                     context.router.push(const ChangePasswordScreenRoute());

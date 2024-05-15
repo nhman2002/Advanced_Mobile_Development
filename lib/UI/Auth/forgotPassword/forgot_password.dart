@@ -82,8 +82,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   _handleForgotPassword(_emailController.text);
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Please fill in all the required fields."),
+                    SnackBar(
+                      content: Text("forgotpassword_auth6".tr()),
                     ),
                   );
                 }

@@ -113,7 +113,7 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
                   Column(
                     children: [
                       Text(
-                        "No working projects",
+                        "companydashboardworking_company1".tr(),
                       ),
                     ],
                   ),
@@ -138,7 +138,7 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
               ],
             ),
           ),
-          bottomNavigationBar: const CustomBottomAppBar(selectedTab: 'Dashboard'),
+          bottomNavigationBar: CustomBottomAppBar(selectedTab: "bottomappbar2".tr()),
         );
       },
     );
@@ -337,6 +337,6 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
   Future<void> startWorkingOnProject(ProjectOutput project) async {
     await context.read<CompanyDashboardCubit>().workingOnProject(project);
     showSnackBarSuccess(
-        context, 'Project started, check active tab for details!');
+        context, "companydashboard_company29".tr());
   }
 }
