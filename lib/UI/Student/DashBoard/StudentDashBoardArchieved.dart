@@ -131,7 +131,7 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
+        border: Border.all(),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
@@ -147,12 +147,12 @@ class _StudentArchievedProject extends State<StudentArchievedProject> {
           SizedBox(height: 10),
           Text(
             proposal.project.description ?? "Description",
-            style: TextStyle(color: Colors.green),
+            style: TextStyle(),
           ),
           SizedBox(height: 5),
           Text(
             daysValue,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
         ],
       ),

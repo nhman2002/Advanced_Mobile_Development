@@ -38,7 +38,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -53,7 +52,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                   project?.title ?? '',
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -79,7 +77,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                           Text(
                             project?.description ?? "companyprojectdetail_company1".tr(),
                             style: TextStyle(
-                              color: Colors.black,
                               fontWeight: FontWeight.bold, // Make the text bold
                             ),
                           ),
@@ -91,7 +88,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                               Icon(
                                 Icons.alarm,
                                 size: 40.0,
-                                color: Colors.black,
                               ),
                               SizedBox(width: 30),
                               Expanded(
@@ -101,7 +97,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                     Text(
                                       "companyprojectdetail_company2".tr(),
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -112,7 +107,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                           Icon(
                                             Icons.remove,
                                             size: 10.0,
-                                            color: Colors.black,
                                           ),
                                           SizedBox(
                                               width:
@@ -120,7 +114,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                           Expanded(
                                             child: Text(
                                               project?.projectScopeFlag == 0 ? "companyprojectdetail_company3".tr() : "companyprojectdetail_company3".tr(),
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                         ],
@@ -137,7 +131,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                               Icon(
                                 Icons.people,
                                 size: 40.0,
-                                color: Colors.black,
                               ),
                               SizedBox(width: 30),
                               Expanded(
@@ -147,7 +140,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                     Text(
                                       "companyprojectdetail_company5".tr(),
                                       style: TextStyle(
-                                        color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -158,7 +150,6 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                           Icon(
                                             Icons.remove,
                                             size: 10.0,
-                                            color: Colors.black,
                                           ),
                                           SizedBox(
                                               width:
@@ -166,7 +157,7 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                           Expanded(
                                             child: Text(
                                               '${project?.numberOfStudents}' + "companyprojectdetail_company6".tr(),
-                                              style: TextStyle(color: Colors.black),
+                                              style: TextStyle(),
                                             ),
                                           ),
                                         ],

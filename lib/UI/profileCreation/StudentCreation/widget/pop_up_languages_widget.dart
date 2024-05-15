@@ -85,7 +85,6 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
           style: GoogleFonts.poppins(
             fontSize: 20,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF406AFF),
           )),
       content: SizedBox(
         height: 400.0,
@@ -103,7 +102,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                     )),
               ),
             ),
@@ -117,7 +116,6 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                   selectedItem ?? "Select Language",
                   style: GoogleFonts.poppins(
                     fontSize: 13,
-                    color: Colors.grey,
                   ),
                 );
               },
@@ -154,7 +152,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                   )),
             ),
             Column(
@@ -165,7 +163,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                     level,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
-                      color: isDarkMode ? Colors.white : Colors.black,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   leading: Radio<String>(
@@ -198,7 +196,6 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                 child: Text(
                   'Make sure to fill all the fields',
                   style: GoogleFonts.poppins(
-                    color: Colors.red,
                     fontSize: 14.0,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold,
@@ -215,7 +212,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
           ),
           child: Text('Cancel',
               style: GoogleFonts.poppins(
-                  color: Color(0xFF406AFF), fontWeight: FontWeight.w500)),
+                fontWeight: FontWeight.w500)),
           onPressed: () {
             Navigator.of(context).pop();
             _selectedLanguage = "null";
@@ -228,7 +225,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
           ),
           child: Text('OK',
               style: GoogleFonts.poppins(
-                  color: Colors.white, fontWeight: FontWeight.w500)),
+                fontWeight: FontWeight.w500)),
           onPressed: () {
             // Handle the OK button press
             //check existing language
@@ -252,7 +249,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
 Widget _customItemBuilder(BuildContext context, String item, bool isSelected) {
   bool isDarkMode = Provider.of<ThemeMode>(context) as bool;
   return Container(
-      color: isDarkMode ? Color(0xFF2f2f2f) : Colors.white,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
       child: Padding(
           padding: const EdgeInsets.fromLTRB(5, 15, 5, 15),
           child: Column(
@@ -271,7 +268,6 @@ Widget _customItemBuilder(BuildContext context, String item, bool isSelected) {
                 ),
               ),
               const Divider(
-                color: Color(0xFF777B8A),
                 thickness: 0.2,
               ),
             ],
@@ -281,10 +277,9 @@ Widget _customItemBuilder(BuildContext context, String item, bool isSelected) {
 Widget _customLoadingBuilder(BuildContext context, String item) {
   bool isDarkMode = Provider.of<ThemeMode>(context) as bool;
   return Container(
-      color: isDarkMode ? Color(0xFF2f2f2f) : Colors.white,
+          color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
       child: Center(
         child: CircularProgressIndicator(
-          color: Color(0xFF406AFF),
         ),
       ));
 }

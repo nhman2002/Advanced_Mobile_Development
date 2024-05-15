@@ -36,7 +36,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -51,7 +50,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   projectDetail!.title!,
                   style: TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -147,7 +145,7 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
                   // Job title
                   Text(
                     pos,
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(),
                   ),
                 ],
               ),
@@ -189,7 +187,6 @@ class _CompanyProjectHired extends State<CompanyProjectHired> {
           ),
           SizedBox(height: 10), // Add some vertical space between sections
           Divider(
-            color: Colors.grey,
             thickness: 1.0,
           ),
         ],

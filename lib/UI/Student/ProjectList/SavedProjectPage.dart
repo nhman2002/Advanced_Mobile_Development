@@ -45,7 +45,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                     // Implement back button logic
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: Icon(Icons.arrow_back),
                 ),
                 SizedBox(
                     width:
@@ -53,7 +53,6 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                 Text(
                   'Saved Projects',
                   style: TextStyle(
-                    color: Colors.black,
                     fontSize: 18,
                   ),
                 ),
@@ -65,7 +64,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                   // Implement route logic here
                 },
                 icon:
-                    Icon(Icons.account_circle, color: Colors.white, size: 40.0),
+                    Icon(Icons.account_circle, size: 40.0),
               ),
             ],
           ),
@@ -153,14 +152,14 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
     Container(
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: Colors.grey)),
+        border: Border(bottom: BorderSide()),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "projectlist_student3".tr() + '$daysAgo' + "projectlist_student4".tr(),
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
           SizedBox(height: 5),
           Row(
@@ -169,7 +168,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
               Flexible(
                 child: Text(
                   project.title ?? "projectlist_student5".tr(),
-                  style: TextStyle(color: Colors.green, fontSize: 20),
+                  style: TextStyle(fontSize: 20),
                   overflow: TextOverflow
                       .ellipsis, // Add this line to handle long titles
                   maxLines: 1, // Add this line to limit the title to one line
@@ -180,7 +179,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           SizedBox(height: 5),
           Text(
             "projectlist_student6".tr() + '$projectScope, ${project.numberOfStudents}' +"projectlist_student7".tr(),
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
           SizedBox(height: 5),
           Row(
@@ -189,13 +188,12 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
               Icon(
                 Icons.remove,
                 size: 16.0,
-                color: Colors.black,
               ),
               SizedBox(width: 5),
               Expanded(
                 child: Text(
                   project.description ?? "projectlist_student8".tr(),
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(),
                 ),
               ),
             ],
@@ -203,7 +201,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
           SizedBox(height: 5),
           Text(
             "projectlist_student9".tr() + '$proposal',
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
         ],
       ),

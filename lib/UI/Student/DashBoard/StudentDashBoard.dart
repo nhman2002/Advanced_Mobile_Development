@@ -35,7 +35,6 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                 },
                 icon: Icon(
                   Icons.account_circle,
-                  color: Colors.white,
                   size: 40.0,
                 ),
               ),
@@ -149,7 +148,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
+        border: Border.all(),
       ),
       padding: EdgeInsets.all(5),
       child: Column(
@@ -228,13 +227,12 @@ class _StudentDashBoard extends State<StudentDashBoard> {
           Text(
             proposal.project.title ?? "studentdashboard_student15".tr(),
             style: TextStyle(
-                color: Colors.green,
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0),
           ),
           Text(
             daysValue,
-            style: TextStyle(color: Colors.grey),
+            style: TextStyle(),
           ),
           SizedBox(height: 10),
           Padding(

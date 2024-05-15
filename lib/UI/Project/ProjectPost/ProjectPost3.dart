@@ -120,7 +120,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
               decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: const Color(0xFF008ABD)),
+                    borderSide: BorderSide(),
                   ),
                   hintText: "projectpost3_project8".tr()),
               onChanged: (value) {
@@ -137,7 +137,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
               child: errorMessage.isNotEmpty
                   ? Text(
                       errorMessage,
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+                      style: TextStyle(fontSize: 16),
                     )
                   : SizedBox(),
             ),

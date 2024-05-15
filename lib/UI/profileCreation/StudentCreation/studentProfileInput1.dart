@@ -113,7 +113,6 @@ class _StudentProfileInputTechStackState
           title: Text(''),
           leading: IconButton(
             icon: Icon(Icons.home),
-            color: Colors.black,
             onPressed: () {
               context.router.replace(const SwitchAccountPageRoute());
             },
@@ -191,8 +190,8 @@ class _StudentProfileInputTechStackState
                         },
                         chipColor: Colors.white,
                         selectedChipColor: Colors.purple,
-                        textStyle: TextStyle(color: Colors.black),
-                        selectedTextStyle: TextStyle(color: Colors.white),
+                        textStyle: TextStyle(),
+                        selectedTextStyle: TextStyle(),
                       ),
                 SizedBox(height: 20),
                 Row(
@@ -233,7 +232,6 @@ class _StudentProfileInputTechStackState
                           icon: const Icon(
                             Icons.add,
                             size: 30,
-                            color: Color(0xFF406AFF),
                           ),
                         ),
                       ),
@@ -251,7 +249,6 @@ class _StudentProfileInputTechStackState
                       icon: Icon(
                         Icons.edit,
                         size: 30,
-                        color: Color(0xFF406AFF),
                       ),
                     ),
                   ],
@@ -264,7 +261,6 @@ class _StudentProfileInputTechStackState
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromARGB(255, 190, 190, 192),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),
@@ -321,7 +317,6 @@ class _StudentProfileInputTechStackState
                           icon: const Icon(
                             Icons.add,
                             size: 30,
-                            color: Color(0xFF406AFF),
                           ),
                         ),
                       ),
@@ -336,7 +331,6 @@ class _StudentProfileInputTechStackState
                         Container(
                           decoration: BoxDecoration(
                             border: Border.all(
-                              color: Color.fromARGB(255, 190, 190, 192),
                               width: 1,
                             ),
                             borderRadius: BorderRadius.circular(10),

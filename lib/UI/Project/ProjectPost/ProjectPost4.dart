@@ -50,7 +50,6 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                   ),
                   SizedBox(height: 16),
                   Divider(
-                    color: Color.fromARGB(255, 130, 130, 130),
                     height: 0.5,
                   ),
                   SizedBox(height: 16),
@@ -63,7 +62,6 @@ class _ProjectPosting4State extends State<ProjectPosting4> with SnackBarDefault 
                   ),
                   SizedBox(height: 18),
                   Divider(
-                    color: Color.fromARGB(255, 130, 130, 130),
                     height: 0.5,
                   ),
                   SizedBox(height: 18),

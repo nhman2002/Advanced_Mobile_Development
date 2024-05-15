@@ -74,7 +74,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Text(
                     "forgotpassword_auth3".tr(),
-                    style: TextStyle(color: Colors.red),
                   ),
                 ),
               const SizedBox(height: 20.0),
