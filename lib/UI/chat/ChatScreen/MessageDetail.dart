@@ -126,67 +126,75 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       duration: Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
-  }Widget _buildMessageItem(Map<String, dynamic> message) {
-  // Check if the message contains interview information
-  if (message['interview'] != null) {
-    final interview = message['interview'];
-    final title = interview.title;
-    final content = message['text'];
-    final start = interview.startTime;
-    final end = interview.endTime;
-    final roomId = interview.meetingRoomId;
-    final code = interview.meetingRoomCode;
-    final userRole = _localStorage.getString(key: StorageKey.currentRole);
-    final channelName = interview.meetingRoomCode;
+  }
 
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: message['isSender'] ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.background
-            ),
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.onSecondary,
+  Widget _buildMessageItem(Map<String, dynamic> message) {
+    // Check if the message contains interview information
+    if (message['interview'] != null) {
+      final interview = message['interview'];
+      final title = interview.title;
+      final content = message['text'];
+      final start = interview.startTime;
+      final end = interview.endTime;
+      final roomId = interview.meetingRoomId;
+      final code = interview.meetingRoomCode;
+      final userRole = _localStorage.getString(key: StorageKey.currentRole);
+      final channelName = interview.meetingRoomCode;
+
+      return Container(
+        margin: EdgeInsets.only(bottom: 10),
+        alignment:
+            message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: message['isSender']
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.start,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: message['isSender']
+                      ? Theme.of(context).colorScheme.secondary
+                      : Theme.of(context).colorScheme.background),
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onSecondary,
+                    ),
                   ),
-                ),
-                Text(
-                  content,
-                  style: TextStyle(
-                    color: message['isSender'] ? Colors.white : Colors.black,
+                  Text(
+                    content,
+                    style: TextStyle(
+                      color: message['isSender'] ? Colors.white : Colors.black,
+                    ),
                   ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'Start: $start\nEnd: $end\nRoom ID: $roomId',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: message['isSender'] ? Colors.white70 : Colors.grey,
+                  SizedBox(height: 4),
+                  Text(
+                    'Start: $start\nEnd: $end\nRoom ID: $roomId',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: message['isSender'] ? Colors.white70 : Colors.grey,
+                    ),
                   ),
-                ),
                   ElevatedButton(
                     onPressed: () {
-                      context.router.replace(VideoCallScreenRoute(channelName: channelName, tempToken: code ));
+                      context.router.replace(VideoCallScreenRoute(
+                          channelName: title, tempToken: code));
                     },
                     child: Text("messagedetail1".tr()),
                   ),
-              ],
+                ],
+              ),
             ),
-          ),
-          if (userRole != "0") // If user role is not "0" (e.g., admin), show PopupMenuButton
-            SizedBox(width: 8),
+            if (userRole !=
+                "0") // If user role is not "0" (e.g., admin), show PopupMenuButton
+              SizedBox(width: 8),
             PopupMenuButton(
               itemBuilder: (context) => [
                 PopupMenuItem(
@@ -206,122 +214,170 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                 }
               },
             ),
-        ],
-      ),
-    );
-  } else {
-    // If interview is null, build the default message item
-    return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      alignment: message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: message['isSender'] ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: [
-          if (!message['isSender']) ...[
-            Icon(Icons.verified_user_rounded),
-            SizedBox(width: 8),
           ],
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: message['isSender'] ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.tertiary,
+        ),
+      );
+    } else {
+      // If interview is null, build the default message item
+      return Container(
+        margin: EdgeInsets.only(bottom: 10),
+        alignment:
+            message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: message['isSender']
+              ? MainAxisAlignment.end
+              : MainAxisAlignment.start,
+          children: [
+            if (!message['isSender']) ...[
+              Icon(Icons.verified_user_rounded),
+              SizedBox(width: 8),
+            ],
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: message['isSender']
+                    ? Theme.of(context).colorScheme.secondary
+                    : Theme.of(context).colorScheme.tertiary,
+              ),
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!message['isSender'])
+                    Text(
+                      message['name'],
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onTertiary),
+                    ),
+                  Text(
+                    message['text'],
+                    style: TextStyle(
+                      color: message['isSender']
+                          ? Theme.of(context).colorScheme.onSecondary
+                          : Theme.of(context).colorScheme.onTertiary,
+                    ),
+                  ),
+                  SizedBox(height: 4),
+                ],
+              ),
             ),
-            padding: EdgeInsets.all(16),
+            if (message['isSender']) ...[
+              SizedBox(width: 8),
+              Icon(Icons.verified_user_rounded),
+            ],
+          ],
+        ),
+      );
+    }
+  }
+
+  void _editInterview(BuildContext context, Interview interview) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit Interview'),
+          content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (!message['isSender'])
-                  Text(
-                    message['name'],
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.onTertiary
-                    ),
-                  ),
-                Text(
-                  message['text'],
-                  style: TextStyle(
-                    color: message['isSender'] ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.onTertiary,
-                  ),
+                TextFormField(
+                  initialValue: interview.title,
+                  decoration: InputDecoration(labelText: 'Title'),
+                  onChanged: (value) {
+                    // Update the title in the interview map
+                    interview.title = value;
+                  },
                 ),
-                SizedBox(height: 4),
+                // Add more form fields for other interview details like startTime, endTime, etc.
+
               ],
             ),
           ),
-          if (message['isSender']) ...[
-            SizedBox(width: 8),
-            Icon(Icons.verified_user_rounded),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Perform save operation or update backend with modified interview details
+                // After saving, you may want to notify the chat screen to update the UI
+                // You can use something like Bloc or setState to achieve this.
+                // Example: context.read<ChatCubit>().updateInterview(interview);
+                Navigator.of(context).pop();
+              },
+              child: Text('Save'),
+            ),
           ],
+        );
+      },
+    );
+  }
+
+  void _cancelInterview(BuildContext context, Map<String, dynamic> interview) {
+    // Implement cancel interview logic
+  }
+  Widget _buildMessageInput(BuildContext context) {
+    final chatCubit = context.read<ChatCubit>();
+    final projectId = chatCubit.projectId;
+    final userId = chatCubit.userId;
+    final receiverId = chatCubit.receiverId;
+    final currentRole = _localStorage.getString(key: StorageKey.currentRole);
+
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        border: Border.all(),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          if (currentRole != '0') // Check if the current role is not 0
+            IconButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ScheduleDialog(
+                      projectId: projectId,
+                      senderId: userId,
+                      receiverId: receiverId,
+                      onScheduleSuccess: () {
+                        chatCubit.receiveMessageUpdate();
+                      },
+                    );
+                  },
+                );
+              },
+              icon: Icon(Icons.schedule),
+            ),
+          Expanded(
+            child: TextField(
+              controller: _messageController,
+              decoration: InputDecoration(
+                hintText: "messagedetail4".tr(),
+                border: InputBorder.none,
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              _sendMessage(_messageController.text);
+            },
+            icon: Icon(
+              Icons.send,
+            ),
+          ),
         ],
       ),
     );
   }
-}
 
-
-void _editInterview(BuildContext context, Map<String, dynamic> interview) {
-  // Implement edit interview logic
-}
-
-void _cancelInterview(BuildContext context, Map<String, dynamic> interview) {
-  // Implement cancel interview logic
-}
-Widget _buildMessageInput(BuildContext context) {
-  final chatCubit = context.read<ChatCubit>();
-  final projectId = chatCubit.projectId;
-  final userId = chatCubit.userId;
-  final receiverId = chatCubit.receiverId;
-  final currentRole = _localStorage.getString(key: StorageKey.currentRole);
-
-  return Container(
-    padding: EdgeInsets.symmetric(horizontal: 10),
-    decoration: BoxDecoration(
-      border: Border.all(),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Row(
-      children: [
-        if (currentRole != '0') // Check if the current role is not 0
-          IconButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return ScheduleDialog(
-                    projectId: projectId,
-                    senderId: userId,
-                    receiverId: receiverId,
-                    onScheduleSuccess: () {
-                      chatCubit.receiveMessageUpdate();
-                    },
-                  );
-                },
-              );
-            },
-            icon: Icon(Icons.schedule),
-          ),
-        Expanded(
-          child: TextField(
-            controller: _messageController,
-            decoration: InputDecoration(
-              hintText: "messagedetail4".tr(),
-              border: InputBorder.none,
-            ),
-          ),
-        ),
-        IconButton(
-          onPressed: () {
-            _sendMessage(_messageController.text);
-          },
-          icon: Icon(
-            Icons.send,
-          ),
-        ),
-      ],
-    ),
-  );
-}
   Future<void> _sendMessage(String message) async {
     print('Sending message: $message');
     if (message.isNotEmpty) {

@@ -30,22 +30,22 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           _buildTabItem(
-            tabName: "bottomappbar1".tr(),
+            tabName: 'Projects',
             icon: Icons.work,
             badge: Badge(child: Icon(Icons.work)),
           ),
           _buildTabItem(
-            tabName: "bottomappbar2".tr(),
+            tabName: 'Dashboard',
             icon: Icons.dashboard,
             badge: Badge(child: Icon(Icons.dashboard)),
           ),
           _buildTabItem(
-            tabName: "bottomappbar3".tr(),
+            tabName: 'Messages',
             icon: Icons.message,
             badge: Badge(child: Icon(Icons.message)),
           ),
           _buildTabItem(
-            tabName: "bottomappbar4".tr(),
+            tabName: 'Notifications',
             icon: Icons.notifications,
             badge: Badge(child: Icon(Icons.notifications)),
           ),

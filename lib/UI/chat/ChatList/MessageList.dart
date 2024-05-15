@@ -70,7 +70,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                context.router.push(const SwitchAccountPageRoute());
+                context.router.replace(const SwitchAccountPageRoute());
               },
               icon: Icon(
                 Icons.account_circle,
@@ -155,7 +155,8 @@ Widget _buildInterviewContent() {
           onPressed: () {
             // Add your join logic here, for example:
             print('Joining interview ${interviews![index].title}');
-            context.router.push(VideoCallScreenRoute(channelName: interviews![index].meetingRoomId.toString(), tempToken: interviews![index].meetingRoomCode));
+            print('Joining interview code ${interviews![index].meetingRoomCode}');
+            context.router.push(VideoCallScreenRoute(channelName: interviews![index].title ?? '', tempToken: interviews![index].meetingRoomCode));
           },
           child: Text('Join'),
         ),
