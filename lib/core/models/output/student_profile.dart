@@ -82,7 +82,7 @@ class StudentProfile {
       updatedAt: json['result']['updatedAt'] as String? ?? '',
       deletedAt: json['result']['deletedAt'] == null ? null : json['result']['deletedAt'] as String,
       userId: json['result']['userId'] as int,
-      techStackId: json['result']['techStack']['id'] as int,
+      techStackId: json['result']['techStackId'] as int,
       techStackName: json['result']['techStack'] == null ? null : json['result']['techStack']['name'] as String,
       fullname: json['result']['user'] == null ? null : json['result']['user']['fullname'] as String,
       resume: json['result']['resume'] == null ? null : json['result']['resume'] as String,

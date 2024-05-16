@@ -34,6 +34,7 @@ class _StudentProfileInputTechStackState
   List<LanguageInput> languages = [];
   List<EducationInput> educationList = [];
   bool isEdit = false;
+  bool isInit = false;
 
   void _addNewLanguage(String language, String level) {
     setState(() {
@@ -99,7 +100,8 @@ class _StudentProfileInputTechStackState
     return BlocBuilder<StudentProfileInputCubit, StudentProfileInputState>(
         builder: (context, state) {
       isEdit = state.isEdit ?? false;
-      if (isEdit == true ) {
+      if (isEdit == true && isInit == false) {
+        isInit = true;
         selectedSkills = state.selectedSkillSetList ?? [];
         selectedTechStackID = state.selectedTechStackId.toString();
         languages = state.languageList?.languages ?? [];

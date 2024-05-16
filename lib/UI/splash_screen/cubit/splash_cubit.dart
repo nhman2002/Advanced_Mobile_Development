@@ -47,14 +47,14 @@ class SplashCubit extends WidgetCubit<SplashState> {
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
       if (currentRole == "0"){
         emit(state.copyWith(isCompany: false));
-        if (hasStudentProfile != 'null') 
+        if (hasStudentProfile != null) 
           emit(state.copyWith(hasProfile: true));
         else
           emit(state.copyWith(hasProfile: false));
       }
       else if (currentRole == "1"){
         emit(state.copyWith(isCompany: true));
-        if (hasCompanyProfile != 'null')
+        if (hasCompanyProfile != null)
           emit(state.copyWith(hasProfile: true));
         else
           emit(state.copyWith(hasProfile: false));

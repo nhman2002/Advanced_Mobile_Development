@@ -38,6 +38,7 @@ class _StudentProfileInputExperienceState
   final TextEditingController _endDateController = TextEditingController();
   List<String> selectedSkills = [];
   bool isEdit = false;
+  bool init = false;
 
   DateTime _startDate = DateTime.now();
   DateTime _endDate = DateTime.now();
@@ -54,7 +55,8 @@ class _StudentProfileInputExperienceState
         skillSetList =
             context.read<StudentProfileInputCubit>().state.skillSetList;
         isEdit = context.read<StudentProfileInputCubit>().state.isEdit ?? false;
-        if (isEdit) {
+        if (isEdit && !init) {
+          init = true;
           var projectsList = context.read<StudentProfileInputCubit>().state.experienceList; 
           //convert the list of experience to list of ExperienceInput
           projects = projectsList!.experiences!.map((e) => ExperienceInput().copyWith(title: e.title, description: e.description, startMonth: e.startMonth, endMonth: e.endMonth, skillSets: e.skillSets)).toList();
@@ -62,7 +64,7 @@ class _StudentProfileInputExperienceState
 
         return Scaffold(
           appBar: AppBar(
-            title: Text("studentprofileinput2_ProfileCreation4".tr()),
+            title: Text('Experiences'),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -72,12 +74,12 @@ class _StudentProfileInputExperienceState
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   Text(
-                    "studentprofileinput2_ProfileCreation4".tr(),
+                    'Experiences',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    "studentprofileinput1_ProfileCreation1".tr(),
+                    'Tell us about yourself and you will be on your way connect with real-world projects',
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
@@ -86,7 +88,7 @@ class _StudentProfileInputExperienceState
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "studentprofileinput2_ProfileCreation5".tr(),
+                        'Projects',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -102,7 +104,7 @@ class _StudentProfileInputExperienceState
                     onPressed: () {
                       next(context);
                     },
-                    child: Text("studentprofileinput2_ProfileCreation4".tr()),
+                    child: Text("Next"),
                   ),
                 ],
               ),
@@ -195,7 +197,7 @@ String endDate = DateFormat('MM-yyyy').format(
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  "studentprofileinput2_ProfileCreation6".tr(),
+                  'Skillset',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
@@ -213,7 +215,9 @@ String endDate = DateFormat('MM-yyyy').format(
       height: 90,
       width: double.infinity,
       decoration: BoxDecoration(
+        color: Colors.white,
         border: Border.all(
+          color: Colors.grey,
           width: 1.0,
         ),
         borderRadius: BorderRadius.circular(10.0),
@@ -250,7 +254,7 @@ String endDate = DateFormat('MM-yyyy').format(
       ),
       child: Text(
         skill,
-        style: TextStyle(fontSize: 16),
+        style: TextStyle(color: Colors.white, fontSize: 16),
       ),
     );
   }
@@ -285,14 +289,14 @@ String endDate = DateFormat('MM-yyyy').format(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "studentprofileinput2_ProfileCreation7".tr(),
+                  'Add Project',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
-                _buildTextField("studentprofileinput2_ProfileCreation8".tr(), _titleController),
+                _buildTextField('Title', _titleController),
                 SizedBox(height: 16.0),
                 Text(
-                  "studentprofileinput2_ProfileCreation9".tr(),
+                  'Skillset',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
@@ -308,20 +312,20 @@ String endDate = DateFormat('MM-yyyy').format(
                   },
                   chipColor: Colors.white,
                   selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(),
-                  selectedTextStyle: TextStyle(),
+                  textStyle: TextStyle(color: Colors.black),
+                  selectedTextStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 16.0),
                 _datePicker(context),
                 SizedBox(height: 16.0),
-                _buildTextField("studentprofileinput2_ProfileCreation10".tr(), _descriptionController),
+                _buildTextField('Description', _descriptionController),
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () {
                     _addProject();
                     Navigator.of(context).pop();
                   },
-                  child: Text("studentprofileinput2_ProfileCreation11".tr()),
+                  child: Text('Add'),
                 ),
               ],
             ),
@@ -345,7 +349,7 @@ String endDate = DateFormat('MM-yyyy').format(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "studentprofileinput2_ProfileCreation12".tr(),
+                  'Edit Project',
                   style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.bold,
                     // color: theme.colorScheme.onTertiary
@@ -355,7 +359,7 @@ String endDate = DateFormat('MM-yyyy').format(
                 _buildTextField(projects[index].title, _titleController),
                 SizedBox(height: 16.0),
                 Text(
-                  "studentprofileinput2_ProfileCreation9".tr(),
+                  'Skillset',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 16.0),
@@ -371,8 +375,8 @@ String endDate = DateFormat('MM-yyyy').format(
                   },
                   chipColor: Colors.white,
                   selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(),
-                  selectedTextStyle: TextStyle(),
+                  textStyle: TextStyle(color: Colors.black),
+                  selectedTextStyle: TextStyle(color: Colors.white),
                 ),
                 SizedBox(height: 16.0),
                 _datePicker(context),
@@ -382,7 +386,7 @@ String endDate = DateFormat('MM-yyyy').format(
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () => _editProject(index),
-                  child: Text("studentprofileinput2_ProfileCreation13".tr()),
+                  child: Text('Edit'),
                 ),
               ],
             ),
@@ -426,7 +430,7 @@ String endDate = DateFormat('MM-yyyy').format(
       projects[index] = ExperienceInput(
         title: _titleController.text,
         description: _descriptionController.text,
-        skillSets: ["studentprofileinput2_ProfileCreation14".tr(), "studentprofileinput2_ProfileCreation15".tr()],
+        skillSets: ['Skill 1', 'Skill 2'],
       );
       _titleController.clear();
       _descriptionController.clear();
@@ -469,7 +473,7 @@ String endDate = DateFormat('MM-yyyy').format(
               child: TextField(
                 controller: _endDateController,
                 decoration: InputDecoration(
-                  labelText: "studentprofileinput2_ProfileCreation16".tr(),
+                  labelText: 'End Date',
                   border: OutlineInputBorder(),
                 ),
               ),

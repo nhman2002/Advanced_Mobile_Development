@@ -74,10 +74,10 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
 
   Future<void> _handleInitial() async {
     // _localStorage.clear();
-    String username = _localStorage.getString(key: StorageKey.userName)!;
-    String userRoles = _localStorage.getString(key: StorageKey.userRoles)!;
+    String? username = _localStorage.getString(key: StorageKey.userName);
+    String userRoles = _localStorage.getString(key: StorageKey.userRoles) ?? '[]';
     String currentRoleString =
-        _localStorage.getString(key: StorageKey.currentRole)!;
+        _localStorage.getString(key: StorageKey.currentRole) ?? '-1';
     int currentRole = int.parse(currentRoleString);
 
     if (_localStorage.getString(key: StorageKey.companyProfile) != 'null') {
@@ -97,7 +97,7 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
       emit(state.copyWith(userName: userResult.data.fullname));
     }
 
-    if (_localStorage.getString(key: StorageKey.companyProfile) != 'null') {
+    if (_localStorage.getString(key: StorageKey.companyProfile) != null) {
       emit(state.copyWith(
           companyName: userResult.data.companyProfile.companyName));
     }
