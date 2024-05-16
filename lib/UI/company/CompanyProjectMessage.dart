@@ -58,37 +58,38 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     buildProposalSectionButton(
-                        Theme.of(context), "companyprojecthired_company1".tr(), Colors.black, false,
-                        () {
+                        Theme.of(context),
+                        "companyprojecthired_company1".tr(),
+                        Colors.black,
+                        false, () {
                       context.router
                           .replace(const CompanyProjectProposalsRoute());
                     }),
                     buildProposalSectionButton(
-                        Theme.of(context), "companyprojecthired_company2".tr(), Colors.black, false, () {
+                        Theme.of(context),
+                        "companyprojecthired_company2".tr(),
+                        Colors.black,
+                        false, () {
                       context.router.replace(const CompanyProjectDetailRoute());
                     }),
-                    buildProposalSectionButton(Theme.of(context), "companyprojecthired_company3".tr(),
-                        Colors.white, true, () {}),
                     buildProposalSectionButton(
-                        Theme.of(context), "companyprojecthired_company4".tr(), Colors.black, false, () {
+                        Theme.of(context),
+                        "companyprojecthired_company3".tr(),
+                        Colors.white,
+                        true,
+                        () {}),
+                    buildProposalSectionButton(
+                        Theme.of(context),
+                        "companyprojecthired_company4".tr(),
+                        Colors.black,
+                        false, () {
                       context.router.replace(const CompanyProjectHiredRoute());
                     }),
                   ],
                 ),
                 SizedBox(height: 20),
-                Container(
-                  height: 600,
-                  decoration: BoxDecoration(),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildMessageContent(
-                            messages, state.userId!, state.clickedProjectID),
-                      ],
-                    ),
-                  ),
-                ),
+                _buildMessageContent(
+                    messages, state.userId!, state.clickedProjectID),
               ],
             ),
           ),
@@ -99,58 +100,48 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
 
   Widget _buildMessageContent(
       List<MessageOutput>? messages, int userId, int projectId) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
-            decoration: InputDecoration(
-              labelText: "companyprojectmessage_company1".tr(),
-              hintText: "companyprojectmessage_company1".tr(),
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
-              ),
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Expanded(
+            child: ListView.separated(
+              itemCount: messages!.length,
+              separatorBuilder: (context, index) => Divider(),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    print('Tile clicked');
+                    context.router.push(MessageDetailScreenRoute(
+                      userId: userId,
+                      receiverId: messages![index].receiverId! == userId
+                          ? messages![index].senderId!
+                          : messages![index].receiverId!,
+                      projectId: projectId,
+                      receiverName: messages![index].receiverId == userId
+                          ? messages![index].senderName!
+                          : messages![index].receiverName!,
+                    ));
+                  },
+                  child: ListTile(
+                    leading: Icon(Icons
+                        .supervised_user_circle), // Replace with actual icons
+                    title: Text(messages![index].receiverId == userId
+                        ? messages![index].senderName ?? ''
+                        : messages![index].receiverName ?? ''),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(messages![index].content ?? ''),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
           ),
-        ),
-        Expanded(
-          child: ListView.separated(
-            itemCount: messages!.length,
-            separatorBuilder: (context, index) => Divider(),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  print('Tile clicked');
-                  context.router.push(MessageDetailScreenRoute(
-                    userId: userId,
-                    receiverId: messages![index].receiverId! == userId
-                        ? messages![index].senderId!
-                        : messages![index].receiverId!,
-                    projectId: projectId,
-                    receiverName: messages![index].receiverId == userId
-                        ? messages![index].senderName!
-                        : messages![index].receiverName!,
-                  ));
-                },
-                child: ListTile(
-                  leading: Icon(Icons
-                      .supervised_user_circle), // Replace with actual icons
-                  title: Text(messages![index].receiverId == userId
-                      ? messages![index].senderName ?? ''
-                      : messages![index].receiverName ?? ''),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(messages![index].content ?? ''),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
