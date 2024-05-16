@@ -30,7 +30,6 @@ class StudentInformationCubit extends WidgetCubit<StudentInformationState> {
   
 
   Future<void> _handleInit() async {
-    showLoading();
     final result = await _proposal.getProposalInfo(state.proposalId ?? -1);
 
     if (result is DataSuccess) {
@@ -67,14 +66,17 @@ class StudentInformationCubit extends WidgetCubit<StudentInformationState> {
         ));
       }
     }
-    hideLoading();
   }
 
   Future<void> setProposalId(int proposalId) async {
+        showLoading();
+
     if (state.proposalId == null) {
       emit(state.copyWith(proposalId: proposalId));
       await _handleInit();
     }
+        hideLoading();
+
   }
 
   Future<void> downloadFile(String url) async {

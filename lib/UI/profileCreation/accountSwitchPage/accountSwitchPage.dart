@@ -143,13 +143,13 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
         context.read<AccountSwitchCubit>().state.hasStudentProfile;
     final currentRole = context.read<AccountSwitchCubit>().state.currentRole;
     if (currentRole == 1) if (hasCompanyProfile == true)
-      context.router.push(const CompanyProfileEditRoute());
+      context.router.replace(const CompanyProfileEditRoute());
     else
-      context.router.push(const CompanyProfileInputRoute());
+      context.router.replace(const CompanyProfileInputRoute());
     else if (currentRole == 0) if (hasStudentProfile == true)
-      context.router.push(const StudentProfileInputWrapperRoute());
+      context.router.replace(const StudentProfileInputWrapperRoute());
     else
-      context.router.push(const StudentProfileInputWrapperRoute());
+      context.router.replace(const StudentProfileInputWrapperRoute());
   }
 
   Widget _buildUserRolesUI(

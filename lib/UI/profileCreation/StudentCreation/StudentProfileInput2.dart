@@ -16,8 +16,6 @@ import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-
-
 @RoutePage()
 class StudentProfileInputExperience extends StatefulWidget {
   const StudentProfileInputExperience({Key? key}) : super(key: key);
@@ -57,9 +55,17 @@ class _StudentProfileInputExperienceState
         isEdit = context.read<StudentProfileInputCubit>().state.isEdit ?? false;
         if (isEdit && !init) {
           init = true;
-          var projectsList = context.read<StudentProfileInputCubit>().state.experienceList; 
+          var projectsList =
+              context.read<StudentProfileInputCubit>().state.experienceList;
           //convert the list of experience to list of ExperienceInput
-          projects = projectsList!.experiences!.map((e) => ExperienceInput().copyWith(title: e.title, description: e.description, startMonth: e.startMonth, endMonth: e.endMonth, skillSets: e.skillSets)).toList();
+          projects = projectsList!.experiences!
+              .map((e) => ExperienceInput().copyWith(
+                  title: e.title,
+                  description: e.description,
+                  startMonth: e.startMonth,
+                  endMonth: e.endMonth,
+                  skillSets: e.skillSets))
+              .toList();
         }
 
         return Scaffold(
@@ -115,44 +121,44 @@ class _StudentProfileInputExperienceState
     );
   }
 
-Future<void> _selectStartDate(BuildContext context) async {
-  final DateTime? picked = await showDatePicker(
-    context: context,
-    initialDate: _startDate,
-    firstDate: DateTime(2020),
-    lastDate: DateTime(2101),
-  );
-  if (picked != null && picked != _startDate) {
-    setState(() {
-      _startDate = picked;
-      _startDateController.text = DateFormat('MM-yyyy').format(_startDate);
-    });
+  Future<void> _selectStartDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _startDate,
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _startDate) {
+      setState(() {
+        _startDate = picked;
+        _startDateController.text = DateFormat('MM-yyyy').format(_startDate);
+      });
+    }
   }
-}
 
-Future<void> _selectEndDate(BuildContext context) async {
-  final DateTime? picked = await showDatePicker(
-    context: context,
-    initialDate: _endDate.isBefore(_startDate) ? _startDate : _endDate,
-    firstDate: _startDate,
-    lastDate: DateTime(2101),
-  );
-  if (picked != null && picked != _endDate) {
-    setState(() {
-      _endDate = picked;
-      _endDateController.text = DateFormat('MM-yyyy').format(_endDate);
-    });
+  Future<void> _selectEndDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: _endDate.isBefore(_startDate) ? _startDate : _endDate,
+      firstDate: _startDate,
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != _endDate) {
+      setState(() {
+        _endDate = picked;
+        _endDateController.text = DateFormat('MM-yyyy').format(_endDate);
+      });
+    }
   }
-}
 
   Widget _buildProjectCards() {
     return Column(
       children: List.generate(projects.length, (index) {
         // String startDate = DateFormat('MM-yyyy').parse(projects[index].startMonth as String) ;
-String startDate = DateFormat('MM-yyyy').format(
-    DateFormat('MM-yyyy').parse(projects[index].startMonth as String));
-String endDate = DateFormat('MM-yyyy').format(
-    DateFormat('MM-yyyy').parse(projects[index].endMonth as String));
+        String startDate = DateFormat('MM-yyyy').format(
+            DateFormat('MM-yyyy').parse(projects[index].startMonth as String));
+        String endDate = DateFormat('MM-yyyy').format(
+            DateFormat('MM-yyyy').parse(projects[index].endMonth as String));
 
 // String formattedDate = '${projects[index].startMonth?.day}-${projects[index].startMonth.month}';
 // DateTime formattedDate = DateFormat('dd-MM').format(projects[index].startMonth);
@@ -285,49 +291,51 @@ String endDate = DateFormat('MM-yyyy').format(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Add Project',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 16.0),
-                _buildTextField('Title', _titleController),
-                SizedBox(height: 16.0),
-                Text(
-                  'Skillset',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 16.0),
-                MultiSelectChipField(
-                  items: skillSetList
-                      .map((skill) => MultiSelectItem<String>(
-                          skill!.id.toString(), skill!.name))
-                      .toList(),
-                  initialValue: [],
-                  onTap: (values) {
-                    selectedSkills = values.toList().cast<String>();
-                    debugPrint(selectedSkills.toString());
-                  },
-                  chipColor: Colors.white,
-                  selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(color: Colors.black),
-                  selectedTextStyle: TextStyle(color: Colors.white),
-                ),
-                SizedBox(height: 16.0),
-                _datePicker(context),
-                SizedBox(height: 16.0),
-                _buildTextField('Description', _descriptionController),
-                SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    _addProject();
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Add'),
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Add Project',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16.0),
+                  _buildTextField('Title', _titleController),
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Skillset',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 16.0),
+                  MultiSelectChipField(
+                    items: skillSetList
+                        .map((skill) => MultiSelectItem<String>(
+                            skill!.id.toString(), skill!.name))
+                        .toList(),
+                    initialValue: [],
+                    onTap: (values) {
+                      selectedSkills = values.toList().cast<String>();
+                      debugPrint(selectedSkills.toString());
+                    },
+                    chipColor: Colors.white,
+                    selectedChipColor: Colors.purple,
+                    textStyle: TextStyle(color: Colors.black),
+                    selectedTextStyle: TextStyle(color: Colors.white),
+                  ),
+                  SizedBox(height: 16.0),
+                  _datePicker(context),
+                  SizedBox(height: 16.0),
+                  _buildTextField('Description', _descriptionController),
+                  SizedBox(height: 16.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      _addProject();
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Add'),
+                  ),
+                ],
+              ),
             ),
           ),
         );

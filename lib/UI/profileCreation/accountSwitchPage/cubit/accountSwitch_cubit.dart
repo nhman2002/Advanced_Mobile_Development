@@ -23,11 +23,11 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
   Future<void> init() async {
     showLoading();
     userResult = await _authRepository.getUser();
-    // if (_localStorage.getString(key: StorageKey.userName) == null ||
-    //     _localStorage.getString(key: StorageKey.companyProfile) == null ||
-    //     _localStorage.getString(key: StorageKey.studentProfile) == null) {
+    if (_localStorage.getString(key: StorageKey.userName) == null ||
+        _localStorage.getString(key: StorageKey.companyProfile) == null ||
+        _localStorage.getString(key: StorageKey.studentProfile) == null) {
     await initProfile();
-    // }
+    }
     await _handleInitial();
     hideLoading();
   }
@@ -57,7 +57,7 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
       if (roles != null && roles.length > 1) {
         final roleString = roles.join(",");
         _localStorage.saveString(key: StorageKey.userRoles, value: roleString);
-        if (_localStorage.getString(key: StorageKey.currentRole) == 'null') {
+        if (_localStorage.getString(key: StorageKey.currentRole) == null) {
           _localStorage.saveString(
               key: StorageKey.currentRole, value: roles.first.toString());
         }
@@ -80,13 +80,13 @@ class AccountSwitchCubit extends WidgetCubit<AccountSwitchState> {
         _localStorage.getString(key: StorageKey.currentRole) ?? '-1';
     int currentRole = int.parse(currentRoleString);
 
-    if (_localStorage.getString(key: StorageKey.companyProfile) != 'null') {
+    if (_localStorage.getString(key: StorageKey.companyProfile) != null) {
       emit(state.copyWith(hasCompanyProfile: true));
     } else {
       emit(state.copyWith(hasCompanyProfile: false));
     }
 
-    if (_localStorage.getString(key: StorageKey.studentProfile) != 'null') {
+    if (_localStorage.getString(key: StorageKey.studentProfile) != null) {
       emit(state.copyWith(hasStudentProfile: true));
     } else {
       emit(state.copyWith(hasStudentProfile: false));

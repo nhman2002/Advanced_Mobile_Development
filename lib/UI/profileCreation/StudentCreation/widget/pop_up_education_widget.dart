@@ -70,14 +70,14 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                     )),
                 SizedBox(width: 10.0),
                 Expanded(
                   child: TextFormField(
                     style: GoogleFonts.poppins(
                       fontSize: 14,
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                     ),
                     cursorColor: Color(0xFF406AFF),
                     controller: _schoolNameController,
@@ -102,7 +102,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary
+                      color: isDarkMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary
                     )),
                 Text(_startYear == 0 ? "educationpop5".tr() : _startYear.toString(),
                     style: GoogleFonts.poppins(
@@ -151,7 +151,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                                         child: Text(
                                           year.toString(),
                                           style: TextStyle(
-                                           color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                                           color: isDarkMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onSecondary,
  // Màu chữ
                                           ),
                                         ),
@@ -175,11 +175,11 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                     style: GoogleFonts.poppins(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                        color: isDarkMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
 )),
                 Text(_endYear == 0 ? "educationpop5".tr() : _endYear.toString(),
                     style: GoogleFonts.poppins(
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                      color: isDarkMode ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.primary,
                         fontSize: 14)),
                 IconButton(
                   onPressed: () {
@@ -220,7 +220,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                                         child: Text(
                                           year.toString(),
                                           style: TextStyle(
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSecondary,
  // Màu chữ
                                           ),
                                         ),
@@ -232,7 +232,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                   },
                   icon: Icon(Icons.calendar_today),
                   iconSize: 20.0,
-                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
+                      color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                 ),
               ],
             ),

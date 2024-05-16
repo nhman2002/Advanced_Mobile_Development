@@ -314,6 +314,17 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
                   Navigator.pop(context); // Close the bottom sheet
                 },
               ),
+              ListTile(
+                leading: Icon(Icons.pause),
+                title: Text(
+                  "Archieve Project",
+                  style: TextStyle(fontSize: 16, height: 1.2),
+                ),
+                onTap: () {
+                  archiveProject(project);
+                  Navigator.pop(context); // Close the bottom sheet
+                },
+              ),
             ],
           ),
         );
@@ -332,6 +343,12 @@ class _CompanyDashboardWorking extends State<CompanyDashboardWorking> with Snack
 
   void projectClicked(int id) {
     context.read<CompanyDashboardCubit>().setClickedProject(id);
+  }
+
+  void archiveProject(ProjectOutput project) {
+    context.read<CompanyDashboardCubit>().archiveProject(project);
+    showSnackBarSuccess(
+        context, "companydashboard_company19".tr());
   }
 
   Future<void> startWorkingOnProject(ProjectOutput project) async {

@@ -9,7 +9,6 @@ import 'package:student_hub/core/repository/profileCompany.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-
 @RoutePage()
 class CompanyProfileInput extends StatefulWidget {
   @override
@@ -26,13 +25,13 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true, // Allow keyboard to push up the screen
       appBar: AppBar(
         title: Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
-              context.router.push(const CompanyDashboardWrapperRoute());
+              context.router.push(const SwitchAccountPageRoute());
             },
             icon: Icon(
               Icons.account_circle,
@@ -41,65 +40,62 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
           ),
         ],
       ),
-      body: ListView(
-        reverse: true,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 20),
-                Text(
-                  "companyprofileinput_ProfileCreation1".tr(),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20),
+              Text(
+                "companyprofileinput_ProfileCreation1".tr(),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                Text(
-                  "companyprofileinput_ProfileCreation2".tr(),
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
+              ),
+              Text(
+                "companyprofileinput_ProfileCreation2".tr(),
+                style: TextStyle(
+                  fontSize: 16,
                 ),
-                SizedBox(height: 20),
-                Row(
-                  children: [
-                    Text(
-                      "companyprofileinput_ProfileCreation3".tr(),
-                      style: TextStyle(
-                        fontSize: 16,
-                      ),
+              ),
+              SizedBox(height: 20),
+              Row(
+                children: [
+                  Text(
+                    "companyprofileinput_ProfileCreation3".tr(),
+                    style: TextStyle(
+                      fontSize: 16,
                     ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    _buildRadioOption(0, "companyprofileinput_ProfileCreation4".tr()),
-                    _buildRadioOption(1, "companyprofileinput_ProfileCreation5".tr()),
-                    _buildRadioOption(2, "companyprofileinput_ProfileCreation6".tr()),
-                    _buildRadioOption(3, "companyprofileinput_ProfileCreation7".tr()),
-                    _buildRadioOption(4, "companyprofileinput_ProfileCreation8".tr()),
-                  ],
-                ),
-                SizedBox(height: 20),
-                _buildInputField("companyprofileinput_ProfileCreation9".tr(), _companyNameController),
-                SizedBox(height: 10),
-                _buildInputField("companyprofileinput_ProfileCreation10".tr(), _websiteController),
-                SizedBox(height: 10),
-                _buildInputField("companyprofileinput_ProfileCreation11".tr(), _descriptionController),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    handleInput(context);
-                  },
-                  child: Text("companyprofileinput_ProfileCreation12".tr()),
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  _buildRadioOption(0, "companyprofileinput_ProfileCreation4".tr()),
+                  _buildRadioOption(1, "companyprofileinput_ProfileCreation5".tr()),
+                  _buildRadioOption(2, "companyprofileinput_ProfileCreation6".tr()),
+                  _buildRadioOption(3, "companyprofileinput_ProfileCreation7".tr()),
+                  _buildRadioOption(4, "companyprofileinput_ProfileCreation8".tr()),
+                ],
+              ),
+              SizedBox(height: 20),
+              _buildInputField("companyprofileinput_ProfileCreation9".tr(), _companyNameController),
+              SizedBox(height: 10),
+              _buildInputField("companyprofileinput_ProfileCreation10".tr(), _websiteController),
+              SizedBox(height: 10),
+              _buildInputField("companyprofileinput_ProfileCreation11".tr(), _descriptionController),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  handleInput(context);
+                },
+                child: Text("companyprofileinput_ProfileCreation12".tr()),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

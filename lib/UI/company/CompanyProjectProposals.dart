@@ -61,10 +61,34 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company1".tr(), Colors.white, true, (){}),
-                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company2".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectDetailRoute());}),
-                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company3".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectMessageRoute());}),
-                    buildProposalSectionButton(Theme.of(context),"companyprojecthired_company4".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
+                    buildProposalSectionButton(
+                        Theme.of(context),
+                        "companyprojecthired_company1".tr(),
+                        Colors.white,
+                        true,
+                        () {}),
+                    buildProposalSectionButton(
+                        Theme.of(context),
+                        "companyprojecthired_company2".tr(),
+                        Colors.black,
+                        false, () {
+                      context.router.replace(const CompanyProjectDetailRoute());
+                    }),
+                    buildProposalSectionButton(
+                        Theme.of(context),
+                        "companyprojecthired_company3".tr(),
+                        Colors.black,
+                        false, () {
+                      context.router
+                          .replace(const CompanyProjectMessageRoute());
+                    }),
+                    buildProposalSectionButton(
+                        Theme.of(context),
+                        "companyprojecthired_company4".tr(),
+                        Colors.black,
+                        false, () {
+                      context.router.replace(const CompanyProjectHiredRoute());
+                    }),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -219,9 +243,20 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                     statusFlag != 2
                         ? "companyprojectproposals_company6".tr()
                         : "companyprojectproposals_company7".tr(),
-                    style: TextStyle(
-                    ),
+                    style: TextStyle(),
                   ),
+                ),
+              ),
+              SizedBox(width: 10), // Adjust spacing between buttons
+              // Button for View Profile
+              Expanded(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate to the profile view page
+                    // Replace `ProfileScreenRoute` with your actual route name and parameters
+                    context.router.push(StudentInformationScreenRoute(id: proposalId));
+                  },
+                  child: Text("View Profile"),
                 ),
               ),
             ],
@@ -243,5 +278,4 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
     //reload the whole page
     context.router.replace(const CompanyProjectProposalsRoute());
   }
-
 }
