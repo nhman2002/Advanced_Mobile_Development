@@ -1,6 +1,10 @@
-import 'package:student_hub/core/models/base_model.dart';
+import 'dart:convert';
 
-class LoginOutput extends BaseModel{
+import 'package:student_hub/core/models/base_model.dart';
+import 'package:student_hub/core/models/output/company_user.dart';
+import 'package:student_hub/core/models/output/student_profile.dart';
+
+class LoginOutput extends BaseModel {
   final User? user;
   final Token? token;
 
@@ -38,15 +42,12 @@ class LoginOutput extends BaseModel{
     };
   }
 
-  @override
   // TODO: implement props
   List<Object?> get props => [
-    user,
-    token,
-  ];
+        user,
+        token,
+      ];
 }
-
-// class
 
 class Token {
   final String? token;
@@ -154,155 +155,87 @@ class Token {
 //     };
 //   }
 // }
-
 class User {
-  final String? id;
+  final int? id;
   final String? email;
-  final String? name;
-  final String? avatar;
-  final String? country;
-  final String? phone;
-  final List<String>? roles;
-  final dynamic language;
-  final DateTime? birthday;
-  final bool? isActivated;
-  final TutorInfo? tutorInfo;
-  final WalletInfo? walletInfo;
-  final String? requireNote;
-  final String? level;
-  final List<dynamic>? learnTopics;
-  final List<TestPreparation>? testPreparations;
-  final bool? isPhoneActivated;
-  final int? timezone;
-  final ReferralInfo? referralInfo;
-  final String? studySchedule;
-  final bool? canSendMessage;
-  final dynamic studentGroup;
-  final dynamic studentInfo;
-  final int? avgRating;
+  final String? password;
+  final String? fullname;
+  final List<dynamic>? role;
+  StudentProfileWithoutDate? studentProfile;
+  CompanyProfile? companyProfile;
 
   User({
     this.id,
     this.email,
-    this.name,
-    this.avatar,
-    this.country,
-    this.phone,
-    this.roles,
-    this.language,
-    this.birthday,
-    this.isActivated,
-    this.tutorInfo,
-    this.walletInfo,
-    this.requireNote,
-    this.level,
-    this.learnTopics,
-    this.testPreparations,
-    this.isPhoneActivated,
-    this.timezone,
-    this.referralInfo,
-    this.studySchedule,
-    this.canSendMessage,
-    this.studentGroup,
-    this.studentInfo,
-    this.avgRating,
+    this.password,
+    this.fullname,
+    this.role,
+    this.studentProfile,
+    this.companyProfile,
   });
 
   User copyWith({
-    String? id,
+    int? id,
     String? email,
-    String? name,
-    String? avatar,
-    String? country,
-    String? phone,
-    List<String>? roles,
-    dynamic language,
-    DateTime? birthday,
-    bool? isActivated,
-    TutorInfo? tutorInfo,
-    WalletInfo? walletInfo,
-    String? requireNote,
-    String? level,
-    List<dynamic>? learnTopics,
-    List<TestPreparation>? testPreparations,
-    bool? isPhoneActivated,
-    int? timezone,
-    ReferralInfo? referralInfo,
-    String? studySchedule,
-    bool? canSendMessage,
-    dynamic studentGroup,
-    dynamic studentInfo,
-    int? avgRating,
+    String? password,
+    String? fullname,
+    List<dynamic>? role,
+    StudentProfileWithoutDate? studentUser,
+    CompanyProfile? companyUser,
+    List<String>? studentProfile,
+    List<String>? companyProfile,
   }) =>
       User(
         id: id ?? this.id,
         email: email ?? this.email,
-        name: name ?? this.name,
-        avatar: avatar ?? this.avatar,
-        country: country ?? this.country,
-        phone: phone ?? this.phone,
-        roles: roles ?? this.roles,
-        language: language ?? this.language,
-        birthday: birthday ?? this.birthday,
-        isActivated: isActivated ?? this.isActivated,
-        tutorInfo: tutorInfo ?? this.tutorInfo,
-        walletInfo: walletInfo ?? this.walletInfo,
-        requireNote: requireNote ?? this.requireNote,
-        level: level ?? this.level,
-        learnTopics: learnTopics ?? this.learnTopics,
-        testPreparations: testPreparations ?? this.testPreparations,
-        isPhoneActivated: isPhoneActivated ?? this.isPhoneActivated,
-        timezone: timezone ?? this.timezone,
-        referralInfo: referralInfo ?? this.referralInfo,
-        studySchedule: studySchedule ?? this.studySchedule,
-        canSendMessage: canSendMessage ?? this.canSendMessage,
-        studentGroup: studentGroup ?? this.studentGroup,
-        studentInfo: studentInfo ?? this.studentInfo,
-        avgRating: avgRating ?? this.avgRating,
+        password: password ?? this.password,
+        fullname: fullname ?? this.fullname,
+        role: role ?? this.role,
+        studentProfile:
+            studentProfile as StudentProfileWithoutDate? ?? this.studentProfile,
+        companyProfile:
+            companyProfile as CompanyProfile? ?? this.companyProfile,
+      );
+
+  Map<String, dynamic> toMapUser() => {
+        'id': id,
+        'email': email,
+        'password': password,
+        'fullname': fullname,
+        'role': role,
+        'studentProfile': studentProfile ?? 'null',
+        'companyProfile': companyProfile ?? 'null',
+      };
+
+  factory User.fromMapUser(Map<String, dynamic> map) => User(
+        id: map['id'],
+        email: map['email'],
+        password: map['password'],
+        fullname: map['fullname'],
+        role: map['role'],
+        studentProfile: map['studentProfile'],
+        companyProfile: map['companyProfile'],
       );
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['id'] as String?,
-      email: json['email'] as String?,
-      name: json['name'] as String?,
-      avatar: json['avatar'] as String?,
-      country: json['country'] as String?,
-      phone: json['phone'] as String?,
-      roles: json['roles'] != null
-          ? (json['roles'] as List).map((e) => e as String).toList()
+      id: json['result']['id'] as int,
+      fullname: json['result']['fullname'] as String?,
+      role: List<int>.from(json['result']['roles'] as List),
+      studentProfile: json['result']['student'] != null
+          ? StudentProfileWithoutDate.fromJson(
+              json['result']['student'] as Map<String, dynamic>)
           : null,
-      language: json['language'] as dynamic,
-      birthday: json['birthday'] != null
-          ? DateTime.tryParse(json['birthday'] as String)
+      companyProfile: json['result']['company'] != null
+          ? CompanyProfile.fromJson(
+              json['result']['company'] as Map<String, dynamic>)
           : null,
-      isActivated: json['isActivated'] as bool?,
-      tutorInfo: json['tutorInfo'] != null
-          ? TutorInfo.fromJson(json['tutorInfo'] as Map<String, dynamic>)
-          : null,
-      walletInfo: json['walletInfo'] != null
-          ? WalletInfo.fromJson(json['walletInfo'] as Map<String, dynamic>)
-          : null,
-      requireNote: json['requireNote'] as String?,
-      level: json['level'] as String?,
-      learnTopics: json['learnTopics'] != null
-          ? (json['learnTopics'] as List).map((e) => e as dynamic).toList()
-          : null,
-      testPreparations: json['testPreparations'] != null
-          ? (json['testPreparations'] as List)
-              .map((e) => TestPreparation.fromJson(e as Map<String, dynamic>))
-              .toList()
-          : null,
-      isPhoneActivated: json['isPhoneActivated'] as bool?,
-      timezone: json['timezone'] as int?,
-      referralInfo: json['referralInfo'] != null
-          ? ReferralInfo.fromJson(json['referralInfo'] as Map<String, dynamic>)
-          : null,
-      studySchedule: json['studySchedule'] as String?,
-      canSendMessage: json['canSendMessage'] as bool?,
-      studentGroup: json['studentGroup'] as dynamic,
-      studentInfo: json['studentInfo'] as dynamic,
-      avgRating: json['avgRating'] as int?,
+      // studentUser: json['student'] != null
+      //     ? StudentProfileWithoutDate.fromJson(json['student'] as Map<String, dynamic>)
+      //     : null,
+      // companyUser: json['company'] != null
+      //     ? CompanyProfile.fromJson(json['company'] as Map<String, dynamic>)
+      //     : null,
     );
   }
 
@@ -310,287 +243,284 @@ class User {
     return {
       'id': id,
       'email': email,
-      'name': name,
-      'avatar': avatar,
-      'country': country,
-      'phone': phone,
-      'roles': roles,
-      'language': language,
-      'birthday': birthday?.toIso8601String(),
-      'isActivated': isActivated,
-      'tutorInfo': tutorInfo?.toJson(),
-      'walletInfo': walletInfo?.toJson(),
-      'requireNote': requireNote,
-      'level': level,
-      'learnTopics': learnTopics,
-      'testPreparations':
-          testPreparations?.map((e) => e.toJson()).toList(),
-      'isPhoneActivated': isPhoneActivated,
-      'timezone': timezone,
-      'referralInfo': referralInfo?.toJson(),
-      'studySchedule': studySchedule,
-      'canSendMessage': canSendMessage,
-      'studentGroup': studentGroup,
-      'studentInfo': studentInfo,
-      'avgRating': avgRating,
+      'password': password,
+      'fullname': fullname,
+      'role': role,
+      // 'student': studentUser?.toJson(),
+      // 'company': companyUser?.toJson(),
     };
   }
 }
 
-class ReferralInfo {
-  final String? referralCode;
-  final ReferralPackInfo? referralPackInfo;
+// student: {id: 256, createdAt: 2024-05-15T04:53:58.181Z, updatedAt: 2024-05-15T04:54:08.243Z, deletedAt: null, userId: 440, techStackId: 8, resume: resumes/1715748848203-BHXH_da98ba799ce64b2f9266f22371811e552398325.pdf, transcript: null, proposals: [], techStack: {id: 8, createdAt: 2024-04-13T16:04:24.196Z, updatedAt: 2024-04-13T16:04:24.196Z, deletedAt: null, name: Software Engineer}, educations: [{id: 514, createdAt: 2024-05-15T04:54:14.989Z, updatedAt: 2024-05-15T04:54:14.989Z, deletedAt: null, studentId: 256, schoolName: hcmus, startYear: 2022, endYear: 2025}], languages: [{id: 943, createdAt: 2024-05-15T04:54:12.771Z, updatedAt: 2024-05-15T04:54:12.771Z, deletedAt: null, studentId: 256, languageName: Spanish, level: Intermediate}], experiences: [{id: 386, createdAt: 2024-05-15T04:54:10.618Z, updatedAt: 2024-05-15T04:54:10.618Z, deletedAt: null, studentId: 256, title: wow, startMonth: 05-2022, endMonth: 05-2024, description: projevt, skillSets: [{id: 1, createdAt: 2024-04-08T00:58:11.238Z, updatedAt: 2024-04-08T00:58:11.238Z, deletedAt: null, name: C}, {id: 2, createdAt: 2024-04-08T00:58:11.256Z, updatedAt: 2024-04-08T00:58:11.256Z, deletedAt: null, name: C++}]}], skillSets: [{id: 2, createdAt: 2024-04-08T00:58:11.256Z, updatedAt: 2024-04-08T00:58:11.256Z, deletedAt: null, name: C++}, {id: 3, createdAt: 2024-04-08T00:58:11.263Z, updatedAt: 2024-04-08T00:58:11.263Z, deletedAt: null, name: C#}]},
+///create student profile from this
 
-  ReferralInfo({
-    this.referralCode,
-    this.referralPackInfo,
-  });
-
-  ReferralInfo copyWith({
-    String? referralCode,
-    ReferralPackInfo? referralPackInfo,
-  }) =>
-      ReferralInfo(
-        referralCode: referralCode ?? this.referralCode,
-        referralPackInfo: referralPackInfo ?? this.referralPackInfo,
-      );
-
-  factory ReferralInfo.fromJson(Map<String, dynamic> json) {
-    return ReferralInfo(
-      referralCode: json['referralCode'] as String?,
-      referralPackInfo: json['referralPackInfo'] != null
-          ? ReferralPackInfo.fromJson(
-              json['referralPackInfo'] as Map<String, dynamic>)
-          : null,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'referralCode': referralCode,
-      'referralPackInfo': referralPackInfo?.toJson(),
-    };
-  }
-}
-
-class ReferralPackInfo {
-  final int? earnPercent;
-
-  ReferralPackInfo({
-    this.earnPercent,
-  });
-
-  ReferralPackInfo copyWith({
-    int? earnPercent,
-  }) =>
-      ReferralPackInfo(
-        earnPercent: earnPercent ?? this.earnPercent,
-      );
-
-  factory ReferralPackInfo.fromJson(Map<String, dynamic> json) {
-    return ReferralPackInfo(
-      earnPercent: json['earnPercent'] as int?,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'earnPercent': earnPercent,
-    };
-  }
-}
-
-class TestPreparation {
+class StudentProfileWithoutDate {
   final int? id;
-  final String? key;
-  final String? name;
+  final int? userId;
+  final int? techStackId;
+  final String? resume;
+  final String? transcript;
+  final TechStack? techStack;
+  final List<Education>? educations;
+  final List<Language>? languages;
+  final List<Experience>? experiences;
+  final List<SkillSet>? skillSets;
 
-  TestPreparation({
+
+  StudentProfileWithoutDate({
     this.id,
-    this.key,
-    this.name,
-  });
-
-  TestPreparation copyWith({
-    int? id,
-    String? key,
-    String? name,
-  }) =>
-      TestPreparation(
-        id: id ?? this.id,
-        key: key ?? this.key,
-        name: name ?? this.name,
-      );
-
-  factory TestPreparation.fromJson(Map<String, dynamic> json) {
-    return TestPreparation(
-      id: json['id'] as int?,
-      key: json['key'] as String?,
-      name: json['name'] as String?,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'key': key,
-      'name': name,
-    };
-  }
-}
-
-class TutorInfo {
-  final String? id;
-  final String? video;
-  final String? bio;
-  final String? education;
-  final String? experience;
-  final String? profession;
-  final dynamic accent;
-  final String? targetStudent;
-  final String? interests;
-  final String? languages;
-  final String? specialties;
-  final dynamic resume;
-  final double? rating;
-  final bool? isActivated;
-  final bool? isNative;
-  final String? youtubeVideoId;
-
-  TutorInfo({
-    this.id,
-    this.video,
-    this.bio,
-    this.education,
-    this.experience,
-    this.profession,
-    this.accent,
-    this.targetStudent,
-    this.interests,
-    this.languages,
-    this.specialties,
+    this.userId,
+    this.techStackId,
     this.resume,
-    this.rating,
-    this.isActivated,
-    this.isNative,
-    this.youtubeVideoId,
+    this.transcript,
+    this.techStack,
+    this.educations,
+    this.languages,
+    this.experiences,
+    this.skillSets,
   });
 
-  TutorInfo copyWith({
-    String? id,
-    String? video,
-    String? bio,
-    String? education,
-    String? experience,
-    String? profession,
-    dynamic accent,
-    String? targetStudent,
-    String? interests,
-    String? languages,
-    String? specialties,
-    dynamic resume,
-    double? rating,
-    bool? isActivated,
-    bool? isNative,
-    String? youtubeVideoId,
+  StudentProfileWithoutDate copyWith({
+    int? id,
+    int? userId,
+    int? techStackId,
+    String? resume,
+    String? transcript,
+    TechStack? techStack,
+    List<Education>? educations,
+    List<Language>? languages,
+    List<Experience>? experiences,
+    List<SkillSet>? skillSets,
   }) =>
-      TutorInfo(
+      StudentProfileWithoutDate(
         id: id ?? this.id,
-        video: video ?? this.video,
-        bio: bio ?? this.bio,
-        education: education ?? this.education,
-        experience: experience ?? this.experience,
-        profession: profession ?? this.profession,
-        accent: accent ?? this.accent,
-        targetStudent: targetStudent ?? this.targetStudent,
-        interests: interests ?? this.interests,
-        languages: languages ?? this.languages,
-        specialties: specialties ?? this.specialties,
+        userId: userId ?? this.userId,
+        techStackId: techStackId ?? this.techStackId,
         resume: resume ?? this.resume,
-        rating: rating ?? this.rating,
-        isActivated: isActivated ?? this.isActivated,
-        isNative: isNative ?? this.isNative,
-        youtubeVideoId: youtubeVideoId ?? this.youtubeVideoId,
+        transcript: transcript ?? this.transcript,
+        techStack: techStack ?? this.techStack,
+        educations: educations ?? this.educations,
+        languages: languages ?? this.languages,
+        experiences: experiences ?? this.experiences,
+        skillSets: skillSets ?? this.skillSets,
       );
 
-  factory TutorInfo.fromJson(Map<String, dynamic> json) {
-    return TutorInfo(
-      id: json['id'] as String?,
-      video: json['video'] as String?,
-      bio: json['bio'] as String?,
-      education: json['education'] as String?,
-      experience: json['experience'] as String?,
-      profession: json['profession'] as String?,
-      accent: json['accent'] as dynamic,
-      targetStudent: json['targetStudent'] as String?,
-      interests: json['interests'] as String?,
-      languages: json['languages'] as String?,
-      specialties: json['specialties'] as String?,
-      resume: json['resume'] as dynamic,
-      rating: json['rating'] as double?,
-      isActivated: json['isActivated'] as bool?,
-      isNative: json['isNative'] as bool?,
-      youtubeVideoId: json['youtubeVideoId'] as String?,
+  factory StudentProfileWithoutDate.fromJson(Map<String, dynamic> json1) {
+    Map<String, dynamic> json;
+    if (json1['result'] == null){
+      json = json1;
+    }
+    else{
+      json = json1['result'];
+    }
+    return StudentProfileWithoutDate(
+      id: json['id'] as int,
+      userId: json['userId'] as int,
+      techStackId: json['techStack']['id'] as int,
+      resume: json['resume'] as String?,
+      transcript: json['transcript'] as String?,
+      techStack: json['techStack'] != null
+          ? TechStack.fromJson(json['techStack'] as Map<String, dynamic>)
+          : null,
+      educations: json['educations'] != null
+          ? List<Education>.from(
+              json['educations'].map((x) => Education.fromJson(x)))
+          : [],
+      languages: json['languages'] != null
+          ? List<Language>.from(
+              json['languages'].map((x) => Language.fromJson(x)))
+          : [],
+      experiences: json['experiences'] != null
+          ? List<Experience>.from(
+              json['experiences'].map((x) => Experience.fromJson(x)))
+          : [],
+
+      skillSets: json['skillSets'] != null
+          ? List<SkillSet>.from(
+              json['skillSets'].map((x) => SkillSet.fromJson(x)))
+          : [],
+      
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'video': video,
-      'bio': bio,
-      'education': education,
-      'experience': experience,
-      'profession': profession,
-      'accent': accent,
-      'targetStudent': targetStudent,
-      'interests': interests,
-      'languages': languages,
-      'specialties': specialties,
+      'userId': userId,
+      'techStackId': techStackId,
       'resume': resume,
-      'rating': rating,
-      'isActivated': isActivated,
-      'isNative': isNative,
-      'youtubeVideoId': youtubeVideoId,
+      'transcript': transcript,
+      'techStack': techStack,
     };
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'userId': userId,
+      'techStackId': techStackId,
+      'resume': resume,
+      'transcript': transcript,
+      'techStack': techStack?.toMap(),
+    };
+  }
+
+  factory StudentProfileWithoutDate.fromMap(Map<String, dynamic> map) {
+    return StudentProfileWithoutDate(
+      id: map['id'],
+      userId: map['userId'],
+      techStackId: map['techStackId'],
+      resume: map['resume'],
+      transcript: map['transcript'],
+      techStack: TechStack.fromMap(map['techStack']),
+    );
   }
 }
 
-class WalletInfo {
-  final String? amount;
-  final bool? isBlocked;
-  final int? bonus;
+// class TechStack {
+//   final int? id;
+//   final String? name;
 
-  WalletInfo({
-    this.amount,
-    this.isBlocked,
-    this.bonus,
+//   TechStack({
+//     this.id,
+//     this.name,
+//   });
+
+//   TechStack copyWith({
+//     int? id,
+//     String? name,
+//   }) =>
+//       TechStack(
+//         id: id ?? this.id,
+//         name: name ?? this.name,
+//       );
+
+//   factory TechStack.fromJson(Map<String, dynamic> json) {
+//     return TechStack(
+//       id: json['id'] as int,
+//       name: json['name'] as String?,
+//     );
+//   }
+
+//   Map<String, dynamic> toJson() {
+//     return {
+//       'id': id,
+//       'name': name,
+//     };
+//   }
+
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'name': name,
+//     };
+//   }
+
+//   factory TechStack.fromMap(Map<String, dynamic> map) {
+//     return TechStack(
+//       id: map['id'],
+//       name: map['name'],
+//     );
+//   }
+// }
+
+class CompanyProfile {
+  final int? id;
+  final String? companyName;
+  final String? website;
+  final String? description;
+  final int? size;
+
+  CompanyProfile({
+    this.id,
+    this.companyName,
+    this.website,
+    this.description,
+    this.size,
   });
 
-  WalletInfo copyWith({
-    String? amount,
-    bool? isBlocked,
-    int? bonus,
-  }) =>
-      WalletInfo(
-        amount: amount ?? this.amount,
-        isBlocked: isBlocked ?? this.isBlocked,
-        bonus: bonus ?? this.bonus,
-      );
-
-  factory WalletInfo.fromJson(Map<String, dynamic> json) {
-    return WalletInfo(
-      amount: json['amount'] as String?,
-      isBlocked: json['isBlocked'] as bool?,
-      bonus: json['bonus'] as int?,
+  factory CompanyProfile.fromJson(Map<String, dynamic> json) {
+    return CompanyProfile(
+      id: json['id'] as int,
+      companyName: json['companyName'] as String?,
+      website: json['website'] as String?,
+      description: json['description'] as String?,
+      size: json['size'] as int?,
     );
   }
 
   Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id'] = id;
+    map['companyName'] = companyName;
+    map['website'] = website;
+    map['description'] = description;
+    map['size'] = size;
+    return map;
+  }
+
+  Map<String, dynamic> toMap() {
     return {
-      'amount': amount,
-      'isBlocked': isBlocked,
-      'bonus': bonus,
+      'id': id,
+      'companyName': companyName,
+      'website': website,
+      'description': description,
+      'size': size,
+    };
+  }
+
+  factory CompanyProfile.fromMap(Map<String, dynamic> map) {
+    return CompanyProfile(
+      id: map['id'],
+      companyName: map['companyName'],
+      website: map['website'],
+      description: map['description'],
+      size: map['size'],
+    );
+  }
+
+  CompanyProfile copyWith({
+    int? id,
+    String? companyName,
+    String? website,
+    String? description,
+    int? size,
+  }) =>
+      CompanyProfile(
+        id: id ?? this.id,
+        companyName: companyName ?? this.companyName,
+        website: website ?? this.website,
+        description: description ?? this.description,
+        size: size ?? this.size,
+      );
+}
+
+class Message extends BaseModel {
+  final String? message;
+
+  Message({
+    this.message,
+  });
+
+  Message copyWith({
+    String? message,
+  }) =>
+      Message(
+        message: message ?? this.message,
+      );
+
+  @override
+  factory Message.fromJson(Map<String, dynamic> json) {
+    return Message(
+      message: json['message'] as String?,
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'message': message,
     };
   }
 }

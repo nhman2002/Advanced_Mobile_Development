@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/UI/Auth/student/student.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_cubit.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_state.dart';
+import 'package:student_hub/UI/auth/student/student.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_cubit.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_state.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class CompanySignup extends BaseWidget<CompanyRegisterCubit, CompanyRegisterState> {
@@ -39,7 +40,6 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
         title: Text('Student Hub'),
       ),
       body: Padding(
@@ -48,7 +48,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Sign Up as Company',
+              "company_auth1".tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -58,14 +58,14 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
-                labelText: 'Company Name',
+                labelText: "company_auth2".tr(),
               ),
             ),
             SizedBox(height: 10),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
-                labelText: 'Company Email',
+                labelText: "company_auth3".tr(),
               ),
             ),
             SizedBox(height: 10),
@@ -73,7 +73,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: 'Password',
+                labelText: "company_auth4".tr(),
               ),
             ),
             SizedBox(height: 10),
@@ -87,7 +87,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
                     });
                   },
                 ),
-                Text('I agree to the terms and conditions of Student Hub'),
+                Text("company_auth5".tr()),
               ],
             ),
             SizedBox(height: 20),
@@ -95,7 +95,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
               onPressed: () {
                   handleSignup(context);
               },
-              child: Text('Sign Up'),
+              child: Text("company_auth6".tr()),
             ),
             SizedBox(height: 20),
             TextButton(
@@ -103,7 +103,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
                 // Navigate to the student sign-up page
                 context.router.push(const StudentSignupRoute());
               },
-              child: Text("Looking for projects? Sign up as a student"),
+              child: Text("company_auth7".tr()),
             ),
           ],
         ),
@@ -120,13 +120,10 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
     final isSuccess = context.read<CompanyRegisterCubit>().state.isRegister;
     final message = context.read<CompanyRegisterCubit>().state.message ?? '';
     if (isSuccess) {
-      showSnackBar(context, message);
-      await Future.delayed(const Duration(seconds: 2));
-      context.router.maybePop();
-      context.router.maybePop();
-      
+      showSnackBarSuccess(context, message);
+      context.router.popUntilRoot();      
     } else {
-      showSnackBar(context, message);
+      showSnackBarError(context, message);
     }
   }
 

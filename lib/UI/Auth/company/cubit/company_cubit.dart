@@ -4,9 +4,10 @@ import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/register_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
+import 'package:student_hub/core/repository/general.dart';
 import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/Auth/company/cubit/company_state.dart';
+import 'package:student_hub/UI/auth/company/cubit/company_state.dart';
 
 class CompanyRegisterCubit extends WidgetCubit<CompanyRegisterState> {
   CompanyRegisterCubit()
@@ -16,6 +17,7 @@ class CompanyRegisterCubit extends WidgetCubit<CompanyRegisterState> {
         );
 
   final _authRepository = getIt.get<AuthRepository>();
+  final _general = getIt.get<GeneralRepository>();
 
 
 

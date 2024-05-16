@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 
 void main() {
   runApp(MaterialApp(
@@ -76,7 +78,6 @@ class ScheduleItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
                 color: isSender ? Colors.white : Colors.grey[200],
                 border: Border.all(
-                  color: const Color.fromARGB(255, 228, 228, 228),
                   width: 1,
                 ),
               ),
@@ -89,7 +90,6 @@ class ScheduleItem extends StatelessWidget {
                       name,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
                       ),
                     ),
                   const SizedBox(height: 4),
@@ -100,7 +100,6 @@ class ScheduleItem extends StatelessWidget {
                       Text(
                         title,
                         style: TextStyle(
-                          color: const Color(0xFF008ABD),
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -108,7 +107,6 @@ class ScheduleItem extends StatelessWidget {
                       Text(
                         duration,
                         style: TextStyle(
-                          color: Colors.grey,
                           fontSize: 16,
                           fontStyle: FontStyle.italic,
                         ),
@@ -121,9 +119,8 @@ class ScheduleItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Start time",
+                        "schedule_scheduledetail1".tr(),
                         style: TextStyle(
-                          color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -131,7 +128,6 @@ class ScheduleItem extends StatelessWidget {
                       Text(
                         '$day $date $timeMeeting',
                         style: TextStyle(
-                          color: Colors.grey,
                           fontSize: 15,
                         ),
                       ),
@@ -143,9 +139,8 @@ class ScheduleItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "End time",
+                        "schedule_scheduledetail2".tr(),
                         style: TextStyle(
-                          color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -153,7 +148,6 @@ class ScheduleItem extends StatelessWidget {
                       Text(
                         '$endDay $endDate $endTimeMeeting',
                         style: TextStyle(
-                          color: Colors.grey,
                           fontSize: 15,
                         ),
                       ),
@@ -184,10 +178,9 @@ class ScheduleItem extends StatelessWidget {
                         onPressed: () {
                           // Handle Join Button Pressed
                         },
-                        child: const Text(
-                          "Join",
+                        child: Text(
+                          "schedule_scheduledetail3".tr(),
                           style: TextStyle(
-                            color: Colors.white,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -201,7 +194,6 @@ class ScheduleItem extends StatelessWidget {
                     _formatTime(time),
                     style: TextStyle(
                       fontSize: 12,
-                      color: Colors.grey,
                     ),
                   ),
                 ],
@@ -239,7 +231,6 @@ class OptionsButton extends StatelessWidget {
       },
       icon: const Icon(Icons.more_vert),
       padding: const EdgeInsets.all(8),
-      color: const Color(0xFF008ABD),
     );
   }
 }
@@ -252,10 +243,9 @@ class OptionsDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      title: const Text(
-        'Options',
+      title: Text(
+        "schedule_scheduledetail4".tr(),
         style: TextStyle(
-          color: Color(0xFF008ABD),
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
@@ -264,8 +254,8 @@ class OptionsDialog extends StatelessWidget {
         child: ListBody(
           children: <Widget>[
             GestureDetector(
-              child: const Text(
-                'Re-schedule the meeting',
+              child: Text(
+                "schedule_scheduledetail5".tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {
@@ -276,15 +266,14 @@ class OptionsDialog extends StatelessWidget {
               height: 10,
             ),
             const Divider(
-              color: Color.fromARGB(255, 210, 210, 210),
               height: 0.5,
             ),
             const SizedBox(
               height: 10,
             ),
             GestureDetector(
-              child: const Text(
-                'Cancel the meeting',
+              child: Text(
+                "schedule_scheduledetail6".tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {

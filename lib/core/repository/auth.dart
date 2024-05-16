@@ -29,4 +29,11 @@ class AuthRepository extends BaseRepository {
       data: input.toJson(),
     );
   }
+
+  Future<DataState<User>> getUser() async {
+    return get<User>(
+      path: '/me',
+      parseJsonFunction: User.fromJson,
+    );
+  }
 }

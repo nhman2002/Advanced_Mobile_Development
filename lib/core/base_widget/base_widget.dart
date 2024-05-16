@@ -27,8 +27,6 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
       child: CircularProgressIndicator(),
     );
   }
-  
-
   // if you want to use unique bloc for each screen, override this function and return true
   bool get isUniqueBloc => false;
 
@@ -47,7 +45,7 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
     } else if (event is ReplaceRouteEvent) {
       context.replaceRoute(event.route, onFailure: event.onNavigationFailure);
     } else if (event is PopEvent) {
-      context.popRoute(event.result);
+      context.maybePop(event.result);
     } else if (event is PopUntilEvent) {
       context.router.popUntil(event.predicate);
     } else if (event is PopUntilWithNameEvent) {
@@ -67,15 +65,101 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
             return event.bottomSheet;
           });
     } else if (event is ApiErrorEvent) {
-      showSnackBar(context, event.message);
-    } else if (event is ShowSnackBarEvent) {
-      showSnackBar(context, event.message, type: event.type);
+      showSnackBarError(context, event.message);
+    } else if (event is ShowSnackBarWarningEvent) {
+      showSnackBarWarning(context, event.message, type: event.type);
+    }else if (event is ShowSnackBarSuccessEvent) {
+      showSnackBarSuccess(context, event.message, type: event.type);
+    }else if (event is ShowSnackBarErrorEvent) {
+      showSnackBarError(context, event.message, type: event.type);
+    } else if (event is ShowNotificationEvent) {
+      
     } else {
       onNavigation(context, event);
     }
   }
 
-  static void showSnackBar(BuildContext context, String message,
+  static void showNotification(BuildContext context, String title, String message) {
+    
+  }
+
+  static void showSnackBarSuccess(BuildContext context, String message,
+      {SnackBarType? type = SnackBarType.success}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            margin: const EdgeInsets.only(left: 12, right: 12, bottom: 36),
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
+            content: Row(
+              children: [
+                type == SnackBarType.error
+                    ? Icon(
+                        Icons.warning,
+                        color: HexColor.fromHex('#FA5304'),
+                      )
+                    : Icon(
+                        Icons.check_circle,
+                        color: HexColor.fromHex('#34A853'),
+                      ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                        color: type == SnackBarType.error
+                            ? HexColor.fromHex('#FA5304')
+                            : HexColor.fromHex('#34A853')),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: type == SnackBarType.error
+                ? HexColor.fromHex('#FCE4D9').withOpacity(0.95)
+                : HexColor.fromHex('#E7FBED')),
+      );
+    });
+  }
+
+  static void showSnackBarWarning(BuildContext context, String message,
+      {SnackBarType? type = SnackBarType.warning}) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            margin: const EdgeInsets.only(left: 12, right: 12, bottom: 36),
+            behavior: SnackBarBehavior.floating,
+            duration: const Duration(seconds: 2),
+            content: Row(
+              children: [
+                type == SnackBarType.error
+                    ? Icon(
+                        Icons.warning,
+                        color: HexColor.fromHex('#FA5304'),
+                      )
+                    : Icon(
+                        Icons.check_circle,
+                        color: HexColor.fromHex('#34A853'),
+                      ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    message,
+                    style: TextStyle(
+                        color: type == SnackBarType.error
+                            ? HexColor.fromHex('#FA5304')
+                            : HexColor.fromHex('#34A853')),
+                  ),
+                ),
+              ],
+            ),
+            backgroundColor: type == SnackBarType.error
+                ? HexColor.fromHex('#FCE4D9').withOpacity(0.95)
+                : HexColor.fromHex('#E7FBED')),
+      );
+    });
+  }
+
+  static void showSnackBarError(BuildContext context, String message,
       {SnackBarType? type = SnackBarType.error}) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -87,13 +171,13 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
               children: [
                 type == SnackBarType.error
                     ? Icon(
-                  Icons.warning,
-                  color: HexColor.fromHex('#FA5304'),
-                )
+                        Icons.warning,
+                        color: HexColor.fromHex('#FA5304'),
+                      )
                     : Icon(
-                  Icons.check_circle,
-                  color: HexColor.fromHex('#34A853'),
-                ),
+                        Icons.check_circle,
+                        color: HexColor.fromHex('#34A853'),
+                      ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
@@ -121,15 +205,16 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
       }
       return MultiBlocProvider(
         providers: [
+
           BlocProvider(
               key: isUniqueBloc && !kDebugMode ? UniqueKey() : null,
               create: (context) => NavigationBloc()),
           BlocProvider(
               key: isUniqueBloc && !kDebugMode ? UniqueKey() : null,
               create: (context) =>
-              (provideCubit(context) ?? EmptyCubit() as Cubit)
-                ..navigationController = context.read<NavigationBloc>()
-                ..args = context.routeData.args,
+                  (provideCubit(context) ?? EmptyCubit() as Cubit)
+                    ..navigationController = context.read<NavigationBloc>()
+                    ..args = context.routeData.args,
               lazy: isLazyCubit()),
         ],
         child: BlocListener<NavigationBloc, NavigationEvent>(
@@ -165,14 +250,14 @@ abstract class BaseWidget<Cubit extends WidgetCubit<State>,
                       if (snapshot.data?.isLoading ?? false) {
                         return Positioned.fill(
                             child: Container(
-                              height: MediaQuery.sizeOf(context).height,
-                              width: MediaQuery.sizeOf(context).width,
-                              color: Colors.black.withOpacity(0.2),
-                              child: Center(
-                                child: buildLoadingWidget(
-                                    context, snapshot.data?.message),
-                              ),
-                            ));
+                          height: MediaQuery.sizeOf(context).height,
+                          width: MediaQuery.sizeOf(context).width,
+                          color: Colors.black.withOpacity(0.2),
+                          child: Center(
+                            child: buildLoadingWidget(
+                                context, snapshot.data?.message),
+                          ),
+                        ));
                       }
                     }
                     return Container();

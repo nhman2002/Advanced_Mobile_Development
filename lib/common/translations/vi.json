@@ -1,0 +1,451 @@
+{
+    "home_title1": "Xây dựng sản phẩm của bạn với các sinh viên ưu tú.",
+    "home_title2": "Tìm và tuyển dụng sinh viên có kỹ năng phù hợp nhất với sản phẩm của bạn. Sinh viên làm việc để có được kinh nghiệm và kỹ năng từ các dự án thực tế.",
+    "home_title3": "StudentHub là một thị trường để kết nối sinh viên tài năng và công ty trên dự án thực tế.",
+
+    "company_auth1": "Đăng kí cho Công ty",
+    "company_auth2": "Tên Công ty",
+    "company_auth3": "Email Công ty",
+    "company_auth4": "Mật khẩu",
+    "company_auth5": "Tôi đồng ý với các điều khoản và điều kiện của Student Hub",
+    "company_auth6": "Đăng kí",
+    "company_auth7": "Bạn đang tìm kiếm dự án? Đăng ký cho Sinh viên",
+
+    "login_auth1": "Đăng nhập vào StudentHub",
+    "login_auth2": "Đăng nhập",
+    "login_auth3": "Bạn chưa có tài khoản?",
+    "login_auth4": "Đăng kí",
+    "login_auth5": "Đăng nhập thành công",
+    "login_auth6": "Quên mật khẩu?",
+    "login_auth7": "Username",
+    "login_auth8": "Password",
+
+    "bottomappbar1": "Dự án",
+    "bottomappbar2": "Trang chủ",
+    "bottomappbar3": "Tin nhắn",
+    "bottomappbar4": "Thông báo",
+
+    "forgotpassword_auth1": "Quên mật khẩu",
+    "forgotpassword_auth2": "Vui lòng nhập email của bạn và chúng tôi sẽ gửi cho bạn một đường liên kết để quay lại tài khoản của bạn.",
+    "forgotpassword_auth3": "Vui lòng nhập địa chỉ email hợp lệ.",
+    "forgotpassword_auth4": "Gửi đường liên kết đăng nhập",
+    "forgotpassword_auth5": "Quay lại",
+    "forgotpassword_auth6": "Xin vui lòng điền đầy đủ vào những ô trống cần thiết.",
+
+    "changepassword_auth1": "Tạo mật khẩu mới",
+    "changepassword_auth2": "Mật khẩu mới của bạn phải khác với mật khẩu đã sử dụng trước đó.",
+    "changepassword_auth3": "Mật khẩu",
+    "changepassword_auth4": "Nhập mật khẩu cũ",
+    "changepassword_auth5": "Mật khẩu mới",
+    "changepassword_auth6": "Cả hai mật khẩu phải trùng nhau",
+    "changepassword_auth7": "Nhập mật khẩu mới",
+    "changepassword_auth8": "Xác nhận mật khẩu",
+    "changepassword_auth9": "Xác nhận mật khẩu mới",
+    "changepassword_auth10": "Đổi mật khẩu",
+
+    "signup_auth1": "Bạn muốn đăng kí cho Công ty hay Sinh viên?",
+    "signup_auth2": "Mình là Sinh viên đang tìm dự án để tham gia",
+    "signup_auth3": "Hãy lựa chọn vai trò",
+    "signup_auth4": "Bạn cần lựa chọn vai trò để tiếp tục",
+    "signup_auth5": "Tạo tài khoản",
+    "signup_auth6": "Tôi là công ty, tìm kỹ sư cho dự án",
+
+    "student_auth1": "Đăng kí cho Sinh viên",
+    "student_auth2": "Tôi đồng ý với các điều khoản và điều kiện của Student Hub",
+    "student_auth3": "Đăng kí",
+    "student_auth4": "Bạn đang tìm kiếm kĩ sư? Đăng ký cho Công ty",
+    "student_auth5": "Tên đầy đủ",
+    "student_auth6": "Email/Tên đăng nhập",
+    "student_auth7": "Mật khẩu",
+
+    "videocall_chat1": "Gọi video",
+    "videocall_chat2": "Video sẽ được hiển thị ở đây",
+
+    "messagelist1": "Tin nhắn",
+    "messagelist2": "Tìm kiếm",
+
+    "schedulemeeting1": "Lịch họp",
+    "schedulemeeting2": "Tiêu đề",
+    "schedulemeeting3": "Nội dung",
+    "schedulemeeting4": "Thời gian bắt đầu: ",
+    "schedulemeeting5": "Thời gian kết thúc: ",
+    "schedulemeeting6": "ID phòng họp",
+    "schedulemeeting7": "Mã phòng họp",
+    "schedulemeeting8": "Hủy",
+    "schedulemeeting9": "Lịch",
+    "schedulemeeting10": "Không thể lên lịch cuộc họp",
+    "schedulemeeting11": "Cuộc họp đã được lên lịch thành công",
+
+    "messagedetail1": "Tham gia phỏng vấn",
+    "messagedetail2": "Chỉnh sửa",
+    "messagedetail3": "Hủy cuộc phỏng vấn",
+    "messagedetail4": "Gõ tin nhắn của bạn...",
+    "messagedetail5": "Hôm qua",
+
+    "videocall1": "Cuộc gọi video",
+
+    "companydashboard_company1": "Dự án của bạn",
+    "companydashboard_company2": "Hãy bắt đầu",
+    "companydashboard_company3": "Đăng tuyển",
+    "companydashboard_company4": "Tất cả dự án",
+    "companydashboard_company5": "Đang hoạt động ",
+    "companydashboard_company6": "Đã lưu ",
+    "companydashboard_company7": "Chào mừng ",
+    "companydashboard_company8": "Hãy bắt đầu với bài đăng dự án đầu tiên của bạn",
+    "companydashboard_company9": "Đề xuất: ",
+    "companydashboard_company10": "Tin nhắn: ",
+    "companydashboard_company11": "Đã thuê: ",
+    "companydashboard_company12": "Xem Đề xuất",
+    "companydashboard_company13": "Xem Tin nhắn",
+    "companydashboard_company14": "Xem Đã thuê",
+    "companydashboard_company15": "Xem tin tuyển dụng",
+    "companydashboard_company16": "Chỉnh sửa bài đăng",
+    "companydashboard_company17": "Xóa bài đăng",
+    "companydashboard_company18": "Bắt đầu tham gia dự án",
+    "companydashboard_company19": "Chỉnh sửa dự án",
+    "companydashboard_company20": "Giữ các trường trống để giữ giá trị hiện tại",
+    "companydashboard_company21": "Để trống để giữ tiêu đề hiện tại",
+    "companydashboard_company22": "Để trống để giữ mô tả hiện tại",
+    "companydashboard_company23": "Mô tả dự án",
+    "companydashboard_company24": "Để trống để giữ số lượng sinh viên hiện tại",
+    "companydashboard_company25": "Số học sinh",
+    "companydashboard_company26": "Chọn phạm vi dự án mong muốn của bạn",
+    "companydashboard_company27": "Lưu",
+    "companydashboard_company28": "Hủy bỏ",
+    "companydashboard_company29": "Dự án đã bắt đầu, hãy kiểm tra tab đang hoạt động để biết chi tiết!",
+    "companydashboard_company30": "Không thể xóa dự án!",
+    "companydashboard_company31": "Cập nhật dự án không thành công!",
+
+    "companydashboardarchived_company1": "Không có dự án lưu trữ",
+    "companydashboardarchived_company2": "Dự án đã bắt đầu, hãy kiểm tra tab đang hoạt động để biết chi tiết!",
+
+    "companydashboardworking_company1": "Không có dự án đang hoạt động",
+
+    "companyprojecthired_company1": "Đề xuất",
+    "companyprojecthired_company2": "Mô tả",
+    "companyprojecthired_company3": "Tin nhắn",
+    "companyprojecthired_company4": "Đã thuê",
+    "companyprojecthired_company5": "Thông tin",
+
+    "companyprojectdetail_company1": "Không có mô tả",
+    "companyprojectdetail_company2": "Phạm vi dự án:",
+    "companyprojectdetail_company3": "Nhỏ hơn 1 tháng",
+    "companyprojectdetail_company4": "Lớn hơn 1 tháng",
+    "companyprojectdetail_company5": "Yêu cầu sinh viên:",
+    "companyprojectdetail_company6": " sinh viên",
+
+    "companyprojectproposals_company1": "Tin nhắn",
+    "companyprojectproposals_company2": "Xác nhận",
+    "companyprojectproposals_company3": "Bạn có chắc chắn muốn gửi lời mời làm việc tới ",
+    "companyprojectproposals_company4": "Không",
+    "companyprojectproposals_company5": "Đồng ý",
+    "companyprojectproposals_company6": "Thuê",
+    "companyprojectproposals_company7": "Đã gửi đề nghị",
+
+    "companyprojectmessage_company1": "Tìm kiếm",
+
+    "notificationscreen1": "Xem đề nghị",
+    "notificationscreen2": "Đồng ý",
+    "notificationscreen3": "Từ chối",
+    "notificationscreen4": "Mở trò chuyện",
+    "notificationscreen5": "Xem đề xuất",
+    "notificationscreen6": "Xem kế hoạch",
+    "notificationscreen7": "Xem thông báo",
+
+    "accountswitch1": "Vui lòng hoàn thiện hồ sơ của bạn trước!",
+    "changepass1": "Đã thay đổi mật khẩu thành công",
+
+    "accountSwitchPage_ProfileCreation1": "Công ty",
+    "accountSwitchPage_ProfileCreation2": "Sinh viên",
+    "accountSwitchPage_ProfileCreation3": "Hồ sơ",
+    "accountSwitchPage_ProfileCreation4": "Cài đặt",
+    "accountSwitchPage_ProfileCreation5": "Đăng xuất",
+    "accountSwitchPage_ProfileCreation6": "Sinh viên, Công ty",
+    "accountSwitchPage_ProfileCreation7": "Sinh viên Hai Pham",
+
+    "companyprofileinput_ProfileCreation1": "Chào mừng bạn đến với Student Hub",
+    "companyprofileinput_ProfileCreation2": "Hãy cho chúng tôi biết về công ty của bạn và bạn sẽ tiếp tục kết nối với các sinh viên có năng lực",
+    "companyprofileinput_ProfileCreation3": "Có bao nhiêu người trong công ty của bạn?",
+    "companyprofileinput_ProfileCreation4": "Chỉ có tôi",
+    "companyprofileinput_ProfileCreation5": "2-9 nhân viên",
+    "companyprofileinput_ProfileCreation6": "10-99 nhân viên",
+    "companyprofileinput_ProfileCreation7": "100-1000 nhân viên",
+    "companyprofileinput_ProfileCreation8": "Hơn 1000 nhân viên",
+    "companyprofileinput_ProfileCreation9": "Tên công ty",
+    "companyprofileinput_ProfileCreation10": "Website",
+    "companyprofileinput_ProfileCreation11": "Mô tả",
+    "companyprofileinput_ProfileCreation12": "Tiếp tục",
+
+    "setting1": "Đổi mật khẩu",
+
+    "educationpop1": "Thêm giáo dục",
+    "educationpop2": "'Tên trường: ",
+    "educationpop3": "Vui lòng nhập tên trường",
+    "educationpop4": "Năm bắt đầu: ",
+    "educationpop5": "Chọn năm",
+    "educationpop6": "Năm kết thúc:  ",
+    "educationpop7": "Đảm bảo điền vào tất cả các trường",
+    "educationpop8": "Hủy",
+    "educationpop9": "Thêm",
+
+    "languagepop1": "Chỉnh sửa ngôn ngữ",
+    "languagepop2": "Tự nhiên",
+    "languagepop3": "Trung cấp",
+    "languagepop4": "Cơ bản",
+    "languagepop5": "Nâng cao",
+    "languagepop6": "Thêm ngôn ngữ",
+    "languagepop7": "Chọn ngôn ngữ",
+    "languagepop8": "Chọn cấp độ",
+
+    "projectpop1": "Thêm dự án",
+    "projectpop2": "Tên dự án:",
+    "projectpop3": "Nhập tên dự án",
+    "projectpop4": "Không có ngày được chọn",
+    "projectpop5": "Kĩ năng",
+    "projectpop6": "Bạn đã nhập rồi",
+    "projectpop7": "Thêm kỹ năng",
+    "projectpop8": "Mô tả dự án:",
+    "projectpop9": "Nhập mô tả dự án",
+
+
+    "companyprofileedit_ProfileCreation1": "Chỉnh sửa",
+    "companyprofileedit_ProfileCreation2": "Hủy",
+
+    "companywelcome_ProfileCreation1": "Xin chào, Hai",
+    "companywelcome_ProfileCreation2": "Hãy bắt đầu với bài đăng dự án đầu tiên của bạn",
+    "companywelcome_ProfileCreation3": "Bắt đầu!",
+
+    "settingscreen_ProfileCreation1": "Cài đặt",
+    "settingscreen_ProfileCreation2": "Chế độ:",
+    "settingscreen_ProfileCreation3": "Tối",
+    "settingscreen_ProfileCreation4": "Sáng",
+    "settingscreen_ProfileCreation5": "Ngôn ngữ:",
+
+    "studentprofileinput1_ProfileCreation1": "Hãy cho chúng tôi biết về bản thân của bạn và bạn sẽ được kết nối với những dự án trong thế giới thực",
+    "studentprofileinput1_ProfileCreation2": "Techstack",
+    "studentprofileinput1_ProfileCreation3": "Chọn Techstack chính của bạn",
+    "studentprofileinput1_ProfileCreation4": "Tiếp tục",
+    "studentprofileinput1_ProfileCreation5": "Thêm ngôn ngữ mới:",
+    "studentprofileinput1_ProfileCreation6": "Trình độ:",
+    "studentprofileinput1_ProfileCreation7": "Trường: ",
+    "studentprofileinput1_ProfileCreation8": "Bắt đầu: ",
+    "studentprofileinput1_ProfileCreation9": "Kết thúc: ",
+    "studentprofileinput1_ProfileCreation10": "Ngôn ngữ",
+    "studentprofileinput1_ProfileCreation11": "Giáo dục",
+
+    "studentprofileinput2_ProfileCreation1": "Hệ thống điều độ Taxi thông minh",
+    "studentprofileinput2_ProfileCreation2": "09/2020 - 12/2020, 4 tháng",
+    "studentprofileinput2_ProfileCreation3": "Đây là nhà phát triển siêu ứng dụng cho các dịch vụ gọi xe, giao đồ ăn và thanh toán kỹ thuật số trên thiết bị di động hoạt động tại Singapore, Malaysia,..",
+    "studentprofileinput2_ProfileCreation4": "Kinh nghiệm",
+    "studentprofileinput2_ProfileCreation5": "Dự án",
+    "studentprofileinput2_ProfileCreation6": "Kĩ năng",
+    "studentprofileinput2_ProfileCreation7": "Thêm dự án",
+    "studentprofileinput2_ProfileCreation8": "Tiêu đề",
+    "studentprofileinput2_ProfileCreation9": "Kĩ năng",
+    "studentprofileinput2_ProfileCreation10": "Mô tả",
+    "studentprofileinput2_ProfileCreation11": "Thêm",
+    "studentprofileinput2_ProfileCreation12": "Sửa dự án",
+    "studentprofileinput2_ProfileCreation13": "Sửa",
+    "studentprofileinput2_ProfileCreation14": "Kĩ năng 1",
+    "studentprofileinput2_ProfileCreation15": "Kĩ năng 2",
+    "studentprofileinput2_ProfileCreation16": "Ngày kết thúc",
+
+    "studentprofileinput3_ProfileCreation1": "Hồ sơ Sinh viên",
+    "studentprofileinput3_ProfileCreation2": "CV & Bảng điểm",
+    "studentprofileinput3_ProfileCreation3": "Bảng tóm tắt/CV (*)",
+    "studentprofileinput3_ProfileCreation4": "Bảng điểm",
+    "studentprofileinput3_ProfileCreation5": "Tiếp tục",
+    "studentprofileinput3_ProfileCreation6": "Chọn File hoặc Kéo File Vào",
+    "studentprofileinput3_ProfileCreation7": "Đổi File",
+    "studentprofileinput3_ProfileCreation8": "Vui lòng tải lên CV của bạn",
+
+    "offerlist1": "Danh sách đề nghị",
+    "offerlist2": "Dự án: ",
+    "offerlist3": "Chủ sở hữu dự án này đã gửi lời đề nghị cho bạn",
+    "offerlist4": "Đồng ý",
+    "offerlist5": "Từ chối",
+
+
+    "projectpost1_project1": "Bài đăng của dự án",
+    "projectpost1_project2": "1/4 Hãy bắt đầu với một tiêu đề ấn tượng",
+    "projectpost1_project3": "Điều này giúp bài đăng của bạn nổi bật với những sinh viên phù hợp. Đó là điều đầu tiên họ sẽ nhìn thấy, vì vậy hãy làm cho nó thật ấn tượng!",
+    "projectpost1_project4": "Vui lòng nhập tiêu đề bài viết của bạn",
+    "projectpost1_project5": "Viết tiêu đề cho bài viết của bạn",
+    "projectpost1_project6": "Tiêu đề ví dụ",
+    "projectpost1_project7": "Xây dựng trang web WordPress đáp ứng với chức năng đặt chỗ/thanh toán",
+    "projectpost1_project8": "Cần chuyên viên quảng cáo Facebook để ra mắt sản phẩm",
+    "projectpost1_project9": "Tiếp tục: Phạm vi",
+
+    "projectpost2_project1": "Bài đăng của dự án - Bước 2",
+    "projectpost2_project2": "2/4    Tiếp theo, ước tính phạm vi công việc của bạn",
+    "projectpost2_project3": "Xem xét thời gian và quy mô dự án của bạn",
+    "projectpost2_project4": "Dự án của bạn sẽ tiến hành trong bao lâu?",
+    "projectpost2_project5": "Nhỏ hơn 1 tháng",
+    "projectpost2_project6": "1 đến 3 tháng",
+    "projectpost2_project7": "3 đến 6 tháng",
+    "projectpost2_project8": "Hơn 6 tháng",
+    "projectpost2_project9": "Bạn muốn có bao nhiêu sinh viên cho dự án này?",
+    "projectpost2_project10": "Tiếp tục: Mô tả",
+    "projectpost2_project11": "Số lượng sinh viên",
+    "projectpost2_project12": "Hãy chọn thời gian của dự án",
+    "projectpost2_project13": "Hãy điền vào phần này!",
+
+    "projectpost3_project1": "Bài đăng của dự án - Bước 3",
+    "projectpost3_project2": "3/4    Tiếp theo, cung cấp mô tả dự án",
+    "projectpost3_project3": "Sinh viên đang tìm kiếm: ",
+    "projectpost3_project4": "Mong muốn rõ ràng về dự án hoặc sản phẩm của bạn",
+    "projectpost3_project5": "Các kỹ năng cần thiết cho dự án của bạn",
+    "projectpost3_project6": "Thông tin chi tiết về dự án của bạn ",
+    "projectpost3_project7": "Mô tả dự án của bạn: ",
+    "projectpost3_project8": "Mô tả...",
+    "projectpost3_project9": "Xem lại bài đăng của bạn",
+
+    "projectpost4_project1": "Chi tiết dự án",
+    "projectpost4_project2": "4/4    Chi tiết của dự án",
+    "projectpost4_project3": "không tìm thấy",
+    "projectpost4_project4": "Phạm vi dự án",
+    "projectpost4_project5": "Yêu cầu sinh viên",
+    "projectpost4_project6": "sinh viên",
+    "projectpost4_project7": "Thời gian của dự án: ",
+    "projectpost4_project8": "Mô tả: ",
+    "projectpost4_project9": "Đăng dự án",
+    "projectpost4_project10": "Dự án được đăng thành công!",
+
+    "projectdetail_project1": "Danh sách dự án",
+
+    "projectfilter_project1": "Bộ lọc",
+    "projectfilter_project2": "Cần sinh viên",
+    "projectfilter_project3": "Đề xuất ít hơn",
+    "projectfilter_project4": "Xóa bộ lọc",
+    "projectfilter_project5": "Áp dụng các bộ lọc với giá trị đã chọn: ",
+    "projectfilter_project6": "Cần sinh viên: ",
+    "projectfilter_project7": "Đề xuất ít hơn: ",
+    "projectfilter_project8": "Áp dụng",
+
+    "projectlist_project1": "Tìm kiếm dự án",
+
+    "schedule_schedule1": "Lịch phỏng vấn",
+    "schedule_schedule2": "Tiêu đề",
+    "schedule_schedule3": "Viết tiêu đề cho buổi phỏng vấn",
+    "schedule_schedule4": "Thời gian bắt đầu",
+    "schedule_schedule5": "Chọn ngày",
+    "schedule_schedule6": "Chọn giờ",
+    "schedule_schedule7": "Thời gian kết thúc",
+    "schedule_schedule8": "Chọn ngày kết thúc",
+    "schedule_schedule9": "Chọn thời gian kết thúc",
+    "schedule_schedule10": "Khoảng thời gian: ",
+    "schedule_schedule11": "Hủy",
+    "schedule_schedule12": "Tiêu đề: ",
+    "schedule_schedule13": "Thời gian bắt đầu: ",
+    "schedule_schedule14": "Thời gian kết thúc: ",
+    "schedule_schedule15": "Khoảng thời gian: ",
+    "schedule_schedule16": "Gửi lời mời",
+
+    "schedule_scheduledetail1": "Thời gian bắt đầu",
+    "schedule_scheduledetail2": "Thời gian kết thúc",
+    "schedule_scheduledetail3": "Tham gia",
+    "schedule_scheduledetail4": "Tùy chọn",
+    "schedule_scheduledetail5": "Lên lịch lại phỏng vấn",
+    "schedule_scheduledetail6": "Hủy buổi phỏng vấn",
+
+    "studentdashboard_student1": "Dự án của bạn",
+    "studentdashboard_student2": "Tất cả",
+    "studentdashboard_student3": "Đang thực hiện",
+    "studentdashboard_student4": "Đã lưu",
+    "studentdashboard_student5": "Đề xuất hoạt động ",
+    "studentdashboard_student6": "Đề xuất đã gửi ",
+    "studentdashboard_student7": "Dự án",
+    "studentdashboard_student8": "Trang chủ",
+    "studentdashboard_student9": "Tin nhắn",
+    "studentdashboard_student10": "Thông báo",
+    "studentdashboard_student11": "Không tìm thấy đề xuất nào",
+    "studentdashboard_student12": "Đã gửi hôm nay",
+    "studentdashboard_student13": "Đã gửi hôm qua",
+    "studentdashboard_student14": " ngày trước",
+    "studentdashboard_student15": "Không tìm thấy tiêu đề dự án",
+    "studentdashboard_student16": "Không tìm thấy mô tả dự án",
+    "studentdashboard_student17": "Xem đề nghị",
+    "studentdashboard_student18": "Trang chủ",
+    "studentdashboard_student19": "Mô tả",
+    "studentdashboard_student20": "Tiêu đề",
+
+    "studentdashboardworking_student1": "Dự án của bạn",
+    "studentdashboardworking_student2": "Đề xuất đã gửi (0)",
+    "studentdashboardworking_student3": "Nhà phát triển giao diện người dùng cấp cao (Fintech)",
+    "studentdashboardworking_student4": "đã gửi 3 ngày trước",
+    "studentdashboardworking_student5": "Tìm hiểu rõ về dự án hoặc sản phẩm của bạn",
+
+    "projectdetail_student1": "Chi tiết dự án",
+    "projectdetail_student2": "Không có tiêu đề",
+    "projectdetail_student3": "Không có mô tả",
+    "projectdetail_student4": "Phạm vi dự án: ",
+    "projectdetail_student5": "Nhỏ hơn 1 tháng",
+    "projectdetail_student6": "Lớn hơn 1 tháng",
+    "projectdetail_student7": "Yêu cầu sinh viên: ",
+    "projectdetail_student8": " sinh viên",
+    "projectdetail_student9": "Áp dụng ngay",
+    "projectdetail_student10": "Lưu",
+
+    "projectlist_student1": "Thay đổi chế độ sáng",
+    "projectlist_student2": "Không tìm thấy dự án nào hoặc bạn đã gửi đề xuất cho mọi dự án hiện có.",
+    "projectlist_student3": "Đăng ",
+    "projectlist_student4": " ngày trước",
+    "projectlist_student5": "Không có tiêu đề",
+    "projectlist_student6": "Khoảng thời gian: ",
+    "projectlist_student7": " sinh viên cần thiết",
+    "projectlist_student8": "Không có mô tả",
+    "projectlist_student9": "Đề xuất: ",
+    "projectlist_student10": "Dự án được thêm vào mục yêu thích",
+    "projectlist_student11": "Dự án đã xóa khỏi mục yêu thích",
+
+    "projectlistcover_student1": "Thư xin việc",
+    "projectlistcover_student2": "Mô tả lý do tại sao bạn phù hợp với dự án này: ",
+    "projectlistcover_student3": "Hủy",
+    "projectlistcover_student4": "Xác nhận",
+    "projectlistcover_student5": "Thư xin việc không được để trống",
+    "projectlistcover_student6": "Đã gửi đề xuất thành công",
+    "projectlistcover_student7": "Viết thư xin việc của bạn ở đây...",
+
+
+    "savedprojectpage_student1": "Không tìm thấy dự án yêu thích"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
