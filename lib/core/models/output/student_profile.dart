@@ -37,21 +37,21 @@ class StudentProfile {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'userId': this.userId,
-      'techStackId': this.techStackId,
-      'techStackName': this.techStackName,
-      'fullname': this.fullname,
-      'resume': this.resume,
-      'transcript': this.transcript,
-      'proposals': this.proposals,
-      'educations': this.educations,
-      'languages': this.languages,
-      'experiences': this.experiences,
-      'skillSets': this.skillSets,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'userId': userId,
+      'techStackId': techStackId,
+      'techStackName': techStackName,
+      'fullname': fullname,
+      'resume': resume,
+      'transcript': transcript,
+      'proposals': proposals,
+      'educations': educations,
+      'languages': languages,
+      'experiences': experiences,
+      'skillSets': skillSets,
     };
   }
 
@@ -132,8 +132,9 @@ class StudentProfile {
   static List<StudentProfile> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return (json as List).map((e) => StudentProfile.fromJson(e)).toList();
-    } else
+    } else {
       return (json['result'] as List).map((e) => StudentProfile.fromJson2(e)).toList();
+    }
   }
 
   //get student from ProjectProsalOutput
@@ -224,14 +225,14 @@ class Education {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'studentId': this.studentId,
-      'schoolName': this.schoolName,
-      'startYear': this.startYear,
-      'endYear': this.endYear,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'studentId': studentId,
+      'schoolName': schoolName,
+      'startYear': startYear,
+      'endYear': endYear,
     };
   }
 
@@ -290,16 +291,16 @@ class Experience {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'studentId': this.studentId,
-      'title': this.title,
-      'startMonth': this.startMonth,
-      'endMonth': this.endMonth,
-      'description': this.description,
-      'skillSets': this.skillSets,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'studentId': studentId,
+      'title': title,
+      'startMonth': startMonth,
+      'endMonth': endMonth,
+      'description': description,
+      'skillSets': skillSets,
     };
   }
 
@@ -354,11 +355,11 @@ class TechStack {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'name': this.name,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'name': name,
     };
   }
 
@@ -392,10 +393,11 @@ class TechStackList {
   factory TechStackList.fromJson(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return TechStackList(techStackList: []);
-    } else
+    } else {
       return TechStackList(
         techStackList: (json['result'] as List).map((e) => TechStack.fromJson(e)).toList(),
       );
+    }
   }
 }
 
@@ -420,13 +422,13 @@ class Language {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'studentId': this.studentId,
-      'languageName': this.languageName,
-      'level': this.level,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'studentId': studentId,
+      'languageName': languageName,
+      'level': level,
     };
   }
 
@@ -480,15 +482,15 @@ class Proposal {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'projectId': this.projectId,
-      'studentId': this.studentId,
-      'coverLetter': this.coverLetter,
-      'statusFlag': this.statusFlag,
-      'disableFlag': this.disableFlag,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'projectId': projectId,
+      'studentId': studentId,
+      'coverLetter': coverLetter,
+      'statusFlag': statusFlag,
+      'disableFlag': disableFlag,
     };
   }
 
@@ -524,8 +526,9 @@ class Proposal {
   static List<Proposal> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return [];
-    } else
+    } else {
       return (json['result'] as List).map((e) => Proposal.fromJson2(e)).toList();
+    }
   }
 
 
@@ -551,39 +554,30 @@ class ProposalWithProject extends Proposal {
 
   ProposalWithProject({
     required this.project,
-    required int id,
-    required String createdAt,
-    required String updatedAt,
-    required String? deletedAt,
-    required int projectId,
-    required int studentId,
-    required String coverLetter,
-    required int statusFlag,
-    required int disableFlag,
-  }) : super(
-          id: id,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-          deletedAt: deletedAt,
-          projectId: projectId,
-          studentId: studentId,
-          coverLetter: coverLetter,
-          statusFlag: statusFlag,
-          disableFlag: disableFlag,
-        );
+    required super.id,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.deletedAt,
+    required super.projectId,
+    required super.studentId,
+    required super.coverLetter,
+    required super.statusFlag,
+    required super.disableFlag,
+  });
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'project': project,
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'projectId': this.projectId,
-      'studentId': this.studentId,
-      'coverLetter': this.coverLetter,
-      'statusFlag': this.statusFlag,
-      'disableFlag': this.disableFlag,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'projectId': projectId,
+      'studentId': studentId,
+      'coverLetter': coverLetter,
+      'statusFlag': statusFlag,
+      'disableFlag': disableFlag,
     };
   }
 
@@ -649,42 +643,33 @@ class ProposalWithStudent extends Proposal {
 
   ProposalWithStudent({
     required this.student,
-    required int id,
-    required String createdAt,
-    required String updatedAt,
-    required String? deletedAt,
-    required int projectId,
-    required int studentId,
-    required String coverLetter,
-    required int statusFlag,
-    required int disableFlag,
+    required super.id,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.deletedAt,
+    required super.projectId,
+    required super.studentId,
+    required super.coverLetter,
+    required super.statusFlag,
+    required super.disableFlag,
     required this.resumeLink,
     this.transcriptLink,
-  }) : super(
-          id: id,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-          deletedAt: deletedAt,
-          projectId: projectId,
-          studentId: studentId,
-          coverLetter: coverLetter,
-          statusFlag: statusFlag,
-          disableFlag: disableFlag,
-        );
+  });
 
+  @override
   Map<String, dynamic> toMap() {
     return {
       'student': student,
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'projectId': this.projectId,
-      'studentId': this.studentId,
-      'coverLetter': this.coverLetter,
-      'statusFlag': this.statusFlag,
-      'disableFlag': this.disableFlag,
-      'resumeLink': this.resumeLink,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'projectId': projectId,
+      'studentId': studentId,
+      'coverLetter': coverLetter,
+      'statusFlag': statusFlag,
+      'disableFlag': disableFlag,
+      'resumeLink': resumeLink,
 
     };
   }
@@ -719,7 +704,7 @@ class ProposalWithStudent extends Proposal {
       statusFlag: json['result']['statusFlag'] as int,
       disableFlag: json['result']['disableFlag'] as int,
       resumeLink: json['result']['student']['resumeLink'] as String,
-      transcriptLink: json['result']['student']['transcriptLink'] == null ? null : json['result']['student']['transcriptLink'],
+      transcriptLink: json['result']['student']['transcriptLink'],
     );
 }
 }
@@ -741,11 +726,11 @@ class SkillSet {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'createdAt': this.createdAt,
-      'updatedAt': this.updatedAt,
-      'deletedAt': this.deletedAt,
-      'name': this.name,
+      'id': id,
+      'createdAt': createdAt,
+      'updatedAt': updatedAt,
+      'deletedAt': deletedAt,
+      'name': name,
     };
   }
 
@@ -783,10 +768,11 @@ class SkillSetList {
   factory SkillSetList.fromJson(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return SkillSetList(skillSetList: []);
-    } else
+    } else {
       return SkillSetList(
         skillSetList: (json['result'] as List).map((e) => SkillSet.fromJson(e)).toList(),
       );
+    }
   }
 }
 
@@ -841,8 +827,9 @@ class ProjectProposalOutput {
   static List<ProjectProposalOutput> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return [];
-    } else
+    } else {
       return (json['result']['items'] as List).map((e) => ProjectProposalOutput.fromJson(e)).toList();
+    }
   }
 }
 

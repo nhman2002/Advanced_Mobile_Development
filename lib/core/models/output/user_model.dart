@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:student_hub/core/models/base_model.dart';
-import 'package:student_hub/core/models/output/company_user.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 
 class LoginOutput extends BaseModel {

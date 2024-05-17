@@ -1,8 +1,5 @@
-import 'package:student_hub/core/models/input/message_model.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
-import 'package:student_hub/core/models/output/project_model.dart';
 
 class ChatState extends WidgetState {
   final String? message;

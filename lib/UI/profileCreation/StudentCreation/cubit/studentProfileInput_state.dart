@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:student_hub/core/models/input/student_profile_model.dart' ;
 import 'package:student_hub/core/models/output/student_profile.dart';
@@ -93,7 +92,7 @@ class StudentProfileInputState extends WidgetState {
       transcriptPath: transcriptPath ?? this.transcriptPath,
       isSuccess: isSuccess ?? this.isSuccess,
       experienceList: experienceList ?? this.experienceList,
-      languageList: languagesList ?? this.languageList,
+      languageList: languagesList ?? languageList,
       educationList: educationList ?? this.educationList,
       studentProfile: studentProfile ?? this.studentProfile,
       isEdit: isEdit ?? this.isEdit,

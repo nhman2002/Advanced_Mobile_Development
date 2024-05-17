@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProfileInput_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
@@ -173,7 +171,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
         final error = result.error?.response?.data['errorDetails'];
         final errorMessage =
             error is List ? error.join(", ") : error as String?;
-        message = message + errorMessage! + '\n';
+        message = '$message${errorMessage!}\n';
         successFlag = false;
       }
     }
@@ -183,7 +181,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
     } else {
       final error = result2.error?.response?.data['errorDetails'];
       final errorMessage = error is List ? error.join(", ") : error as String?;
-      message = message + errorMessage! + '\n';
+      message = '$message${errorMessage!}\n';
       successFlag = false;
     }
 
@@ -191,13 +189,13 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
       File? transcript = File(state.transcriptPath!);
 
       final result3 = await _studentProfile.inputStudentTranscript(
-          transcript, studentID as int);
+          transcript, studentID);
       if (result3 is DataSuccess) {
       } else {
         final error = result3.error?.response?.data['errorDetails'];
         final errorMessage =
             error is List ? error.join(", ") : error as String?;
-        message = message + errorMessage! + '\n';
+        message = '$message${errorMessage!}\n';
         successFlag = false;
       }
     }
@@ -210,7 +208,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
         final error = result4.error?.response?.data['errorDetails'];
         final errorMessage =
             error is List ? error.join(", ") : error as String?;
-        message = message + errorMessage! + '\n';
+        message = '$message${errorMessage!}\n';
         successFlag = false;
       }
     }
@@ -223,7 +221,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
         final error = result5.error?.response?.data['errorDetails'];
         final errorMessage =
             error is List ? error.join(", ") : error as String?;
-        message = message + errorMessage! + '\n';
+        message = '$message${errorMessage!}\n';
         successFlag = false;
       }
     }
@@ -236,7 +234,7 @@ class StudentProfileInputCubit extends WidgetCubit<StudentProfileInputState> {
         final error = result6.error?.response?.data['errorDetails'];
         final errorMessage =
             error is List ? error.join(", ") : error as String?;
-        message = message + errorMessage! + '\n';
+        message = '$message${errorMessage!}\n';
         successFlag = false;
       }
     }

@@ -8,7 +8,6 @@ import 'package:student_hub/core/base_widget/cubit/empty_cubit.dart';
 import 'package:student_hub/core/base_widget/cubit/navigation_bloc.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
-import 'package:student_hub/common/config/loading_event.dart';
 
 abstract class BaseWidget<Cubit extends WidgetCubit<State>,
     State extends WidgetState> extends StatelessWidget {

@@ -17,17 +17,17 @@ class ProjectPostState extends WidgetState {
   final int? typeFlag;
   final String? message;
   const ProjectPostState({
-    this.has1 = null,
-    this.has2 = null,
-    this.has3 = null,
+    this.has1,
+    this.has2,
+    this.has3,
     this.postSuccess = false,
-    this.companyId = null,
-    this.projectScopeFlag = null,
-    this.title = null,
-    this.numberOfStudents = null,
-    this.description = null,
-    this.typeFlag = null,
-    this.message = null
+    this.companyId,
+    this.projectScopeFlag,
+    this.title,
+    this.numberOfStudents,
+    this.description,
+    this.typeFlag,
+    this.message
 
 
   });

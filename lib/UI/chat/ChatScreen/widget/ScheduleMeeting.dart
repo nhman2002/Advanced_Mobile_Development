@@ -42,7 +42,7 @@ class _ScheduleDialogState extends State<ScheduleDialog> {
     _contentController = TextEditingController();
     _meetingRoomCodeController = TextEditingController();
     _startTime = DateTime.now();
-    _endTime = DateTime.now().add(Duration(hours: 1));
+    _endTime = DateTime.now().add(const Duration(hours: 1));
     _meetingRoomController = TextEditingController();
 
   }

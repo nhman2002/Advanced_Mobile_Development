@@ -10,14 +10,14 @@ class AnimatedButton extends StatefulWidget {
   final VoidCallback onPressed;
 
   const AnimatedButton({
-    Key? key,
+    super.key,
     required this.icon,
     required this.badge,
     required this.label,
     required this.isSelected,
     // required this.bgColor,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -48,7 +48,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
         });
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
 
           borderRadius: BorderRadius.circular(10),
@@ -60,7 +60,7 @@ class _AnimatedButtonState extends State<AnimatedButton> {
             Icon(widget.icon,
                 size: 30,
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
               widget.label, // Use the provided text color
             ),

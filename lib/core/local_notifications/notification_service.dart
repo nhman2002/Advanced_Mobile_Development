@@ -13,14 +13,14 @@ class NotificationService {
 
   }
 
-  NotificationService._internal() {}
+  NotificationService._internal();
 
   static const channelId = "1";
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
-  static final AndroidNotificationDetails _androidNotificationDetails =
+  static const AndroidNotificationDetails _androidNotificationDetails =
       AndroidNotificationDetails(
     channelId,
     "thecodexhub",
@@ -31,10 +31,10 @@ class NotificationService {
     importance: Importance.high,
   );
 
-  static final IOSNotificationDetails _iOSNotificationDetails =
+  static const IOSNotificationDetails _iOSNotificationDetails =
       IOSNotificationDetails();
 
-  final NotificationDetails notificationDetails = NotificationDetails(
+  final NotificationDetails notificationDetails = const NotificationDetails(
     android: _androidNotificationDetails,
     iOS: _iOSNotificationDetails,
   );
@@ -42,17 +42,17 @@ class NotificationService {
   Future<void> init() async {
     requestIOSPermissions();
     print("Initializing notification service");
-    final AndroidInitializationSettings androidInitializationSettings =
+    const AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("icon");
 
-    final IOSInitializationSettings iOSInitializationSettings =
+    const IOSInitializationSettings iOSInitializationSettings =
         IOSInitializationSettings(
       defaultPresentAlert: false,
       defaultPresentBadge: false,
       defaultPresentSound: false,
     );
 
-    final InitializationSettings initializationSettings =
+    const InitializationSettings initializationSettings =
         InitializationSettings(
       android: androidInitializationSettings,
       iOS: iOSInitializationSettings,

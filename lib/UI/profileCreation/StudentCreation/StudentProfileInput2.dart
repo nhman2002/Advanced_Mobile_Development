@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:student_hub/UI/ProfileCreation/StudentCreation/StudentProfileInput3.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProfileInput_cubit.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/cubit/studentProfileInput_state.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_language_edit_widget.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_languages_widget.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show-language_widget.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
-import 'package:student_hub/UI/profileCreation/StudentCreation/widget/show_school_widget.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
@@ -18,7 +11,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class StudentProfileInputExperience extends StatefulWidget {
-  const StudentProfileInputExperience({Key? key}) : super(key: key);
+  const StudentProfileInputExperience({super.key});
 
   @override
   State<StudentProfileInputExperience> createState() =>
@@ -70,7 +63,7 @@ class _StudentProfileInputExperienceState
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Experiences'),
+            title: const Text('Experiences'),
           ),
           body: Padding(
             padding: const EdgeInsets.all(20.0),
@@ -78,39 +71,39 @@ class _StudentProfileInputExperienceState
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox(height: 20.0),
-                  Text(
+                  const SizedBox(height: 20.0),
+                  const Text(
                     'Experiences',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 16.0),
-                  Text(
+                  const SizedBox(height: 16.0),
+                  const Text(
                     'Tell us about yourself and you will be on your way connect with real-world projects',
                     style:
                         TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Projects',
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       IconButton(
-                        icon: Icon(Icons.add_circle_outline),
+                        icon: const Icon(Icons.add_circle_outline),
                         onPressed: _showAddProjectDialog,
                       ),
                     ],
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _buildProjectCards(),
                   ElevatedButton(
                     onPressed: () {
                       next(context);
                     },
-                    child: Text("Next"),
+                    child: const Text("Next"),
                   ),
                 ],
               ),
@@ -164,7 +157,7 @@ class _StudentProfileInputExperienceState
 // DateTime formattedDate = DateFormat('dd-MM').format(projects[index].startMonth);
 
         return Card(
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 16),
+          margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -178,13 +171,13 @@ class _StudentProfileInputExperienceState
                     Text(
                       projects[index].title ?? '',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '${startDate} - ${endDate}',
+                      '$startDate - $endDate',
                       // '${DateFormat('MM-yyyy').format(projects[index].startMonth as DateTime)} - ${DateFormat('MM-yyyy').format(projects[index].endMonth as DateTime)}',
                       // 'CON',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
                       ),
@@ -199,14 +192,14 @@ class _StudentProfileInputExperienceState
               children: [
                 Text(
                   projects[index].description ?? '',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16.0),
-                Text(
+                const SizedBox(height: 16.0),
+                const Text(
                   'Skillset',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _showSkillSet(projects[index]),
               ],
             ),
@@ -229,14 +222,14 @@ class _StudentProfileInputExperienceState
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: SingleChildScrollView(
-        padding: EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10.0),
         child: Wrap(
           spacing: 10.0,
           runSpacing: 10.0,
           //skillSets is a list of index of skillsetList, build the buttons using the index
           children: project.skillSets!
               .map((index) => _buildSkillSetButton(
-                  skillSetList[int.parse(index)]?.name ?? ''))
+                  skillSetList[int.parse(index)].name ?? ''))
               .toList(),
         ),
       ),
@@ -260,7 +253,7 @@ class _StudentProfileInputExperienceState
       ),
       child: Text(
         skill,
-        style: TextStyle(color: Colors.white, fontSize: 16),
+        style: const TextStyle(color: Colors.white, fontSize: 16),
       ),
     );
   }
@@ -270,11 +263,11 @@ class _StudentProfileInputExperienceState
       mainAxisSize: MainAxisSize.min,
       children: [
         IconButton(
-          icon: Icon(Icons.edit_outlined),
+          icon: const Icon(Icons.edit_outlined),
           onPressed: () => {_showEditProjectDialog(index, Theme.of(context))},
         ),
         IconButton(
-          icon: Icon(Icons.delete_outlined),
+          icon: const Icon(Icons.delete_outlined),
           onPressed: () => _deleteProject(index),
         ),
       ],
@@ -287,7 +280,7 @@ class _StudentProfileInputExperienceState
       builder: (context) {
         return Dialog(
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -295,44 +288,44 @@ class _StudentProfileInputExperienceState
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  const Text(
                     'Add Project',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _buildTextField('Title', _titleController),
-                  SizedBox(height: 16.0),
-                  Text(
+                  const SizedBox(height: 16.0),
+                  const Text(
                     'Skillset',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   MultiSelectChipField(
                     items: skillSetList
                         .map((skill) => MultiSelectItem<String>(
-                            skill!.id.toString(), skill!.name))
+                            skill.id.toString(), skill.name))
                         .toList(),
-                    initialValue: [],
+                    initialValue: const [],
                     onTap: (values) {
                       selectedSkills = values.toList().cast<String>();
                       debugPrint(selectedSkills.toString());
                     },
                     chipColor: Colors.white,
                     selectedChipColor: Colors.purple,
-                    textStyle: TextStyle(color: Colors.black),
-                    selectedTextStyle: TextStyle(color: Colors.white),
+                    textStyle: const TextStyle(color: Colors.black),
+                    selectedTextStyle: const TextStyle(color: Colors.white),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _datePicker(context),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   _buildTextField('Description', _descriptionController),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
                       _addProject();
                       Navigator.of(context).pop();
                     },
-                    child: Text('Add'),
+                    child: const Text('Add'),
                   ),
                 ],
               ),
@@ -349,52 +342,52 @@ class _StudentProfileInputExperienceState
       builder: (context) {
         return Dialog(
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Edit Project',
                   style: TextStyle(
                     fontSize: 20, fontWeight: FontWeight.bold,
                     // color: theme.colorScheme.onTertiary
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildTextField(projects[index].title, _titleController),
-                SizedBox(height: 16.0),
-                Text(
+                const SizedBox(height: 16.0),
+                const Text(
                   'Skillset',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 MultiSelectChipField(
                   items: skillSetList
                       .map((skill) => MultiSelectItem<String>(
-                          skill!.id.toString(), skill!.name))
+                          skill.id.toString(), skill.name))
                       .toList(),
-                  initialValue: [],
+                  initialValue: const [],
                   onTap: (values) {
                     selectedSkills = values.toList().cast<String>();
                     debugPrint(selectedSkills.toString());
                   },
                   chipColor: Colors.white,
                   selectedChipColor: Colors.purple,
-                  textStyle: TextStyle(color: Colors.black),
-                  selectedTextStyle: TextStyle(color: Colors.white),
+                  textStyle: const TextStyle(color: Colors.black),
+                  selectedTextStyle: const TextStyle(color: Colors.white),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _datePicker(context),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildTextField(
                     projects[index].description, _descriptionController),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () => _editProject(index),
-                  child: Text('Edit'),
+                  child: const Text('Edit'),
                 ),
               ],
             ),
@@ -465,7 +458,7 @@ class _StudentProfileInputExperienceState
             child: IgnorePointer(
               child: TextField(
                 controller: _startDateController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Start Date',
                   border: OutlineInputBorder(),
                 ),
@@ -473,14 +466,14 @@ class _StudentProfileInputExperienceState
             ),
           ),
         ),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Expanded(
           child: InkWell(
             onTap: () => _selectEndDate(context),
             child: IgnorePointer(
               child: TextField(
                 controller: _endDateController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'End Date',
                   border: OutlineInputBorder(),
                 ),
@@ -499,7 +492,7 @@ class _StudentProfileInputExperienceState
       controller: controller,
       decoration: InputDecoration(
         labelText: title,
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
     );
   }

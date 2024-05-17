@@ -1,13 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:student_hub/UI/auth/company/company.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/UI/auth/student/cubit/student_cubit.dart';
 import 'package:student_hub/UI/auth/student/cubit/student_state.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
@@ -36,14 +34,14 @@ class StudentRegisterWidget extends StatefulWidget {
 
 class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefault {
   bool _agreeToTerms = false;
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( title: Text('Student Hub')),
+      appBar: AppBar( title: const Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -51,26 +49,26 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
           children: [
             Text(
               "student_auth1".tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
                 labelText: "student_auth5".tr(),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: "student_auth6".tr(),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -79,7 +77,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
               //TODO: Add a confirm password field
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Checkbox(
@@ -93,7 +91,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
                 Text( "student_auth2".tr()),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // Add your sign-up logic for students here
@@ -101,7 +99,7 @@ class _StudentSignupState extends State<StudentRegisterWidget> with SnackBarDefa
               },
               child: Text("student_auth3".tr()),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextButton(
               onPressed: () {
                 // Navigate to the company sign-up page

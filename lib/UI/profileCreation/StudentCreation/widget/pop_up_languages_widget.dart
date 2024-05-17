@@ -1,13 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/models/model/language.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
 
 class PopUpLanguagesWidget extends StatefulWidget {
@@ -61,7 +57,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
 
   final List<String> _levels = ["languagepop2".tr(), "languagepop3".tr(), "languagepop4".tr(), "languagepop5".tr()];
   bool showError = false;
-  bool _isDarkMode = false;
+  final bool _isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +77,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
     // });
 
     return AlertDialog(
-      backgroundColor: isDarkMode ? Color(0xFF212121) : Colors.white,
+      backgroundColor: isDarkMode ? const Color(0xFF212121) : Colors.white,
       title: Text("languagepop6".tr(),
           style: GoogleFonts.poppins(
             fontSize: 20,
@@ -107,7 +103,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                     )),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             DropdownSearch<String>(
               asyncItems: (filter) async => await getData(filter,
                   checkLanguageExits(widget.languagesSelected, languages)),
@@ -146,7 +142,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
               //   ),
               // ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Align(
               alignment: Alignment.centerLeft,
               child: Text("languagepop8".tr(),
@@ -176,12 +172,12 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
                       });
                     },
                     overlayColor:
-                        MaterialStateProperty.all<Color>(Color(0xFF406AFF)),
-                    activeColor: Color(0xFF406AFF),
+                        MaterialStateProperty.all<Color>(const Color(0xFF406AFF)),
+                    activeColor: const Color(0xFF406AFF),
                     fillColor: MaterialStateProperty.resolveWith<Color>(
                         (Set<MaterialState> states) {
                       if (states.contains(MaterialState.selected)) {
-                        return Color(0xFF406AFF); // Màu khi radio được chọn
+                        return const Color(0xFF406AFF); // Màu khi radio được chọn
                       }
                       return isDarkMode
                           ? Colors.white
@@ -209,7 +205,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color.fromARGB(244, 213, 222, 255),
+            backgroundColor: const Color.fromARGB(244, 213, 222, 255),
           ),
           child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
@@ -222,7 +218,7 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
         ),
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color(0xFF406AFF),
+            backgroundColor: const Color(0xFF406AFF),
           ),
           child: Text('OK',
               style: GoogleFonts.poppins(
@@ -230,8 +226,8 @@ class _PopUpLanguagesWidgetState extends State<PopUpLanguagesWidget> {
           onPressed: () {
             // Handle the OK button press
             //check existing language
-            print("h" + _selectedLanguage);
-            print("hc" + _selectedLevel);
+            print("h$_selectedLanguage");
+            print("hc$_selectedLevel");
             if (_selectedLanguage != "null" && _selectedLevel != "null") {
               widget._addTask(_selectedLanguage, _selectedLevel);
               Navigator.of(context).pop();
@@ -260,10 +256,10 @@ Widget _customItemBuilder(BuildContext context, String item, bool isSelected) {
                 style: GoogleFonts.poppins(
                   color: isDarkMode
                       ? isSelected
-                          ? Color(0xFF406AFF)
+                          ? const Color(0xFF406AFF)
                           : Colors.white
                       : isSelected
-                          ? Color(0xFF406AFF)
+                          ? const Color(0xFF406AFF)
                           : Colors.black,
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
@@ -279,7 +275,7 @@ Widget _customLoadingBuilder(BuildContext context, String item) {
   bool isDarkMode = Provider.of<ThemeMode>(context) as bool;
   return Container(
           color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
-      child: Center(
+      child: const Center(
         child: CircularProgressIndicator(
         ),
       ));

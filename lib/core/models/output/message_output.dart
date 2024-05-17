@@ -78,8 +78,9 @@ class MessageOutput {
   static List<MessageOutput> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return [];
-    } else
+    } else {
       return (json['result'] as List).map((e) => MessageOutput.fromJson(e)).toList();
+    }
   }
   
   Map<String, dynamic> toJson() {
@@ -139,8 +140,9 @@ class Interview {
   static List<Interview> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return [];
-    } else
+    } else {
       return (json['result'] as List).map((e) => Interview.fromJson(e)).toList();
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -183,10 +185,12 @@ class MessageWithProject extends MessageOutput{
   static List<MessageWithProject> fromJsonList(Map<String, dynamic> json) {
     if (json['result'] == null) {
       return [];
-    } else
+    } else {
       return (json['result'] as List).map((e) => MessageWithProject.fromJson(e)).toList();
+    }
   }
 
+  @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;

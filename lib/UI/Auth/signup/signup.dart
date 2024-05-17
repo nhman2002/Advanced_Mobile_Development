@@ -6,6 +6,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
     @override
     _SignupPageState createState() => _SignupPageState();
 }
@@ -17,7 +19,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub')),
+        title: const Text('Student Hub')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -26,12 +28,12 @@ class _SignupPageState extends State<SignupPage> {
           children: [
             Text(
               "signup_auth1".tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 setState(() {
@@ -40,17 +42,17 @@ class _SignupPageState extends State<SignupPage> {
               },
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Center(
                   child: Text(
                     "signup_auth2".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 setState(() {
@@ -59,17 +61,17 @@ class _SignupPageState extends State<SignupPage> {
               },
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Center(
                   child: Text(
                     "signup_auth6".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 if (_selectedRole == 'student') {
@@ -90,7 +92,7 @@ class _SignupPageState extends State<SignupPage> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('OK'),
+                            child: const Text('OK'),
                           ),
                         ],
                       );

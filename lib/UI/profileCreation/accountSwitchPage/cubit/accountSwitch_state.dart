@@ -10,14 +10,14 @@ class AccountSwitchState extends WidgetState {
   final String? userName;
   final String? companyName;
   const AccountSwitchState({
-    this.isLogin = null,
-    this.currentRole = null,
-    this.userRoles = null,
-    this.hasMultipleRoles = null,
-    this.hasStudentProfile = null,
-    this.hasCompanyProfile = null,
-    this.userName = null,
-    this.companyName = null,
+    this.isLogin,
+    this.currentRole,
+    this.userRoles,
+    this.hasMultipleRoles,
+    this.hasStudentProfile,
+    this.hasCompanyProfile,
+    this.userName,
+    this.companyName,
 
   });
 

@@ -1,10 +1,8 @@
 import 'package:student_hub/UI/notification/cubit/notification_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
-import 'package:student_hub/core/local_notifications/notification_service.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/repository/notification.dart';
-import 'package:student_hub/core/socket/socket.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 
 

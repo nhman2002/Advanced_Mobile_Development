@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/common/config/navigation_event.dart';
 import 'package:student_hub/core/base_widget/cubit/navigation_bloc.dart';
-import 'package:student_hub/core/logger/logger.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 import 'package:student_hub/common/config/loading_event.dart';
 

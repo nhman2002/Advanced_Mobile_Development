@@ -18,7 +18,7 @@ Widget buildProjectSectionButton(
             color: buttonColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             label,
             style: TextStyle(color: textColor),

@@ -6,6 +6,8 @@ import 'package:auto_route/auto_route.dart';
 
 @RoutePage()
 class CompanyWelcomeRoute extends StatefulWidget {
+  const CompanyWelcomeRoute({super.key});
+
   @override
   _CompanyWelcomeRouteState createState() => _CompanyWelcomeRouteState();
 }
@@ -15,13 +17,13 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               context.router.push(const LoginPageRoute());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.account_circle,
               size: 40.0,
             ),
@@ -33,25 +35,25 @@ class _CompanyWelcomeRouteState extends State<CompanyWelcomeRoute> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.directions,
               size: 100.0,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "companywelcome_ProfileCreation1".tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "companywelcome_ProfileCreation2".tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
                 // Add onPressed logic here

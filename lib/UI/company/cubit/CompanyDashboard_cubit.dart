@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
@@ -7,14 +6,11 @@ import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/project_post_model.dart';
 import 'package:student_hub/core/models/input/proposal_model.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/repository/message.dart';
 import 'package:student_hub/core/repository/profileStudent.dart';
 import 'package:student_hub/core/repository/project.dart';
 import 'package:student_hub/core/repository/proposal.dart';
-import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/auth/login/cubit/login_state.dart';
 
 class CompanyDashboardCubit extends WidgetCubit<CompanyDashboardState> {
   CompanyDashboardCubit()

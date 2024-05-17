@@ -10,7 +10,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class CoverLetterPage extends StatefulWidget {
-  const CoverLetterPage({Key? key}) : super(key: key);
+  const CoverLetterPage({super.key});
 
   @override
   _CoverLetterPageState createState() => _CoverLetterPageState ();
@@ -39,12 +39,12 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                 children: [
                   Text(
                     "projectlistcover_student2".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
                     ),
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   TextField(
                     controller: coverLetter,
                     focusNode: _focusNode,
@@ -54,10 +54,10 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
                     },
                     decoration: InputDecoration(
                       hintText: "projectlistcover_student7".tr(),
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -117,13 +117,13 @@ class _CoverLetterPageState extends State<CoverLetterPage> with SnackBarDefault{
   }
 
   void _scrollToBottom() {
-    Future.delayed(Duration(milliseconds: 300), () {
+    Future.delayed(const Duration(milliseconds: 300), () {
       if (_focusNode.hasFocus) {
-        final scrollController = Scrollable.of(context)?.position;
-        scrollController?.ensureVisible(
+        final scrollController = Scrollable.of(context).position;
+        scrollController.ensureVisible(
           _focusNode.context!.findRenderObject()!,
           alignment: 1.0,
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
         );
       }
     });

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
@@ -60,8 +59,8 @@ class _MessageListScreenState extends State<MessageListScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Student Hub'),
-          bottom: TabBar(
+          title: const Text('Student Hub'),
+          bottom: const TabBar(
             tabs: [
               Tab(text: 'Messages'),
               Tab(text: 'Interviews'),
@@ -72,7 +71,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
               onPressed: () {
                 context.router.replace(const SwitchAccountPageRoute());
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.account_circle,
                 size: 40.0,
               ),
@@ -91,7 +90,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
             ),
           ],
         ),
-        bottomNavigationBar: CustomBottomAppBar(selectedTab: "Messages"),
+        bottomNavigationBar: const CustomBottomAppBar(selectedTab: "Messages"),
       ),
     );
   }
@@ -99,7 +98,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
   Widget _buildMessageContent() {
     return ListView.separated(
       itemCount: messages?.length ?? 0,
-      separatorBuilder: (context, index) => Divider(color: Colors.black),
+      separatorBuilder: (context, index) => const Divider(color: Colors.black),
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
@@ -115,7 +114,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
             ));
           },
           child: ListTile(
-            leading: Icon(Icons.supervised_user_circle),
+            leading: const Icon(Icons.supervised_user_circle),
             title: Text(messages![index].receiverId == userId
                 ? messages![index].senderName ?? ''
                 : messages![index].receiverName ?? ''),
@@ -124,7 +123,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
               children: [
                 Text(
                   messages![index].project!.title ?? '',
-                  style: TextStyle(color: Colors.green),
+                  style: const TextStyle(color: Colors.green),
                 ),
                 Text(messages![index].content ?? ''),
               ],
@@ -138,10 +137,10 @@ class _MessageListScreenState extends State<MessageListScreen> {
 Widget _buildInterviewContent() {
   return ListView.separated(
     itemCount: interviews?.length ?? 0,
-    separatorBuilder: (context, index) => Divider(color: Colors.black),
+    separatorBuilder: (context, index) => const Divider(color: Colors.black),
     itemBuilder: (context, index) {
       return ListTile(
-        leading: Icon(Icons.calendar_today),
+        leading: const Icon(Icons.calendar_today),
         title: Text(interviews![index].title ?? 'No Title'),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,7 +157,7 @@ Widget _buildInterviewContent() {
             print('Joining interview code ${interviews![index].meetingRoomCode}');
             context.router.push(VideoCallScreenRoute(channelName: interviews![index].title ?? '', tempToken: interviews![index].meetingRoomCode));
           },
-          child: Text('Join'),
+          child: const Text('Join'),
         ),
       );
     },

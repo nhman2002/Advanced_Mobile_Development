@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
@@ -28,13 +27,13 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   // Add onPressed logic here
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -48,12 +47,12 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
               children: [
                 Text(
                   projectDetail!.title!,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -87,7 +86,7 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
                     }),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _buildMessageContent(
                     messages, state.userId!, state.clickedProjectID),
               ],
@@ -107,32 +106,32 @@ class _CompanyProjectMessage extends State<CompanyProjectMessage> {
           Expanded(
             child: ListView.separated(
               itemCount: messages!.length,
-              separatorBuilder: (context, index) => Divider(),
+              separatorBuilder: (context, index) => const Divider(),
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
                     print('Tile clicked');
                     context.router.push(MessageDetailScreenRoute(
                       userId: userId,
-                      receiverId: messages![index].receiverId! == userId
-                          ? messages![index].senderId!
-                          : messages![index].receiverId!,
+                      receiverId: messages[index].receiverId! == userId
+                          ? messages[index].senderId!
+                          : messages[index].receiverId!,
                       projectId: projectId,
-                      receiverName: messages![index].receiverId == userId
-                          ? messages![index].senderName!
-                          : messages![index].receiverName!,
+                      receiverName: messages[index].receiverId == userId
+                          ? messages[index].senderName!
+                          : messages[index].receiverName!,
                     ));
                   },
                   child: ListTile(
-                    leading: Icon(Icons
+                    leading: const Icon(Icons
                         .supervised_user_circle), // Replace with actual icons
-                    title: Text(messages![index].receiverId == userId
-                        ? messages![index].senderName ?? ''
-                        : messages![index].receiverName ?? ''),
+                    title: Text(messages[index].receiverId == userId
+                        ? messages[index].senderName ?? ''
+                        : messages[index].receiverName ?? ''),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(messages![index].content ?? ''),
+                        Text(messages[index].content ?? ''),
                       ],
                     ),
                   ),

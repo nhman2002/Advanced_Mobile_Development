@@ -11,15 +11,17 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class CompanyProfileInput extends StatefulWidget {
+  const CompanyProfileInput({super.key});
+
   @override
   _CompanyProfileInputState createState() => _CompanyProfileInputState();
 }
 
 class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBarDefault {
   int? _selectedValue;
-  TextEditingController _companyNameController = TextEditingController();
-  TextEditingController _websiteController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _websiteController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   final _companyProfileRepository = getIt.get<CompanyProfileRepository>();
 
   @override
@@ -27,13 +29,13 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
     return Scaffold(
       resizeToAvoidBottomInset: true, // Allow keyboard to push up the screen
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               context.router.push(const SwitchAccountPageRoute());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.account_circle,
               size: 40.0,
             ),
@@ -42,30 +44,30 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 "companyprofileinput_ProfileCreation1".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 "companyprofileinput_ProfileCreation2".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 children: [
                   Text(
                     "companyprofileinput_ProfileCreation3".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                     ),
                   ),
@@ -80,13 +82,13 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
                   _buildRadioOption(4, "companyprofileinput_ProfileCreation8".tr()),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildInputField("companyprofileinput_ProfileCreation9".tr(), _companyNameController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildInputField("companyprofileinput_ProfileCreation10".tr(), _websiteController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildInputField("companyprofileinput_ProfileCreation11".tr(), _descriptionController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   handleInput(context);
@@ -108,7 +110,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
           groupValue: _selectedValue,
           onChanged: (newValue) {
             setState(() {
-              _selectedValue = newValue as int?;
+              _selectedValue = newValue;
             });
           },
         ),
@@ -119,7 +121,7 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
 
   Widget _buildInputField(String label, TextEditingController controller) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(),
@@ -141,11 +143,11 @@ class _CompanyProfileInputState extends State<CompanyProfileInput> with SnackBar
       description: _descriptionController.text,
       size: _selectedValue,
     );
-    final _localStorage = getIt.get<LocalStorage>();
+    final localStorage = getIt.get<LocalStorage>();
 
     final result = await _companyProfileRepository.inputCompanyProfile(form);
     if (result is DataSuccess) {
-      _localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
+      localStorage.saveString(key: StorageKey.companyID, value: result.data!.id.toString());
       showSnackBarSuccess(context, 'Company profile created successfully');
       context.router.push(const CompanyDashboardWrapperRoute());
     } else {

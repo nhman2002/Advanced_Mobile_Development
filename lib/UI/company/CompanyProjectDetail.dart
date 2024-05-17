@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:student_hub/UI/company/CompanyProjectProposals.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
-import 'package:student_hub/UI/company/widget/ProjectSectionButton.dart';
 import 'package:student_hub/UI/company/widget/ProposalSectionButton.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -30,13 +27,13 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   // Add onPressed logic here
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -50,12 +47,12 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
               children: [
                 Text(
                   project?.title ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -65,38 +62,38 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                     buildProposalSectionButton(Theme.of(context),"companyprojecthired_company4".tr(), Colors.black, false, (){context.router.replace(const CompanyProjectHiredRoute());}),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   height: 600,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: SingleChildScrollView(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
                           Text(
                             project?.description ?? "companyprojectdetail_company1".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold, // Make the text bold
                             ),
                           ),
-                          SizedBox(height: 25),
-                          Divider(),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
+                          const Divider(),
+                          const SizedBox(height: 25),
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.alarm,
                                 size: 40.0,
                               ),
-                              SizedBox(width: 30),
+                              const SizedBox(width: 30),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "companyprojectdetail_company2".tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -104,17 +101,17 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.remove,
                                             size: 10.0,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                               width:
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
                                               project?.projectScopeFlag == 0 ? "companyprojectdetail_company3".tr() : "companyprojectdetail_company3".tr(),
-                                              style: TextStyle(),
+                                              style: const TextStyle(),
                                             ),
                                           ),
                                         ],
@@ -125,21 +122,21 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.people,
                                 size: 40.0,
                               ),
-                              SizedBox(width: 30),
+                              const SizedBox(width: 30),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "companyprojectdetail_company5".tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -147,17 +144,17 @@ class _CompanyProjectDetail extends State<CompanyProjectDetail> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.remove,
                                             size: 10.0,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                               width:
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              '${project?.numberOfStudents}' + "companyprojectdetail_company6".tr(),
-                                              style: TextStyle(),
+                                              '${project?.numberOfStudents}${"companyprojectdetail_company6".tr()}',
+                                              style: const TextStyle(),
                                             ),
                                           ),
                                         ],

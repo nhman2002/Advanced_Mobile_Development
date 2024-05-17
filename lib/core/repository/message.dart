@@ -1,9 +1,7 @@
 
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/input/favorite_project_model.dart';
 import 'package:student_hub/core/models/input/message_model.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
-import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:student_hub/core/repository/base.dart';
 
 

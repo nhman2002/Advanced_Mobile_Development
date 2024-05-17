@@ -6,7 +6,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: Text('Scheduled Meetings'),
+        title: const Text('Scheduled Meetings'),
       ),
       body: ScheduleItem(
         isSender: false,
@@ -41,7 +41,7 @@ class ScheduleItem extends StatelessWidget {
   final DateTime time;
 
   const ScheduleItem({
-    Key? key,
+    super.key,
     required this.isSender,
     required this.name,
     required this.avatarUrl,
@@ -54,7 +54,7 @@ class ScheduleItem extends StatelessWidget {
     required this.endDate,
     required this.endTimeMeeting,
     required this.time,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -99,14 +99,14 @@ class ScheduleItem extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         duration,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontStyle: FontStyle.italic,
                         ),
@@ -120,14 +120,14 @@ class ScheduleItem extends StatelessWidget {
                     children: [
                       Text(
                         "schedule_scheduledetail1".tr(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         '$day $date $timeMeeting',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                         ),
                       ),
@@ -140,14 +140,14 @@ class ScheduleItem extends StatelessWidget {
                     children: [
                       Text(
                         "schedule_scheduledetail2".tr(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         '$endDay $endDate $endTimeMeeting',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                         ),
                       ),
@@ -180,19 +180,19 @@ class ScheduleItem extends StatelessWidget {
                         },
                         child: Text(
                           "schedule_scheduledetail3".tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                       const SizedBox(width: 4),
-                      OptionsButton(),
+                      const OptionsButton(),
                     ],
                   ),
                   const SizedBox(height: 4),
                   Text(
                     _formatTime(time),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                     ),
                   ),
@@ -218,6 +218,8 @@ class ScheduleItem extends StatelessWidget {
 }
 
 class OptionsButton extends StatelessWidget {
+  const OptionsButton({super.key});
+
   @override
   Widget build(BuildContext context) {
     return IconButton(
@@ -225,7 +227,7 @@ class OptionsButton extends StatelessWidget {
         showDialog(
           context: context,
           builder: (BuildContext context) {
-            return OptionsDialog();
+            return const OptionsDialog();
           },
         );
       },
@@ -236,6 +238,8 @@ class OptionsButton extends StatelessWidget {
 }
 
 class OptionsDialog extends StatelessWidget {
+  const OptionsDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -245,7 +249,7 @@ class OptionsDialog extends StatelessWidget {
       ),
       title: Text(
         "schedule_scheduledetail4".tr(),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.bold,
         ),
@@ -256,7 +260,7 @@ class OptionsDialog extends StatelessWidget {
             GestureDetector(
               child: Text(
                 "schedule_scheduledetail5".tr(),
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {
                 Navigator.of(context).pop(); // Close dialog
@@ -274,7 +278,7 @@ class OptionsDialog extends StatelessWidget {
             GestureDetector(
               child: Text(
                 "schedule_scheduledetail6".tr(),
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
               onTap: () {
                 Navigator.of(context).pop(); // Close dialog

@@ -1,12 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:student_hub/UI/Shub.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/UI/splash_screen/cubit/splash_cubit.dart';
-import 'package:student_hub/UI/splash_screen/cubit/splash_state.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/socket/socket.dart';
@@ -29,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     
     // Delay the navigation by 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       navigateToNextScreen(); // Call the method to navigate after delay
     });
   }
@@ -46,9 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
       // context.router.replace(VideoCallScreenRoute(channelName: 'test'));
     } else {
       _notiSocket.listenInBackground();
-      if (isCompany == true && hasProfile == true)
+      if (isCompany == true && hasProfile == true) {
         context.router.replace(const CompanyDashboardWrapperRoute());
-      else if (isCompany == false && hasProfile == true)
+      } else if (isCompany == false && hasProfile == true)
         context.router.replace(const ProjectListWrapperRoute());
       else
         context.router.replace(const SwitchAccountPageRoute());

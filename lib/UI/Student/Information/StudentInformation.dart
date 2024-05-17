@@ -61,7 +61,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Container(
@@ -76,12 +76,12 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                       width: 2,
                     ),
                   ),
-                  child: CircleAvatar(
+                  child: const CircleAvatar(
                     backgroundImage:
                         AssetImage('lib/common/ui/assets/circle_avatar.png'),
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -93,7 +93,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             _buildSection('Tech Stack', techStack),
             _buildSection(
                 'Skillset', skillset.map((e) => e.name).join(', ') ?? ''),
@@ -115,12 +115,12 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
       children: [
         Text(
           title,
-          style: theme.textTheme.bodyText1!.copyWith(
+          style: theme.textTheme.bodyLarge!.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         if (data.isNotEmpty)
           Column(
             children: data.map((item) {
@@ -129,13 +129,13 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                 children: [
                   Text(
                     item.languageName ?? 'No Language Name',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     'Level: ${item.level ?? 'Unknown'}',
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               );
             }).toList(),
@@ -144,7 +144,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
           Text(
             'No $title available',
           ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
@@ -156,12 +156,12 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
       children: [
         Text(
           title,
-          style: theme.textTheme.bodyText1!.copyWith(
+          style: theme.textTheme.bodyLarge!.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         if (experiences.isNotEmpty)
           Column(
             children: experiences.map((experience) {
@@ -170,30 +170,30 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                 children: [
                   Text(
                     experience.title ?? 'No Title',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     experience.description ?? 'No Description',
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     'Start: ${experience.startMonth ?? 'Unknown'}',
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     'End: ${experience.endMonth ?? 'Unknown'}',
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               );
             }).toList(),
           )
         else
-          Text(
+          const Text(
             'No experiences available',
           ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
@@ -206,12 +206,12 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
     children: [
       Text(
         title,
-        style: theme.textTheme.bodyText1!.copyWith(
+        style: theme.textTheme.bodyLarge!.copyWith(
           fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       if (data.isNotEmpty)
         Column(
           children: data.map((item) {
@@ -220,17 +220,17 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
               children: [
                 Text(
                   item.schoolName,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'Start Year: ${item.startYear}',
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   'End Year: ${item.endYear}',
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             );
           }).toList(),
@@ -239,7 +239,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
         Text(
           'No $title available',
         ),
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
     ],
   );
 }
@@ -251,17 +251,17 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
       children: [
         Text(
           title,
-          style: theme.textTheme.bodyText1!.copyWith(
+          style: theme.textTheme.bodyLarge!.copyWith(
             fontSize: 15,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           content.isNotEmpty ? content : 'No data',
           style: theme.textTheme.bodyMedium,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }
@@ -274,15 +274,15 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
     children: [
       Text(
         title,
-        style: theme.textTheme.bodyText1!.copyWith(
+        style: theme.textTheme.bodyLarge!.copyWith(
           fontSize: 15,
           fontWeight: FontWeight.bold,
         ),
       ),
-      SizedBox(height: 10),
+      const SizedBox(height: 10),
       Container(
         width: MediaQuery.of(context).size.width * 0.7,
-        margin: EdgeInsets.only(right: 10),
+        margin: const EdgeInsets.only(right: 10),
         padding: const EdgeInsets.fromLTRB(15, 8, 0, 8),
         decoration: BoxDecoration(
           color: const Color(0xffF6F7F9),
@@ -303,7 +303,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                 scale: 1.8,
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -316,7 +316,7 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                 ],
               ),
             ),
@@ -324,12 +324,12 @@ class _StudentInformationScreen extends State<StudentInformationWidget> {
               onPressed: () {
                 context.read<StudentInformationCubit>().downloadFile(f);
               },
-              icon: Icon(Icons.download),
+              icon: const Icon(Icons.download),
             ),
           ],
         ),
       ),
-      SizedBox(height: 20),
+      const SizedBox(height: 20),
     ],
   );
 }

@@ -1,15 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:get_it/get_it.dart';
-import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/error_model.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/error_model.dart';
 
 typedef ParseJsonFunction<OutputType> = OutputType Function(
     Map<String, dynamic> jsonData);
@@ -52,7 +48,7 @@ class BaseRepository {
       Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await _networkManager.get(
-          'https://api.studenthub.dev' + path,
+          'https://api.studenthub.dev$path',
           queryParameters: queryParameters);
       if (response.statusCode == 200) {
         final parser = ResultParser<T>(
@@ -100,7 +96,7 @@ class BaseRepository {
       Map<String, dynamic>? headers,
       Map<String, dynamic>? data}) async {
     try {
-      final response = await _networkManager.post('https://api.studenthub.dev' + path,
+      final response = await _networkManager.post('https://api.studenthub.dev$path',
           queryParameters: queryParameters, data: data);
       if (response.statusCode == 200 || response.statusCode == 201) {
         final parser = ResultParser<T>(

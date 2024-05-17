@@ -14,7 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class StudentProfileInputCV extends StatefulWidget {
-  const StudentProfileInputCV({Key? key}) : super(key: key);
+  const StudentProfileInputCV({super.key});
 
   @override
   _StudentProfileInputCVState createState() => _StudentProfileInputCVState();
@@ -41,10 +41,10 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
         setState(() {
           if (fileType == 'CV') {
             cvPath = result.files.single.path!;
-            cvFileName = result.files.single.name!;
+            cvFileName = result.files.single.name;
           } else if (fileType == 'Transcript') {
             transcriptPath = result.files.single.path!;
-            transcriptFileName = result.files.single.name!;
+            transcriptFileName = result.files.single.name;
           }
         });
       } else {
@@ -52,7 +52,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
         print('User canceled file picking');
       }
     } on PlatformException catch (e) {
-      print("Unsupported operation" + e.toString());
+      print("Unsupported operation$e");
     }
   }
 
@@ -72,21 +72,21 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                 Center(
                   child: Text(
                     "studentprofileinput3_ProfileCreation2".tr(),
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Text(
                   "studentprofileinput1_ProfileCreation1".tr(),
                 ),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Text("studentprofileinput3_ProfileCreation3".tr()),
                 _buildFilePickerContainer('CV', cvPath, cvFileName),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Text("studentprofileinput3_ProfileCreation4".tr()),
                 _buildFilePickerContainer(
                     "studentprofileinput3_ProfileCreation4".tr(), transcriptPath, transcriptFileName),
-                SizedBox(height: 32.0),
+                const SizedBox(height: 32.0),
                 ElevatedButton(
                   onPressed: () {
                     next(context);
@@ -102,7 +102,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                   ),
                   child: Text(
                     "studentprofileinput3_ProfileCreation5".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16.0,
                     ),
                   
@@ -136,7 +136,7 @@ class _StudentProfileInputCVState extends State<StudentProfileInputCV> with Snac
                       ? "studentprofileinput3_ProfileCreation6".tr()
                       : "studentprofileinput3_ProfileCreation7".tr()),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 if (filePath.isNotEmpty) Text(fileName), // Display filename
               ],
             ),

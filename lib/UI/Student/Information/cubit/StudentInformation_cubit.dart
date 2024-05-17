@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:student_hub/UI/Student/Information/cubit/StudentInformation_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:student_hub/core/repository/base.dart';
 import 'package:student_hub/core/repository/general.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';

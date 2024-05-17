@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/UI/auth/student/student.dart';
 import 'package:student_hub/UI/auth/company/cubit/company_cubit.dart';
 import 'package:student_hub/UI/auth/company/cubit/company_state.dart';
 import 'package:auto_route/auto_route.dart';
@@ -32,15 +31,15 @@ class CompanyRegisterWidget extends StatefulWidget {
 
 class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefault {
   bool _agreeToTerms = false;
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -49,26 +48,26 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
           children: [
             Text(
               "company_auth1".tr(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
                 labelText: "company_auth2".tr(),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
                 labelText: "company_auth3".tr(),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -76,7 +75,7 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
                 labelText: "company_auth4".tr(),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Checkbox(
@@ -90,14 +89,14 @@ class _CompanySignupState extends State<CompanyRegisterWidget> with SnackBarDefa
                 Text("company_auth5".tr()),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                   handleSignup(context);
               },
               child: Text("company_auth6".tr()),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextButton(
               onPressed: () {
                 // Navigate to the student sign-up page

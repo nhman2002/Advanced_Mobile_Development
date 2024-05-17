@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'dart:ui';
-import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/local_notifications/notification_service.dart';
-import 'package:student_hub/core/models/input/message_model.dart';
 
 class NotificationSocket {
   IO.Socket socket = IO.io(
@@ -31,7 +29,7 @@ class NotificationSocket {
       'Authorization': 'Bearer $_accessToken',
     };
 
-    await socket.connect();
+    socket.connect();
 
     socket.onConnect((data) {
       print('Connected to notification socket of user $_userId');
@@ -59,8 +57,8 @@ class NotificationSocket {
   }
 
   Future<void> updateToken() async {
-    _accessToken = await _localStorage.getString(key: StorageKey.accessToken);
-    _userId = await _localStorage.getString(key: StorageKey.userID);
+    _accessToken = _localStorage.getString(key: StorageKey.accessToken);
+    _userId = _localStorage.getString(key: StorageKey.userID);
   }
 
   Future<void> listenInBackground() async {

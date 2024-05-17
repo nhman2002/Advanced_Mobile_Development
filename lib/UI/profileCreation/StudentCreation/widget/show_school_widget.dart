@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:student_hub/UI/profileCreation/StudentCreation/widget/pop_up_education_widget.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
 // import 'package:student_hub/widgets/pop_up_education_widget.dart';
 // import 'package:student_hub/models/model/education.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
@@ -40,7 +38,7 @@ class ShowSchoolWidget extends StatelessWidget {
                   )),
               subtitle: Text(
                   ' ${educationList[index].startYear!} - ${educationList[index].endYear!}',
-                  style: GoogleFonts.poppins(fontSize: 13, color: isDarkMode ? const Color.fromARGB(255, 188, 188, 188) : Color.fromARGB(255, 73, 73, 73))),
+                  style: GoogleFonts.poppins(fontSize: 13, color: isDarkMode ? const Color.fromARGB(255, 188, 188, 188) : const Color.fromARGB(255, 73, 73, 73))),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
@@ -61,8 +59,8 @@ class ShowSchoolWidget extends StatelessWidget {
                               _addNewEducation,
                               _deleteSchool,
                               educationList[index].schoolName!,
-                              educationList[index].startYear! as int,
-                              educationList[index].endYear! as int,
+                              educationList[index].startYear!,
+                              educationList[index].endYear!,
                             );
                           },
                         );

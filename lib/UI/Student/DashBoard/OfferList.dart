@@ -9,7 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class OfferListPage extends StatefulWidget {
-  const OfferListPage({Key? key}) : super(key: key);
+  const OfferListPage({super.key});
 
   @override
   State<OfferListPage> createState() => _OfferListPage();
@@ -47,21 +47,21 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
     required VoidCallback func,
   }) {
     return Card(
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "offerlist2".tr() + '$projectName',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              '${"offerlist2".tr()}$projectName',
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               "offerlist3".tr(),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -74,7 +74,7 @@ class _OfferListPage extends State<OfferListPage> with SnackBarDefault {
                   ),
                   child: Text("offerlist4".tr()),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 ElevatedButton(
                   onPressed: () {
                     // Handle reject button press

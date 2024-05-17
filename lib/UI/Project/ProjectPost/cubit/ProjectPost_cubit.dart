@@ -2,14 +2,9 @@ import 'dart:convert';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
-import 'package:student_hub/core/models/input/company_model.dart';
-import 'package:student_hub/core/models/input/login_model.dart';
 import 'package:student_hub/core/models/input/project_post_model.dart';
-import 'package:student_hub/core/models/output/project_model.dart';
-import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
 import 'package:student_hub/core/repository/project.dart';
-import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 

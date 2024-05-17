@@ -8,8 +8,7 @@ class VideoCallScreen extends StatefulWidget {
   final String channelName;
   final String? tempToken;
 
-  const VideoCallScreen({Key? key, required this.channelName, this.tempToken})
-      : super(key: key);
+  const VideoCallScreen({super.key, required this.channelName, this.tempToken});
 
   @override
   _VideoCallScreenState createState() => _VideoCallScreenState();
@@ -61,7 +60,7 @@ class _VideoCallScreenState extends State<VideoCallScreen> {
         appBar: AppBar(
           title: Text("videocall1".tr()),
         ),
-        body: Center(
+        body: const Center(
           child: CircularProgressIndicator(),
         ),
       );

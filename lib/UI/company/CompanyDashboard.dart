@@ -1,18 +1,14 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_state.dart';
-import 'package:student_hub/UI/profileCreation/accountSwitchPage/cubit/accountSwitch_cubit.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
 import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
-import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/models/input/project_post_model.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -36,13 +32,13 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -61,7 +57,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                       projectList.isNotEmpty
                           ? "companydashboard_company1".tr()
                           : "companydashboard_company2".tr(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -76,7 +72,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 if (projectList.isNotEmpty)
                   Container(
                     child: Row(
@@ -108,21 +104,21 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                       ],
                     ),
                   ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 if (projectList.isEmpty)
                   Column(
                     children: [
                       Text(
                         "companydashboard_company7".tr() +
                             _localStorage.getString(key: StorageKey.userName)!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
                         "companydashboard_company8".tr(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
@@ -130,7 +126,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   ),
                 if (projectList.isNotEmpty)
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 400, // Adjust the height as needed
                       child: ListView.builder(
                         itemCount: projectList.length,
@@ -158,7 +154,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
     return Expanded(
       child: InkWell(
         onTap: () {
-          print('${title} pressed');
+          print('$title pressed');
           // Logic corresponding to each section can be placed here
         },
         child: Container(
@@ -166,10 +162,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
           decoration: BoxDecoration(
             borderRadius: isActive ? BorderRadius.circular(5) : null,
           ),
-          padding: EdgeInsets.symmetric(vertical: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Text(
             title,
-            style: TextStyle(),
+            style: const TextStyle(),
           ),
         ),
       ),
@@ -198,7 +194,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.more_vert),
+                  icon: const Icon(Icons.more_vert),
                   onPressed: () {
                     projectClicked(project.projectId!);
                     _showBottomSheet(context, project);
@@ -217,16 +213,13 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("companydashboard_company9".tr() +
-                    '${project.countProposal}'),
-                Text("companydashboard_company10".tr() +
-                    '${project.countMessages}'),
-                Text("companydashboard_company11".tr() +
-                    '${project.countHired}'),
+                Text('${"companydashboard_company9".tr()}${project.countProposal}'),
+                Text('${"companydashboard_company10".tr()}${project.countMessages}'),
+                Text('${"companydashboard_company11".tr()}${project.countHired}'),
               ],
             ),
           ),
-          Divider(), // Optional divider between items
+          const Divider(), // Optional divider between items
         ],
       ),
     );
@@ -241,10 +234,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
           child: Wrap(
             children: [
               ListTile(
-                leading: Icon(Icons.list),
+                leading: const Icon(Icons.list),
                 title: Text(
                   "companydashboard_company12".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
@@ -254,10 +247,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.message),
+                leading: const Icon(Icons.message),
                 title: Text(
                   "companydashboard_company13".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
@@ -267,10 +260,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.work),
+                leading: const Icon(Icons.work),
                 title: Text(
                   "companydashboard_company14".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
@@ -279,12 +272,12 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   // Close the bottom sheet
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.remove_red_eye),
+                leading: const Icon(Icons.remove_red_eye),
                 title: Text(
                   "companydashboard_company15".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   handleProjectPressed(project, context);
@@ -294,10 +287,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.edit),
+                leading: const Icon(Icons.edit),
                 title: Text(
                   "companydashboard_company16".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   // Add logic to edit posting
@@ -307,10 +300,10 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.delete),
+                leading: const Icon(Icons.delete),
                 title: Text(
                   "companydashboard_company17".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   deleteProject(project.projectId ?? -1);
@@ -318,12 +311,12 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   Navigator.pop(context); // Close the bottom sheet
                 },
               ),
-              Divider(),
+              const Divider(),
               ListTile(
-                leading: Icon(Icons.play_arrow),
+                leading: const Icon(Icons.play_arrow),
                 title: Text(
                   "companydashboard_company18".tr(),
-                  style: TextStyle(fontSize: 16, height: 1.2),
+                  style: const TextStyle(fontSize: 16, height: 1.2),
                 ),
                 onTap: () {
                   startWorkingOnProject(project);
@@ -359,7 +352,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
             color: buttonColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             label,
             style: TextStyle(color: textColor),
@@ -405,7 +398,7 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   onChanged: (value) {
                     projectTitle = value;
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Project Title',
                   ),
                 ),
@@ -435,17 +428,17 @@ class _CompanyDashboard extends State<CompanyDashboard> with SnackBarDefault {
                   ),
                 ),
               ),
-              SizedBox(height: 10)
+              const SizedBox(height: 10)
               ,
               //text field for project scope
                Align(
                 alignment: Alignment.centerLeft, // Align to the left side
                 child: Padding(
-                  padding:  EdgeInsets.only(
+                  padding:  const EdgeInsets.only(
                       top: 8.0), // Add top padding for spacing
                   child: Text(
                     "companydashboard_company26".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 16), // Adjust the font size as needed
                   ),
                 ),

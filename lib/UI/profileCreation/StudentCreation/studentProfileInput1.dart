@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +18,7 @@ import 'package:student_hub/core/models/output/user_model.dart';
 
 @RoutePage()
 class StudentProfileInputTechStack extends StatefulWidget {
-  const StudentProfileInputTechStack({Key? key}) : super(key: key);
+  const StudentProfileInputTechStack({super.key});
 
   @override
   State<StudentProfileInputTechStack> createState() =>
@@ -43,7 +42,7 @@ class _StudentProfileInputTechStackState
         level: level,
       );
       languages.add(newLanguage);
-          print("studentprofileinput1_ProfileCreation5".tr() + '$language' + "studentprofileinput1_ProfileCreation6".tr()+ '$level');
+          print('${"studentprofileinput1_ProfileCreation5".tr()}$language${"studentprofileinput1_ProfileCreation6".tr()}$level');
     });
   }
 
@@ -55,7 +54,7 @@ class _StudentProfileInputTechStackState
 
   void _addNewEducation(String schoolName, int yearsStart, int yearsEnd) {
     setState(() {
-      print("studentprofileinput1_ProfileCreation7".tr() + '$schoolName' + "studentprofileinput1_ProfileCreation8".tr() + '$yearsStart' + "studentprofileinput1_ProfileCreation9".tr() + '$yearsEnd');
+      print('${"studentprofileinput1_ProfileCreation7".tr()}$schoolName${"studentprofileinput1_ProfileCreation8".tr()}$yearsStart${"studentprofileinput1_ProfileCreation9".tr()}$yearsEnd');
       final EducationInput newEducation = EducationInput(
         schoolName: schoolName,
         startYear: yearsStart,
@@ -112,16 +111,16 @@ class _StudentProfileInputTechStackState
 
       return Scaffold(
         appBar: AppBar(
-          title: Text(''),
+          title: const Text(''),
           leading: IconButton(
-            icon: Icon(Icons.home),
+            icon: const Icon(Icons.home),
             onPressed: () {
               context.router.replace(const SwitchAccountPageRoute());
             },
           ),
         ),
         body: Container(
-          padding: EdgeInsets.all(12),
+          padding: const EdgeInsets.all(12),
           height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             child: Column(
@@ -129,14 +128,14 @@ class _StudentProfileInputTechStackState
               children: [
                 Text("companyprofileinput_ProfileCreation1".tr(),
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 20),
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
                 Text("studentprofileinput1_ProfileCreation1".tr(),
-                    style: TextStyle(fontSize: 14)),
-                SizedBox(height: 20),
+                    style: const TextStyle(fontSize: 14)),
+                const SizedBox(height: 20),
                 Text("studentprofileinput1_ProfileCreation2".tr(),
                     style:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                        const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                 DropdownButton<String>(
                   isExpanded: true,
                   hint: Text("studentprofileinput1_ProfileCreation3".tr()),
@@ -150,12 +149,12 @@ class _StudentProfileInputTechStackState
                         },
                   items: techStackList.map((tech) {
                     return DropdownMenuItem<String>(
-                      value: tech!.id.toString(),
+                      value: tech.id.toString(),
                       child: Text(tech.name),
                     );
                   }).toList(),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 isEdit
                     ? Wrap(
                         children: selectedSkills.map((skillId) {
@@ -163,19 +162,15 @@ class _StudentProfileInputTechStackState
                               (element) => element.id.toString() == skillId,
                               orElse: () => SkillSet(id: -1, name: '-1', createdAt: '', updatedAt: '', deletedAt: '')
                          ); // Handle case where skill is not found
-                          if (skill != null) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: InputChip(
-                                label: Text(skill.name),
-                                onPressed: () {}, // Disabled onPressed event
-                              ),
-                            );
-                          } else {
-                            return Container(); // Return empty container if skill not found
-                          }
-                        }).toList(),
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 4.0),
+                            child: InputChip(
+                              label: Text(skill.name),
+                              onPressed: () {}, // Disabled onPressed event
+                            ),
+                          );
+                                                }).toList(),
                       )
                     : MultiSelectChipField(
                         items: skillSetList
@@ -192,14 +187,14 @@ class _StudentProfileInputTechStackState
                         },
                         chipColor: Colors.white,
                         selectedChipColor: Colors.purple,
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           color: Colors.black,
                         ),
-                        selectedTextStyle: TextStyle(
+                        selectedTextStyle: const TextStyle(
                           color: Colors.white,
                         ),
                       ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     Padding(
@@ -252,7 +247,7 @@ class _StudentProfileInputTechStackState
                           },
                         );
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.edit,
                         size: 30,
                       ),

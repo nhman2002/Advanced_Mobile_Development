@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/company/cubit/CompanyDashboard_cubit.dart';
@@ -32,13 +31,13 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   // Add onPressed logic here
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -52,12 +51,12 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
               children: [
                 Text(
                   projectDetail?.title ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -91,10 +90,10 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                     }),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.6,
-                  decoration: BoxDecoration(),
+                  decoration: const BoxDecoration(),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +109,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                               proposal.coverLetter!,
                               proposal.statusFlag!,
                               state.userId!,
-                              proposal.student!.userId!,
+                              proposal.student!.userId,
                               projectDetail!.projectId!,
                             ),
                       ],
@@ -128,32 +127,32 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
   Widget _buildContent(int proposalId, String name, String pos, String des,
       int statusFlag, int userID, int receiverID, int projectId) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               // Icon representing a person
-              Icon(
+              const Icon(
                 Icons.person,
                 size: 40,
                 // You can adjust color and other properties as needed
               ),
-              SizedBox(width: 10), // Adjust spacing between icon and text
+              const SizedBox(width: 10), // Adjust spacing between icon and text
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // First row with name
                   Text(
                     name,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: 5), // Add some vertical space between rows
+          const SizedBox(height: 5), // Add some vertical space between rows
           Row(
             children: [
               Column(
@@ -162,18 +161,18 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                   // Job title
                   Text(
                     pos,
-                    style: TextStyle(),
+                    style: const TextStyle(),
                   ),
                 ],
               ),
             ],
           ),
-          SizedBox(height: 10), // Add some vertical space between sections
+          const SizedBox(height: 10), // Add some vertical space between sections
           Text(
             des,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 5), // Add some vertical space between sections
+          const SizedBox(height: 5), // Add some vertical space between sections
           Row(
             children: [
               // Button for Message
@@ -189,7 +188,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                   child: Text("companyprojectproposals_company1".tr()),
                 ),
               ),
-              SizedBox(width: 10), // Adjust spacing between buttons
+              const SizedBox(width: 10), // Adjust spacing between buttons
               // Button for Hire
               Expanded(
                 child: ElevatedButton(
@@ -202,8 +201,7 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                                 title: Text(
                                     "companyprojectproposals_company2".tr()),
                                 content: Text(
-                                    "companyprojectproposals_company3".tr() +
-                                        '$name?'),
+                                    '${"companyprojectproposals_company3".tr()}$name?'),
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
@@ -243,11 +241,11 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                     statusFlag != 2
                         ? "companyprojectproposals_company6".tr()
                         : "companyprojectproposals_company7".tr(),
-                    style: TextStyle(),
+                    style: const TextStyle(),
                   ),
                 ),
               ),
-              SizedBox(width: 10), // Adjust spacing between buttons
+              const SizedBox(width: 10), // Adjust spacing between buttons
               // Button for View Profile
               Expanded(
                 child: ElevatedButton(
@@ -256,13 +254,13 @@ class _CompanyProjectProposals extends State<CompanyProjectProposals>
                     // Replace `ProfileScreenRoute` with your actual route name and parameters
                     context.router.push(StudentInformationScreenRoute(id: proposalId));
                   },
-                  child: Text("View Profile"),
+                  child: const Text("View Profile"),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 10), // Add some vertical space between sections
-          Divider(
+          const SizedBox(height: 10), // Add some vertical space between sections
+          const Divider(
             thickness: 1.0,
           ),
         ],

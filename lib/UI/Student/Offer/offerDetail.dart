@@ -6,7 +6,7 @@ class OfferDetail extends StatefulWidget {
   final String projectName;
   final String companyName;
 
-  const OfferDetail({
+  const OfferDetail({super.key, 
     required this.projectName,
     required this.companyName,
   });
@@ -22,22 +22,22 @@ class _OfferDetailState extends State<OfferDetail> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
+          const Text(
             'Project Name',
             style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 20.0),
-          Text(
+          const SizedBox(height: 20.0),
+          const Text(
             'Company Name: ABC Company',
             style: TextStyle(fontSize: 18.0),
           ),
-          SizedBox(height: 10.0),
-          Text(
+          const SizedBox(height: 10.0),
+          const Text(
             'Project Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus condimentum fermentum diam, quis hendrerit nisl tincidunt non.',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 16.0),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -48,9 +48,9 @@ class _OfferDetailState extends State<OfferDetail> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
                 ),
-                child: Text('Accept'),
+                child: const Text('Accept'),
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               ElevatedButton(
                 onPressed: () {
                   // Handle reject button press
@@ -58,7 +58,7 @@ class _OfferDetailState extends State<OfferDetail> {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.red),
                 ),
-                child: Text('Reject'),
+                child: const Text('Reject'),
               ),
             ],
           ),

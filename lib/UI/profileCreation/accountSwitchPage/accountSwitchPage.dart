@@ -14,7 +14,7 @@ import 'package:easy_localization/easy_localization.dart';
 @RoutePage()
 class SwitchAccountPage
     extends BaseWidget<AccountSwitchCubit, AccountSwitchState> {
-  const SwitchAccountPage({Key? key}) : super(key: key);
+  const SwitchAccountPage({super.key});
   @override
   Widget buildWidget(BuildContext context) {
     return const SwitchAccountWidget();
@@ -27,7 +27,7 @@ class SwitchAccountPage
 }
 
 class SwitchAccountWidget extends StatefulWidget {
-  const SwitchAccountWidget({Key? key}) : super(key: key);
+  const SwitchAccountWidget({super.key});
 
   @override
   State<SwitchAccountWidget> createState() => _SwitchAccountPage();
@@ -40,7 +40,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
 
   @override
   Widget build(BuildContext context) {
-    final _localStorage = getIt.get<LocalStorage>();
+    final localStorage = getIt.get<LocalStorage>();
 
     return BlocBuilder<AccountSwitchCubit, AccountSwitchState>(
       builder: (context, state) {
@@ -50,7 +50,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
         final currentRole = state.currentRole;
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
@@ -63,7 +63,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                     showSnackBarWarning(
                         context, "accountswitch1".tr());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.home,
                   size: 40.0,
                 ),
@@ -87,11 +87,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.person),
+                        leading: const Icon(Icons.person),
                         title: Text("accountSwitchPage_ProfileCreation3".tr()),
                       ),
                     ),
-                    Divider(
+                    const Divider(
 
                       thickness: 1.0,
                     ),
@@ -103,11 +103,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.settings),
+                        leading: const Icon(Icons.settings),
                         title: Text("accountSwitchPage_ProfileCreation4".tr()),
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       thickness: 1.0,
                     ),
                     ElevatedButton(
@@ -119,13 +119,13 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                         elevation: 0,
                       ),
                       child: ListTile(
-                        leading: Icon(Icons.logout),
+                        leading: const Icon(Icons.logout),
                         title: Text("accountSwitchPage_ProfileCreation5".tr()),
                       ),
                     ),
                   ],
                 ),
-                Divider(
+                const Divider(
                   thickness: 1.0,
                 ),
               ],
@@ -142,14 +142,16 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
     final hasStudentProfile =
         context.read<AccountSwitchCubit>().state.hasStudentProfile;
     final currentRole = context.read<AccountSwitchCubit>().state.currentRole;
-    if (currentRole == 1) if (hasCompanyProfile == true)
+    if (currentRole == 1) if (hasCompanyProfile == true) {
       context.router.replace(const CompanyProfileEditRoute());
-    else
+    } else {
       context.router.replace(const CompanyProfileInputRoute());
-    else if (currentRole == 0) if (hasStudentProfile == true)
+    }
+    else if (currentRole == 0) if (hasStudentProfile == true) {
       context.router.replace(const StudentProfileInputWrapperRoute());
-    else
+    } else {
       context.router.replace(const StudentProfileInputWrapperRoute());
+    }
   }
 
   Widget _buildUserRolesUI(
@@ -177,7 +179,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             roles.contains(0)
                 ? "accountSwitchPage_ProfileCreation2".tr()
                 : "accountSwitchPage_ProfileCreation1".tr(),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14.0,
             ),
           ),
@@ -187,22 +189,23 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(
               children: [
-                Divider(
+                const Divider(
                   thickness: 1.0,
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.add_circle_outline,
                     size: 40.0,
                   ),
                   title: Text(
                       "Add a ${currentRole == 0 ? 'company' : 'student'} profile"),
                   onTap: () {
-                    if (currentRole == 0)
+                    if (currentRole == 0) {
                       context.router.push(const CompanyProfileInputRoute());
-                    else
+                    } else {
                       context.router
                           .push(const StudentProfileInputWrapperRoute());
+                    }
                   },
                 ),
               ],
@@ -234,7 +237,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
       return ExpansionTile(
         tilePadding: const EdgeInsets.only(right: 16.0),
         title: ListTile(
-          leading: Icon(
+          leading: const Icon(
             Icons.account_circle,
             size: 40.0,
           ),
@@ -243,7 +246,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             currentRole == 0
                 ? "accountSwitchPage_ProfileCreation2".tr()
                 : "accountSwitchPage_ProfileCreation1".tr(),
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14.0,
             ),
           ),
@@ -253,11 +256,11 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
             padding: const EdgeInsets.only(left: 16.0),
             child: Column(
               children: [
-                Divider(
+                const Divider(
                   thickness: 1.0,
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.account_circle,
                     size: 40.0,
                   ),
@@ -266,7 +269,7 @@ class _SwitchAccountPage extends State<SwitchAccountWidget>
                     otherRole == 0
                         ? "accountSwitchPage_ProfileCreation2".tr()
                         : "accountSwitchPage_ProfileCreation1".tr(),
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14.0,
                     ),
                   ),

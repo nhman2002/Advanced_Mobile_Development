@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 // import 'package:provider/provider.dart';
@@ -30,8 +29,7 @@ class PopUpProjectWidget extends StatefulWidget {
       this.timeEnd,
       this.projectDescription,
       this.skillsListProject,
-      {Key? key})
-      : super(key: key);
+      {super.key});
   @override
   _PopUpProjectWidgetState createState() => _PopUpProjectWidgetState();
 }
@@ -41,8 +39,8 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
   late DateTime? _timeEnd = widget.timeEnd;
   late TextEditingController _projectNameController;
   late TextEditingController _projectDescriptionController;
-  final List<String>? _selectedSkills = [];
-  final List<int>? _selectedSkillsId = [];
+  final List<String> _selectedSkills = [];
+  final List<int> _selectedSkillsId = [];
   final List<SkillSet> _skillsListProject = [];
   TextEditingController _textEditingController = TextEditingController();
   late TextfieldTagsController<String> _textfieldTagsController;
@@ -56,7 +54,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
     _projectDescriptionController =
         TextEditingController(text: widget.projectDescription);
     _textfieldTagsController = TextfieldTagsController<String>();
-    _selectedSkills!.addAll(widget.skillsListProject.map((e) => e.toString()));
+    _selectedSkills.addAll(widget.skillsListProject.map((e) => e.toString()));
   }
 
   @override
@@ -107,8 +105,8 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
     showMonthPicker(
       context: context,
       initialDate: _timeStart!
-          .add(Duration(days: 1)), // start from the day after the start date
-      firstDate: _timeStart!.add(Duration(
+          .add(const Duration(days: 1)), // start from the day after the start date
+      firstDate: _timeStart!.add(const Duration(
           days:
               1)), // the first date that can be picked is the day after the start date
       lastDate: DateTime
@@ -127,8 +125,8 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
     showDatePicker(
       context: context,
       initialDate: _timeStart
-          ?.add(Duration(days: 1)), // start from the day after the start date
-      firstDate: _timeStart!.add(Duration(
+          ?.add(const Duration(days: 1)), // start from the day after the start date
+      firstDate: _timeStart!.add(const Duration(
           days:
               1)), // the first date that can be picked is the day after the start date
       lastDate: DateTime
@@ -148,7 +146,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
     // bool isDarkMode = Provider.of<DarkModeProvider>(context).isDarkMode;
     bool isDarkMode = false;
     return AlertDialog(
-      backgroundColor: isDarkMode ? Color(0xFF212121) : Colors.white,
+      backgroundColor: isDarkMode ? const Color(0xFF212121) : Colors.white,
       title: Padding(
         padding: const EdgeInsets.fromLTRB(0, 5, 10, 10),
         child: Text(
@@ -176,7 +174,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
               style: GoogleFonts.poppins(
                       color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
               ),
-              cursorColor: Color(0xFF406AFF),
+              cursorColor: const Color(0xFF406AFF),
               controller: _projectNameController,
               decoration: InputDecoration(
                 hintText: "projectpop3".tr(),
@@ -184,12 +182,12 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                   // Sử dụng font Poppins
                   fontSize: 14.0,
                 ),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(width: 2.0),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -207,7 +205,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                         GoogleFonts.poppins(fontSize: 13),
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.calendar_month_sharp,
                       size: 20.0,
                     ),
@@ -230,7 +228,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                   style: GoogleFonts.poppins(fontSize: 13),
                 ),
                 IconButton(
-                  icon: Icon(Icons.calendar_month_sharp,
+                  icon: const Icon(Icons.calendar_month_sharp,
                     size: 20.0, ),
                   onPressed: _showEndMonthPicker,
                 ),
@@ -239,8 +237,8 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 0),
-                SizedBox(height: 10),
+                const SizedBox(height: 0),
+                const SizedBox(height: 10),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text("projectpop5".tr(),
@@ -275,8 +273,8 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                             constraints: const BoxConstraints(
                                 maxHeight: 200, maxWidth: 250),
                             child: ListView.builder(
-                              padding: EdgeInsets.only(left: 10.0),
-                              physics: NeverScrollableScrollPhysics(),
+                              padding: const EdgeInsets.only(left: 10.0),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: options.length,
                               itemBuilder: (BuildContext context, int index) {
@@ -469,7 +467,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Align(
                 alignment: Alignment.centerLeft,
                 child: Text("projectpop8".tr(),
@@ -478,7 +476,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                       fontWeight: FontWeight.bold,
                       color: isDarkMode ? Colors.white : Colors.black,
                     ))),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: 300.0,
               height: 160.0,
@@ -490,7 +488,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                 style: GoogleFonts.poppins(
                 color: isDarkMode ? Colors.white : Colors.black,
               ),
-              cursorColor: Color(0xFF406AFF),
+              cursorColor: const Color(0xFF406AFF),
                 controller: _projectDescriptionController,
                 decoration: InputDecoration(
                   hintText: "projectpop9".tr(),
@@ -498,7 +496,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
                     fontSize: 14.0,
                   ),
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(10.0),
+                  contentPadding: const EdgeInsets.all(10.0),
                 ),
                 maxLines: null,
                 keyboardType: TextInputType.multiline,
@@ -510,7 +508,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color.fromARGB(244, 213, 222, 255),
+            backgroundColor: const Color.fromARGB(244, 213, 222, 255),
           ),
           child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
@@ -521,7 +519,7 @@ class _PopUpProjectWidgetState extends State<PopUpProjectWidget> {
         ),
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color(0xFF406AFF),
+            backgroundColor: const Color(0xFF406AFF),
           ),
           child: Text("educationpop9".tr(),
               style: GoogleFonts.poppins(

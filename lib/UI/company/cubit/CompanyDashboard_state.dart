@@ -43,7 +43,7 @@ class CompanyDashboardState extends WidgetState {
   Map<String, dynamic> toJson() {
     return {
       'hasProject': hasProject,
-      'projectList': projectList.map((e) => e?.toJson()).toList(),
+      'projectList': projectList.map((e) => e.toJson()).toList(),
       'username': username,
     };
   }

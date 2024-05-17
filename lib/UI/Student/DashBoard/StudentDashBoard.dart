@@ -4,14 +4,13 @@ import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashBoard_state.da
 import 'package:student_hub/UI/Student/DashBoard/cubit/StudentDashboard_cubit.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class StudentDashBoard extends StatefulWidget {
-  const StudentDashBoard({Key? key}) : super(key: key);
+  const StudentDashBoard({super.key});
 
   @override
   State<StudentDashBoard> createState() => _StudentDashBoard();
@@ -27,13 +26,13 @@ class _StudentDashBoard extends State<StudentDashBoard> {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -50,23 +49,23 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                   children: [
                     Text(
                       "studentdashboard_student1".tr(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                         width:
                             8), // Add some space between the Text and the button
                     ElevatedButton(
                       onPressed: () {
                         context.router.push(const OfferListPageRoute());
                       },
-                      child: Text("View Offer"),
+                      child: const Text("View Offer"),
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -94,7 +93,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                     }),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -102,8 +101,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                         _buildProposalSection(
                           isWaiting: false,
                           state: state,
-                          title: "studentdashboard_student5".tr() +
-                              '${state.activeProposalList.length}',
+                          title: '${"studentdashboard_student5".tr()}${state.activeProposalList.length}',
                           isExpanded: isContentExpandedActive,
                           onPressed: () {
                             setState(() {
@@ -112,12 +110,11 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                             });
                           },
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         _buildProposalSection(
                           isWaiting: true,
                           state: state,
-                          title: "studentdashboard_student6".tr() +
-                              '(${state.waitingProposalList.length})',
+                          title: '${"studentdashboard_student6".tr()}(${state.waitingProposalList.length})',
                           isExpanded: isContentExpandedSubmitted,
                           onPressed: () {
                             setState(() {
@@ -150,7 +147,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
       decoration: BoxDecoration(
         border: Border.all(),
       ),
-      padding: EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -159,7 +156,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
               Expanded(
                 child: Text(
                   title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               IconButton(
@@ -178,7 +175,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                 child: Text("studentdashboard_student11".tr()),
               )
             else
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height *
                     0.3, // Set the height as needed
                 child: ListView.builder(
@@ -188,15 +185,17 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                       : state.activeProposalList.length,
                   itemBuilder: (context, index) {
                     if (isWaiting) {
-                      if (state.waitingProposalList.isNotEmpty)
+                      if (state.waitingProposalList.isNotEmpty) {
                         return _buildContent(
                             context, state.waitingProposalList[index]);
+                      }
                     } else {
-                      if (state.activeProposalList.isNotEmpty)
+                      if (state.activeProposalList.isNotEmpty) {
                         return _buildContent(
                             context, state.activeProposalList[index]);
+                      }
                     }
-                    return SizedBox(); // Placeholder to satisfy the itemBuilder requirement
+                    return const SizedBox(); // Placeholder to satisfy the itemBuilder requirement
                   },
                 ),
               ),
@@ -213,14 +212,14 @@ class _StudentDashBoard extends State<StudentDashBoard> {
     Duration difference = now.difference(createdAt);
     int daysAgo = difference.inDays;
     String daysValue = '';
-    if (daysAgo == 0)
+    if (daysAgo == 0) {
       daysValue = "studentdashboard_student12".tr();
-    else if (daysAgo == 1)
+    } else if (daysAgo == 1)
       daysValue = "studentdashboard_student13".tr();
     else
-      daysValue = '$daysAgo' + "studentdashboard_student14".tr();
+      daysValue = '$daysAgo${"studentdashboard_student14".tr()}';
     return Padding(
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -233,9 +232,9 @@ class _StudentDashBoard extends State<StudentDashBoard> {
           ),
           Text(
             daysValue,
-            style: TextStyle(),
+            style: const TextStyle(),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.only(left: 0.0),
             child: Row(
@@ -245,13 +244,13 @@ class _StudentDashBoard extends State<StudentDashBoard> {
                   child: Text(
                     proposal.project.description ??
                         "studentdashboard_student16".tr(),
-                    style: TextStyle(fontSize: 16.0),
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                 ),
               ],
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 1.0,
           ),
         ],
@@ -269,7 +268,7 @@ class _StudentDashBoard extends State<StudentDashBoard> {
             color: isBlue ? Colors.purple : Colors.white,
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Text(
             label,
             style: TextStyle(color: color),

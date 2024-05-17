@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_cubit.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_state.dart';
-import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/core/models/output/project_model.dart'; // Import BlocBuilder
 import 'package:easy_localization/easy_localization.dart';
@@ -11,6 +9,8 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class FavoriteProjectPage extends StatefulWidget {
+  const FavoriteProjectPage({super.key});
+
   @override
   _FavoriteProjectPageState createState() => _FavoriteProjectPageState();
 }
@@ -21,7 +21,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
   void initState() {
     super.initState();
     // Set a delay to hide the loading indicator after 5 seconds
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
       });
@@ -45,12 +45,12 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                     // Implement back button logic
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.arrow_back),
                 ),
-                SizedBox(
+                const SizedBox(
                     width:
                         10), // Add some spacing between the back button and text
-                Text(
+                const Text(
                   'Saved Projects',
                   style: TextStyle(
                     fontSize: 18,
@@ -64,7 +64,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                   // Implement route logic here
                 },
                 icon:
-                    Icon(Icons.account_circle, size: 40.0),
+                    const Icon(Icons.account_circle, size: 40.0),
               ),
             ],
           ),
@@ -83,7 +83,7 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                           if (projectList.isNotEmpty)
                             SingleChildScrollView(
                               child: Container(
-                                constraints: BoxConstraints(
+                                constraints: const BoxConstraints(
                                   minHeight: 20,
                                 ),
                                 child: Column(
@@ -99,10 +99,10 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
                             Center(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 50),
+                                  const SizedBox(height: 50),
                                   Center(
                                     child: isLoading
-                                        ? CircularProgressIndicator()
+                                        ? const CircularProgressIndicator()
                                         : Text("savedprojectpage_student1".tr()),
                                   ),
                                 ],
@@ -150,25 +150,25 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
 
     return
     Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      decoration: const BoxDecoration(
         border: Border(bottom: BorderSide()),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "projectlist_student3".tr() + '$daysAgo' + "projectlist_student4".tr(),
-            style: TextStyle(),
+            '${"projectlist_student3".tr()}$daysAgo${"projectlist_student4".tr()}',
+            style: const TextStyle(),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 child: Text(
                   project.title ?? "projectlist_student5".tr(),
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   overflow: TextOverflow
                       .ellipsis, // Add this line to handle long titles
                   maxLines: 1, // Add this line to limit the title to one line
@@ -176,32 +176,32 @@ class _FavoriteProjectPageState extends State<FavoriteProjectPage> {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
-            "projectlist_student6".tr() + '$projectScope, ${project.numberOfStudents}' +"projectlist_student7".tr(),
-            style: TextStyle(),
+            '${"projectlist_student6".tr()}$projectScope, ${project.numberOfStudents}${"projectlist_student7".tr()}',
+            style: const TextStyle(),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
+              const Icon(
                 Icons.remove,
                 size: 16.0,
               ),
-              SizedBox(width: 5),
+              const SizedBox(width: 5),
               Expanded(
                 child: Text(
                   project.description ?? "projectlist_student8".tr(),
-                  style: TextStyle(),
+                  style: const TextStyle(),
                 ),
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(
-            "projectlist_student9".tr() + '$proposal',
-            style: TextStyle(),
+            '${"projectlist_student9".tr()}$proposal',
+            style: const TextStyle(),
           ),
         ],
       ),

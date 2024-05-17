@@ -9,11 +9,11 @@ class ScheduleDialog extends StatefulWidget {
   final int receiverId;
 
   const ScheduleDialog({
-    Key? key,
+    super.key,
     required this.projectId,
     required this.senderId,
     required this.receiverId,
-  }) : super(key: key);
+  });
 
   @override
   State<ScheduleDialog> createState() => _MyScheduleState();
@@ -41,10 +41,11 @@ class _MyScheduleState extends State<ScheduleDialog> {
       firstDate: DateTime.now(),
       lastDate: DateTime(2101),
     );
-    if (picked != null)
+    if (picked != null) {
       setState(() {
         selectedDate = picked;
       });
+    }
   }
 
   Future<void> _selectTime(BuildContext context) async {
@@ -52,10 +53,11 @@ class _MyScheduleState extends State<ScheduleDialog> {
       context: context,
       initialTime: selectedTime,
     );
-    if (picked != null)
+    if (picked != null) {
       setState(() {
         selectedTime = picked;
       });
+    }
   }
 
   Future<void> _selectEndDate(BuildContext context) async {
@@ -65,10 +67,11 @@ class _MyScheduleState extends State<ScheduleDialog> {
       firstDate: DateTime(2000),
       lastDate: DateTime(2101),
     );
-    if (picked != null)
+    if (picked != null) {
       setState(() {
         selectedEndDate = picked;
       });
+    }
   }
 
   Future<void> _selectEndTime(BuildContext context) async {
@@ -76,10 +79,11 @@ class _MyScheduleState extends State<ScheduleDialog> {
       context: context,
       initialTime: selectedEndTime,
     );
-    if (picked != null)
+    if (picked != null) {
       setState(() {
         selectedEndTime = picked;
       });
+    }
   }
 
   String get durationTime {
@@ -103,7 +107,7 @@ class _MyScheduleState extends State<ScheduleDialog> {
     final minutes = duration.inMinutes.remainder(60);
 
     if (hours == 0) {
-      return '${minutes > 0 ? '$minutes minutes' : ''}';
+      return minutes > 0 ? '$minutes minutes' : '';
     } else {
       return '$hours hours ${minutes > 0 ? '$minutes minutes' : ''}';
     }
@@ -123,7 +127,7 @@ class _MyScheduleState extends State<ScheduleDialog> {
             children: [
               Text(
                 "schedule_schedule2".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -131,14 +135,14 @@ class _MyScheduleState extends State<ScheduleDialog> {
               TextField(
                 controller: jobTitleController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   hintText: "schedule_schedule3".tr(),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 "schedule_schedule4".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -147,21 +151,21 @@ class _MyScheduleState extends State<ScheduleDialog> {
                 children: [
                   ElevatedButton.icon(
                     onPressed: () => _selectDate(context),
-                    icon: Icon(Icons.calendar_today),
+                    icon: const Icon(Icons.calendar_today),
                     label: Text("schedule_schedule5".tr()),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () => _selectTime(context),
-                    icon: Icon(Icons.access_time),
+                    icon: const Icon(Icons.access_time),
                     label: Text("schedule_schedule6".tr()),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
                 "schedule_schedule7".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -170,26 +174,26 @@ class _MyScheduleState extends State<ScheduleDialog> {
                 children: [
                   ElevatedButton.icon(
                     onPressed: () => _selectEndDate(context),
-                    icon: Icon(Icons.calendar_today),
+                    icon: const Icon(Icons.calendar_today),
                     label: Text("schedule_schedule8".tr()),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   ElevatedButton.icon(
                     onPressed: () => _selectEndTime(context),
-                    icon: Icon(Icons.access_time),
+                    icon: const Icon(Icons.access_time),
                     label: Text("schedule_schedule9".tr()),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Text(
-                "schedule_schedule10".tr() + '${durationTime}',
-                style: TextStyle(
+                '${"schedule_schedule10".tr()}$durationTime',
+                style: const TextStyle(
                   fontSize: 16,
                   fontStyle: FontStyle.italic,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -199,14 +203,14 @@ class _MyScheduleState extends State<ScheduleDialog> {
                     },
                     child: Text("schedule_schedule11".tr()),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
                       // Handle Send Invite action
-                      print("schedule_schedule12".tr() + '${jobTitleController.text}');
-                      print("schedule_schedule13".tr() + '$selectedDate ${selectedTime.format(context)}');
-                      print("schedule_schedule14".tr() + '$selectedEndDate ${selectedEndTime.format(context)}');
-                      print("schedule_schedule15".tr() + '$durationTime');
+                      print('${"schedule_schedule12".tr()}${jobTitleController.text}');
+                      print('${"schedule_schedule13".tr()}$selectedDate ${selectedTime.format(context)}');
+                      print('${"schedule_schedule14".tr()}$selectedEndDate ${selectedEndTime.format(context)}');
+                      print('${"schedule_schedule15".tr()}$durationTime');
                     },
                     child: Text("schedule_schedule16".tr()),
                   ),

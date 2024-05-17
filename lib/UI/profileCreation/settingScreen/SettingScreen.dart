@@ -7,7 +7,7 @@ import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key});
+  const SettingsScreen({super.key});
 
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
@@ -42,7 +42,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 Text(
                   "settingscreen_ProfileCreation2".tr(),
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 SwitchListTile(
                   title: Text(_isDarkMode ? "settingscreen_ProfileCreation3".tr() : "settingscreen_ProfileCreation4".tr()),
@@ -54,10 +54,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     });
                   },
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Text(
                   "settingscreen_ProfileCreation5".tr(),
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 DropdownButton<String>(
                   value: _selectedLanguage,
@@ -79,7 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   }).toList(),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 ListTile(
                   title: Text("setting1".tr()),
                   onTap: () {

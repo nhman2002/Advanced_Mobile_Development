@@ -1,4 +1,3 @@
-import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class SplashState extends WidgetState {
@@ -6,7 +5,7 @@ class SplashState extends WidgetState {
   final bool? isCompany;
   final bool? hasProfile;
 
-  const SplashState({this.isLogin = null,this.isCompany = null,this.hasProfile = null});
+  const SplashState({this.isLogin,this.isCompany,this.hasProfile});
 
   @override
   // TODO: implement props

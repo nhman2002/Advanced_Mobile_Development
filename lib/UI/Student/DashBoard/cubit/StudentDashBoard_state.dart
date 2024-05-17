@@ -1,6 +1,5 @@
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class StudentDashBoardState extends WidgetState {
@@ -43,7 +42,7 @@ class StudentDashBoardState extends WidgetState {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'projectList': projectList.map((e) => e?.toJson()).toList(),
+      'projectList': projectList.map((e) => e.toJson()).toList(),
       'username': username,
       'message': message ?? '',
     };

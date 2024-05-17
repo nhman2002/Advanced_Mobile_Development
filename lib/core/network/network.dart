@@ -1,12 +1,7 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:student_hub/common/config/navigation_event.dart';
-import 'package:student_hub/core/local_notifications/notification_service.dart';
 import 'package:student_hub/core/logger/logger.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class NetworkManager {
   NetworkManager.initial() {

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart';
-import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
@@ -37,19 +35,19 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
             Text(
               "projectpost2_project2".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
             Text(
               "projectpost2_project3".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
             const SizedBox(height: 16.0),
             Text(
               "projectpost2_project4".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
             Column(
@@ -137,21 +135,21 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
               child: errorMessage.isNotEmpty
                   ? Text(
                       errorMessage,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ),
             Text(
               "projectpost2_project9".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
+                border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(
                   ),
                 ),
@@ -169,9 +167,9 @@ class _ProjectPosting2State extends State<ProjectPosting2> {
               child: errorMessage2.isNotEmpty
                   ? Text(
                       errorMessage2,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ),
             Align(
               alignment: Alignment.bottomRight,

@@ -1,5 +1,4 @@
 import 'package:student_hub/core/models/output/project_model.dart';
-import 'package:student_hub/core/models/output/user_model.dart';
 import 'package:student_hub/core/widget_cubit/widget_state.dart';
 
 class ProjectListState extends WidgetState {
@@ -37,7 +36,7 @@ class ProjectListState extends WidgetState {
     return {
       'clickedProject': clickedProject?.toJson(),
       'clickedProjectId': clickedProjectId,
-      'projectList': projectList.map((e) => e?.toJson()).toList(),
+      'projectList': projectList.map((e) => e.toJson()).toList(),
       'username': username,
       'message': message ?? '',
 

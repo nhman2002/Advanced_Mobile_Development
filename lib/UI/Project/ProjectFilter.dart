@@ -5,26 +5,28 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class ProjectFilter extends StatefulWidget {
+  const ProjectFilter({super.key});
+
   @override
   _ProjectFilter createState() => _ProjectFilter();
 }
 
 class _ProjectFilter extends State<ProjectFilter> {
   int? _selectedValue; // For storing the selected radio button value
-  TextEditingController _studentNeededController = TextEditingController(); // For storing input of "Student needed"
-  TextEditingController _proposalsLessController = TextEditingController(); // For storing input of "Proposals less than"
+  final TextEditingController _studentNeededController = TextEditingController(); // For storing input of "Student needed"
+  final TextEditingController _proposalsLessController = TextEditingController(); // For storing input of "Proposals less than"
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               // Implement route logic here
             },
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
@@ -51,8 +53,8 @@ class _ProjectFilter extends State<ProjectFilter> {
                           controller.openView();
                         },
                         leading: const Icon(Icons.search),
-                        trailing: <Widget>[
-                          const Tooltip(
+                        trailing: const <Widget>[
+                          Tooltip(
                             message: 'Change brightness mode',
                           ),
                         ],
@@ -114,7 +116,7 @@ class FilterSection extends StatelessWidget {
   final TextEditingController studentNeededController; // Receive controller for "Student needed"
   final TextEditingController proposalsLessController; // Receive controller for "Proposals less than"
 
-  FilterSection({
+  const FilterSection({super.key, 
     required this.selectedValue,
     required this.onValueChanged,
     required this.studentNeededController,
@@ -144,7 +146,7 @@ class FilterSection extends StatelessWidget {
               const SizedBox(height: 5),
               Text(
                 "projectfilter_project1".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -194,9 +196,9 @@ class FilterSection extends StatelessWidget {
                   int? selected = selectedValue;
                   String studentNeeded = studentNeededController.text;
                   String proposalsLess = proposalsLessController.text;
-                  print("projectfilter_project5".tr() + '$selected');
-                  print("projectfilter_project6".tr() + '$studentNeeded');
-                  print("projectfilter_project7".tr() + '$proposalsLess');
+                  print('${"projectfilter_project5".tr()}$selected');
+                  print('${"projectfilter_project6".tr()}$studentNeeded');
+                  print('${"projectfilter_project7".tr()}$proposalsLess');
                 },
                 child: Text("projectfilter_project8".tr()),
               ),

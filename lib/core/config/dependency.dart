@@ -1,4 +1,3 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:student_hub/core/local_notifications/notification_service.dart';
 import 'package:student_hub/core/network/network.dart';

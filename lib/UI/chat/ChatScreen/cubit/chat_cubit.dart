@@ -1,12 +1,9 @@
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/message_model.dart';
 import 'package:student_hub/core/models/input/proposal_model.dart';
-import 'package:student_hub/core/models/output/message_output.dart';
-import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/message.dart';
 import 'package:student_hub/core/repository/proposal.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
@@ -78,7 +75,7 @@ class ChatCubit extends WidgetCubit<ChatState> {
     };
 // Connect to the socket.io server
 
-    await socket.connect();
+    socket.connect();
     socket.onConnect((data) => {
           print('Connected to chat'),
         });
@@ -134,7 +131,7 @@ class ChatCubit extends WidgetCubit<ChatState> {
   @override
   Future<void> close() async {
     if (kDebugMode) {
-      print("Closing socket on " + projectId.toString());
+      print("Closing socket on $projectId");
     }
     socket.close();
     super.close();

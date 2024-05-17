@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/models/model/language.dart';
 // import 'package:student_hub/widgets/theme/dark_mode.dart';
 
 class ShowLanguagesWidget extends StatelessWidget {
@@ -11,7 +8,7 @@ class ShowLanguagesWidget extends StatelessWidget {
   final bool isEditing;
   final Function(String) _deleteLanguage;
 
-  ShowLanguagesWidget({
+  const ShowLanguagesWidget({super.key, 
     required this.languages,
     required this.isEditing,
     required Function(String) deleteLanguage,
@@ -64,11 +61,11 @@ class ShowLanguagesWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10, // Khoảng cách giữa Text và Container
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
                 decoration: BoxDecoration(
                   color: backgroundColor,
                   borderRadius: BorderRadius.circular(5),
@@ -99,7 +96,7 @@ class ShowLanguagesWidget extends StatelessWidget {
                         _deleteLanguage(languages[index].languageName!);
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                         width: 10),
                   ],
                 ),

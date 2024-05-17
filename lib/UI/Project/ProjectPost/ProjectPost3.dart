@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_cubit.dart';
-import 'package:student_hub/UI/Project/ProjectPost/cubit/ProjectPost_state.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 
 @RoutePage()
 class ProjectPosting3 extends StatefulWidget  {
-  const ProjectPosting3({Key? key}) : super(key: key);
+  const ProjectPosting3({super.key});
 
   @override
   State<ProjectPosting3> createState() => _ProjectPosting3State();
@@ -35,13 +33,13 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
             Text(
               "projectpost3_project2".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16.0),
             Text(
                "projectpost3_project3".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
             const SizedBox(height: 16.0),
             Column(
@@ -51,15 +49,15 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '\u2022 ',
                         style: TextStyle(fontSize: 20.0),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Expanded(
                         child: Text(
                           "projectpost3_project4".tr(),
-                          style: TextStyle(fontSize: 16.0),
+                          style: const TextStyle(fontSize: 16.0),
                         ),
                       ),
                     ],
@@ -70,15 +68,15 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '\u2022 ',
                         style: TextStyle(fontSize: 20.0),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Expanded(
                         child: Text(
                           "projectpost3_project5".tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.normal),
                         ),
                       )
@@ -90,15 +88,15 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '\u2022 ',
                         style: TextStyle(fontSize: 20.0),
                       ),
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       Expanded(
                         child: Text(
                           "projectpost3_project6".tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 16.0, fontWeight: FontWeight.normal),
                         ),
                       )
@@ -111,15 +109,15 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
             Text(
               "projectpost3_project7".tr(),
               textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: projectDescribe,
               maxLines: 7,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  focusedBorder: OutlineInputBorder(
+                  border: const OutlineInputBorder(),
+                  focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(),
                   ),
                   hintText: "projectpost3_project8".tr()),
@@ -129,7 +127,7 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 14,
             ),
             Container(
@@ -137,9 +135,9 @@ class _ProjectPosting3State extends State<ProjectPosting3> {
               child: errorMessage.isNotEmpty
                   ? Text(
                       errorMessage,
-                      style: TextStyle(fontSize: 16),
+                      style: const TextStyle(fontSize: 16),
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ),
             Align(
               alignment: Alignment.bottomRight,

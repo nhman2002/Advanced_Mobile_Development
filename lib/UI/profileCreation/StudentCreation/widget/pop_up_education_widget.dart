@@ -2,7 +2,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class PopUpEducationEditWidget extends StatefulWidget {
   final Function addEducation;
@@ -11,8 +10,8 @@ class PopUpEducationEditWidget extends StatefulWidget {
   final int startYear;
   final int endYear;
 
-  PopUpEducationEditWidget(this.addEducation, this.deleteEducation,
-      this.schoolName, this.startYear, this.endYear);
+  const PopUpEducationEditWidget(this.addEducation, this.deleteEducation,
+      this.schoolName, this.startYear, this.endYear, {super.key});
 
   @override
   _PopUpEducationWidgetState createState() => _PopUpEducationWidgetState();
@@ -54,7 +53,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
     // bool isDarkMode = Provider.of<DarkModeProvider>(context).isDarkMode;
     bool isDarkMode = false;
     return AlertDialog(
-      backgroundColor: isDarkMode ? Color(0xFF2f2f2f) : Colors.white,
+      backgroundColor: isDarkMode ? const Color(0xFF2f2f2f) : Colors.white,
       title: Text("educationpop1".tr(),
           style: GoogleFonts.poppins(
             fontSize: 20,
@@ -72,14 +71,14 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                       fontWeight: FontWeight.bold,
                       color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                     )),
-                SizedBox(width: 10.0),
+                const SizedBox(width: 10.0),
                 Expanded(
                   child: TextFormField(
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                     ),
-                    cursorColor: Color(0xFF406AFF),
+                    cursorColor: const Color(0xFF406AFF),
                     controller: _schoolNameController,
                     onChanged: (value) {
                       _schoolNameController.text = value;
@@ -94,7 +93,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                 ),
               ],
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -107,8 +106,8 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                 Text(_startYear == 0 ? "educationpop5".tr() : _startYear.toString(),
                     style: GoogleFonts.poppins(
                         color: isDarkMode
-                            ? Color.fromARGB(255, 187, 187, 189)
-                            : Color(0xFF777B8A),
+                            ? const Color.fromARGB(255, 187, 187, 189)
+                            : const Color(0xFF777B8A),
                         fontSize: 14)),
                 IconButton(
                   onPressed: () {
@@ -161,13 +160,13 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                           ));
                         });
                   },
-                  icon: Icon(Icons.calendar_today),
+                  icon: const Icon(Icons.calendar_today),
                   iconSize: 20.0,
                       color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.secondary,
                 ),
               ],
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -230,7 +229,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                           ));
                         });
                   },
-                  icon: Icon(Icons.calendar_today),
+                  icon: const Icon(Icons.calendar_today),
                   iconSize: 20.0,
                       color: isDarkMode ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.primary,
                 ),
@@ -241,7 +240,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "educationpop7".tr(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14.0,
                     fontStyle: FontStyle.italic,
                   ),
@@ -253,7 +252,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color.fromARGB(244, 213, 222, 255),
+            backgroundColor: const Color.fromARGB(244, 213, 222, 255),
           ),
           child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
@@ -266,7 +265,7 @@ class _PopUpEducationWidgetState extends State<PopUpEducationEditWidget> {
         ),
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color(0xFF406AFF),
+            backgroundColor: const Color(0xFF406AFF),
           ),
           child: Text("educationpop9".tr(),
               style: GoogleFonts.poppins(

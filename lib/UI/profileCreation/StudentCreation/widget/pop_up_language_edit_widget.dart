@@ -2,14 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:student_hub/core/models/input/student_profile_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/models/model/language.dart';
 
 class PopUpLanguagesEditWidget extends StatefulWidget {
   final Function(String) _deleteLanguage;
   final List<LanguageInput> languages;
 
-  PopUpLanguagesEditWidget(this._deleteLanguage, this.languages);
+  const PopUpLanguagesEditWidget(this._deleteLanguage, this.languages, {super.key});
 
   @override
   _PopUpLanguagesEditWidgetState createState() =>
@@ -19,7 +17,7 @@ class PopUpLanguagesEditWidget extends StatefulWidget {
 class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
   late String _selectedLanguage;
   late String _selectedLevel;
-  List<Map<String, dynamic>> _listLanguagesDelete = [];
+  final List<Map<String, dynamic>> _listLanguagesDelete = [];
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           )),
-      contentPadding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
+      contentPadding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20.0),
       content: SizedBox(
         height: 100.0,
         width: 270.0,
@@ -43,14 +41,14 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
                       children: [
                         Text(language.languageName!,
                             style: GoogleFonts.poppins(fontSize: 16.0)),
-                        SizedBox(width: 5.0),
+                        const SizedBox(width: 5.0),
                         Text(language.level!,
                             style: GoogleFonts.poppins(fontSize: 16.0)),
                       ],
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.cancel,
+                    icon: const Icon(Icons.cancel,
                     size: 17.0),
                     onPressed: () {
                       widget._deleteLanguage(language.languageName!);
@@ -68,7 +66,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color.fromARGB(244, 213, 222, 255),
+            backgroundColor: const Color.fromARGB(244, 213, 222, 255),
           ),
           child: Text("educationpop8".tr(),
               style: GoogleFonts.poppins(
@@ -79,7 +77,7 @@ class _PopUpLanguagesEditWidgetState extends State<PopUpLanguagesEditWidget> {
         ),
         TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: Color(0xFF406AFF),
+            backgroundColor: const Color(0xFF406AFF),
           ),
           child: Text('OK',
               style: GoogleFonts.poppins(

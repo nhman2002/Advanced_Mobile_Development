@@ -9,7 +9,7 @@ import 'package:easy_localization/easy_localization.dart';
 
 @RoutePage()
 class StudentProjectDetail extends StatefulWidget {
-  const StudentProjectDetail({Key? key}) : super(key: key);
+  const StudentProjectDetail({super.key});
 
   @override
   _StudentProjectDetailState createState() => _StudentProjectDetailState();
@@ -20,14 +20,14 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               // Navigate to the login page
               // Navigator.pushNamed(context, context.router.push(const LoginPageRoute()) as String);
             },
-            icon: Icon(Icons.account_circle, size: 40.0),
+            icon: const Icon(Icons.account_circle, size: 40.0),
           )
         ],
       ),
@@ -47,43 +47,43 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                         children: [
                           Text(
                             "projectdetail_student1".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Text(
                             project?.title ?? "projectdetail_student2".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20.0),
                           ),
-                          SizedBox(height: 25),
-                          Divider(),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
+                          const Divider(),
+                          const SizedBox(height: 25),
                           Text(
                             project?.description ?? "projectdetail_student3".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold, // Make the text bold
                             ),
                           ),
-                          SizedBox(height: 25),
-                          Divider(),
-                          SizedBox(height: 25),
+                          const SizedBox(height: 25),
+                          const Divider(),
+                          const SizedBox(height: 25),
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.alarm,
                                 size: 40.0,
                               ),
-                              SizedBox(width: 30),
+                              const SizedBox(width: 30),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "projectdetail_student4".tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -91,17 +91,17 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.remove,
                                             size: 10.0,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                               width:
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
                                               project?.projectScopeFlag == 0 ? "projectdetail_student5".tr() : "projectdetail_student6".tr(),
-                                              style: TextStyle(),
+                                              style: const TextStyle(),
                                             ),
                                           ),
                                         ],
@@ -112,21 +112,21 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 40),
+                          const SizedBox(height: 40),
                           Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.people,
                                 size: 40.0,
                               ),
-                              SizedBox(width: 30),
+                              const SizedBox(width: 30),
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "projectdetail_student7".tr(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
@@ -134,17 +134,17 @@ class _StudentProjectDetailState extends State<StudentProjectDetail> {
                                       padding: const EdgeInsets.only(left: 10),
                                       child: Row(
                                         children: [
-                                          Icon(
+                                          const Icon(
                                             Icons.remove,
                                             size: 10.0,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                               width:
                                                   5), // Adjust spacing between icon and text
                                           Expanded(
                                             child: Text(
-                                              '${project?.numberOfStudents}' + "projectdetail_student8".tr(),
-                                              style: TextStyle(),
+                                              '${project?.numberOfStudents}${"projectdetail_student8".tr()}',
+                                              style: const TextStyle(),
                                             ),
                                           ),
                                         ],

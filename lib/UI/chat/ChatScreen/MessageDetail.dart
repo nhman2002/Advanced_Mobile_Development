@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // Import package intl
+// Import package intl
 import 'package:flutter_bloc/flutter_bloc.dart'; // Import BlocBuilder
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_cubit.dart';
@@ -8,7 +8,6 @@ import 'package:student_hub/UI/chat/ChatScreen/cubit/chat_state.dart';
 import 'package:student_hub/UI/chat/ChatScreen/widget/ScheduleMeeting.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-import 'package:student_hub/common/ui/theme/bloc/theme.dart';
 import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/output/message_output.dart';
@@ -21,12 +20,12 @@ class MessageDetailScreen extends BaseWidget<ChatCubit, ChatState> {
   final String receiverName;
 
   const MessageDetailScreen({
-    Key? key,
+    super.key,
     required this.userId,
     required this.receiverId,
     required this.projectId,
     required this.receiverName,
-  }) : super(key: key);
+  });
 
   @override
   Widget buildWidget(BuildContext context) {
@@ -61,7 +60,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     // Use a PostFrameCallback to call scrollToBottom after everything is initialized
     WidgetsBinding.instance.addPostFrameCallback((_) {
       //2 seconds delay
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         if (mounted) {
           scrollToBottom();
         }
@@ -86,7 +85,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
           }
         },
         builder: (context, state) {
-          final List<MessageOutput> _messages = state.messages;
+          final List<MessageOutput> messages = state.messages;
 
           return Padding(
             padding: const EdgeInsets.all(20.0),
@@ -96,9 +95,9 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   child: ListView.builder(
                     controller: _scrollController,
                     reverse: false,
-                    itemCount: _messages.length,
+                    itemCount: messages.length,
                     itemBuilder: (context, index) {
-                      final message = _messages[index];
+                      final message = messages[index];
                       return _buildMessageItem({
                         'isSender': message.senderId ==
                             context.read<ChatCubit>().userId,
@@ -123,7 +122,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     final bottomOffset = _scrollController.position.maxScrollExtent;
     _scrollController.animateTo(
       bottomOffset,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
   }
@@ -142,7 +141,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       final channelName = interview.meetingRoomCode;
 
       return Container(
-        margin: EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.only(bottom: 10),
         alignment:
             message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
         child: Row(
@@ -157,7 +156,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   color: message['isSender']
                       ? Theme.of(context).colorScheme.secondary
                       : Theme.of(context).colorScheme.background),
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -174,7 +173,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                       color: message['isSender'] ? Colors.white : Colors.black,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     'Start: $start\nEnd: $end\nRoom ID: $roomId',
                     style: TextStyle(
@@ -194,16 +193,16 @@ class _MessageDetailScreenState extends State<ChatWidget> {
             ),
             if (userRole !=
                 "0") // If user role is not "0" (e.g., admin), show PopupMenuButton
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
             PopupMenuButton(
               itemBuilder: (context) => [
                 PopupMenuItem(
-                  child: Text("messagedetail2".tr()),
                   value: 'edit',
+                  child: Text("messagedetail2".tr()),
                 ),
                 PopupMenuItem(
-                  child: Text("messagedetail3".tr()),
                   value: 'cancel',
+                  child: Text("messagedetail3".tr()),
                 ),
               ],
               onSelected: (value) {
@@ -220,7 +219,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     } else {
       // If interview is null, build the default message item
       return Container(
-        margin: EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.only(bottom: 10),
         alignment:
             message['isSender'] ? Alignment.centerRight : Alignment.centerLeft,
         child: Row(
@@ -230,8 +229,8 @@ class _MessageDetailScreenState extends State<ChatWidget> {
               : MainAxisAlignment.start,
           children: [
             if (!message['isSender']) ...[
-              Icon(Icons.verified_user_rounded),
-              SizedBox(width: 8),
+              const Icon(Icons.verified_user_rounded),
+              const SizedBox(width: 8),
             ],
             Container(
               decoration: BoxDecoration(
@@ -240,7 +239,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                     ? Theme.of(context).colorScheme.secondary
                     : Theme.of(context).colorScheme.tertiary,
               ),
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -259,13 +258,13 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                           : Theme.of(context).colorScheme.onTertiary,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                 ],
               ),
             ),
             if (message['isSender']) ...[
-              SizedBox(width: 8),
-              Icon(Icons.verified_user_rounded),
+              const SizedBox(width: 8),
+              const Icon(Icons.verified_user_rounded),
             ],
           ],
         ),
@@ -278,14 +277,14 @@ class _MessageDetailScreenState extends State<ChatWidget> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Interview'),
+          title: const Text('Edit Interview'),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
                   initialValue: interview.title,
-                  decoration: InputDecoration(labelText: 'Title'),
+                  decoration: const InputDecoration(labelText: 'Title'),
                   onChanged: (value) {
                     // Update the title in the interview map
                     interview.title = value;
@@ -301,7 +300,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -311,7 +310,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                 // Example: context.read<ChatCubit>().updateInterview(interview);
                 Navigator.of(context).pop();
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -330,7 +329,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
     final currentRole = _localStorage.getString(key: StorageKey.currentRole);
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         border: Border.all(),
         borderRadius: BorderRadius.circular(10),
@@ -354,7 +353,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
                   },
                 );
               },
-              icon: Icon(Icons.schedule),
+              icon: const Icon(Icons.schedule),
             ),
           Expanded(
             child: TextField(
@@ -369,7 +368,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
             onPressed: () {
               _sendMessage(_messageController.text);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.send,
             ),
           ),
@@ -407,7 +406,7 @@ class _MessageDetailScreenState extends State<ChatWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(name),
-          Icon(Icons.more_vert),
+          const Icon(Icons.more_vert),
         ],
       ),
     );

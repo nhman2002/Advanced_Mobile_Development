@@ -2,16 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:student_hub/core/config/dependency.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 
 class CustomBottomAppBar extends StatefulWidget {
   final String _selectedTab;
-  const CustomBottomAppBar({Key? key, required String selectedTab})
-      : _selectedTab = selectedTab,
-        super(key: key);
+  const CustomBottomAppBar({super.key, required String selectedTab})
+      : _selectedTab = selectedTab;
 
   @override
   _CustomBottomAppBarState createState() => _CustomBottomAppBarState();
@@ -32,22 +29,22 @@ class _CustomBottomAppBarState extends State<CustomBottomAppBar> {
           _buildTabItem(
             tabName: 'Projects',
             icon: Icons.work,
-            badge: Badge(child: Icon(Icons.work)),
+            badge: const Badge(child: Icon(Icons.work)),
           ),
           _buildTabItem(
             tabName: 'Dashboard',
             icon: Icons.dashboard,
-            badge: Badge(child: Icon(Icons.dashboard)),
+            badge: const Badge(child: Icon(Icons.dashboard)),
           ),
           _buildTabItem(
             tabName: 'Messages',
             icon: Icons.message,
-            badge: Badge(child: Icon(Icons.message)),
+            badge: const Badge(child: Icon(Icons.message)),
           ),
           _buildTabItem(
             tabName: 'Notifications',
             icon: Icons.notifications,
-            badge: Badge(child: Icon(Icons.notifications)),
+            badge: const Badge(child: Icon(Icons.notifications)),
           ),
         ],
       ),

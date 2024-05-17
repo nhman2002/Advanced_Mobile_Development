@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_state.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
@@ -6,14 +5,11 @@ import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/models/data_state.dart';
 import 'package:student_hub/core/models/input/favorite_project_model.dart';
 import 'package:student_hub/core/models/input/proposal_model.dart';
-import 'package:student_hub/core/models/output/student_profile.dart';
-import 'package:student_hub/core/repository/auth.dart';
+import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:student_hub/core/repository/favoriteProject.dart';
 import 'package:student_hub/core/repository/project.dart';
 import 'package:student_hub/core/repository/proposal.dart';
-import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/auth/login/cubit/login_state.dart';
 
 class ProjectListCubit extends WidgetCubit<ProjectListState> {
   ProjectListCubit()
@@ -42,15 +38,13 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
     }
         final studentIDString = _localStorage.getString(key: StorageKey.studentID);
     final studentID = int.tryParse(studentIDString ?? '');
-    var project = null;
+    List<ProjectOutput>? project;
     await initFavoriteProject();
-    if (state.projectList != null) {
-      final result = await _project.getAllProjects();
-      if (result is DataSuccess) {
-        project = result.data?.projectOutputList;
-      }
+    final result = await _project.getAllProjects();
+    if (result is DataSuccess) {
+      project = result.data?.projectOutputList;
     }
-
+  
     final result1 = await _proposal.getAllStudentProposals(studentID ?? 0);
     if (result1 is DataSuccess) {
       //remove all project have projectid in proposal from project list
@@ -115,11 +109,9 @@ class ProjectListCubit extends WidgetCubit<ProjectListState> {
   bool isProjectFavorite(int id) {
     //check if project is in favorite list
     final favorite = state.favoriteProjectList;
-    if (favorite != null) {
-      final isFavorite = favorite.any((element) => element.projectId == id);
-      return isFavorite;
-    }
-    return false;
+    final isFavorite = favorite.any((element) => element.projectId == id);
+    return isFavorite;
+      return false;
   }
 
   Future<void> removeFavoriteProject(int id) async {

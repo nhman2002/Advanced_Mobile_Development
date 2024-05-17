@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,7 @@ import 'package:student_hub/core/repository/user.dart';
 
 @RoutePage()
 class ForgotPasswordPage extends StatefulWidget {
-  const ForgotPasswordPage({Key? key}) : super(key: key);
+  const ForgotPasswordPage({super.key});
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
@@ -47,7 +46,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               const SizedBox(height: 20.0),
               Text(
                 "forgotpassword_auth1".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
@@ -56,7 +55,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               const SizedBox(height: 20.0),
               Text(
                 "forgotpassword_auth2".tr(),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                 ),
                 textAlign: TextAlign.center,

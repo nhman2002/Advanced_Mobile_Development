@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 
 
 
@@ -22,13 +20,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               gotoLogin(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.account_circle,
               size: 40.0,
             ),
@@ -44,11 +42,11 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   "home_title1".tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       ),
@@ -64,30 +62,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "home_title2".tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     // Xử lý sự kiện khi nhấn nút Company
                     gotoCompanySignup(context);
                   },
-                  child: Text('Company'),
+                  child: const Text('Company'),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     // Xử lý sự kiện khi nhấn nút Student
                     gotoStudentSignup(context);
                   },
-                  child: Text('Student'),
+                  child: const Text('Student'),
                 ),
                 Text(
                   "home_title3".tr(),
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
               ],
             ),
           ),

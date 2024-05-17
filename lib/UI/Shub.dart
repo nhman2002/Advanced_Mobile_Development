@@ -1,10 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:student_hub/UI/home.dart';
 import 'package:student_hub/common/config/router.dart';
-import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme.dart';
 import 'package:student_hub/common/ui/theme/bloc/theme_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';

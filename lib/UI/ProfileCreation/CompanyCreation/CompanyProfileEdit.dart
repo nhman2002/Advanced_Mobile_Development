@@ -11,6 +11,8 @@ import 'package:student_hub/core/repository/profileCompany.dart';
 
 @RoutePage()
 class CompanyProfileEdit extends StatefulWidget {
+  const CompanyProfileEdit({super.key});
+
   @override
   _CompanyProfileEditState createState() => _CompanyProfileEditState();
 }
@@ -18,9 +20,9 @@ class CompanyProfileEdit extends StatefulWidget {
 class _CompanyProfileEditState extends State<CompanyProfileEdit>
     with SnackBarDefault {
   int? _selectedValue;
-  TextEditingController _companyNameController = TextEditingController();
-  TextEditingController _websiteController = TextEditingController();
-  TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _companyNameController = TextEditingController();
+  final TextEditingController _websiteController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
   final _companyProfileRepository = getIt.get<CompanyProfileRepository>();
   final _localStorage = getIt.get<LocalStorage>();
 
@@ -28,13 +30,13 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Hub'),
+        title: const Text('Student Hub'),
         actions: [
           IconButton(
             onPressed: () {
               context.router.push(const SwitchAccountPageRoute());
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.account_circle,
               size: 40.0,
             ),
@@ -47,30 +49,30 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 "Editting your company profile",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 "Please fill in the following information to edit your company profile",
                 style: TextStyle(
                   fontSize: 16,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildInputField("companyprofileinput_ProfileCreation9".tr(),
                   _companyNameController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildInputField("companyprofileinput_ProfileCreation10".tr(),
                   _websiteController),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               _buildInputField("companyprofileinput_ProfileCreation11".tr(),
                   _descriptionController),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Column(
                 children: [
                   _buildRadioOption(
@@ -85,7 +87,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
                       5, "companyprofileinput_ProfileCreation8".tr()),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Row(
@@ -97,7 +99,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
                       },
                       child: Text("companyprofileedit_ProfileCreation1".tr()),
                     ),
-                    SizedBox(width: 10), // Add spacing between buttons
+                    const SizedBox(width: 10), // Add spacing between buttons
                     ElevatedButton(
                       onPressed: () {
                         context.router.maybePop();
@@ -122,7 +124,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
           groupValue: _selectedValue,
           onChanged: (newValue) {
             setState(() {
-              _selectedValue = newValue as int?;
+              _selectedValue = newValue;
             });
           },
         ),
@@ -133,7 +135,7 @@ class _CompanyProfileEditState extends State<CompanyProfileEdit>
 
   Widget _buildInputField(String label, TextEditingController controller) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(),

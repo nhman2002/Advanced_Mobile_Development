@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:student_hub/UI/Student/ProjectList/ProjectDetail.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_cubit.dart';
 import 'package:student_hub/UI/Student/ProjectList/cubit/ProjectList_state.dart';
 import 'package:student_hub/common/config/router.dart';
 import 'package:student_hub/common/ui/base_snack_bar/snack_bar.dart';
-import 'package:student_hub/common/ui/bottomNavigation/AnimatedButton.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:student_hub/common/ui/bottomNavigation/bottomAppbar_base.dart';
-import 'package:student_hub/common/ui/theme/bloc/theme.dart';
-import 'package:student_hub/core/base_widget/base_widget.dart';
 import 'package:student_hub/core/models/output/project_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -23,10 +19,10 @@ class StudentProjectList extends StatefulWidget {
 
 class _StudentProjectList extends State<StudentProjectList> {
   bool isLoading = true;
-  SearchController _searchController = SearchController();
-  TextEditingController _projectScopeController = TextEditingController();
-  TextEditingController _numberOfStudentsController = TextEditingController();
-  TextEditingController _proposalsLessThanController = TextEditingController();
+  final SearchController _searchController = SearchController();
+  final TextEditingController _projectScopeController = TextEditingController();
+  final TextEditingController _numberOfStudentsController = TextEditingController();
+  final TextEditingController _proposalsLessThanController = TextEditingController();
   int? _selectedScope;
   bool isStudent = false;
 
@@ -34,7 +30,7 @@ class _StudentProjectList extends State<StudentProjectList> {
   void initState() {
     super.initState();
     // Set a delay to hide the loading indicator after 10 seconds
-    Future.delayed(Duration(seconds: 10), () {
+    Future.delayed(const Duration(seconds: 10), () {
       setState(() {
         isLoading = false;
       });
@@ -50,13 +46,13 @@ class _StudentProjectList extends State<StudentProjectList> {
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
-                icon: Icon(Icons.account_circle, size: 40.0),
+                icon: const Icon(Icons.account_circle, size: 40.0),
               )
             ],
           ),
@@ -75,7 +71,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                             _showFilterDialog(context);
                           },
                           child: Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 8.0, horizontal: 16.0),
                             decoration: BoxDecoration(
                               border: Border.all(
@@ -84,7 +80,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                               color: Theme.of(context).colorScheme.surface,
                               borderRadius: BorderRadius.circular(8.0),
                             ),
-                            child: Row(
+                            child: const Row(
                               children: [
                                 Icon(Icons.search),
                                 SizedBox(width: 8.0),
@@ -114,7 +110,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                           if (projectList.isNotEmpty)
                             SingleChildScrollView(
                               child: Container(
-                                constraints: BoxConstraints(minHeight: 20),
+                                constraints: const BoxConstraints(minHeight: 20),
                                 child: Column(
                                   children: projectList.map((project) {
                                     return _buildProjectItem(
@@ -127,10 +123,10 @@ class _StudentProjectList extends State<StudentProjectList> {
                             Center(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 50),
+                                  const SizedBox(height: 50),
                                   Center(
                                     child: isLoading
-                                        ? CircularProgressIndicator()
+                                        ? const CircularProgressIndicator()
                                         : Text("projectlist_student2".tr()),
                                   ),
                                 ],
@@ -154,34 +150,34 @@ class _StudentProjectList extends State<StudentProjectList> {
   void _showFilterDialog(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
       builder: (BuildContext context) {
         return SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Project Filter',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 TextField(
                   controller: _searchController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Search',
                     prefixIcon: Icon(Icons.search),
                   ),
                 ),
-                SizedBox(height: 20.0),
-                Text(
+                const SizedBox(height: 20.0),
+                const Text(
                   'Project Scope',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -190,7 +186,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                 ),
                 DropdownButtonFormField<int>(
                   value: _selectedScope,
-                  items: [
+                  items: const [
                     DropdownMenuItem<int>(
                       value: 0,
                       child: Text('Less than 1 month'),
@@ -213,28 +209,28 @@ class _StudentProjectList extends State<StudentProjectList> {
                       _selectedScope = value!;
                     });
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Select Project Scope',
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextField(
                   controller: _numberOfStudentsController,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Number of Students',
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextField(
                   controller: _proposalsLessThanController,
                   keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Proposals Less Than',
                   ),
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -242,9 +238,9 @@ class _StudentProjectList extends State<StudentProjectList> {
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
-                      child: Text('Cancel'),
+                      child: const Text('Cancel'),
                     ),
-                    SizedBox(width: 10.0),
+                    const SizedBox(width: 10.0),
                     ElevatedButton(
                       onPressed: () {
                         context.read<ProjectListCubit>().filterProject(
@@ -257,7 +253,7 @@ class _StudentProjectList extends State<StudentProjectList> {
                             );
                         Navigator.of(context).pop();
                       },
-                      child: Text('Filter'),
+                      child: const Text('Filter'),
                     ),
                   ],
                 ),
@@ -314,7 +310,7 @@ class _StudentProjectList extends State<StudentProjectList> {
         print('Project $id tapped');
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
         decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Theme.of(context).colorScheme.outline)), 
         ),
@@ -323,9 +319,9 @@ class _StudentProjectList extends State<StudentProjectList> {
           children: [
             Text(
               formattedTime,
-              style: TextStyle(),
+              style: const TextStyle(),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -341,33 +337,31 @@ class _StudentProjectList extends State<StudentProjectList> {
                   FavoriteIconButton(projectId: project.projectId ?? -1)
               ],
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
-              "projectlist_student6".tr() +
-                  '$projectScope, ${project.numberOfStudents}' +
-                  "projectlist_student7".tr(),
-              style: TextStyle(),
+              '${"projectlist_student6".tr()}$projectScope, ${project.numberOfStudents}${"projectlist_student7".tr()}',
+              style: const TextStyle(),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
+                const Icon(
                   Icons.remove,
                   size: 16.0,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Expanded(
                   child: Text(
                     project.description ?? "projectlist_student8".tr(),
-                    style: TextStyle(),
+                    style: const TextStyle(),
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(
-              "projectlist_student9".tr() + '$proposal',
+              '${"projectlist_student9".tr()}$proposal',
               style: TextStyle(color: Theme.of(context).colorScheme.primary),
             ),
             // Divider(color: Theme.of(context).colorScheme.outline),
@@ -386,8 +380,7 @@ class _StudentProjectList extends State<StudentProjectList> {
 
 class FavoriteIconButton extends StatefulWidget {
   final int projectId;
-  const FavoriteIconButton({Key? key, required this.projectId})
-      : super(key: key);
+  const FavoriteIconButton({super.key, required this.projectId});
 
   @override
   _FavoriteIconButtonState createState() => _FavoriteIconButtonState();

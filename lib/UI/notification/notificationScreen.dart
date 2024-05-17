@@ -13,7 +13,7 @@ import 'package:student_hub/core/models/output/notification.dart';
 @RoutePage()
 class NotificationScreen
     extends BaseWidget<NotificationCubit, NotificationState> {
-  const NotificationScreen({Key? key}) : super(key: key);
+  const NotificationScreen({super.key});
 
   @override
   Widget buildWidget(BuildContext context) {
@@ -27,7 +27,7 @@ class NotificationScreen
 }
 
 class NotificationWidget extends StatefulWidget {
-  const NotificationWidget({Key? key}) : super(key: key);
+  const NotificationWidget({super.key});
 
   @override
   State<NotificationWidget> createState() => _NotificationPage();
@@ -42,13 +42,13 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Student Hub'),
+            title: const Text('Student Hub'),
             actions: [
               IconButton(
                 onPressed: () {
                   context.router.replace(const SwitchAccountPageRoute());
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.account_circle,
                   size: 40.0,
                 ),
@@ -89,13 +89,13 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(children: <Widget>[
-              Expanded(child: Divider()),
+              const Expanded(child: Divider()),
               Text(day),
-              Expanded(child: Divider()),
+              const Expanded(child: Divider()),
             ]),
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: notificationsForDay.length,
               itemBuilder: (context, index) {
                 final notification = notificationsForDay[index];
@@ -165,13 +165,13 @@ class _NotificationPage extends State<NotificationWidget> with SnackBarDefault {
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 4.0),
+      margin: const EdgeInsets.symmetric(vertical: 4.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.tertiaryContainer,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: ListTile(
-        contentPadding: EdgeInsets.all(12.0),
+        contentPadding: const EdgeInsets.all(12.0),
         leading: Icon(icon,
             color: Theme.of(context).colorScheme.onTertiaryContainer),
         title: Text(notification.title ?? '',

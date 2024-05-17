@@ -1,16 +1,11 @@
-import 'dart:io';
 
 import 'package:socket_io_client/socket_io_client.dart' as IO;
-import 'package:student_hub/common/config/navigation_event.dart';
 import 'package:student_hub/common/storage/local_storage.dart';
 import 'package:student_hub/core/config/dependency.dart';
 import 'package:student_hub/core/network/network.dart';
 import 'package:student_hub/core/repository/auth.dart';
-import 'package:student_hub/core/repository/user.dart';
 import 'package:student_hub/core/widget_cubit/widget_cubit.dart';
-import 'package:student_hub/UI/Shub.dart';
 import 'package:student_hub/UI/splash_screen/cubit/splash_state.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashCubit extends WidgetCubit<SplashState> {
   SplashCubit()
@@ -47,17 +42,19 @@ class SplashCubit extends WidgetCubit<SplashState> {
       getIt.get<NetworkManager>().updateHeader(accessToken: accessToken);
       if (currentRole == "0"){
         emit(state.copyWith(isCompany: false));
-        if (hasStudentProfile != null) 
+        if (hasStudentProfile != null) {
           emit(state.copyWith(hasProfile: true));
-        else
+        } else {
           emit(state.copyWith(hasProfile: false));
+        }
       }
       else if (currentRole == "1"){
         emit(state.copyWith(isCompany: true));
-        if (hasCompanyProfile != null)
+        if (hasCompanyProfile != null) {
           emit(state.copyWith(hasProfile: true));
-        else
+        } else {
           emit(state.copyWith(hasProfile: false));
+        }
       }
       emit(state.copyWith(isLogin: true));
     }
@@ -99,7 +96,7 @@ class SplashCubit extends WidgetCubit<SplashState> {
 
     // Listen to socket events
     notiSocket.onAny((String event, data) {
-      print('got sth on noti socket ' + event + ' ' + data.toString());
+      print('got sth on noti socket $event $data');
     });
 
     // Listen to channel to receive messages
